@@ -1,16 +1,19 @@
+"use client";
+
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-purple-100 to-purple-200">
-      {/* Logo and Title */}
+      {/* Logo */}
       <div className="flex flex-col items-center mb-8">
         <Image
           src="/logo.png"
           alt="Ursul.AI Logo"
           width={350}
           height={350}
-          className="mb-1"
+          className="mb-4"
           priority
         />
       </div>
@@ -37,18 +40,18 @@ export default function LoginPage() {
       </div>
       {/* Buttons */}
       <div className="flex gap-4 w-full max-w-xs">
-        <a
-          href="/api/auth/signin"
+        <button
+          onClick={() => signIn("google")}
           className="flex-1 bg-white text-gray-800 font-semibold py-3 rounded-lg shadow text-center hover:bg-purple-50 transition text-lg"
         >
-          Sign up
-        </a>
-        <a
-          href="/api/auth/signin"
+          Sign up with Google
+        </button>
+        <button
+          onClick={() => signIn("google")}
           className="flex-1 bg-purple-800 text-white font-semibold py-3 rounded-lg shadow text-center hover:bg-purple-700 transition text-lg"
         >
-          Log in
-        </a>
+          Log in with Google
+        </button>
       </div>
     </div>
   );
