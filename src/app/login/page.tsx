@@ -8,18 +8,22 @@ export default function LoginPage() {
         <Image
           src="/logo.png"
           alt="Ursul.AI Logo"
-          width={64}
-          height={64}
-          className="mb-2"
+          width={350}
+          height={350}
+          className="mb-1"
+          priority
         />
-        <h1 className="text-4xl font-extrabold text-gray-800 mb-2 tracking-tight">Ursul.AI</h1>
       </div>
       {/* Headline */}
       <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center leading-tight">
-        Journal your feelings<br />with AI
+        Journal your feelings
+        <br />
+        with AI
       </h2>
       <p className="text-lg text-gray-600 mb-8 text-center">
-        Enhance self-care with tailored<br />AI-assisted journaling
+        Enhance self-care with tailored
+        <br />
+        AI-assisted journaling
       </p>
       {/* Illustration */}
       <div className="mb-8">
