@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ursul.ai - Your journalling companion",
-  description: "Ursul.ai is your AI-powered journalling companion for self-care and reflection.",
+  description:
+    "Ursul.ai is your AI-powered journalling companion for self-care and reflection.",
   icons: {
     icon: "/favicon.png",
   },
