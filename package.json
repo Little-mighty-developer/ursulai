@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@prisma/client": "^6.7.0",
     "next": "15.3.2",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
@@ -18,17 +19,22 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@eslint/js": "^9.26.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.26.0",
     "eslint-config-next": "15.3.2",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
+    "prisma": "^6.7.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.32.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -37,6 +43,12 @@
     ],
     "*.{css,md,json}": [
       "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "next/core-web-vitals",
+      "plugin:react/jsx-runtime"
     ]
   }
 }
