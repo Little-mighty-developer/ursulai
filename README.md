@@ -20,12 +20,14 @@ Ursul.ai is an intelligent journaling application that helps you capture and ana
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/ursulai.git
 cd ursulai
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -33,6 +35,7 @@ yarn install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 # or
