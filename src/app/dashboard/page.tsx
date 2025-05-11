@@ -8,12 +8,7 @@ export default function DashboardPage() {
   const { data: session, status } = useSession();
 
   if (status === "loading") return <div>Loading...</div>;
-  if (!session)
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        Access Denied
-      </div>
-    );
+  if (!session) return <div>Access Denied</div>;
 
   return (
     <div className="min-h-screen bg-purple-50 flex flex-col items-center py-8">

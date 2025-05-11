@@ -2,8 +2,26 @@
 
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-purple-100 to-purple-200">
       {/* Logo */}
@@ -38,16 +56,21 @@ export default function LoginPage() {
           className="mx-auto"
         />
       </div>
+      {error && (
+        <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
+          Login failed. Please try again.
+        </div>
+      )}
       {/* Buttons */}
       <div className="flex gap-4 w-full max-w-xs">
         <button
-          onClick={() => signIn("google")}
+          onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
           className="flex-1 bg-white text-gray-800 font-semibold py-3 rounded-lg shadow text-center hover:bg-purple-50 transition text-lg"
         >
           Sign up with Google
         </button>
         <button
-          onClick={() => signIn("google")}
+          onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
           className="flex-1 bg-purple-800 text-white font-semibold py-3 rounded-lg shadow text-center hover:bg-purple-700 transition text-lg"
         >
           Log in with Google
