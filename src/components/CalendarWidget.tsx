@@ -26,24 +26,32 @@ function getEngagementClass(level: number | undefined, isToday: boolean) {
 
 export default function CalendarWidget() {
   const [value, setValue] = useState<Date>(new Date());
+  const [activeStartDate, setActiveStartDate] = useState<Date>(new Date());
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
+
+  const goToToday = () => {
+    const today = new Date();
+    const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    setActiveStartDate(firstOfMonth);
+    setValue(today);
+  };
 
   function tileClassName({ date, view }: { date: Date; view: string }) {
     if (view === "month") {
+      const isToday = new Date().toDateString() === date.toDateString();
+      if (isToday) {
+        return "bg-blue-400 text-white border-2 border-blue-600 rounded-full !important";
+      }
       const iso = date.toISOString().slice(0, 10);
       const level = engagementByDate[iso];
-      const isToday = new Date().toDateString() === date.toDateString();
-      const isWeekend = date.getDay() === 0 || date.getDay() === 6; // Sunday=0, Saturday=6
+      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
 
       let classes = "";
       if (level) {
-        classes += getEngagementClass(level, isToday) + " ";
+        classes += getEngagementClass(level, false) + " ";
       }
       if (isWeekend) {
-        classes += "bg-purple-100 "; // Tailwind's lavender-like color
-      }
-      if (isToday) {
-        classes += "bg-blue-300 text-white border-2 border-blue-500 ";
+        classes += "bg-purple-100 ";
       }
       return classes.trim();
     }
@@ -72,6 +80,10 @@ export default function CalendarWidget() {
       <Calendar
         value={value}
         onChange={setValue}
+        activeStartDate={activeStartDate}
+        onActiveStartDateChange={({ activeStartDate }) =>
+          setActiveStartDate(activeStartDate!)
+        }
         tileClassName={tileClassName}
         tileContent={tileContent}
         onMouseOver={({ activeStartDate, date, view }) => {
@@ -81,7 +93,7 @@ export default function CalendarWidget() {
       />
       <button
         className="mt-2 px-3 py-1 bg-blue-200 text-blue-900 rounded-full font-semibold text-xs hover:bg-blue-300 transition"
-        onClick={() => setValue(new Date())}
+        onClick={goToToday}
       >
         Today
       </button>
@@ -95,9 +107,6 @@ export default function CalendarWidget() {
         <span className="flex items-center gap-1">
           <span className="bg-purple-400 text-white rounded-full px-2">💜</span>
           High
-        </span>
-        <span className="ml-2 border-2 border-blue-400 rounded-full px-2">
-          Today
         </span>
       </div>
     </div>
