@@ -1,56 +1,70 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 
-function getWeatherSuggestion(main: string, isSunrise: boolean, isSunset: boolean, humidity: number) {
+function getWeatherSuggestion(
+  main: string,
+  isSunrise: boolean,
+  isSunset: boolean,
+  humidity: number,
+) {
   if (isSunrise) {
     return {
       emoji: "🌅",
-      message: "Sunrise! A new day, a new beginning. Take a deep breath and set an intention for today."
+      message:
+        "Sunrise! A new day, a new beginning. Take a deep breath and set an intention for today.",
     };
   }
   if (isSunset) {
     return {
       emoji: "🌇",
-      message: "Sunset—time to wind down. Reflect on one thing you're grateful for today."
+      message:
+        "Sunset—time to wind down. Reflect on one thing you're grateful for today.",
     };
   }
   if (humidity > 80) {
     return {
       emoji: "💧",
-      message: "It's quite humid. Remember to hydrate and take breaks if you feel sluggish."
+      message:
+        "It's quite humid. Remember to hydrate and take breaks if you feel sluggish.",
     };
   }
   switch (main) {
     case "Clear":
       return {
         emoji: "☀️",
-        message: "Clear skies — a perfect backdrop for a 10-minute walking meditation. Imagine the world as your personal orchestra today: what sounds rise and fall as you move through it?"
+        message:
+          "Clear skies — a perfect backdrop for a 10-minute walking meditation. Imagine the world as your personal orchestra today: what sounds rise and fall as you move through it?",
       };
     case "Clouds":
       return {
         emoji: "☁️",
-        message: "A cloudy day is no match for a sunny disposition. What's one bright thing you're holding on to today?"
+        message:
+          "A cloudy day is no match for a sunny disposition. What's one bright thing you're holding on to today?",
       };
     case "Rain":
       return {
         emoji: "🌧️",
-        message: "If you want the rainbow, you gotta put up with the rain. What do the sounds of rain feel like to your senses?"
+        message:
+          "If you want the rainbow, you gotta put up with the rain. What do the sounds of rain feel like to your senses?",
       };
     case "Snow":
       return {
         emoji: "❄️",
-        message: "It's chilly outside — perfect for staying cozy. What little comforts can you offer yourself today?"
+        message:
+          "It's chilly outside — perfect for staying cozy. What little comforts can you offer yourself today?",
       };
     case "Thunderstorm":
       return {
         emoji: "⛈️",
-        message: "Not all storms come to disrupt your life, some come to clear your path. What are you ready to release? Or are you set to bring the thunder?"
+        message:
+          "Not all storms come to disrupt your life, some come to clear your path. What are you ready to release? Or are you set to bring the thunder?",
       };
     default:
       return {
         emoji: "🌈",
-        message: "Whatever the weather, it's a great day to journal and care for yourself!"
+        message:
+          "Whatever the weather, it's a great day to journal and care for yourself!",
       };
   }
 }
@@ -59,12 +73,12 @@ function formatTime(unixUtc: number, timezoneOffset: number) {
   // Show time in the weather location's local time
   const localUnix = unixUtc + timezoneOffset;
   const date = new Date(localUnix * 1000);
-  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
 function formatTimeUserTZ(unixUtc: number) {
   const date = new Date(unixUtc * 1000);
-  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
 export default function WeatherWidget() {
@@ -82,41 +96,44 @@ export default function WeatherWidget() {
       setLoading(false);
       return;
     }
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const apiKey = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        const apiKey = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 
-      // Fetch 2.5 weather
-      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-      // Fetch 3.0 overview (cache daily)
-      const today = new Date().toISOString().slice(0, 10);
-      const overviewKey = `weather_overview_${today}`;
-      let overviewData = null;
-      if (localStorage.getItem(overviewKey)) {
-        overviewData = JSON.parse(localStorage.getItem(overviewKey)!);
-      } else {
-        const overviewUrl = `https://api.openweathermap.org/data/3.0/onecall/overview?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-        const overviewRes = await fetch(overviewUrl);
-        if (overviewRes.ok) {
-          overviewData = await overviewRes.json();
-          localStorage.setItem(overviewKey, JSON.stringify(overviewData));
+        // Fetch 2.5 weather
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+        // Fetch 3.0 overview (cache daily)
+        const today = new Date().toISOString().slice(0, 10);
+        const overviewKey = `weather_overview_${today}`;
+        let overviewData = null;
+        if (localStorage.getItem(overviewKey)) {
+          overviewData = JSON.parse(localStorage.getItem(overviewKey)!);
+        } else {
+          const overviewUrl = `https://api.openweathermap.org/data/3.0/onecall/overview?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+          const overviewRes = await fetch(overviewUrl);
+          if (overviewRes.ok) {
+            overviewData = await overviewRes.json();
+            localStorage.setItem(overviewKey, JSON.stringify(overviewData));
+          }
         }
-      }
 
-      try {
-        const weatherRes = await fetch(weatherUrl);
-        if (!weatherRes.ok) throw new Error("Weather fetch failed");
-        const weatherData = await weatherRes.json();
-        setWeather(weatherData);
-        setOverview(overviewData);
-      } catch (err) {
-        setError("Could not fetch weather");
-      }
-      setLoading(false);
-    }, () => {
-      setError("Location permission denied");
-      setLoading(false);
-    });
+        try {
+          const weatherRes = await fetch(weatherUrl);
+          if (!weatherRes.ok) throw new Error("Weather fetch failed");
+          const weatherData = await weatherRes.json();
+          setWeather(weatherData);
+          setOverview(overviewData);
+        } catch (err) {
+          setError("Could not fetch weather");
+        }
+        setLoading(false);
+      },
+      () => {
+        setError("Location permission denied");
+        setLoading(false);
+      },
+    );
   }, []);
 
   if (loading) return <div>Loading weather...</div>;
@@ -133,9 +150,17 @@ export default function WeatherWidget() {
   const sunset = weather.sys.sunset;
   const location = weather.name;
 
-  const weatherOverview = overview?.weather_overview ?? weather.weather[0].description;
+  const weatherOverview =
+    overview?.weather_overview ?? weather.weather[0].description;
 
-  const { emoji, message } = getWeatherSuggestion(weather.weather[0].main, Math.floor(Date.now() / 1000) >= sunrise && Math.floor(Date.now() / 1000) < sunrise + 1800, Math.floor(Date.now() / 1000) >= sunset && Math.floor(Date.now() / 1000) < sunset + 1800, humidity);
+  const { emoji, message } = getWeatherSuggestion(
+    weather.weather[0].main,
+    Math.floor(Date.now() / 1000) >= sunrise &&
+      Math.floor(Date.now() / 1000) < sunrise + 1800,
+    Math.floor(Date.now() / 1000) >= sunset &&
+      Math.floor(Date.now() / 1000) < sunset + 1800,
+    humidity,
+  );
 
   return (
     <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 export default function CalendarWidget() {
   // For now, just a placeholder. You can use a library or build your own.
