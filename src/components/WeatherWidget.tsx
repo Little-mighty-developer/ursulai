@@ -1,6 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useWeatherData } from "@/hooks/useWeatherData";
+
+const weatherSuggestions: Record<string, { emoji: string; message: string }> = {
+  Clear: {
+    emoji: "☀️",
+    message:
+      "Clear skies — a perfect backdrop for a 10-minute walking meditation. Imagine the world as your personal orchestra today: what sounds rise and fall as you move through it?",
+  },
+  Clouds: {
+    emoji: "☁️",
+    message:
+      "A cloudy day is no match for a sunny disposition. What's one bright thing you're holding on to today?",
+  },
+  Rain: {
+    emoji: "🌧️",
+    message:
+      "If you want the rainbow, you gotta put up with the rain. What do the sounds of rain feel like to your senses?",
+  },
+  Snow: {
+    emoji: "❄️",
+    message:
+      "It's chilly outside — perfect for staying cozy. What little comforts can you offer yourself today?",
+  },
+  Thunderstorm: {
+    emoji: "⛈️",
+    message:
+      "Not all storms come to disrupt your life, some come to clear your path. What are you ready to release? Or are you set to bring the thunder?",
+  },
+};
 
 function getWeatherSuggestion(
   main: string,
@@ -29,44 +58,13 @@ function getWeatherSuggestion(
         "It's quite humid. Remember to hydrate and take breaks if you feel sluggish.",
     };
   }
-  switch (main) {
-    case "Clear":
-      return {
-        emoji: "☀️",
-        message:
-          "Clear skies — a perfect backdrop for a 10-minute walking meditation. Imagine the world as your personal orchestra today: what sounds rise and fall as you move through it?",
-      };
-    case "Clouds":
-      return {
-        emoji: "☁️",
-        message:
-          "A cloudy day is no match for a sunny disposition. What's one bright thing you're holding on to today?",
-      };
-    case "Rain":
-      return {
-        emoji: "🌧️",
-        message:
-          "If you want the rainbow, you gotta put up with the rain. What do the sounds of rain feel like to your senses?",
-      };
-    case "Snow":
-      return {
-        emoji: "❄️",
-        message:
-          "It's chilly outside — perfect for staying cozy. What little comforts can you offer yourself today?",
-      };
-    case "Thunderstorm":
-      return {
-        emoji: "⛈️",
-        message:
-          "Not all storms come to disrupt your life, some come to clear your path. What are you ready to release? Or are you set to bring the thunder?",
-      };
-    default:
-      return {
-        emoji: "🌈",
-        message:
-          "Whatever the weather, it's a great day to journal and care for yourself!",
-      };
-  }
+  return (
+    weatherSuggestions[main] || {
+      emoji: "🌈",
+      message:
+        "Whatever the weather, it's a great day to journal and care for yourself!",
+    }
+  );
 }
 
 function formatTime(unixUtc: number, timezoneOffset: number) {
@@ -82,64 +80,14 @@ function formatTimeUserTZ(unixUtc: number) {
 }
 
 export default function WeatherWidget() {
-  const [weather, setWeather] = useState<any>(null);
-  const [overview, setOverview] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Tooltip state
+  const { weather, overview, loading, error } = useWeatherData();
   const [showTooltip, setShowTooltip] = useState(false);
-
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      setError("Geolocation not supported");
-      setLoading(false);
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-        const apiKey = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
-
-        // Fetch 2.5 weather
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-        // Fetch 3.0 overview (cache daily)
-        const today = new Date().toISOString().slice(0, 10);
-        const overviewKey = `weather_overview_${today}`;
-        let overviewData = null;
-        if (localStorage.getItem(overviewKey)) {
-          overviewData = JSON.parse(localStorage.getItem(overviewKey)!);
-        } else {
-          const overviewUrl = `https://api.openweathermap.org/data/3.0/onecall/overview?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-          const overviewRes = await fetch(overviewUrl);
-          if (overviewRes.ok) {
-            overviewData = await overviewRes.json();
-            localStorage.setItem(overviewKey, JSON.stringify(overviewData));
-          }
-        }
-
-        try {
-          const weatherRes = await fetch(weatherUrl);
-          if (!weatherRes.ok) throw new Error("Weather fetch failed");
-          const weatherData = await weatherRes.json();
-          setWeather(weatherData);
-          setOverview(overviewData);
-        } catch (err) {
-          setError("Could not fetch weather");
-        }
-        setLoading(false);
-      },
-      () => {
-        setError("Location permission denied");
-        setLoading(false);
-      },
-    );
-  }, []);
 
   if (loading) return <div>Loading weather...</div>;
   if (error) return <div>{error}</div>;
   if (!weather) return <div>Weather unavailable</div>;
 
+  // 2.5 data
   const iconCode = weather.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
   const temp = Math.round(weather.main.temp);
@@ -150,6 +98,7 @@ export default function WeatherWidget() {
   const sunset = weather.sys.sunset;
   const location = weather.name;
 
+  // 3.0 data
   const weatherOverview =
     overview?.weather_overview ?? weather.weather[0].description;
 
