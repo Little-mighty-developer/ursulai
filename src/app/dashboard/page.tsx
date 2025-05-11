@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 import WeatherWidget from "@/components/WeatherWidget";
+import CalendarWidget from "@/components/CalendarWidget";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -23,11 +24,7 @@ export default function DashboardPage() {
           <span>🙂 😐 🙁</span>
         </div>
         {/* Calendar Widget */}
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-          <span className="text-lg font-semibold mb-2">Calendar</span>
-          {/* Calendar component here */}
-          <span>📅</span>
-        </div>
+        <CalendarWidget />
         {/* Weather Widget */}
         <WeatherWidget />
         {/* Health Widget */}

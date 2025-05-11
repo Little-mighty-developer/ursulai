@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +13,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ursul.ai - Your journalling companion",
@@ -30,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>
