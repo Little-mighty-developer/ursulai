@@ -1,6 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import JournalEntriesWidget from "@/components/JournalEntriesWidget";
+import WeatherWidget from "@/components/WeatherWidget";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -18,10 +20,7 @@ export default function DashboardPage() {
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
         {/* Journal Entries Widget */}
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-          <span className="text-lg font-semibold mb-2">Journal Entries</span>
-          <span className="text-4xl font-bold text-purple-700">28</span>
-        </div>
+        <JournalEntriesWidget count={28} />
         {/* Mood Widget */}
         <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
           <span className="text-lg font-semibold mb-2">Mood</span>
@@ -35,10 +34,7 @@ export default function DashboardPage() {
           <span>📅</span>
         </div>
         {/* Weather Widget */}
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-          <span className="text-lg font-semibold mb-2">Weather</span>
-          <span>72°F ☀️</span>
-        </div>
+        <WeatherWidget />
         {/* Health Widget */}
         <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
           <span className="text-lg font-semibold mb-2">Health</span>
