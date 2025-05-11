@@ -18,16 +18,57 @@ const engagementLabels = {
   3: { color: "bg-purple-300", label: "High" },
 };
 
-function getEngagementClass(level: number | undefined, isToday: boolean) {
-  if (!level) return isToday ? "border-2 border-indigo-400" : "";
+export function getEngagementClass(
+  level: number | undefined,
+  isToday: boolean,
+) {
+  if (!level) return isToday ? "border-2 border-blue-400" : "";
   const base = engagementLabels[level].color + " rounded-full font-bold";
-  return isToday ? `${base} border-2 border-indigo-400` : base;
+  return isToday ? `${base} border-2 border-blue-400` : base;
+}
+
+export function tileClassName({ date, view }: { date: Date; view: string }) {
+  if (view === "month") {
+    const iso = date.toISOString().slice(0, 10);
+    const level = engagementByDate[iso];
+    const isToday = new Date().toDateString() === date.toDateString();
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+
+    if (isToday) {
+      return "bg-blue-400 text-white border-2 border-blue-600 rounded-full";
+    }
+
+    let classes = "";
+    if (level) {
+      classes += getEngagementClass(level, false) + " ";
+    }
+    if (isWeekend) {
+      classes += "bg-purple-100 ";
+    }
+    return classes.trim();
+  }
+  return "";
+}
+
+export function CalendarLegend() {
+  return (
+    <div className="flex gap-2 mt-4 text-xs items-center">
+      <span className="flex items-center gap-1">
+        <span className="bg-blue-200 rounded-full px-2">&nbsp;</span>Low
+      </span>
+      <span className="flex items-center gap-1">
+        <span className="bg-pink-200 rounded-full px-2">&nbsp;</span>Medium
+      </span>
+      <span className="flex items-center gap-1">
+        <span className="bg-purple-300 rounded-full px-2">&nbsp;</span>High
+      </span>
+    </div>
+  );
 }
 
 export default function CalendarWidget() {
   const [value, setValue] = useState<Date>(new Date());
   const [activeStartDate, setActiveStartDate] = useState<Date>(new Date());
-  const [hoveredDate, setHoveredDate] = useState<string | null>(null);
 
   const goToToday = () => {
     const today = new Date();
@@ -36,47 +77,8 @@ export default function CalendarWidget() {
     setValue(today);
   };
 
-  function tileClassName({ date, view }: { date: Date; view: string }) {
-    if (view === "month") {
-      const isToday = new Date().toDateString() === date.toDateString();
-      if (isToday) {
-        return "bg-blue-400 text-white border-2 border-blue-600 rounded-full !important";
-      }
-      const iso = date.toISOString().slice(0, 10);
-      const level = engagementByDate[iso];
-      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-
-      let classes = "";
-      if (level) {
-        classes += getEngagementClass(level, false) + " ";
-      }
-      if (isWeekend) {
-        classes += "bg-purple-100 ";
-      }
-      return classes.trim();
-    }
-    return "";
-  }
-
-  function tileContent({ date, view }: { date: Date; view: string }) {
-    if (view === "month") {
-      const iso = date.toISOString().slice(0, 10);
-      const level = engagementByDate[iso];
-      if (level && hoveredDate === iso) {
-        return (
-          <div className="absolute z-20 mt-8 left-1/2 -translate-x-1/2 bg-white text-xs text-gray-700 rounded shadow-lg px-2 py-1">
-            {engagementLabels[level].emoji} {engagementLabels[level].label}{" "}
-            engagement
-          </div>
-        );
-      }
-    }
-    return null;
-  }
-
-  return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow p-6 flex flex-col items-center">
-      <div className="text-xl font-bold mb-2">Calendar</div>
+  let content = (
+    <>
       <Calendar
         value={value}
         onChange={setValue}
@@ -85,11 +87,6 @@ export default function CalendarWidget() {
           setActiveStartDate(activeStartDate!)
         }
         tileClassName={tileClassName}
-        tileContent={tileContent}
-        onMouseOver={({ activeStartDate, date, view }) => {
-          if (view === "month") setHoveredDate(date.toISOString().slice(0, 10));
-        }}
-        onMouseOut={() => setHoveredDate(null)}
       />
       <button
         className="mt-2 px-3 py-1 bg-blue-200 text-blue-900 rounded-full font-semibold text-xs hover:bg-blue-300 transition"
@@ -97,18 +94,14 @@ export default function CalendarWidget() {
       >
         Today
       </button>
-      <div className="flex gap-2 mt-4 text-xs items-center">
-        <span className="flex items-center gap-1">
-          <span className="bg-blue-200 rounded-full px-2">🩵</span>Low
-        </span>
-        <span className="flex items-center gap-1">
-          <span className="bg-pink-300 rounded-full px-2">💖</span>Medium
-        </span>
-        <span className="flex items-center gap-1">
-          <span className="bg-purple-400 text-white rounded-full px-2">💜</span>
-          High
-        </span>
-      </div>
+      <CalendarLegend />
+    </>
+  );
+
+  return (
+    <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow p-6 flex flex-col items-center">
+      <div className="text-xl font-bold mb-2">Calendar</div>
+      {content}
     </div>
   );
 }
