@@ -145,6 +145,21 @@ exports.Prisma.EngagementScalarFieldEnum = {
   journal: 'journal'
 };
 
+exports.Prisma.MoodEntryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  energy: 'energy',
+  calmness: 'calmness',
+  connection: 'connection',
+  anticipation: 'anticipation',
+  socialBattery: 'socialBattery',
+  joy: 'joy',
+  sadness: 'sadness',
+  desire: 'desire'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -159,7 +174,8 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Activity: 'Activity',
-  Engagement: 'Engagement'
+  Engagement: 'Engagement',
+  MoodEntry: 'MoodEntry'
 };
 
 /**

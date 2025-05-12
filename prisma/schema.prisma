@@ -43,3 +43,18 @@ model Engagement {
 
   @@unique([userId, date]) // Each user can have only one engagement per day
 }
+
+model MoodEntry {
+  id            String   @id @default(uuid())
+  userId        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  energy        Int      // 0 = Low, 1 = Mid, 2 = High
+  calmness      Int
+  connection    Int
+  anticipation  Int
+  socialBattery Int
+  joy           Int
+  sadness       Int
+  desire        Int
+}
