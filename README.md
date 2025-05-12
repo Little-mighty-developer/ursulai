@@ -9,6 +9,52 @@ Ursul.ai is an intelligent journaling application that helps you capture and ana
 - **AI-Powered Analysis**: Get personalized insights and answers to your questions based on your journal history
 - **Privacy-Focused**: Your journal entries are processed securely and privately
 
+## 🚀 Project Phases & Roadmap
+
+### Phase 1: Core App Development
+
+- Set up Next.js app with TypeScript, Tailwind, and GitHub
+- Implement authentication (NextAuth, Google)
+- Build core pages: Login, Dashboard, Journal, Calendar, Weather, Mood Tracker
+- Set up PostgreSQL with Prisma for data models (Engagement, MoodEntry, etc.)
+- Implement API routes for engagement and mood tracking
+
+### Phase 2: Local Dockerization
+
+- Write a `Dockerfile` for the Next.js app
+- Write a `docker-compose.yml` to run app + PostgreSQL locally
+- Test local development and database migrations in Docker
+
+### Phase 3: Kubernetes Basics
+
+- Write Kubernetes manifests for:
+  - App Deployment & Service
+  - PostgreSQL Deployment & Service
+  - PersistentVolumeClaim for DB data
+  - ConfigMap/Secret for environment variables
+- Deploy locally with Minikube or Kind
+
+### Phase 4: Advanced Kubernetes
+
+- Add Ingress for custom domains/paths
+- Set up resource limits, liveness/readiness probes
+- Use Kubernetes Secrets for sensitive data
+- Add auto-scaling (HPA)
+- Add monitoring/logging (Prometheus, Grafana, etc.)
+
+### Phase 5: CI/CD & Cloud Deployment
+
+- Set up GitHub Actions for automated builds/tests
+- Build and push Docker images to a registry
+- Deploy to a managed Kubernetes service (GKE, EKS, etc.)
+- Automate database migrations in CI/CD
+
+### Phase 6: Premium Features & Analytics
+
+- Build mood analytics dashboard (charts, trends)
+- Add premium features (weekly/monthly reports, reminders, etc.)
+- Add payment integration (Stripe, etc.)
+
 ## 🚀 Getting Started
 
 ### Prerequisites

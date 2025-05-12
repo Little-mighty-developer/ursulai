@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
+import MoodTracker from "@/components/MoodTracker";
+import Masonry from "react-masonry-css";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -12,23 +14,18 @@ export default function DashboardPage() {
   if (!session) return <div>Access Denied</div>;
 
   return (
-    <div className="min-h-screen bg-purple-50 flex flex-col items-center py-8">
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-        {/* Journal Entries Widget */}
-        <JournalEntriesWidget count={28} />
-        {/* Mood Widget */}
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-          <span className="text-lg font-semibold mb-2">Mood</span>
-          {/* Mood icons/graph here */}
-          <span>🙂 😐 🙁</span>
-        </div>
-        {/* Calendar Widget */}
+    <div className="min-h-screen bg-purple-50 p-8">
+      <h1 className="text-4xl font-extrabold text-center mb-8">Dashboard</h1>
+      <Masonry
+        breakpointCols={{ default: 4, 1100: 3, 700: 2, 500: 1 }}
+        className="flex w-auto"
+        columnClassName="masonry-column"
+      >
+        <JournalEntriesWidget />
         <CalendarWidget />
-        {/* Weather Widget */}
         <WeatherWidget />
-        {/* Health Widget */}
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <MoodTracker />
+        <div className="bg-white rounded-xl shadow p-6">
           <span className="text-lg font-semibold mb-2">Health</span>
           <ul className="text-left">
             <li>○ Headache</li>
@@ -37,15 +34,14 @@ export default function DashboardPage() {
             <li>○ Bloating</li>
           </ul>
         </div>
-        {/* Reminders Widget */}
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <div className="bg-white rounded-xl shadow p-6">
           <span className="text-lg font-semibold mb-2">Reminders</span>
           <ul className="text-left">
             <li>○ Reminder 1</li>
             <li>○ Reminder 2</li>
           </ul>
         </div>
-      </div>
+      </Masonry>
     </div>
   );
 }
