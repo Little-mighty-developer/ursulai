@@ -28,6 +28,11 @@ export type Activity = $Result.DefaultSelection<Prisma.$ActivityPayload>
  * 
  */
 export type Engagement = $Result.DefaultSelection<Prisma.$EngagementPayload>
+/**
+ * Model MoodEntry
+ * 
+ */
+export type MoodEntry = $Result.DefaultSelection<Prisma.$MoodEntryPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +188,16 @@ export class PrismaClient<
     * ```
     */
   get engagement(): Prisma.EngagementDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moodEntry`: Exposes CRUD operations for the **MoodEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MoodEntries
+    * const moodEntries = await prisma.moodEntry.findMany()
+    * ```
+    */
+  get moodEntry(): Prisma.MoodEntryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +640,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Activity: 'Activity',
-    Engagement: 'Engagement'
+    Engagement: 'Engagement',
+    MoodEntry: 'MoodEntry'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "activity" | "engagement"
+      modelProps: "user" | "activity" | "engagement" | "moodEntry"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -870,6 +886,80 @@ export namespace Prisma {
           }
         }
       }
+      MoodEntry: {
+        payload: Prisma.$MoodEntryPayload<ExtArgs>
+        fields: Prisma.MoodEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MoodEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MoodEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.MoodEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MoodEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>
+          }
+          findMany: {
+            args: Prisma.MoodEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>[]
+          }
+          create: {
+            args: Prisma.MoodEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>
+          }
+          createMany: {
+            args: Prisma.MoodEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MoodEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.MoodEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>
+          }
+          update: {
+            args: Prisma.MoodEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.MoodEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MoodEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MoodEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.MoodEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.MoodEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMoodEntry>
+          }
+          groupBy: {
+            args: Prisma.MoodEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MoodEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MoodEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<MoodEntryCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -957,6 +1047,7 @@ export namespace Prisma {
     user?: UserOmit
     activity?: ActivityOmit
     engagement?: EngagementOmit
+    moodEntry?: MoodEntryOmit
   }
 
   /* Types for Logging */
@@ -1094,16 +1185,25 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: string | null
     email: string | null
+    firstName: string | null
+    lastLogin: Date | null
+    lastActive: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
     email: string | null
+    firstName: string | null
+    lastLogin: Date | null
+    lastActive: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     email: number
+    firstName: number
+    lastLogin: number
+    lastActive: number
     _all: number
   }
 
@@ -1111,16 +1211,25 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     email?: true
+    firstName?: true
+    lastLogin?: true
+    lastActive?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     email?: true
+    firstName?: true
+    lastLogin?: true
+    lastActive?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     email?: true
+    firstName?: true
+    lastLogin?: true
+    lastActive?: true
     _all?: true
   }
 
@@ -1199,6 +1308,9 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     email: string
+    firstName: string | null
+    lastLogin: Date | null
+    lastActive: Date | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1221,6 +1333,9 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     email?: boolean
+    firstName?: boolean
+    lastLogin?: boolean
+    lastActive?: boolean
     activities?: boolean | User$activitiesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1228,19 +1343,28 @@ export namespace Prisma {
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     email?: boolean
+    firstName?: boolean
+    lastLogin?: boolean
+    lastActive?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     email?: boolean
+    firstName?: boolean
+    lastLogin?: boolean
+    lastActive?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     email?: boolean
+    firstName?: boolean
+    lastLogin?: boolean
+    lastActive?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "firstName" | "lastLogin" | "lastActive", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     activities?: boolean | User$activitiesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1256,6 +1380,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
+      firstName: string | null
+      lastLogin: Date | null
+      lastActive: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1682,6 +1809,9 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly firstName: FieldRef<"User", 'String'>
+    readonly lastLogin: FieldRef<"User", 'DateTime'>
+    readonly lastActive: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -3210,6 +3340,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     date: Date | null
+    login: boolean | null
     checkin: boolean | null
     mood: boolean | null
     reminder: boolean | null
@@ -3220,6 +3351,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     date: Date | null
+    login: boolean | null
     checkin: boolean | null
     mood: boolean | null
     reminder: boolean | null
@@ -3230,6 +3362,7 @@ export namespace Prisma {
     id: number
     userId: number
     date: number
+    login: number
     checkin: number
     mood: number
     reminder: number
@@ -3242,6 +3375,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     date?: true
+    login?: true
     checkin?: true
     mood?: true
     reminder?: true
@@ -3252,6 +3386,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     date?: true
+    login?: true
     checkin?: true
     mood?: true
     reminder?: true
@@ -3262,6 +3397,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     date?: true
+    login?: true
     checkin?: true
     mood?: true
     reminder?: true
@@ -3345,6 +3481,7 @@ export namespace Prisma {
     id: string
     userId: string
     date: Date
+    login: boolean
     checkin: boolean
     mood: boolean
     reminder: boolean
@@ -3372,6 +3509,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     date?: boolean
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
@@ -3382,6 +3520,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     date?: boolean
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
@@ -3392,6 +3531,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     date?: boolean
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
@@ -3402,13 +3542,14 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     date?: boolean
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
     journal?: boolean
   }
 
-  export type EngagementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "checkin" | "mood" | "reminder" | "journal", ExtArgs["result"]["engagement"]>
+  export type EngagementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "login" | "checkin" | "mood" | "reminder" | "journal", ExtArgs["result"]["engagement"]>
 
   export type $EngagementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Engagement"
@@ -3417,6 +3558,7 @@ export namespace Prisma {
       id: string
       userId: string
       date: Date
+      login: boolean
       checkin: boolean
       mood: boolean
       reminder: boolean
@@ -3847,6 +3989,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Engagement", 'String'>
     readonly userId: FieldRef<"Engagement", 'String'>
     readonly date: FieldRef<"Engagement", 'DateTime'>
+    readonly login: FieldRef<"Engagement", 'Boolean'>
     readonly checkin: FieldRef<"Engagement", 'Boolean'>
     readonly mood: FieldRef<"Engagement", 'Boolean'>
     readonly reminder: FieldRef<"Engagement", 'Boolean'>
@@ -4218,6 +4361,1039 @@ export namespace Prisma {
 
 
   /**
+   * Model MoodEntry
+   */
+
+  export type AggregateMoodEntry = {
+    _count: MoodEntryCountAggregateOutputType | null
+    _avg: MoodEntryAvgAggregateOutputType | null
+    _sum: MoodEntrySumAggregateOutputType | null
+    _min: MoodEntryMinAggregateOutputType | null
+    _max: MoodEntryMaxAggregateOutputType | null
+  }
+
+  export type MoodEntryAvgAggregateOutputType = {
+    id: number | null
+    value: number | null
+  }
+
+  export type MoodEntrySumAggregateOutputType = {
+    id: number | null
+    value: number | null
+  }
+
+  export type MoodEntryMinAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    moodType: string | null
+    value: number | null
+    createdAt: Date | null
+  }
+
+  export type MoodEntryMaxAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    moodType: string | null
+    value: number | null
+    createdAt: Date | null
+  }
+
+  export type MoodEntryCountAggregateOutputType = {
+    id: number
+    userId: number
+    moodType: number
+    value: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type MoodEntryAvgAggregateInputType = {
+    id?: true
+    value?: true
+  }
+
+  export type MoodEntrySumAggregateInputType = {
+    id?: true
+    value?: true
+  }
+
+  export type MoodEntryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    moodType?: true
+    value?: true
+    createdAt?: true
+  }
+
+  export type MoodEntryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    moodType?: true
+    value?: true
+    createdAt?: true
+  }
+
+  export type MoodEntryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    moodType?: true
+    value?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type MoodEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MoodEntry to aggregate.
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodEntries to fetch.
+     */
+    orderBy?: MoodEntryOrderByWithRelationInput | MoodEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MoodEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MoodEntries
+    **/
+    _count?: true | MoodEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MoodEntryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MoodEntrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MoodEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MoodEntryMaxAggregateInputType
+  }
+
+  export type GetMoodEntryAggregateType<T extends MoodEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateMoodEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMoodEntry[P]>
+      : GetScalarType<T[P], AggregateMoodEntry[P]>
+  }
+
+
+
+
+  export type MoodEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MoodEntryWhereInput
+    orderBy?: MoodEntryOrderByWithAggregationInput | MoodEntryOrderByWithAggregationInput[]
+    by: MoodEntryScalarFieldEnum[] | MoodEntryScalarFieldEnum
+    having?: MoodEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MoodEntryCountAggregateInputType | true
+    _avg?: MoodEntryAvgAggregateInputType
+    _sum?: MoodEntrySumAggregateInputType
+    _min?: MoodEntryMinAggregateInputType
+    _max?: MoodEntryMaxAggregateInputType
+  }
+
+  export type MoodEntryGroupByOutputType = {
+    id: number
+    userId: string
+    moodType: string
+    value: number
+    createdAt: Date
+    _count: MoodEntryCountAggregateOutputType | null
+    _avg: MoodEntryAvgAggregateOutputType | null
+    _sum: MoodEntrySumAggregateOutputType | null
+    _min: MoodEntryMinAggregateOutputType | null
+    _max: MoodEntryMaxAggregateOutputType | null
+  }
+
+  type GetMoodEntryGroupByPayload<T extends MoodEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MoodEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MoodEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MoodEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], MoodEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MoodEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    moodType?: boolean
+    value?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["moodEntry"]>
+
+  export type MoodEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    moodType?: boolean
+    value?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["moodEntry"]>
+
+  export type MoodEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    moodType?: boolean
+    value?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["moodEntry"]>
+
+  export type MoodEntrySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    moodType?: boolean
+    value?: boolean
+    createdAt?: boolean
+  }
+
+  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "moodType" | "value" | "createdAt", ExtArgs["result"]["moodEntry"]>
+
+  export type $MoodEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MoodEntry"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: string
+      moodType: string
+      value: number
+      createdAt: Date
+    }, ExtArgs["result"]["moodEntry"]>
+    composites: {}
+  }
+
+  type MoodEntryGetPayload<S extends boolean | null | undefined | MoodEntryDefaultArgs> = $Result.GetResult<Prisma.$MoodEntryPayload, S>
+
+  type MoodEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MoodEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MoodEntryCountAggregateInputType | true
+    }
+
+  export interface MoodEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MoodEntry'], meta: { name: 'MoodEntry' } }
+    /**
+     * Find zero or one MoodEntry that matches the filter.
+     * @param {MoodEntryFindUniqueArgs} args - Arguments to find a MoodEntry
+     * @example
+     * // Get one MoodEntry
+     * const moodEntry = await prisma.moodEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MoodEntryFindUniqueArgs>(args: SelectSubset<T, MoodEntryFindUniqueArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MoodEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MoodEntryFindUniqueOrThrowArgs} args - Arguments to find a MoodEntry
+     * @example
+     * // Get one MoodEntry
+     * const moodEntry = await prisma.moodEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MoodEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, MoodEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MoodEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryFindFirstArgs} args - Arguments to find a MoodEntry
+     * @example
+     * // Get one MoodEntry
+     * const moodEntry = await prisma.moodEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MoodEntryFindFirstArgs>(args?: SelectSubset<T, MoodEntryFindFirstArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MoodEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryFindFirstOrThrowArgs} args - Arguments to find a MoodEntry
+     * @example
+     * // Get one MoodEntry
+     * const moodEntry = await prisma.moodEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MoodEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, MoodEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MoodEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MoodEntries
+     * const moodEntries = await prisma.moodEntry.findMany()
+     * 
+     * // Get first 10 MoodEntries
+     * const moodEntries = await prisma.moodEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moodEntryWithIdOnly = await prisma.moodEntry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MoodEntryFindManyArgs>(args?: SelectSubset<T, MoodEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MoodEntry.
+     * @param {MoodEntryCreateArgs} args - Arguments to create a MoodEntry.
+     * @example
+     * // Create one MoodEntry
+     * const MoodEntry = await prisma.moodEntry.create({
+     *   data: {
+     *     // ... data to create a MoodEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends MoodEntryCreateArgs>(args: SelectSubset<T, MoodEntryCreateArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MoodEntries.
+     * @param {MoodEntryCreateManyArgs} args - Arguments to create many MoodEntries.
+     * @example
+     * // Create many MoodEntries
+     * const moodEntry = await prisma.moodEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MoodEntryCreateManyArgs>(args?: SelectSubset<T, MoodEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MoodEntries and returns the data saved in the database.
+     * @param {MoodEntryCreateManyAndReturnArgs} args - Arguments to create many MoodEntries.
+     * @example
+     * // Create many MoodEntries
+     * const moodEntry = await prisma.moodEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MoodEntries and only return the `id`
+     * const moodEntryWithIdOnly = await prisma.moodEntry.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MoodEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, MoodEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MoodEntry.
+     * @param {MoodEntryDeleteArgs} args - Arguments to delete one MoodEntry.
+     * @example
+     * // Delete one MoodEntry
+     * const MoodEntry = await prisma.moodEntry.delete({
+     *   where: {
+     *     // ... filter to delete one MoodEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MoodEntryDeleteArgs>(args: SelectSubset<T, MoodEntryDeleteArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MoodEntry.
+     * @param {MoodEntryUpdateArgs} args - Arguments to update one MoodEntry.
+     * @example
+     * // Update one MoodEntry
+     * const moodEntry = await prisma.moodEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MoodEntryUpdateArgs>(args: SelectSubset<T, MoodEntryUpdateArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MoodEntries.
+     * @param {MoodEntryDeleteManyArgs} args - Arguments to filter MoodEntries to delete.
+     * @example
+     * // Delete a few MoodEntries
+     * const { count } = await prisma.moodEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MoodEntryDeleteManyArgs>(args?: SelectSubset<T, MoodEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MoodEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MoodEntries
+     * const moodEntry = await prisma.moodEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MoodEntryUpdateManyArgs>(args: SelectSubset<T, MoodEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MoodEntries and returns the data updated in the database.
+     * @param {MoodEntryUpdateManyAndReturnArgs} args - Arguments to update many MoodEntries.
+     * @example
+     * // Update many MoodEntries
+     * const moodEntry = await prisma.moodEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MoodEntries and only return the `id`
+     * const moodEntryWithIdOnly = await prisma.moodEntry.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MoodEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, MoodEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MoodEntry.
+     * @param {MoodEntryUpsertArgs} args - Arguments to update or create a MoodEntry.
+     * @example
+     * // Update or create a MoodEntry
+     * const moodEntry = await prisma.moodEntry.upsert({
+     *   create: {
+     *     // ... data to create a MoodEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MoodEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MoodEntryUpsertArgs>(args: SelectSubset<T, MoodEntryUpsertArgs<ExtArgs>>): Prisma__MoodEntryClient<$Result.GetResult<Prisma.$MoodEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MoodEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryCountArgs} args - Arguments to filter MoodEntries to count.
+     * @example
+     * // Count the number of MoodEntries
+     * const count = await prisma.moodEntry.count({
+     *   where: {
+     *     // ... the filter for the MoodEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends MoodEntryCountArgs>(
+      args?: Subset<T, MoodEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MoodEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MoodEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MoodEntryAggregateArgs>(args: Subset<T, MoodEntryAggregateArgs>): Prisma.PrismaPromise<GetMoodEntryAggregateType<T>>
+
+    /**
+     * Group by MoodEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MoodEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MoodEntryGroupByArgs['orderBy'] }
+        : { orderBy?: MoodEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MoodEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMoodEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MoodEntry model
+   */
+  readonly fields: MoodEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MoodEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MoodEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MoodEntry model
+   */
+  interface MoodEntryFieldRefs {
+    readonly id: FieldRef<"MoodEntry", 'Int'>
+    readonly userId: FieldRef<"MoodEntry", 'String'>
+    readonly moodType: FieldRef<"MoodEntry", 'String'>
+    readonly value: FieldRef<"MoodEntry", 'Int'>
+    readonly createdAt: FieldRef<"MoodEntry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MoodEntry findUnique
+   */
+  export type MoodEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which MoodEntry to fetch.
+     */
+    where: MoodEntryWhereUniqueInput
+  }
+
+  /**
+   * MoodEntry findUniqueOrThrow
+   */
+  export type MoodEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which MoodEntry to fetch.
+     */
+    where: MoodEntryWhereUniqueInput
+  }
+
+  /**
+   * MoodEntry findFirst
+   */
+  export type MoodEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which MoodEntry to fetch.
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodEntries to fetch.
+     */
+    orderBy?: MoodEntryOrderByWithRelationInput | MoodEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MoodEntries.
+     */
+    cursor?: MoodEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MoodEntries.
+     */
+    distinct?: MoodEntryScalarFieldEnum | MoodEntryScalarFieldEnum[]
+  }
+
+  /**
+   * MoodEntry findFirstOrThrow
+   */
+  export type MoodEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which MoodEntry to fetch.
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodEntries to fetch.
+     */
+    orderBy?: MoodEntryOrderByWithRelationInput | MoodEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MoodEntries.
+     */
+    cursor?: MoodEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MoodEntries.
+     */
+    distinct?: MoodEntryScalarFieldEnum | MoodEntryScalarFieldEnum[]
+  }
+
+  /**
+   * MoodEntry findMany
+   */
+  export type MoodEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which MoodEntries to fetch.
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodEntries to fetch.
+     */
+    orderBy?: MoodEntryOrderByWithRelationInput | MoodEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MoodEntries.
+     */
+    cursor?: MoodEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodEntries.
+     */
+    skip?: number
+    distinct?: MoodEntryScalarFieldEnum | MoodEntryScalarFieldEnum[]
+  }
+
+  /**
+   * MoodEntry create
+   */
+  export type MoodEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a MoodEntry.
+     */
+    data: XOR<MoodEntryCreateInput, MoodEntryUncheckedCreateInput>
+  }
+
+  /**
+   * MoodEntry createMany
+   */
+  export type MoodEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MoodEntries.
+     */
+    data: MoodEntryCreateManyInput | MoodEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MoodEntry createManyAndReturn
+   */
+  export type MoodEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many MoodEntries.
+     */
+    data: MoodEntryCreateManyInput | MoodEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MoodEntry update
+   */
+  export type MoodEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a MoodEntry.
+     */
+    data: XOR<MoodEntryUpdateInput, MoodEntryUncheckedUpdateInput>
+    /**
+     * Choose, which MoodEntry to update.
+     */
+    where: MoodEntryWhereUniqueInput
+  }
+
+  /**
+   * MoodEntry updateMany
+   */
+  export type MoodEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MoodEntries.
+     */
+    data: XOR<MoodEntryUpdateManyMutationInput, MoodEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which MoodEntries to update
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * Limit how many MoodEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MoodEntry updateManyAndReturn
+   */
+  export type MoodEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update MoodEntries.
+     */
+    data: XOR<MoodEntryUpdateManyMutationInput, MoodEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which MoodEntries to update
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * Limit how many MoodEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MoodEntry upsert
+   */
+  export type MoodEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the MoodEntry to update in case it exists.
+     */
+    where: MoodEntryWhereUniqueInput
+    /**
+     * In case the MoodEntry found by the `where` argument doesn't exist, create a new MoodEntry with this data.
+     */
+    create: XOR<MoodEntryCreateInput, MoodEntryUncheckedCreateInput>
+    /**
+     * In case the MoodEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MoodEntryUpdateInput, MoodEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * MoodEntry delete
+   */
+  export type MoodEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+    /**
+     * Filter which MoodEntry to delete.
+     */
+    where: MoodEntryWhereUniqueInput
+  }
+
+  /**
+   * MoodEntry deleteMany
+   */
+  export type MoodEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MoodEntries to delete
+     */
+    where?: MoodEntryWhereInput
+    /**
+     * Limit how many MoodEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MoodEntry without action
+   */
+  export type MoodEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodEntry
+     */
+    select?: MoodEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodEntry
+     */
+    omit?: MoodEntryOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4233,7 +5409,10 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    email: 'email'
+    email: 'email',
+    firstName: 'firstName',
+    lastLogin: 'lastLogin',
+    lastActive: 'lastActive'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4256,6 +5435,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     date: 'date',
+    login: 'login',
     checkin: 'checkin',
     mood: 'mood',
     reminder: 'reminder',
@@ -4263,6 +5443,17 @@ export namespace Prisma {
   };
 
   export type EngagementScalarFieldEnum = (typeof EngagementScalarFieldEnum)[keyof typeof EngagementScalarFieldEnum]
+
+
+  export const MoodEntryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    moodType: 'moodType',
+    value: 'value',
+    createdAt: 'createdAt'
+  };
+
+  export type MoodEntryScalarFieldEnum = (typeof MoodEntryScalarFieldEnum)[keyof typeof MoodEntryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4279,6 +5470,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -4333,6 +5532,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -4344,12 +5557,18 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastLogin?: DateTimeNullableFilter<"User"> | Date | string | null
+    lastActive?: DateTimeNullableFilter<"User"> | Date | string | null
     activities?: ActivityListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
+    firstName?: SortOrderInput | SortOrder
+    lastLogin?: SortOrderInput | SortOrder
+    lastActive?: SortOrderInput | SortOrder
     activities?: ActivityOrderByRelationAggregateInput
   }
 
@@ -4359,12 +5578,18 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastLogin?: DateTimeNullableFilter<"User"> | Date | string | null
+    lastActive?: DateTimeNullableFilter<"User"> | Date | string | null
     activities?: ActivityListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
+    firstName?: SortOrderInput | SortOrder
+    lastLogin?: SortOrderInput | SortOrder
+    lastActive?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -4376,6 +5601,9 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    firstName?: StringNullableWithAggregatesFilter<"User"> | string | null
+    lastLogin?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    lastActive?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type ActivityWhereInput = {
@@ -4450,6 +5678,7 @@ export namespace Prisma {
     id?: StringFilter<"Engagement"> | string
     userId?: StringFilter<"Engagement"> | string
     date?: DateTimeFilter<"Engagement"> | Date | string
+    login?: BoolFilter<"Engagement"> | boolean
     checkin?: BoolFilter<"Engagement"> | boolean
     mood?: BoolFilter<"Engagement"> | boolean
     reminder?: BoolFilter<"Engagement"> | boolean
@@ -4460,6 +5689,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     date?: SortOrder
+    login?: SortOrder
     checkin?: SortOrder
     mood?: SortOrder
     reminder?: SortOrder
@@ -4474,6 +5704,7 @@ export namespace Prisma {
     NOT?: EngagementWhereInput | EngagementWhereInput[]
     userId?: StringFilter<"Engagement"> | string
     date?: DateTimeFilter<"Engagement"> | Date | string
+    login?: BoolFilter<"Engagement"> | boolean
     checkin?: BoolFilter<"Engagement"> | boolean
     mood?: BoolFilter<"Engagement"> | boolean
     reminder?: BoolFilter<"Engagement"> | boolean
@@ -4484,6 +5715,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     date?: SortOrder
+    login?: SortOrder
     checkin?: SortOrder
     mood?: SortOrder
     reminder?: SortOrder
@@ -4500,49 +5732,125 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Engagement"> | string
     userId?: StringWithAggregatesFilter<"Engagement"> | string
     date?: DateTimeWithAggregatesFilter<"Engagement"> | Date | string
+    login?: BoolWithAggregatesFilter<"Engagement"> | boolean
     checkin?: BoolWithAggregatesFilter<"Engagement"> | boolean
     mood?: BoolWithAggregatesFilter<"Engagement"> | boolean
     reminder?: BoolWithAggregatesFilter<"Engagement"> | boolean
     journal?: BoolWithAggregatesFilter<"Engagement"> | boolean
   }
 
+  export type MoodEntryWhereInput = {
+    AND?: MoodEntryWhereInput | MoodEntryWhereInput[]
+    OR?: MoodEntryWhereInput[]
+    NOT?: MoodEntryWhereInput | MoodEntryWhereInput[]
+    id?: IntFilter<"MoodEntry"> | number
+    userId?: StringFilter<"MoodEntry"> | string
+    moodType?: StringFilter<"MoodEntry"> | string
+    value?: IntFilter<"MoodEntry"> | number
+    createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
+  }
+
+  export type MoodEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MoodEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: MoodEntryWhereInput | MoodEntryWhereInput[]
+    OR?: MoodEntryWhereInput[]
+    NOT?: MoodEntryWhereInput | MoodEntryWhereInput[]
+    userId?: StringFilter<"MoodEntry"> | string
+    moodType?: StringFilter<"MoodEntry"> | string
+    value?: IntFilter<"MoodEntry"> | number
+    createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
+  }, "id">
+
+  export type MoodEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+    _count?: MoodEntryCountOrderByAggregateInput
+    _avg?: MoodEntryAvgOrderByAggregateInput
+    _max?: MoodEntryMaxOrderByAggregateInput
+    _min?: MoodEntryMinOrderByAggregateInput
+    _sum?: MoodEntrySumOrderByAggregateInput
+  }
+
+  export type MoodEntryScalarWhereWithAggregatesInput = {
+    AND?: MoodEntryScalarWhereWithAggregatesInput | MoodEntryScalarWhereWithAggregatesInput[]
+    OR?: MoodEntryScalarWhereWithAggregatesInput[]
+    NOT?: MoodEntryScalarWhereWithAggregatesInput | MoodEntryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MoodEntry"> | number
+    userId?: StringWithAggregatesFilter<"MoodEntry"> | string
+    moodType?: StringWithAggregatesFilter<"MoodEntry"> | string
+    value?: IntWithAggregatesFilter<"MoodEntry"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"MoodEntry"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
+    firstName?: string | null
+    lastLogin?: Date | string | null
+    lastActive?: Date | string | null
     activities?: ActivityCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
     email: string
+    firstName?: string | null
+    lastLogin?: Date | string | null
+    lastActive?: Date | string | null
     activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activities?: ActivityUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
     email: string
+    firstName?: string | null
+    lastLogin?: Date | string | null
+    lastActive?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ActivityCreateInput = {
@@ -4618,6 +5926,7 @@ export namespace Prisma {
     id?: string
     userId: string
     date: Date | string
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
@@ -4628,6 +5937,7 @@ export namespace Prisma {
     id?: string
     userId: string
     date: Date | string
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
@@ -4638,6 +5948,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    login?: BoolFieldUpdateOperationsInput | boolean
     checkin?: BoolFieldUpdateOperationsInput | boolean
     mood?: BoolFieldUpdateOperationsInput | boolean
     reminder?: BoolFieldUpdateOperationsInput | boolean
@@ -4648,6 +5959,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    login?: BoolFieldUpdateOperationsInput | boolean
     checkin?: BoolFieldUpdateOperationsInput | boolean
     mood?: BoolFieldUpdateOperationsInput | boolean
     reminder?: BoolFieldUpdateOperationsInput | boolean
@@ -4658,6 +5970,7 @@ export namespace Prisma {
     id?: string
     userId: string
     date: Date | string
+    login?: boolean
     checkin?: boolean
     mood?: boolean
     reminder?: boolean
@@ -4668,6 +5981,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    login?: BoolFieldUpdateOperationsInput | boolean
     checkin?: BoolFieldUpdateOperationsInput | boolean
     mood?: BoolFieldUpdateOperationsInput | boolean
     reminder?: BoolFieldUpdateOperationsInput | boolean
@@ -4678,10 +5992,64 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    login?: BoolFieldUpdateOperationsInput | boolean
     checkin?: BoolFieldUpdateOperationsInput | boolean
     mood?: BoolFieldUpdateOperationsInput | boolean
     reminder?: BoolFieldUpdateOperationsInput | boolean
     journal?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MoodEntryCreateInput = {
+    userId: string
+    moodType: string
+    value: number
+    createdAt?: Date | string
+  }
+
+  export type MoodEntryUncheckedCreateInput = {
+    id?: number
+    userId: string
+    moodType: string
+    value: number
+    createdAt?: Date | string
+  }
+
+  export type MoodEntryUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MoodEntryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MoodEntryCreateManyInput = {
+    id?: number
+    userId: string
+    moodType: string
+    value: number
+    createdAt?: Date | string
+  }
+
+  export type MoodEntryUpdateManyMutationInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MoodEntryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4699,10 +6067,41 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ActivityListRelationFilter = {
     every?: ActivityWhereInput
     some?: ActivityWhereInput
     none?: ActivityWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type ActivityOrderByRelationAggregateInput = {
@@ -4712,16 +6111,25 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
+    firstName?: SortOrder
+    lastLogin?: SortOrder
+    lastActive?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
+    firstName?: SortOrder
+    lastLogin?: SortOrder
+    lastActive?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
+    firstName?: SortOrder
+    lastLogin?: SortOrder
+    lastActive?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4740,6 +6148,38 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -4824,6 +6264,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     date?: SortOrder
+    login?: SortOrder
     checkin?: SortOrder
     mood?: SortOrder
     reminder?: SortOrder
@@ -4834,6 +6275,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     date?: SortOrder
+    login?: SortOrder
     checkin?: SortOrder
     mood?: SortOrder
     reminder?: SortOrder
@@ -4844,10 +6286,72 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     date?: SortOrder
+    login?: SortOrder
     checkin?: SortOrder
     mood?: SortOrder
     reminder?: SortOrder
     journal?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type MoodEntryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MoodEntryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+  }
+
+  export type MoodEntryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MoodEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MoodEntrySumOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type ActivityCreateNestedManyWithoutUserInput = {
@@ -4866,6 +6370,14 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type ActivityUpdateManyWithoutUserNestedInput = {
@@ -4918,6 +6430,14 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivitiesInput, UserUpdateWithoutActivitiesInput>, UserUncheckedUpdateWithoutActivitiesInput>
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4930,6 +6450,31 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4958,6 +6503,48 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -4996,6 +6583,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type ActivityCreateWithoutUserInput = {
@@ -5058,11 +6672,17 @@ export namespace Prisma {
   export type UserCreateWithoutActivitiesInput = {
     id?: string
     email: string
+    firstName?: string | null
+    lastLogin?: Date | string | null
+    lastActive?: Date | string | null
   }
 
   export type UserUncheckedCreateWithoutActivitiesInput = {
     id?: string
     email: string
+    firstName?: string | null
+    lastLogin?: Date | string | null
+    lastActive?: Date | string | null
   }
 
   export type UserCreateOrConnectWithoutActivitiesInput = {
@@ -5084,11 +6704,17 @@ export namespace Prisma {
   export type UserUpdateWithoutActivitiesInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateWithoutActivitiesInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ActivityCreateManyUserInput = {

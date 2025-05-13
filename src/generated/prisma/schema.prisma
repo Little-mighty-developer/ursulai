@@ -17,7 +17,9 @@ datasource db {
 model User {
   id         String     @id @default(uuid())
   email      String     @unique
-  // ...other user fields
+  firstName  String?
+  lastLogin  DateTime?
+  lastActive DateTime?
   activities Activity[]
 }
 
@@ -36,10 +38,19 @@ model Engagement {
   id       String   @id @default(uuid())
   userId   String
   date     DateTime
+  login    Boolean  @default(false)
   checkin  Boolean  @default(false)
   mood     Boolean  @default(false)
   reminder Boolean  @default(false)
   journal  Boolean  @default(false)
 
   @@unique([userId, date]) // Each user can have only one engagement per day
+}
+
+model MoodEntry {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  moodType  String
+  value     Int
+  createdAt DateTime @default(now())
 }
