@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MoodSlider } from "./MoodSlider";
+import { useSession } from "next-auth/react";
 
 const moodCategories = [
   {
@@ -66,12 +67,17 @@ export default function MoodTracker() {
   );
   const [saved, setSaved] = useState(false);
 
+  const { data: session } = useSession();
+  const userId = session?.user?.email; // or session?.user?.id if available
+  const firstName = session?.user?.name?.split(" ")[0];
+
   useEffect(() => {
     moodCategories.forEach((cat) => {
       fetch(`/api/mood?moodType=${cat.key}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data && data.length > 0) setMoods((prev) => ({ ...prev, [cat.key]: data[0].value }));
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.length > 0)
+            setMoods((prev) => ({ ...prev, [cat.key]: data[0].value }));
         });
     });
   }, []);
@@ -82,7 +88,10 @@ export default function MoodTracker() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const userId = "test-user";
+    if (!userId) {
+      alert("You must be logged in to submit moods.");
+      return;
+    }
     const date = new Date().toISOString();
 
     const moodsArray = moodCategories.map((cat) => ({

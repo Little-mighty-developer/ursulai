@@ -51,11 +51,11 @@ export async function GET(req: Request) {
     console.error("Error fetching entries:", error);
     // Return more detailed error information
     return NextResponse.json(
-      { 
+      {
         error: "Failed to fetch entries",
-        details: error instanceof Error ? error.message : "Unknown error"
-      }, 
-      { status: 500 }
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
     );
   }
 }
@@ -93,11 +93,11 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Error creating entry:", error);
     return NextResponse.json(
-      { 
+      {
         error: "Failed to create entry",
-        details: error instanceof Error ? error.message : "Unknown error"
-      }, 
-      { status: 500 }
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
     );
   }
 }

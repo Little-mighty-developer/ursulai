@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const { userId, date, moods } = await req.json();
     // moods: [{ moodType: string, value: number }, ...]
     const entries = await prisma.$transaction(
-      moods.map((mood: { moodType: string, value: number }) =>
+      moods.map((mood: { moodType: string; value: number }) =>
         prisma.moodEntry.create({
           data: {
             userId,
@@ -14,12 +14,15 @@ export async function POST(req: Request) {
             value: mood.value,
             createdAt: new Date(date),
           },
-        })
-      )
+        }),
+      ),
     );
     return NextResponse.json(entries);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to create mood entries" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to create mood entries" },
+      { status: 500 },
+    );
   }
 }
 
@@ -39,6 +42,9 @@ export async function GET(req: Request) {
 
     return NextResponse.json(entries);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch mood entries" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch mood entries" },
+      { status: 500 },
+    );
   }
 }
