@@ -148,16 +148,9 @@ exports.Prisma.EngagementScalarFieldEnum = {
 exports.Prisma.MoodEntryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  energy: 'energy',
-  calmness: 'calmness',
-  connection: 'connection',
-  anticipation: 'anticipation',
-  socialBattery: 'socialBattery',
-  joy: 'joy',
-  sadness: 'sadness',
-  desire: 'desire'
+  moodType: 'moodType',
+  value: 'value',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {

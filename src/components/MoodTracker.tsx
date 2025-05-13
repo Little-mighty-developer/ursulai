@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MoodSlider } from "./MoodSlider";
 
 const moodCategories = [
@@ -34,6 +34,7 @@ const moodCategories = [
     key: "socialBattery",
     label: "Social Battery",
     emojis: ["🪫", "⚡", "🔋"],
+    tooltips: ["Drained", "Recharging", "Charged"],
     gradient: "from-green-200 via-green-300 to-green-400",
   },
   {
@@ -63,15 +64,49 @@ export default function MoodTracker() {
   const [moods, setMoods] = useState<{ [key: string]: number }>(
     Object.fromEntries(moodCategories.map((cat) => [cat.key, 1])), // default to mid
   );
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    moodCategories.forEach((cat) => {
+      fetch(`/api/mood?moodType=${cat.key}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.length > 0) setMoods((prev) => ({ ...prev, [cat.key]: data[0].value }));
+        });
+    });
+  }, []);
 
   const handleChange = (key: string, value: number) => {
     setMoods((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: POST moods to API
-    console.log(moods);
+    const userId = "test-user";
+    const date = new Date().toISOString();
+
+    const moodsArray = moodCategories.map((cat) => ({
+      moodType: cat.key,
+      value: moods[cat.key],
+    }));
+
+    const res = await fetch("/api/mood", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId,
+        date,
+        moods: moodsArray,
+      }),
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      console.error("API error:", error);
+      alert("Failed to submit moods: " + error.details);
+    }
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
   };
 
   return (
@@ -93,9 +128,12 @@ export default function MoodTracker() {
       ))}
       <button
         type="submit"
-        className="mt-4 px-4 py-2 bg-purple-500 text-white rounded-full font-semibold"
+        className="mt-4 px-4 py-2 bg-purple-500 text-white rounded-full font-semibold flex items-center gap-2"
       >
         Save Mood
+        {saved && (
+          <span className="ml-2 text-green-400 animate-bounce">✅</span>
+        )}
       </button>
     </form>
   );

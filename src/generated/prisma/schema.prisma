@@ -45,16 +45,9 @@ model Engagement {
 }
 
 model MoodEntry {
-  id            String   @id @default(uuid())
-  userId        String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  energy        Int // 0 = Low, 1 = Mid, 2 = High
-  calmness      Int
-  connection    Int
-  anticipation  Int
-  socialBattery Int
-  joy           Int
-  sadness       Int
-  desire        Int
+  id        Int      @id @default(autoincrement())
+  userId    String
+  moodType  String
+  value     Int
+  createdAt DateTime @default(now())
 }

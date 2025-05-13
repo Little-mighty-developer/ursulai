@@ -19,6 +19,11 @@ export function MoodSlider({
 }: MoodSliderProps) {
   const [hovered, setHovered] = useState<number | null>(null);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = Number(e.target.value);
+    onChange(newValue);
+  };
+
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-1">
@@ -43,8 +48,8 @@ export function MoodSlider({
           type="range"
           min={0}
           max={2}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          value={value ?? 0}
+          onChange={handleChange}
           className="w-full h-4 bg-transparent appearance-none"
           style={{ position: "absolute", top: 0, left: 0 }}
         />

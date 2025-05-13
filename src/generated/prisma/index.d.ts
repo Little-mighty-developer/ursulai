@@ -4321,139 +4321,73 @@ export namespace Prisma {
   }
 
   export type MoodEntryAvgAggregateOutputType = {
-    energy: number | null
-    calmness: number | null
-    connection: number | null
-    anticipation: number | null
-    socialBattery: number | null
-    joy: number | null
-    sadness: number | null
-    desire: number | null
+    id: number | null
+    value: number | null
   }
 
   export type MoodEntrySumAggregateOutputType = {
-    energy: number | null
-    calmness: number | null
-    connection: number | null
-    anticipation: number | null
-    socialBattery: number | null
-    joy: number | null
-    sadness: number | null
-    desire: number | null
+    id: number | null
+    value: number | null
   }
 
   export type MoodEntryMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     userId: string | null
+    moodType: string | null
+    value: number | null
     createdAt: Date | null
-    updatedAt: Date | null
-    energy: number | null
-    calmness: number | null
-    connection: number | null
-    anticipation: number | null
-    socialBattery: number | null
-    joy: number | null
-    sadness: number | null
-    desire: number | null
   }
 
   export type MoodEntryMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     userId: string | null
+    moodType: string | null
+    value: number | null
     createdAt: Date | null
-    updatedAt: Date | null
-    energy: number | null
-    calmness: number | null
-    connection: number | null
-    anticipation: number | null
-    socialBattery: number | null
-    joy: number | null
-    sadness: number | null
-    desire: number | null
   }
 
   export type MoodEntryCountAggregateOutputType = {
     id: number
     userId: number
+    moodType: number
+    value: number
     createdAt: number
-    updatedAt: number
-    energy: number
-    calmness: number
-    connection: number
-    anticipation: number
-    socialBattery: number
-    joy: number
-    sadness: number
-    desire: number
     _all: number
   }
 
 
   export type MoodEntryAvgAggregateInputType = {
-    energy?: true
-    calmness?: true
-    connection?: true
-    anticipation?: true
-    socialBattery?: true
-    joy?: true
-    sadness?: true
-    desire?: true
+    id?: true
+    value?: true
   }
 
   export type MoodEntrySumAggregateInputType = {
-    energy?: true
-    calmness?: true
-    connection?: true
-    anticipation?: true
-    socialBattery?: true
-    joy?: true
-    sadness?: true
-    desire?: true
+    id?: true
+    value?: true
   }
 
   export type MoodEntryMinAggregateInputType = {
     id?: true
     userId?: true
+    moodType?: true
+    value?: true
     createdAt?: true
-    updatedAt?: true
-    energy?: true
-    calmness?: true
-    connection?: true
-    anticipation?: true
-    socialBattery?: true
-    joy?: true
-    sadness?: true
-    desire?: true
   }
 
   export type MoodEntryMaxAggregateInputType = {
     id?: true
     userId?: true
+    moodType?: true
+    value?: true
     createdAt?: true
-    updatedAt?: true
-    energy?: true
-    calmness?: true
-    connection?: true
-    anticipation?: true
-    socialBattery?: true
-    joy?: true
-    sadness?: true
-    desire?: true
   }
 
   export type MoodEntryCountAggregateInputType = {
     id?: true
     userId?: true
+    moodType?: true
+    value?: true
     createdAt?: true
-    updatedAt?: true
-    energy?: true
-    calmness?: true
-    connection?: true
-    anticipation?: true
-    socialBattery?: true
-    joy?: true
-    sadness?: true
-    desire?: true
     _all?: true
   }
 
@@ -4544,18 +4478,11 @@ export namespace Prisma {
   }
 
   export type MoodEntryGroupByOutputType = {
-    id: string
+    id: number
     userId: string
+    moodType: string
+    value: number
     createdAt: Date
-    updatedAt: Date
-    energy: number
-    calmness: number
-    connection: number
-    anticipation: number
-    socialBattery: number
-    joy: number
-    sadness: number
-    desire: number
     _count: MoodEntryCountAggregateOutputType | null
     _avg: MoodEntryAvgAggregateOutputType | null
     _sum: MoodEntrySumAggregateOutputType | null
@@ -4580,81 +4507,46 @@ export namespace Prisma {
   export type MoodEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    moodType?: boolean
+    value?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-    energy?: boolean
-    calmness?: boolean
-    connection?: boolean
-    anticipation?: boolean
-    socialBattery?: boolean
-    joy?: boolean
-    sadness?: boolean
-    desire?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
   export type MoodEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    moodType?: boolean
+    value?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-    energy?: boolean
-    calmness?: boolean
-    connection?: boolean
-    anticipation?: boolean
-    socialBattery?: boolean
-    joy?: boolean
-    sadness?: boolean
-    desire?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
   export type MoodEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    moodType?: boolean
+    value?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-    energy?: boolean
-    calmness?: boolean
-    connection?: boolean
-    anticipation?: boolean
-    socialBattery?: boolean
-    joy?: boolean
-    sadness?: boolean
-    desire?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
   export type MoodEntrySelectScalar = {
     id?: boolean
     userId?: boolean
+    moodType?: boolean
+    value?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-    energy?: boolean
-    calmness?: boolean
-    connection?: boolean
-    anticipation?: boolean
-    socialBattery?: boolean
-    joy?: boolean
-    sadness?: boolean
-    desire?: boolean
   }
 
-  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "createdAt" | "updatedAt" | "energy" | "calmness" | "connection" | "anticipation" | "socialBattery" | "joy" | "sadness" | "desire", ExtArgs["result"]["moodEntry"]>
+  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "moodType" | "value" | "createdAt", ExtArgs["result"]["moodEntry"]>
 
   export type $MoodEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MoodEntry"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       userId: string
+      moodType: string
+      value: number
       createdAt: Date
-      updatedAt: Date
-      energy: number
-      calmness: number
-      connection: number
-      anticipation: number
-      socialBattery: number
-      joy: number
-      sadness: number
-      desire: number
     }, ExtArgs["result"]["moodEntry"]>
     composites: {}
   }
@@ -5078,18 +4970,11 @@ export namespace Prisma {
    * Fields of the MoodEntry model
    */
   interface MoodEntryFieldRefs {
-    readonly id: FieldRef<"MoodEntry", 'String'>
+    readonly id: FieldRef<"MoodEntry", 'Int'>
     readonly userId: FieldRef<"MoodEntry", 'String'>
+    readonly moodType: FieldRef<"MoodEntry", 'String'>
+    readonly value: FieldRef<"MoodEntry", 'Int'>
     readonly createdAt: FieldRef<"MoodEntry", 'DateTime'>
-    readonly updatedAt: FieldRef<"MoodEntry", 'DateTime'>
-    readonly energy: FieldRef<"MoodEntry", 'Int'>
-    readonly calmness: FieldRef<"MoodEntry", 'Int'>
-    readonly connection: FieldRef<"MoodEntry", 'Int'>
-    readonly anticipation: FieldRef<"MoodEntry", 'Int'>
-    readonly socialBattery: FieldRef<"MoodEntry", 'Int'>
-    readonly joy: FieldRef<"MoodEntry", 'Int'>
-    readonly sadness: FieldRef<"MoodEntry", 'Int'>
-    readonly desire: FieldRef<"MoodEntry", 'Int'>
   }
     
 
@@ -5507,16 +5392,9 @@ export namespace Prisma {
   export const MoodEntryScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    energy: 'energy',
-    calmness: 'calmness',
-    connection: 'connection',
-    anticipation: 'anticipation',
-    socialBattery: 'socialBattery',
-    joy: 'joy',
-    sadness: 'sadness',
-    desire: 'desire'
+    moodType: 'moodType',
+    value: 'value',
+    createdAt: 'createdAt'
   };
 
   export type MoodEntryScalarFieldEnum = (typeof MoodEntryScalarFieldEnum)[keyof typeof MoodEntryScalarFieldEnum]
@@ -5781,66 +5659,38 @@ export namespace Prisma {
     AND?: MoodEntryWhereInput | MoodEntryWhereInput[]
     OR?: MoodEntryWhereInput[]
     NOT?: MoodEntryWhereInput | MoodEntryWhereInput[]
-    id?: StringFilter<"MoodEntry"> | string
+    id?: IntFilter<"MoodEntry"> | number
     userId?: StringFilter<"MoodEntry"> | string
+    moodType?: StringFilter<"MoodEntry"> | string
+    value?: IntFilter<"MoodEntry"> | number
     createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
-    updatedAt?: DateTimeFilter<"MoodEntry"> | Date | string
-    energy?: IntFilter<"MoodEntry"> | number
-    calmness?: IntFilter<"MoodEntry"> | number
-    connection?: IntFilter<"MoodEntry"> | number
-    anticipation?: IntFilter<"MoodEntry"> | number
-    socialBattery?: IntFilter<"MoodEntry"> | number
-    joy?: IntFilter<"MoodEntry"> | number
-    sadness?: IntFilter<"MoodEntry"> | number
-    desire?: IntFilter<"MoodEntry"> | number
   }
 
   export type MoodEntryOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
   }
 
   export type MoodEntryWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: MoodEntryWhereInput | MoodEntryWhereInput[]
     OR?: MoodEntryWhereInput[]
     NOT?: MoodEntryWhereInput | MoodEntryWhereInput[]
     userId?: StringFilter<"MoodEntry"> | string
+    moodType?: StringFilter<"MoodEntry"> | string
+    value?: IntFilter<"MoodEntry"> | number
     createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
-    updatedAt?: DateTimeFilter<"MoodEntry"> | Date | string
-    energy?: IntFilter<"MoodEntry"> | number
-    calmness?: IntFilter<"MoodEntry"> | number
-    connection?: IntFilter<"MoodEntry"> | number
-    anticipation?: IntFilter<"MoodEntry"> | number
-    socialBattery?: IntFilter<"MoodEntry"> | number
-    joy?: IntFilter<"MoodEntry"> | number
-    sadness?: IntFilter<"MoodEntry"> | number
-    desire?: IntFilter<"MoodEntry"> | number
   }, "id">
 
   export type MoodEntryOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
     _count?: MoodEntryCountOrderByAggregateInput
     _avg?: MoodEntryAvgOrderByAggregateInput
     _max?: MoodEntryMaxOrderByAggregateInput
@@ -5852,18 +5702,11 @@ export namespace Prisma {
     AND?: MoodEntryScalarWhereWithAggregatesInput | MoodEntryScalarWhereWithAggregatesInput[]
     OR?: MoodEntryScalarWhereWithAggregatesInput[]
     NOT?: MoodEntryScalarWhereWithAggregatesInput | MoodEntryScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"MoodEntry"> | string
+    id?: IntWithAggregatesFilter<"MoodEntry"> | number
     userId?: StringWithAggregatesFilter<"MoodEntry"> | string
+    moodType?: StringWithAggregatesFilter<"MoodEntry"> | string
+    value?: IntWithAggregatesFilter<"MoodEntry"> | number
     createdAt?: DateTimeWithAggregatesFilter<"MoodEntry"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"MoodEntry"> | Date | string
-    energy?: IntWithAggregatesFilter<"MoodEntry"> | number
-    calmness?: IntWithAggregatesFilter<"MoodEntry"> | number
-    connection?: IntWithAggregatesFilter<"MoodEntry"> | number
-    anticipation?: IntWithAggregatesFilter<"MoodEntry"> | number
-    socialBattery?: IntWithAggregatesFilter<"MoodEntry"> | number
-    joy?: IntWithAggregatesFilter<"MoodEntry"> | number
-    sadness?: IntWithAggregatesFilter<"MoodEntry"> | number
-    desire?: IntWithAggregatesFilter<"MoodEntry"> | number
   }
 
   export type UserCreateInput = {
@@ -6045,108 +5888,56 @@ export namespace Prisma {
   }
 
   export type MoodEntryCreateInput = {
-    id?: string
     userId: string
+    moodType: string
+    value: number
     createdAt?: Date | string
-    updatedAt?: Date | string
-    energy: number
-    calmness: number
-    connection: number
-    anticipation: number
-    socialBattery: number
-    joy: number
-    sadness: number
-    desire: number
   }
 
   export type MoodEntryUncheckedCreateInput = {
-    id?: string
+    id?: number
     userId: string
+    moodType: string
+    value: number
     createdAt?: Date | string
-    updatedAt?: Date | string
-    energy: number
-    calmness: number
-    connection: number
-    anticipation: number
-    socialBattery: number
-    joy: number
-    sadness: number
-    desire: number
   }
 
   export type MoodEntryUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    energy?: IntFieldUpdateOperationsInput | number
-    calmness?: IntFieldUpdateOperationsInput | number
-    connection?: IntFieldUpdateOperationsInput | number
-    anticipation?: IntFieldUpdateOperationsInput | number
-    socialBattery?: IntFieldUpdateOperationsInput | number
-    joy?: IntFieldUpdateOperationsInput | number
-    sadness?: IntFieldUpdateOperationsInput | number
-    desire?: IntFieldUpdateOperationsInput | number
   }
 
   export type MoodEntryUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    energy?: IntFieldUpdateOperationsInput | number
-    calmness?: IntFieldUpdateOperationsInput | number
-    connection?: IntFieldUpdateOperationsInput | number
-    anticipation?: IntFieldUpdateOperationsInput | number
-    socialBattery?: IntFieldUpdateOperationsInput | number
-    joy?: IntFieldUpdateOperationsInput | number
-    sadness?: IntFieldUpdateOperationsInput | number
-    desire?: IntFieldUpdateOperationsInput | number
   }
 
   export type MoodEntryCreateManyInput = {
-    id?: string
+    id?: number
     userId: string
+    moodType: string
+    value: number
     createdAt?: Date | string
-    updatedAt?: Date | string
-    energy: number
-    calmness: number
-    connection: number
-    anticipation: number
-    socialBattery: number
-    joy: number
-    sadness: number
-    desire: number
   }
 
   export type MoodEntryUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    energy?: IntFieldUpdateOperationsInput | number
-    calmness?: IntFieldUpdateOperationsInput | number
-    connection?: IntFieldUpdateOperationsInput | number
-    anticipation?: IntFieldUpdateOperationsInput | number
-    socialBattery?: IntFieldUpdateOperationsInput | number
-    joy?: IntFieldUpdateOperationsInput | number
-    sadness?: IntFieldUpdateOperationsInput | number
-    desire?: IntFieldUpdateOperationsInput | number
   }
 
   export type MoodEntryUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    moodType?: StringFieldUpdateOperationsInput | string
+    value?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    energy?: IntFieldUpdateOperationsInput | number
-    calmness?: IntFieldUpdateOperationsInput | number
-    connection?: IntFieldUpdateOperationsInput | number
-    anticipation?: IntFieldUpdateOperationsInput | number
-    socialBattery?: IntFieldUpdateOperationsInput | number
-    joy?: IntFieldUpdateOperationsInput | number
-    sadness?: IntFieldUpdateOperationsInput | number
-    desire?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6329,68 +6120,35 @@ export namespace Prisma {
   export type MoodEntryCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
   }
 
   export type MoodEntryAvgOrderByAggregateInput = {
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
+    id?: SortOrder
+    value?: SortOrder
   }
 
   export type MoodEntryMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
   }
 
   export type MoodEntryMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    moodType?: SortOrder
+    value?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
   }
 
   export type MoodEntrySumOrderByAggregateInput = {
-    energy?: SortOrder
-    calmness?: SortOrder
-    connection?: SortOrder
-    anticipation?: SortOrder
-    socialBattery?: SortOrder
-    joy?: SortOrder
-    sadness?: SortOrder
-    desire?: SortOrder
+    id?: SortOrder
+    value?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
