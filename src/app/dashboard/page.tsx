@@ -6,6 +6,7 @@ import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
 import MoodTracker from "@/components/MoodTracker";
 import Masonry from "react-masonry-css";
+import PhysicalSymptomsTracker from "@/components/PhysicalSymptomsTracker";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -26,13 +27,7 @@ export default function DashboardPage() {
         <WeatherWidget />
         <MoodTracker />
         <div className="bg-white rounded-xl shadow p-6">
-          <span className="text-lg font-semibold mb-2">Health</span>
-          <ul className="text-left">
-            <li>○ Headache</li>
-            <li>○ Body pain</li>
-            <li>○ Brain fog</li>
-            <li>○ Bloating</li>
-          </ul>
+          <PhysicalSymptomsTracker />
         </div>
         <div className="bg-white rounded-xl shadow p-6">
           <span className="text-lg font-semibold mb-2">Reminders</span>

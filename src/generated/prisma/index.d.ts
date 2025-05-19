@@ -33,6 +33,11 @@ export type Engagement = $Result.DefaultSelection<Prisma.$EngagementPayload>
  * 
  */
 export type MoodEntry = $Result.DefaultSelection<Prisma.$MoodEntryPayload>
+/**
+ * Model SymptomEvent
+ * 
+ */
+export type SymptomEvent = $Result.DefaultSelection<Prisma.$SymptomEventPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get moodEntry(): Prisma.MoodEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.symptomEvent`: Exposes CRUD operations for the **SymptomEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SymptomEvents
+    * const symptomEvents = await prisma.symptomEvent.findMany()
+    * ```
+    */
+  get symptomEvent(): Prisma.SymptomEventDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     User: 'User',
     Activity: 'Activity',
     Engagement: 'Engagement',
-    MoodEntry: 'MoodEntry'
+    MoodEntry: 'MoodEntry',
+    SymptomEvent: 'SymptomEvent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "activity" | "engagement" | "moodEntry"
+      modelProps: "user" | "activity" | "engagement" | "moodEntry" | "symptomEvent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +976,80 @@ export namespace Prisma {
           }
         }
       }
+      SymptomEvent: {
+        payload: Prisma.$SymptomEventPayload<ExtArgs>
+        fields: Prisma.SymptomEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SymptomEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SymptomEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>
+          }
+          findFirst: {
+            args: Prisma.SymptomEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SymptomEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>
+          }
+          findMany: {
+            args: Prisma.SymptomEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>[]
+          }
+          create: {
+            args: Prisma.SymptomEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>
+          }
+          createMany: {
+            args: Prisma.SymptomEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SymptomEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>[]
+          }
+          delete: {
+            args: Prisma.SymptomEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>
+          }
+          update: {
+            args: Prisma.SymptomEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.SymptomEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SymptomEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SymptomEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.SymptomEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SymptomEventPayload>
+          }
+          aggregate: {
+            args: Prisma.SymptomEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSymptomEvent>
+          }
+          groupBy: {
+            args: Prisma.SymptomEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SymptomEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SymptomEventCountArgs<ExtArgs>
+            result: $Utils.Optional<SymptomEventCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1138,7 @@ export namespace Prisma {
     activity?: ActivityOmit
     engagement?: EngagementOmit
     moodEntry?: MoodEntryOmit
+    symptomEvent?: SymptomEventOmit
   }
 
   /* Types for Logging */
@@ -5394,6 +5485,1035 @@ export namespace Prisma {
 
 
   /**
+   * Model SymptomEvent
+   */
+
+  export type AggregateSymptomEvent = {
+    _count: SymptomEventCountAggregateOutputType | null
+    _avg: SymptomEventAvgAggregateOutputType | null
+    _sum: SymptomEventSumAggregateOutputType | null
+    _min: SymptomEventMinAggregateOutputType | null
+    _max: SymptomEventMaxAggregateOutputType | null
+  }
+
+  export type SymptomEventAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SymptomEventSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SymptomEventMinAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    symptomKey: string | null
+    eventType: string | null
+    timestamp: Date | null
+  }
+
+  export type SymptomEventMaxAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    symptomKey: string | null
+    eventType: string | null
+    timestamp: Date | null
+  }
+
+  export type SymptomEventCountAggregateOutputType = {
+    id: number
+    userId: number
+    symptomKey: number
+    eventType: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type SymptomEventAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SymptomEventSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SymptomEventMinAggregateInputType = {
+    id?: true
+    userId?: true
+    symptomKey?: true
+    eventType?: true
+    timestamp?: true
+  }
+
+  export type SymptomEventMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    symptomKey?: true
+    eventType?: true
+    timestamp?: true
+  }
+
+  export type SymptomEventCountAggregateInputType = {
+    id?: true
+    userId?: true
+    symptomKey?: true
+    eventType?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type SymptomEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SymptomEvent to aggregate.
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SymptomEvents to fetch.
+     */
+    orderBy?: SymptomEventOrderByWithRelationInput | SymptomEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SymptomEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SymptomEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SymptomEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SymptomEvents
+    **/
+    _count?: true | SymptomEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SymptomEventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SymptomEventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SymptomEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SymptomEventMaxAggregateInputType
+  }
+
+  export type GetSymptomEventAggregateType<T extends SymptomEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateSymptomEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSymptomEvent[P]>
+      : GetScalarType<T[P], AggregateSymptomEvent[P]>
+  }
+
+
+
+
+  export type SymptomEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SymptomEventWhereInput
+    orderBy?: SymptomEventOrderByWithAggregationInput | SymptomEventOrderByWithAggregationInput[]
+    by: SymptomEventScalarFieldEnum[] | SymptomEventScalarFieldEnum
+    having?: SymptomEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SymptomEventCountAggregateInputType | true
+    _avg?: SymptomEventAvgAggregateInputType
+    _sum?: SymptomEventSumAggregateInputType
+    _min?: SymptomEventMinAggregateInputType
+    _max?: SymptomEventMaxAggregateInputType
+  }
+
+  export type SymptomEventGroupByOutputType = {
+    id: number
+    userId: string
+    symptomKey: string
+    eventType: string
+    timestamp: Date
+    _count: SymptomEventCountAggregateOutputType | null
+    _avg: SymptomEventAvgAggregateOutputType | null
+    _sum: SymptomEventSumAggregateOutputType | null
+    _min: SymptomEventMinAggregateOutputType | null
+    _max: SymptomEventMaxAggregateOutputType | null
+  }
+
+  type GetSymptomEventGroupByPayload<T extends SymptomEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SymptomEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SymptomEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SymptomEventGroupByOutputType[P]>
+            : GetScalarType<T[P], SymptomEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SymptomEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    symptomKey?: boolean
+    eventType?: boolean
+    timestamp?: boolean
+  }, ExtArgs["result"]["symptomEvent"]>
+
+  export type SymptomEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    symptomKey?: boolean
+    eventType?: boolean
+    timestamp?: boolean
+  }, ExtArgs["result"]["symptomEvent"]>
+
+  export type SymptomEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    symptomKey?: boolean
+    eventType?: boolean
+    timestamp?: boolean
+  }, ExtArgs["result"]["symptomEvent"]>
+
+  export type SymptomEventSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    symptomKey?: boolean
+    eventType?: boolean
+    timestamp?: boolean
+  }
+
+  export type SymptomEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "symptomKey" | "eventType" | "timestamp", ExtArgs["result"]["symptomEvent"]>
+
+  export type $SymptomEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SymptomEvent"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: string
+      symptomKey: string
+      eventType: string
+      timestamp: Date
+    }, ExtArgs["result"]["symptomEvent"]>
+    composites: {}
+  }
+
+  type SymptomEventGetPayload<S extends boolean | null | undefined | SymptomEventDefaultArgs> = $Result.GetResult<Prisma.$SymptomEventPayload, S>
+
+  type SymptomEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SymptomEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SymptomEventCountAggregateInputType | true
+    }
+
+  export interface SymptomEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SymptomEvent'], meta: { name: 'SymptomEvent' } }
+    /**
+     * Find zero or one SymptomEvent that matches the filter.
+     * @param {SymptomEventFindUniqueArgs} args - Arguments to find a SymptomEvent
+     * @example
+     * // Get one SymptomEvent
+     * const symptomEvent = await prisma.symptomEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SymptomEventFindUniqueArgs>(args: SelectSubset<T, SymptomEventFindUniqueArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SymptomEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SymptomEventFindUniqueOrThrowArgs} args - Arguments to find a SymptomEvent
+     * @example
+     * // Get one SymptomEvent
+     * const symptomEvent = await prisma.symptomEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SymptomEventFindUniqueOrThrowArgs>(args: SelectSubset<T, SymptomEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SymptomEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventFindFirstArgs} args - Arguments to find a SymptomEvent
+     * @example
+     * // Get one SymptomEvent
+     * const symptomEvent = await prisma.symptomEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SymptomEventFindFirstArgs>(args?: SelectSubset<T, SymptomEventFindFirstArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SymptomEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventFindFirstOrThrowArgs} args - Arguments to find a SymptomEvent
+     * @example
+     * // Get one SymptomEvent
+     * const symptomEvent = await prisma.symptomEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SymptomEventFindFirstOrThrowArgs>(args?: SelectSubset<T, SymptomEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SymptomEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SymptomEvents
+     * const symptomEvents = await prisma.symptomEvent.findMany()
+     * 
+     * // Get first 10 SymptomEvents
+     * const symptomEvents = await prisma.symptomEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const symptomEventWithIdOnly = await prisma.symptomEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SymptomEventFindManyArgs>(args?: SelectSubset<T, SymptomEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SymptomEvent.
+     * @param {SymptomEventCreateArgs} args - Arguments to create a SymptomEvent.
+     * @example
+     * // Create one SymptomEvent
+     * const SymptomEvent = await prisma.symptomEvent.create({
+     *   data: {
+     *     // ... data to create a SymptomEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends SymptomEventCreateArgs>(args: SelectSubset<T, SymptomEventCreateArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SymptomEvents.
+     * @param {SymptomEventCreateManyArgs} args - Arguments to create many SymptomEvents.
+     * @example
+     * // Create many SymptomEvents
+     * const symptomEvent = await prisma.symptomEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SymptomEventCreateManyArgs>(args?: SelectSubset<T, SymptomEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SymptomEvents and returns the data saved in the database.
+     * @param {SymptomEventCreateManyAndReturnArgs} args - Arguments to create many SymptomEvents.
+     * @example
+     * // Create many SymptomEvents
+     * const symptomEvent = await prisma.symptomEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SymptomEvents and only return the `id`
+     * const symptomEventWithIdOnly = await prisma.symptomEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SymptomEventCreateManyAndReturnArgs>(args?: SelectSubset<T, SymptomEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SymptomEvent.
+     * @param {SymptomEventDeleteArgs} args - Arguments to delete one SymptomEvent.
+     * @example
+     * // Delete one SymptomEvent
+     * const SymptomEvent = await prisma.symptomEvent.delete({
+     *   where: {
+     *     // ... filter to delete one SymptomEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SymptomEventDeleteArgs>(args: SelectSubset<T, SymptomEventDeleteArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SymptomEvent.
+     * @param {SymptomEventUpdateArgs} args - Arguments to update one SymptomEvent.
+     * @example
+     * // Update one SymptomEvent
+     * const symptomEvent = await prisma.symptomEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SymptomEventUpdateArgs>(args: SelectSubset<T, SymptomEventUpdateArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SymptomEvents.
+     * @param {SymptomEventDeleteManyArgs} args - Arguments to filter SymptomEvents to delete.
+     * @example
+     * // Delete a few SymptomEvents
+     * const { count } = await prisma.symptomEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SymptomEventDeleteManyArgs>(args?: SelectSubset<T, SymptomEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SymptomEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SymptomEvents
+     * const symptomEvent = await prisma.symptomEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SymptomEventUpdateManyArgs>(args: SelectSubset<T, SymptomEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SymptomEvents and returns the data updated in the database.
+     * @param {SymptomEventUpdateManyAndReturnArgs} args - Arguments to update many SymptomEvents.
+     * @example
+     * // Update many SymptomEvents
+     * const symptomEvent = await prisma.symptomEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SymptomEvents and only return the `id`
+     * const symptomEventWithIdOnly = await prisma.symptomEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SymptomEventUpdateManyAndReturnArgs>(args: SelectSubset<T, SymptomEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SymptomEvent.
+     * @param {SymptomEventUpsertArgs} args - Arguments to update or create a SymptomEvent.
+     * @example
+     * // Update or create a SymptomEvent
+     * const symptomEvent = await prisma.symptomEvent.upsert({
+     *   create: {
+     *     // ... data to create a SymptomEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SymptomEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SymptomEventUpsertArgs>(args: SelectSubset<T, SymptomEventUpsertArgs<ExtArgs>>): Prisma__SymptomEventClient<$Result.GetResult<Prisma.$SymptomEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SymptomEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventCountArgs} args - Arguments to filter SymptomEvents to count.
+     * @example
+     * // Count the number of SymptomEvents
+     * const count = await prisma.symptomEvent.count({
+     *   where: {
+     *     // ... the filter for the SymptomEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends SymptomEventCountArgs>(
+      args?: Subset<T, SymptomEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SymptomEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SymptomEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SymptomEventAggregateArgs>(args: Subset<T, SymptomEventAggregateArgs>): Prisma.PrismaPromise<GetSymptomEventAggregateType<T>>
+
+    /**
+     * Group by SymptomEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SymptomEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SymptomEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SymptomEventGroupByArgs['orderBy'] }
+        : { orderBy?: SymptomEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SymptomEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSymptomEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SymptomEvent model
+   */
+  readonly fields: SymptomEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SymptomEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SymptomEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SymptomEvent model
+   */
+  interface SymptomEventFieldRefs {
+    readonly id: FieldRef<"SymptomEvent", 'Int'>
+    readonly userId: FieldRef<"SymptomEvent", 'String'>
+    readonly symptomKey: FieldRef<"SymptomEvent", 'String'>
+    readonly eventType: FieldRef<"SymptomEvent", 'String'>
+    readonly timestamp: FieldRef<"SymptomEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SymptomEvent findUnique
+   */
+  export type SymptomEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * Filter, which SymptomEvent to fetch.
+     */
+    where: SymptomEventWhereUniqueInput
+  }
+
+  /**
+   * SymptomEvent findUniqueOrThrow
+   */
+  export type SymptomEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * Filter, which SymptomEvent to fetch.
+     */
+    where: SymptomEventWhereUniqueInput
+  }
+
+  /**
+   * SymptomEvent findFirst
+   */
+  export type SymptomEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * Filter, which SymptomEvent to fetch.
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SymptomEvents to fetch.
+     */
+    orderBy?: SymptomEventOrderByWithRelationInput | SymptomEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SymptomEvents.
+     */
+    cursor?: SymptomEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SymptomEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SymptomEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SymptomEvents.
+     */
+    distinct?: SymptomEventScalarFieldEnum | SymptomEventScalarFieldEnum[]
+  }
+
+  /**
+   * SymptomEvent findFirstOrThrow
+   */
+  export type SymptomEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * Filter, which SymptomEvent to fetch.
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SymptomEvents to fetch.
+     */
+    orderBy?: SymptomEventOrderByWithRelationInput | SymptomEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SymptomEvents.
+     */
+    cursor?: SymptomEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SymptomEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SymptomEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SymptomEvents.
+     */
+    distinct?: SymptomEventScalarFieldEnum | SymptomEventScalarFieldEnum[]
+  }
+
+  /**
+   * SymptomEvent findMany
+   */
+  export type SymptomEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * Filter, which SymptomEvents to fetch.
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SymptomEvents to fetch.
+     */
+    orderBy?: SymptomEventOrderByWithRelationInput | SymptomEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SymptomEvents.
+     */
+    cursor?: SymptomEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SymptomEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SymptomEvents.
+     */
+    skip?: number
+    distinct?: SymptomEventScalarFieldEnum | SymptomEventScalarFieldEnum[]
+  }
+
+  /**
+   * SymptomEvent create
+   */
+  export type SymptomEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SymptomEvent.
+     */
+    data: XOR<SymptomEventCreateInput, SymptomEventUncheckedCreateInput>
+  }
+
+  /**
+   * SymptomEvent createMany
+   */
+  export type SymptomEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SymptomEvents.
+     */
+    data: SymptomEventCreateManyInput | SymptomEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SymptomEvent createManyAndReturn
+   */
+  export type SymptomEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many SymptomEvents.
+     */
+    data: SymptomEventCreateManyInput | SymptomEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SymptomEvent update
+   */
+  export type SymptomEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SymptomEvent.
+     */
+    data: XOR<SymptomEventUpdateInput, SymptomEventUncheckedUpdateInput>
+    /**
+     * Choose, which SymptomEvent to update.
+     */
+    where: SymptomEventWhereUniqueInput
+  }
+
+  /**
+   * SymptomEvent updateMany
+   */
+  export type SymptomEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SymptomEvents.
+     */
+    data: XOR<SymptomEventUpdateManyMutationInput, SymptomEventUncheckedUpdateManyInput>
+    /**
+     * Filter which SymptomEvents to update
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * Limit how many SymptomEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SymptomEvent updateManyAndReturn
+   */
+  export type SymptomEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * The data used to update SymptomEvents.
+     */
+    data: XOR<SymptomEventUpdateManyMutationInput, SymptomEventUncheckedUpdateManyInput>
+    /**
+     * Filter which SymptomEvents to update
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * Limit how many SymptomEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SymptomEvent upsert
+   */
+  export type SymptomEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SymptomEvent to update in case it exists.
+     */
+    where: SymptomEventWhereUniqueInput
+    /**
+     * In case the SymptomEvent found by the `where` argument doesn't exist, create a new SymptomEvent with this data.
+     */
+    create: XOR<SymptomEventCreateInput, SymptomEventUncheckedCreateInput>
+    /**
+     * In case the SymptomEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SymptomEventUpdateInput, SymptomEventUncheckedUpdateInput>
+  }
+
+  /**
+   * SymptomEvent delete
+   */
+  export type SymptomEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+    /**
+     * Filter which SymptomEvent to delete.
+     */
+    where: SymptomEventWhereUniqueInput
+  }
+
+  /**
+   * SymptomEvent deleteMany
+   */
+  export type SymptomEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SymptomEvents to delete
+     */
+    where?: SymptomEventWhereInput
+    /**
+     * Limit how many SymptomEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SymptomEvent without action
+   */
+  export type SymptomEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SymptomEvent
+     */
+    select?: SymptomEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SymptomEvent
+     */
+    omit?: SymptomEventOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5454,6 +6574,17 @@ export namespace Prisma {
   };
 
   export type MoodEntryScalarFieldEnum = (typeof MoodEntryScalarFieldEnum)[keyof typeof MoodEntryScalarFieldEnum]
+
+
+  export const SymptomEventScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    symptomKey: 'symptomKey',
+    eventType: 'eventType',
+    timestamp: 'timestamp'
+  };
+
+  export type SymptomEventScalarFieldEnum = (typeof SymptomEventScalarFieldEnum)[keyof typeof SymptomEventScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5793,6 +6924,60 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"MoodEntry"> | Date | string
   }
 
+  export type SymptomEventWhereInput = {
+    AND?: SymptomEventWhereInput | SymptomEventWhereInput[]
+    OR?: SymptomEventWhereInput[]
+    NOT?: SymptomEventWhereInput | SymptomEventWhereInput[]
+    id?: IntFilter<"SymptomEvent"> | number
+    userId?: StringFilter<"SymptomEvent"> | string
+    symptomKey?: StringFilter<"SymptomEvent"> | string
+    eventType?: StringFilter<"SymptomEvent"> | string
+    timestamp?: DateTimeFilter<"SymptomEvent"> | Date | string
+  }
+
+  export type SymptomEventOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    symptomKey?: SortOrder
+    eventType?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type SymptomEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: SymptomEventWhereInput | SymptomEventWhereInput[]
+    OR?: SymptomEventWhereInput[]
+    NOT?: SymptomEventWhereInput | SymptomEventWhereInput[]
+    userId?: StringFilter<"SymptomEvent"> | string
+    symptomKey?: StringFilter<"SymptomEvent"> | string
+    eventType?: StringFilter<"SymptomEvent"> | string
+    timestamp?: DateTimeFilter<"SymptomEvent"> | Date | string
+  }, "id">
+
+  export type SymptomEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    symptomKey?: SortOrder
+    eventType?: SortOrder
+    timestamp?: SortOrder
+    _count?: SymptomEventCountOrderByAggregateInput
+    _avg?: SymptomEventAvgOrderByAggregateInput
+    _max?: SymptomEventMaxOrderByAggregateInput
+    _min?: SymptomEventMinOrderByAggregateInput
+    _sum?: SymptomEventSumOrderByAggregateInput
+  }
+
+  export type SymptomEventScalarWhereWithAggregatesInput = {
+    AND?: SymptomEventScalarWhereWithAggregatesInput | SymptomEventScalarWhereWithAggregatesInput[]
+    OR?: SymptomEventScalarWhereWithAggregatesInput[]
+    NOT?: SymptomEventScalarWhereWithAggregatesInput | SymptomEventScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SymptomEvent"> | number
+    userId?: StringWithAggregatesFilter<"SymptomEvent"> | string
+    symptomKey?: StringWithAggregatesFilter<"SymptomEvent"> | string
+    eventType?: StringWithAggregatesFilter<"SymptomEvent"> | string
+    timestamp?: DateTimeWithAggregatesFilter<"SymptomEvent"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -6050,6 +7235,59 @@ export namespace Prisma {
     moodType?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SymptomEventCreateInput = {
+    userId: string
+    symptomKey: string
+    eventType: string
+    timestamp?: Date | string
+  }
+
+  export type SymptomEventUncheckedCreateInput = {
+    id?: number
+    userId: string
+    symptomKey: string
+    eventType: string
+    timestamp?: Date | string
+  }
+
+  export type SymptomEventUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    symptomKey?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SymptomEventUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    symptomKey?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SymptomEventCreateManyInput = {
+    id?: number
+    userId: string
+    symptomKey: string
+    eventType: string
+    timestamp?: Date | string
+  }
+
+  export type SymptomEventUpdateManyMutationInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    symptomKey?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SymptomEventUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    symptomKey?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6352,6 +7590,38 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type SymptomEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    symptomKey?: SortOrder
+    eventType?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type SymptomEventAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SymptomEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    symptomKey?: SortOrder
+    eventType?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type SymptomEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    symptomKey?: SortOrder
+    eventType?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type SymptomEventSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type ActivityCreateNestedManyWithoutUserInput = {
