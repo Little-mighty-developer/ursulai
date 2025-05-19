@@ -19,9 +19,15 @@ export default NextAuth({
       }
 
       // Update lastLogin in User model
-      await prisma.user.update({
+      await prisma.user.upsert({
         where: { email },
-        data: { lastLogin: new Date() },
+        update: { lastLogin: new Date() },
+        create: {
+          email,
+          firstName: user.name || null,
+          lastLogin: new Date(),
+          // add any other fields you want to initialize
+        },
       });
 
       // Upsert today's Engagement record
