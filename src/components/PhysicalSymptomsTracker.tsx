@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, RefObject } from "react";
 import { useSession } from "next-auth/react";
 
 const SYMPTOMS = [
@@ -23,6 +23,132 @@ interface SymptomTimestamps {
   [key: string]: { on: Date[]; off: Date[] };
 }
 
+function InfoTooltip({
+  show,
+  infoRef,
+}: {
+  show: boolean;
+  infoRef: RefObject<HTMLDivElement | null>;
+}) {
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
+        // Do nothing here; let parent handle closing
+      }
+    }
+    if (show) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [show, infoRef]);
+
+  if (!show) return null;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 32,
+        right: 0,
+        zIndex: 10,
+        background: "#fff",
+        border: "1px solid #ddd",
+        borderRadius: 8,
+        boxShadow: "0 2px 12px #0001",
+        padding: "14px 18px",
+        width: 260,
+        fontSize: 15,
+        color: "#333",
+      }}
+    >
+      <strong>How to use:</strong>
+      <div style={{ marginTop: 6 }}>
+        Tap a symptom to start tracking it. Tap again to stop. We'll record how
+        long you experience each symptom. Each symptom is tracked independently.
+      </div>
+    </div>
+  );
+}
+
+function SymptomButton({
+  symptom,
+  isActive,
+  feedback,
+  onClick,
+  disabled,
+}: {
+  symptom: any;
+  isActive: boolean;
+  feedback: "on" | "off" | null;
+  onClick: () => void;
+  disabled: boolean;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        minWidth: 160,
+        padding: "12px 18px",
+        margin: 4,
+        borderRadius: 16,
+        border: isActive ? "2px solid #4f46e5" : "1px solid #ddd",
+        background: isActive ? "#eef2ff" : "#fff",
+        color: "#222",
+        fontWeight: 500,
+        fontSize: 18,
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        cursor: "pointer",
+        boxShadow: isActive ? "0 2px 8px #4f46e522" : "none",
+        transition: "all 0.15s",
+        position: "relative",
+      }}
+      disabled={disabled}
+    >
+      {symptom.image ? (
+        <img
+          src={symptom.image}
+          alt={symptom.label}
+          style={{ height: 24, width: 24, objectFit: "contain" }}
+        />
+      ) : (
+        <span style={{ fontSize: 24 }}>{symptom.emoji}</span>
+      )}{" "}
+      {symptom.label}
+      {feedback === "on" && (
+        <span
+          style={{
+            position: "absolute",
+            right: 10,
+            top: 1,
+            color: "#f87171",
+            fontSize: 20,
+          }}
+        >
+          ❗️
+        </span>
+      )}
+      {feedback === "off" && (
+        <span
+          style={{
+            position: "absolute",
+            right: 10,
+            top: 1,
+            color: "#a3e635",
+            fontSize: 20,
+          }}
+        >
+          ✨
+        </span>
+      )}
+    </button>
+  );
+}
+
 const PhysicalSymptomsTracker: React.FC = () => {
   const [activeSymptoms, setActiveSymptoms] = useState<{
     [key: string]: boolean;
@@ -32,9 +158,26 @@ const PhysicalSymptomsTracker: React.FC = () => {
   const [feedback, setFeedback] = useState<{
     [key: string]: "on" | "off" | null;
   }>({});
-  const infoRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement | null>(null);
   const { data: session } = useSession();
   const userId = session?.user?.email;
+
+  // Close tooltip when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
+        setShowInfo(false);
+      }
+    }
+    if (showInfo) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showInfo]);
 
   const handleToggle = async (key: string) => {
     setActiveSymptoms((prev) => {
@@ -71,23 +214,6 @@ const PhysicalSymptomsTracker: React.FC = () => {
     }
   };
 
-  // Close tooltip when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
-        setShowInfo(false);
-      }
-    }
-    if (showInfo) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showInfo]);
-
   return (
     <div
       style={{
@@ -121,31 +247,7 @@ const PhysicalSymptomsTracker: React.FC = () => {
           >
             ℹ️
           </button>
-          {showInfo && (
-            <div
-              style={{
-                position: "absolute",
-                top: 32,
-                right: 0,
-                zIndex: 10,
-                background: "#fff",
-                border: "1px solid #ddd",
-                borderRadius: 8,
-                boxShadow: "0 2px 12px #0001",
-                padding: "14px 18px",
-                width: 260,
-                fontSize: 15,
-                color: "#333",
-              }}
-            >
-              <strong>How to use:</strong>
-              <div style={{ marginTop: 6 }}>
-                Tap a symptom to start tracking it. Tap again to stop. We'll
-                record how long you experience each symptom. Each symptom is
-                tracked independently.
-              </div>
-            </div>
-          )}
+          <InfoTooltip show={showInfo} infoRef={infoRef} />
         </div>
       </div>
       <p style={{ textAlign: "center", color: "#666" }}>
@@ -160,70 +262,14 @@ const PhysicalSymptomsTracker: React.FC = () => {
         }}
       >
         {SYMPTOMS.map((symptom) => (
-          <button
+          <SymptomButton
             key={symptom.key}
+            symptom={symptom}
+            isActive={!!activeSymptoms[symptom.key]}
+            feedback={feedback[symptom.key]}
             onClick={() => handleToggle(symptom.key)}
-            style={{
-              minWidth: 160,
-              padding: "12px 18px",
-              margin: 4,
-              borderRadius: 16,
-              border: activeSymptoms[symptom.key]
-                ? "2px solid #4f46e5"
-                : "1px solid #ddd",
-              background: activeSymptoms[symptom.key] ? "#eef2ff" : "#fff",
-              color: "#222",
-              fontWeight: 500,
-              fontSize: 18,
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              cursor: "pointer",
-              boxShadow: activeSymptoms[symptom.key]
-                ? "0 2px 8px #4f46e522"
-                : "none",
-              transition: "all 0.15s",
-              position: "relative",
-            }}
             disabled={!userId}
-          >
-            {symptom.image ? (
-              <img
-                src={symptom.image}
-                alt={symptom.label}
-                style={{ height: 24, width: 24, objectFit: "contain" }}
-              />
-            ) : (
-              <span style={{ fontSize: 24 }}>{symptom.emoji}</span>
-            )}{" "}
-            {symptom.label}
-            {feedback[symptom.key] === "on" && (
-              <span
-                style={{
-                  position: "absolute",
-                  right: 10,
-                  top: 1,
-                  color: "#f87171",
-                  fontSize: 20,
-                }}
-              >
-                ❗️
-              </span>
-            )}
-            {feedback[symptom.key] === "off" && (
-              <span
-                style={{
-                  position: "absolute",
-                  right: 10,
-                  top: 1,
-                  color: "#a3e635",
-                  fontSize: 20,
-                }}
-              >
-                ✨
-              </span>
-            )}
-          </button>
+          />
         ))}
       </div>
       {!userId && (

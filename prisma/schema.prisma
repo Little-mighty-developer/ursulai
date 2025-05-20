@@ -54,11 +54,3 @@ model MoodEntry {
   value     Int
   createdAt DateTime @default(now())
 }
-
-model SymptomEvent {
-  id         Int      @id @default(autoincrement())
-  userId     String
-  symptomKey String
-  eventType  String   // "on" or "off"
-  timestamp  DateTime @default(now())
-}

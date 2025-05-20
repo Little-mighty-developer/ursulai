@@ -86,7 +86,6 @@ export default function CalendarWidget() {
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow p-6 flex flex-col items-center">
-      <div className="text-xl font-bold mb-2">Calendar</div>
       <Calendar
         value={value}
         onChange={setValue}
