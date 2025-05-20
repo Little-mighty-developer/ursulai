@@ -3,7 +3,11 @@ import { useSession } from "next-auth/react";
 
 const SYMPTOMS = [
   { key: "cramps", label: "Cramps", emoji: "⚡️" },
-  { key: "muscle_spasms", label: "Muscle spasms", image: "/images/muscle-pain.png" },
+  {
+    key: "muscle_spasms",
+    label: "Muscle spasms",
+    image: "/images/muscle-pain.png",
+  },
   { key: "jitteriness", label: "Jitteriness", image: "/images/jitters.png" },
   { key: "headache", label: "Headache", emoji: "🤕 " },
   { key: "body_pain", label: "Body pain", emoji: "😣" },
@@ -20,10 +24,14 @@ interface SymptomTimestamps {
 }
 
 const PhysicalSymptomsTracker: React.FC = () => {
-  const [activeSymptoms, setActiveSymptoms] = useState<{ [key: string]: boolean }>({});
+  const [activeSymptoms, setActiveSymptoms] = useState<{
+    [key: string]: boolean;
+  }>({});
   const [timestamps, setTimestamps] = useState<SymptomTimestamps>({});
   const [showInfo, setShowInfo] = useState(false);
-  const [feedback, setFeedback] = useState<{ [key: string]: "on" | "off" | null }>({});
+  const [feedback, setFeedback] = useState<{
+    [key: string]: "on" | "off" | null;
+  }>({});
   const infoRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   const userId = session?.user?.email;
@@ -81,8 +89,21 @@ const PhysicalSymptomsTracker: React.FC = () => {
   }, [showInfo]);
 
   return (
-    <div style={{ maxWidth: 500, margin: "0 auto", padding: 24, position: "relative" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <div
+      style={{
+        maxWidth: 500,
+        margin: "0 auto",
+        padding: 24,
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <h2 style={{ textAlign: "center", flex: 1 }}>Health</h2>
         <div style={{ position: "relative" }} ref={infoRef}>
           <button
@@ -119,7 +140,9 @@ const PhysicalSymptomsTracker: React.FC = () => {
             >
               <strong>How to use:</strong>
               <div style={{ marginTop: 6 }}>
-                Tap a symptom to start tracking it. Tap again to stop. We'll record how long you experience each symptom. Each symptom is tracked independently.
+                Tap a symptom to start tracking it. Tap again to stop. We'll
+                record how long you experience each symptom. Each symptom is
+                tracked independently.
               </div>
             </div>
           )}
@@ -128,7 +151,14 @@ const PhysicalSymptomsTracker: React.FC = () => {
       <p style={{ textAlign: "center", color: "#666" }}>
         Are you experiencing any of these?
       </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 12,
+          justifyContent: "center",
+        }}
+      >
         {SYMPTOMS.map((symptom) => (
           <button
             key={symptom.key}
@@ -138,7 +168,9 @@ const PhysicalSymptomsTracker: React.FC = () => {
               padding: "12px 18px",
               margin: 4,
               borderRadius: 16,
-              border: activeSymptoms[symptom.key] ? "2px solid #4f46e5" : "1px solid #ddd",
+              border: activeSymptoms[symptom.key]
+                ? "2px solid #4f46e5"
+                : "1px solid #ddd",
               background: activeSymptoms[symptom.key] ? "#eef2ff" : "#fff",
               color: "#222",
               fontWeight: 500,
@@ -147,22 +179,49 @@ const PhysicalSymptomsTracker: React.FC = () => {
               alignItems: "center",
               gap: 10,
               cursor: "pointer",
-              boxShadow: activeSymptoms[symptom.key] ? "0 2px 8px #4f46e522" : "none",
+              boxShadow: activeSymptoms[symptom.key]
+                ? "0 2px 8px #4f46e522"
+                : "none",
               transition: "all 0.15s",
               position: "relative",
             }}
             disabled={!userId}
           >
             {symptom.image ? (
-              <img src={symptom.image} alt={symptom.label} style={{ height: 24, width: 24, objectFit: "contain" }} />
+              <img
+                src={symptom.image}
+                alt={symptom.label}
+                style={{ height: 24, width: 24, objectFit: "contain" }}
+              />
             ) : (
               <span style={{ fontSize: 24 }}>{symptom.emoji}</span>
-            )} {symptom.label}
+            )}{" "}
+            {symptom.label}
             {feedback[symptom.key] === "on" && (
-              <span style={{ position: "absolute", right: 10, top: 1, color: "#f87171", fontSize: 20 }}>❗️</span>
+              <span
+                style={{
+                  position: "absolute",
+                  right: 10,
+                  top: 1,
+                  color: "#f87171",
+                  fontSize: 20,
+                }}
+              >
+                ❗️
+              </span>
             )}
             {feedback[symptom.key] === "off" && (
-              <span style={{ position: "absolute", right: 10, top: 1, color: "#a3e635", fontSize: 20 }}>✨</span>
+              <span
+                style={{
+                  position: "absolute",
+                  right: 10,
+                  top: 1,
+                  color: "#a3e635",
+                  fontSize: 20,
+                }}
+              >
+                ✨
+              </span>
             )}
           </button>
         ))}
@@ -176,4 +235,4 @@ const PhysicalSymptomsTracker: React.FC = () => {
   );
 };
 
-export default PhysicalSymptomsTracker; 
+export default PhysicalSymptomsTracker;

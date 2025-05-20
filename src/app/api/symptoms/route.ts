@@ -5,7 +5,10 @@ export async function POST(req: Request) {
   try {
     const { userId, symptomKey, eventType, timestamp } = await req.json();
     if (!userId || !symptomKey || !eventType) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
     }
     const event = await prisma.symptomEvent.create({
       data: {
@@ -17,7 +20,10 @@ export async function POST(req: Request) {
     });
     return NextResponse.json(event);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to log symptom event" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to log symptom event" },
+      { status: 500 },
+    );
   }
 }
 
@@ -34,6 +40,9 @@ export async function GET(req: Request) {
     });
     return NextResponse.json(events);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch symptom events" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch symptom events" },
+      { status: 500 },
+    );
   }
-} 
+}
