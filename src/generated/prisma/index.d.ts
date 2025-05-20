@@ -38,6 +38,11 @@ export type MoodEntry = $Result.DefaultSelection<Prisma.$MoodEntryPayload>
  * 
  */
 export type SymptomEvent = $Result.DefaultSelection<Prisma.$SymptomEventPayload>
+/**
+ * Model DailyNote
+ * 
+ */
+export type DailyNote = $Result.DefaultSelection<Prisma.$DailyNotePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get symptomEvent(): Prisma.SymptomEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dailyNote`: Exposes CRUD operations for the **DailyNote** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DailyNotes
+    * const dailyNotes = await prisma.dailyNote.findMany()
+    * ```
+    */
+  get dailyNote(): Prisma.DailyNoteDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     Activity: 'Activity',
     Engagement: 'Engagement',
     MoodEntry: 'MoodEntry',
-    SymptomEvent: 'SymptomEvent'
+    SymptomEvent: 'SymptomEvent',
+    DailyNote: 'DailyNote'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "activity" | "engagement" | "moodEntry" | "symptomEvent"
+      modelProps: "user" | "activity" | "engagement" | "moodEntry" | "symptomEvent" | "dailyNote"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1066,80 @@ export namespace Prisma {
           }
         }
       }
+      DailyNote: {
+        payload: Prisma.$DailyNotePayload<ExtArgs>
+        fields: Prisma.DailyNoteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DailyNoteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DailyNoteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>
+          }
+          findFirst: {
+            args: Prisma.DailyNoteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DailyNoteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>
+          }
+          findMany: {
+            args: Prisma.DailyNoteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>[]
+          }
+          create: {
+            args: Prisma.DailyNoteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>
+          }
+          createMany: {
+            args: Prisma.DailyNoteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DailyNoteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>[]
+          }
+          delete: {
+            args: Prisma.DailyNoteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>
+          }
+          update: {
+            args: Prisma.DailyNoteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>
+          }
+          deleteMany: {
+            args: Prisma.DailyNoteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DailyNoteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DailyNoteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>[]
+          }
+          upsert: {
+            args: Prisma.DailyNoteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyNotePayload>
+          }
+          aggregate: {
+            args: Prisma.DailyNoteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDailyNote>
+          }
+          groupBy: {
+            args: Prisma.DailyNoteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DailyNoteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DailyNoteCountArgs<ExtArgs>
+            result: $Utils.Optional<DailyNoteCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1229,7 @@ export namespace Prisma {
     engagement?: EngagementOmit
     moodEntry?: MoodEntryOmit
     symptomEvent?: SymptomEventOmit
+    dailyNote?: DailyNoteOmit
   }
 
   /* Types for Logging */
@@ -6514,6 +6605,1014 @@ export namespace Prisma {
 
 
   /**
+   * Model DailyNote
+   */
+
+  export type AggregateDailyNote = {
+    _count: DailyNoteCountAggregateOutputType | null
+    _min: DailyNoteMinAggregateOutputType | null
+    _max: DailyNoteMaxAggregateOutputType | null
+  }
+
+  export type DailyNoteMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DailyNoteMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DailyNoteCountAggregateOutputType = {
+    id: number
+    userId: number
+    content: number
+    date: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DailyNoteMinAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DailyNoteMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DailyNoteCountAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DailyNoteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyNote to aggregate.
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyNotes to fetch.
+     */
+    orderBy?: DailyNoteOrderByWithRelationInput | DailyNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DailyNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DailyNotes
+    **/
+    _count?: true | DailyNoteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DailyNoteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DailyNoteMaxAggregateInputType
+  }
+
+  export type GetDailyNoteAggregateType<T extends DailyNoteAggregateArgs> = {
+        [P in keyof T & keyof AggregateDailyNote]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDailyNote[P]>
+      : GetScalarType<T[P], AggregateDailyNote[P]>
+  }
+
+
+
+
+  export type DailyNoteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyNoteWhereInput
+    orderBy?: DailyNoteOrderByWithAggregationInput | DailyNoteOrderByWithAggregationInput[]
+    by: DailyNoteScalarFieldEnum[] | DailyNoteScalarFieldEnum
+    having?: DailyNoteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DailyNoteCountAggregateInputType | true
+    _min?: DailyNoteMinAggregateInputType
+    _max?: DailyNoteMaxAggregateInputType
+  }
+
+  export type DailyNoteGroupByOutputType = {
+    id: string
+    userId: string
+    content: string
+    date: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: DailyNoteCountAggregateOutputType | null
+    _min: DailyNoteMinAggregateOutputType | null
+    _max: DailyNoteMaxAggregateOutputType | null
+  }
+
+  type GetDailyNoteGroupByPayload<T extends DailyNoteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DailyNoteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DailyNoteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DailyNoteGroupByOutputType[P]>
+            : GetScalarType<T[P], DailyNoteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DailyNoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["dailyNote"]>
+
+  export type DailyNoteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["dailyNote"]>
+
+  export type DailyNoteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["dailyNote"]>
+
+  export type DailyNoteSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DailyNoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "content" | "date" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyNote"]>
+
+  export type $DailyNotePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DailyNote"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      content: string
+      date: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["dailyNote"]>
+    composites: {}
+  }
+
+  type DailyNoteGetPayload<S extends boolean | null | undefined | DailyNoteDefaultArgs> = $Result.GetResult<Prisma.$DailyNotePayload, S>
+
+  type DailyNoteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DailyNoteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DailyNoteCountAggregateInputType | true
+    }
+
+  export interface DailyNoteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyNote'], meta: { name: 'DailyNote' } }
+    /**
+     * Find zero or one DailyNote that matches the filter.
+     * @param {DailyNoteFindUniqueArgs} args - Arguments to find a DailyNote
+     * @example
+     * // Get one DailyNote
+     * const dailyNote = await prisma.dailyNote.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DailyNoteFindUniqueArgs>(args: SelectSubset<T, DailyNoteFindUniqueArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DailyNote that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DailyNoteFindUniqueOrThrowArgs} args - Arguments to find a DailyNote
+     * @example
+     * // Get one DailyNote
+     * const dailyNote = await prisma.dailyNote.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DailyNoteFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyNoteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyNote that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteFindFirstArgs} args - Arguments to find a DailyNote
+     * @example
+     * // Get one DailyNote
+     * const dailyNote = await prisma.dailyNote.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DailyNoteFindFirstArgs>(args?: SelectSubset<T, DailyNoteFindFirstArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyNote that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteFindFirstOrThrowArgs} args - Arguments to find a DailyNote
+     * @example
+     * // Get one DailyNote
+     * const dailyNote = await prisma.dailyNote.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DailyNoteFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyNoteFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DailyNotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DailyNotes
+     * const dailyNotes = await prisma.dailyNote.findMany()
+     * 
+     * // Get first 10 DailyNotes
+     * const dailyNotes = await prisma.dailyNote.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dailyNoteWithIdOnly = await prisma.dailyNote.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DailyNoteFindManyArgs>(args?: SelectSubset<T, DailyNoteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DailyNote.
+     * @param {DailyNoteCreateArgs} args - Arguments to create a DailyNote.
+     * @example
+     * // Create one DailyNote
+     * const DailyNote = await prisma.dailyNote.create({
+     *   data: {
+     *     // ... data to create a DailyNote
+     *   }
+     * })
+     * 
+     */
+    create<T extends DailyNoteCreateArgs>(args: SelectSubset<T, DailyNoteCreateArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DailyNotes.
+     * @param {DailyNoteCreateManyArgs} args - Arguments to create many DailyNotes.
+     * @example
+     * // Create many DailyNotes
+     * const dailyNote = await prisma.dailyNote.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DailyNoteCreateManyArgs>(args?: SelectSubset<T, DailyNoteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DailyNotes and returns the data saved in the database.
+     * @param {DailyNoteCreateManyAndReturnArgs} args - Arguments to create many DailyNotes.
+     * @example
+     * // Create many DailyNotes
+     * const dailyNote = await prisma.dailyNote.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DailyNotes and only return the `id`
+     * const dailyNoteWithIdOnly = await prisma.dailyNote.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DailyNoteCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyNoteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DailyNote.
+     * @param {DailyNoteDeleteArgs} args - Arguments to delete one DailyNote.
+     * @example
+     * // Delete one DailyNote
+     * const DailyNote = await prisma.dailyNote.delete({
+     *   where: {
+     *     // ... filter to delete one DailyNote
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DailyNoteDeleteArgs>(args: SelectSubset<T, DailyNoteDeleteArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DailyNote.
+     * @param {DailyNoteUpdateArgs} args - Arguments to update one DailyNote.
+     * @example
+     * // Update one DailyNote
+     * const dailyNote = await prisma.dailyNote.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DailyNoteUpdateArgs>(args: SelectSubset<T, DailyNoteUpdateArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DailyNotes.
+     * @param {DailyNoteDeleteManyArgs} args - Arguments to filter DailyNotes to delete.
+     * @example
+     * // Delete a few DailyNotes
+     * const { count } = await prisma.dailyNote.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DailyNoteDeleteManyArgs>(args?: SelectSubset<T, DailyNoteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DailyNotes
+     * const dailyNote = await prisma.dailyNote.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DailyNoteUpdateManyArgs>(args: SelectSubset<T, DailyNoteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyNotes and returns the data updated in the database.
+     * @param {DailyNoteUpdateManyAndReturnArgs} args - Arguments to update many DailyNotes.
+     * @example
+     * // Update many DailyNotes
+     * const dailyNote = await prisma.dailyNote.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DailyNotes and only return the `id`
+     * const dailyNoteWithIdOnly = await prisma.dailyNote.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DailyNoteUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyNoteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DailyNote.
+     * @param {DailyNoteUpsertArgs} args - Arguments to update or create a DailyNote.
+     * @example
+     * // Update or create a DailyNote
+     * const dailyNote = await prisma.dailyNote.upsert({
+     *   create: {
+     *     // ... data to create a DailyNote
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DailyNote we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DailyNoteUpsertArgs>(args: SelectSubset<T, DailyNoteUpsertArgs<ExtArgs>>): Prisma__DailyNoteClient<$Result.GetResult<Prisma.$DailyNotePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DailyNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteCountArgs} args - Arguments to filter DailyNotes to count.
+     * @example
+     * // Count the number of DailyNotes
+     * const count = await prisma.dailyNote.count({
+     *   where: {
+     *     // ... the filter for the DailyNotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends DailyNoteCountArgs>(
+      args?: Subset<T, DailyNoteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DailyNoteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DailyNote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DailyNoteAggregateArgs>(args: Subset<T, DailyNoteAggregateArgs>): Prisma.PrismaPromise<GetDailyNoteAggregateType<T>>
+
+    /**
+     * Group by DailyNote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyNoteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DailyNoteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DailyNoteGroupByArgs['orderBy'] }
+        : { orderBy?: DailyNoteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DailyNoteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyNoteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DailyNote model
+   */
+  readonly fields: DailyNoteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DailyNote.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DailyNoteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DailyNote model
+   */
+  interface DailyNoteFieldRefs {
+    readonly id: FieldRef<"DailyNote", 'String'>
+    readonly userId: FieldRef<"DailyNote", 'String'>
+    readonly content: FieldRef<"DailyNote", 'String'>
+    readonly date: FieldRef<"DailyNote", 'DateTime'>
+    readonly createdAt: FieldRef<"DailyNote", 'DateTime'>
+    readonly updatedAt: FieldRef<"DailyNote", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DailyNote findUnique
+   */
+  export type DailyNoteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyNote to fetch.
+     */
+    where: DailyNoteWhereUniqueInput
+  }
+
+  /**
+   * DailyNote findUniqueOrThrow
+   */
+  export type DailyNoteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyNote to fetch.
+     */
+    where: DailyNoteWhereUniqueInput
+  }
+
+  /**
+   * DailyNote findFirst
+   */
+  export type DailyNoteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyNote to fetch.
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyNotes to fetch.
+     */
+    orderBy?: DailyNoteOrderByWithRelationInput | DailyNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyNotes.
+     */
+    cursor?: DailyNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyNotes.
+     */
+    distinct?: DailyNoteScalarFieldEnum | DailyNoteScalarFieldEnum[]
+  }
+
+  /**
+   * DailyNote findFirstOrThrow
+   */
+  export type DailyNoteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyNote to fetch.
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyNotes to fetch.
+     */
+    orderBy?: DailyNoteOrderByWithRelationInput | DailyNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyNotes.
+     */
+    cursor?: DailyNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyNotes.
+     */
+    distinct?: DailyNoteScalarFieldEnum | DailyNoteScalarFieldEnum[]
+  }
+
+  /**
+   * DailyNote findMany
+   */
+  export type DailyNoteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * Filter, which DailyNotes to fetch.
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyNotes to fetch.
+     */
+    orderBy?: DailyNoteOrderByWithRelationInput | DailyNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DailyNotes.
+     */
+    cursor?: DailyNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyNotes.
+     */
+    skip?: number
+    distinct?: DailyNoteScalarFieldEnum | DailyNoteScalarFieldEnum[]
+  }
+
+  /**
+   * DailyNote create
+   */
+  export type DailyNoteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * The data needed to create a DailyNote.
+     */
+    data: XOR<DailyNoteCreateInput, DailyNoteUncheckedCreateInput>
+  }
+
+  /**
+   * DailyNote createMany
+   */
+  export type DailyNoteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DailyNotes.
+     */
+    data: DailyNoteCreateManyInput | DailyNoteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DailyNote createManyAndReturn
+   */
+  export type DailyNoteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * The data used to create many DailyNotes.
+     */
+    data: DailyNoteCreateManyInput | DailyNoteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DailyNote update
+   */
+  export type DailyNoteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * The data needed to update a DailyNote.
+     */
+    data: XOR<DailyNoteUpdateInput, DailyNoteUncheckedUpdateInput>
+    /**
+     * Choose, which DailyNote to update.
+     */
+    where: DailyNoteWhereUniqueInput
+  }
+
+  /**
+   * DailyNote updateMany
+   */
+  export type DailyNoteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DailyNotes.
+     */
+    data: XOR<DailyNoteUpdateManyMutationInput, DailyNoteUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyNotes to update
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * Limit how many DailyNotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyNote updateManyAndReturn
+   */
+  export type DailyNoteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * The data used to update DailyNotes.
+     */
+    data: XOR<DailyNoteUpdateManyMutationInput, DailyNoteUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyNotes to update
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * Limit how many DailyNotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyNote upsert
+   */
+  export type DailyNoteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * The filter to search for the DailyNote to update in case it exists.
+     */
+    where: DailyNoteWhereUniqueInput
+    /**
+     * In case the DailyNote found by the `where` argument doesn't exist, create a new DailyNote with this data.
+     */
+    create: XOR<DailyNoteCreateInput, DailyNoteUncheckedCreateInput>
+    /**
+     * In case the DailyNote was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DailyNoteUpdateInput, DailyNoteUncheckedUpdateInput>
+  }
+
+  /**
+   * DailyNote delete
+   */
+  export type DailyNoteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+    /**
+     * Filter which DailyNote to delete.
+     */
+    where: DailyNoteWhereUniqueInput
+  }
+
+  /**
+   * DailyNote deleteMany
+   */
+  export type DailyNoteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyNotes to delete
+     */
+    where?: DailyNoteWhereInput
+    /**
+     * Limit how many DailyNotes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyNote without action
+   */
+  export type DailyNoteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyNote
+     */
+    select?: DailyNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyNote
+     */
+    omit?: DailyNoteOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6585,6 +7684,18 @@ export namespace Prisma {
   };
 
   export type SymptomEventScalarFieldEnum = (typeof SymptomEventScalarFieldEnum)[keyof typeof SymptomEventScalarFieldEnum]
+
+
+  export const DailyNoteScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    content: 'content',
+    date: 'date',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DailyNoteScalarFieldEnum = (typeof DailyNoteScalarFieldEnum)[keyof typeof DailyNoteScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6978,6 +8089,64 @@ export namespace Prisma {
     timestamp?: DateTimeWithAggregatesFilter<"SymptomEvent"> | Date | string
   }
 
+  export type DailyNoteWhereInput = {
+    AND?: DailyNoteWhereInput | DailyNoteWhereInput[]
+    OR?: DailyNoteWhereInput[]
+    NOT?: DailyNoteWhereInput | DailyNoteWhereInput[]
+    id?: StringFilter<"DailyNote"> | string
+    userId?: StringFilter<"DailyNote"> | string
+    content?: StringFilter<"DailyNote"> | string
+    date?: DateTimeFilter<"DailyNote"> | Date | string
+    createdAt?: DateTimeFilter<"DailyNote"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyNote"> | Date | string
+  }
+
+  export type DailyNoteOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyNoteWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_date?: DailyNoteUserIdDateCompoundUniqueInput
+    AND?: DailyNoteWhereInput | DailyNoteWhereInput[]
+    OR?: DailyNoteWhereInput[]
+    NOT?: DailyNoteWhereInput | DailyNoteWhereInput[]
+    userId?: StringFilter<"DailyNote"> | string
+    content?: StringFilter<"DailyNote"> | string
+    date?: DateTimeFilter<"DailyNote"> | Date | string
+    createdAt?: DateTimeFilter<"DailyNote"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyNote"> | Date | string
+  }, "id" | "userId_date">
+
+  export type DailyNoteOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DailyNoteCountOrderByAggregateInput
+    _max?: DailyNoteMaxOrderByAggregateInput
+    _min?: DailyNoteMinOrderByAggregateInput
+  }
+
+  export type DailyNoteScalarWhereWithAggregatesInput = {
+    AND?: DailyNoteScalarWhereWithAggregatesInput | DailyNoteScalarWhereWithAggregatesInput[]
+    OR?: DailyNoteScalarWhereWithAggregatesInput[]
+    NOT?: DailyNoteScalarWhereWithAggregatesInput | DailyNoteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DailyNote"> | string
+    userId?: StringWithAggregatesFilter<"DailyNote"> | string
+    content?: StringWithAggregatesFilter<"DailyNote"> | string
+    date?: DateTimeWithAggregatesFilter<"DailyNote"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"DailyNote"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DailyNote"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -7288,6 +8457,69 @@ export namespace Prisma {
     symptomKey?: StringFieldUpdateOperationsInput | string
     eventType?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyNoteCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyNoteUncheckedCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyNoteUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyNoteUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyNoteCreateManyInput = {
+    id?: string
+    userId: string
+    content: string
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyNoteUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyNoteUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7622,6 +8854,38 @@ export namespace Prisma {
 
   export type SymptomEventSumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type DailyNoteUserIdDateCompoundUniqueInput = {
+    userId: string
+    date: Date | string
+  }
+
+  export type DailyNoteCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyNoteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyNoteMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ActivityCreateNestedManyWithoutUserInput = {

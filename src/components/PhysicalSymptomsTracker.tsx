@@ -214,24 +214,41 @@ const PhysicalSymptomsTracker: React.FC = () => {
     }
   };
 
+  // Arrange symptoms in an inverted pyramid: 4, 3, 2, 2
+  const pyramidRows = [
+    SYMPTOMS.slice(0, 4),
+    SYMPTOMS.slice(4, 7),
+    SYMPTOMS.slice(7, 9),
+    SYMPTOMS.slice(9, 11),
+  ];
+
   return (
     <div
+      className="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center"
       style={{
-        maxWidth: 500,
+        minWidth: 400,
+        maxWidth: 800,
         margin: "0 auto",
-        padding: 24,
-        position: "relative",
+        overflow: "hidden",
+        boxSizing: "border-box",
       }}
     >
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          marginBottom: 8,
         }}
       >
-        <h2 style={{ textAlign: "center", flex: 1 }}>Health</h2>
-        <div style={{ position: "relative" }} ref={infoRef}>
+        <h2
+          className="text-2xl font-bold text-center text-gray-900"
+          style={{ margin: 0 }}
+        >
+          Health Tracker
+        </h2>
+        <div style={{ position: "relative", marginLeft: 10 }} ref={infoRef}>
           <button
             aria-label="How to use"
             onClick={() => setShowInfo((v) => !v)}
@@ -240,9 +257,9 @@ const PhysicalSymptomsTracker: React.FC = () => {
               border: "none",
               cursor: "pointer",
               fontSize: 22,
-              marginLeft: 8,
               color: "#4f46e5",
               padding: 4,
+              marginTop: 2,
             }}
           >
             ℹ️
@@ -250,26 +267,31 @@ const PhysicalSymptomsTracker: React.FC = () => {
           <InfoTooltip show={showInfo} infoRef={infoRef} />
         </div>
       </div>
-      <p style={{ textAlign: "center", color: "#666" }}>
-        Are you experiencing any of these?
-      </p>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 12,
-          justifyContent: "center",
-        }}
-      >
-        {SYMPTOMS.map((symptom) => (
-          <SymptomButton
-            key={symptom.key}
-            symptom={symptom}
-            isActive={!!activeSymptoms[symptom.key]}
-            feedback={feedback[symptom.key]}
-            onClick={() => handleToggle(symptom.key)}
-            disabled={!userId}
-          />
+      <div className="text-center mb-6 text-lg">
+        Are you feeling any of these?
+      </div>
+      <div style={{ width: "100%", marginBottom: 12 }}>
+        {pyramidRows.map((row, i) => (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 24,
+              marginBottom: 18,
+            }}
+          >
+            {row.map((symptom) => (
+              <SymptomButton
+                key={symptom.key}
+                symptom={symptom}
+                isActive={!!activeSymptoms[symptom.key]}
+                feedback={feedback[symptom.key] || null}
+                onClick={() => handleToggle(symptom.key)}
+                disabled={!userId}
+              />
+            ))}
+          </div>
         ))}
       </div>
       {!userId && (

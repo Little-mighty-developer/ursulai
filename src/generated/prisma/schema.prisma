@@ -62,3 +62,14 @@ model SymptomEvent {
   eventType  String // "on" or "off"
   timestamp  DateTime @default(now())
 }
+
+model DailyNote {
+  id        String   @id @default(uuid())
+  userId    String
+  content   String
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, date]) // Each user can have only one note per day
+}

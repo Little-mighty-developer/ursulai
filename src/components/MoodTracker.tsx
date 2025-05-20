@@ -121,7 +121,7 @@ export default function MoodTracker() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-xl shadow p-6 max-w-md mx-auto"
+      className="bg-white rounded-xl shadow p-6 max-w-xl mx-auto"
     >
       <h2 className="text-2xl font-bold mb-4">Mood</h2>
       {moodCategories.map((cat) => (
