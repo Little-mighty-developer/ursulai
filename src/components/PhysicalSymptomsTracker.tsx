@@ -4,15 +4,15 @@ import { useSession } from "next-auth/react";
 const SYMPTOMS = [
   { key: "cramps", label: "Cramps", emoji: "⚡️" },
   { key: "muscle_spasms", label: "Muscle spasms", image: "/images/muscle-pain.png" },
-  { key: "jitteriness", label: "Jitteriness", emoji: "😐" },
-  { key: "headache", label: "Headache", emoji: "😟" },
-  { key: "body_pain", label: "Body pain", emoji: "😡" },
-  { key: "brain_fog", label: "Brain fog", emoji: "🧑‍🦰" },
-  { key: "bloating", label: "Bloating", emoji: "😕" },
+  { key: "jitteriness", label: "Jitteriness", image: "/images/jitters.png" },
+  { key: "headache", label: "Headache", emoji: "🤕 " },
+  { key: "body_pain", label: "Body pain", emoji: "😣" },
+  { key: "brain_fog", label: "Brain fog", emoji: "😶‍🌫️" },
+  { key: "bloating", label: "Bloating", image: "/images/bloating.png" },
   { key: "fatigue", label: "Fatigue", emoji: "😐" },
   { key: "nausea", label: "Nausea", emoji: "🤢" },
   { key: "appetite_changes", label: "Appetite changes", emoji: "🥑" },
-  { key: "skin_changes", label: "Skin changes", emoji: "😕" },
+  { key: "skin_changes", label: "Skin changes", image: "/images/acne.png" },
 ];
 
 interface SymptomTimestamps {
