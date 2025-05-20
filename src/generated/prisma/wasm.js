@@ -157,6 +157,14 @@ exports.Prisma.MoodEntryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.SymptomEventScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  symptomKey: 'symptomKey',
+  eventType: 'eventType',
+  timestamp: 'timestamp'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -177,7 +185,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Activity: 'Activity',
   Engagement: 'Engagement',
-  MoodEntry: 'MoodEntry'
+  MoodEntry: 'MoodEntry',
+  SymptomEvent: 'SymptomEvent'
 };
 
 /**

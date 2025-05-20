@@ -44,3 +44,20 @@ html {
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+@keyframes bouncy-glow {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 16px #a5b4fc) drop-shadow(0 0 32px #818cf8);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.05);
+    filter: drop-shadow(0 0 32px #818cf8) drop-shadow(0 0 48px #6366f1);
+  }
+}
+
+.bouncy-glow {
+  animation: bouncy-glow 2.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  filter: drop-shadow(0 0 16px #a5b4fc) drop-shadow(0 0 32px #818cf8);
+}
