@@ -3,21 +3,15 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
+import next from "@next/eslint-plugin-next";
 
 export default defineConfig([
-  {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    plugins: { js },
-    extends: [
-      "js/recommended",
-      "next/core-web-vitals",
-      "plugin:react/jsx-runtime",
-    ],
-  },
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+  next.configs["core-web-vitals"],
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: { globals: globals.browser },
   },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
 ]);

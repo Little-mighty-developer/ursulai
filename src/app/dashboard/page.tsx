@@ -6,6 +6,7 @@ import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
 import MoodTracker from "@/components/MoodTracker";
 import PhysicalSymptomsTracker from "@/components/PhysicalSymptomsTracker";
+import NoteToSelf from "@/components/NoteToSelf";
 import Image from "next/image";
 
 function DashboardCard({
@@ -56,6 +57,9 @@ export default function DashboardPage() {
               <WeatherWidget />
             </DashboardCard>
             <DashboardCard>
+              <NoteToSelf />
+            </DashboardCard>
+            <DashboardCard>
               <PhysicalSymptomsTracker />
             </DashboardCard>
           </div>
@@ -87,7 +91,7 @@ export default function DashboardPage() {
             </DashboardCard>
           </div>
         </div>
-        {/* Right column: Mood at top, Reminders at bottom */}
+        {/* Right column: Mood at top, Note to Self at bottom */}
         <div
           style={{
             gridColumn: 3,
@@ -103,15 +107,6 @@ export default function DashboardPage() {
               <MoodTracker />
             </DashboardCard>
           </div>
-          <DashboardCard>
-            <span className="text-lg font-semibold mb-2">Reminders</span>
-            <ul className="text-left">
-              <li>✓ Reminder 1</li>
-              <li>✓ Reminder 2</li>
-              <li>✓ Reminder 3</li>
-              <li>✓ Reminder 4</li>
-            </ul>
-          </DashboardCard>
         </div>
       </div>
     </div>

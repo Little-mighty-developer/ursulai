@@ -165,6 +165,15 @@ exports.Prisma.SymptomEventScalarFieldEnum = {
   timestamp: 'timestamp'
 };
 
+exports.Prisma.DailyNoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -186,7 +195,8 @@ exports.Prisma.ModelName = {
   Activity: 'Activity',
   Engagement: 'Engagement',
   MoodEntry: 'MoodEntry',
-  SymptomEvent: 'SymptomEvent'
+  SymptomEvent: 'SymptomEvent',
+  DailyNote: 'DailyNote'
 };
 
 /**

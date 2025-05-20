@@ -25,7 +25,7 @@ export function MoodSlider({
   };
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 w-full min-w-[200px]">
       <div className="flex justify-between items-center mb-1">
         <span className="font-medium">{label}</span>
         <span
@@ -42,7 +42,7 @@ export function MoodSlider({
         </span>
       </div>
       <div
-        className={`w-full h-4 rounded-full bg-gradient-to-r ${gradient} flex items-center relative`}
+        className={`w-full px-2 h-4 rounded-full bg-gradient-to-r ${gradient} flex items-center relative`}
       >
         <input
           type="range"
