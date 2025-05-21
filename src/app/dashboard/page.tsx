@@ -81,7 +81,7 @@ export default function DashboardPage() {
               height={160}
               className="bouncy-glow"
             />
-            <div style={{ width: 260 }}>
+            <div style={{ width: 400 }}>
               <DashboardCard>
                 <JournalEntriesWidget />
               </DashboardCard>
