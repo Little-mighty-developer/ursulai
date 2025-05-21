@@ -210,11 +210,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://username:ursulaiadmin@localhost:5432/ursulai"
+        "value": null
       }
     }
   },
