@@ -15,7 +15,9 @@ function getPreview(text: string): string {
   // Get first 8 words
   const words = text.split(/\s+/).slice(0, 8).join(" ");
   // Return whichever is shorter
-  return firstSentence.length <= words.length ? firstSentence : words + (text.split(/\s+/).length > 8 ? "..." : "");
+  return firstSentence.length <= words.length
+    ? firstSentence
+    : words + (text.split(/\s+/).length > 8 ? "..." : "");
 }
 
 function formatDateTime(dateString: string) {
@@ -41,14 +43,20 @@ export default function RecentJournalEntries() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  if (isLoading) return <div className="mt-8 text-gray-400">Loading recent entries...</div>;
+  if (isLoading)
+    return <div className="mt-8 text-gray-400">Loading recent entries...</div>;
   if (!entries.length) return null;
 
   return (
     <div className="mt-8 w-full">
       <div className="flex items-center mb-2">
         <h3 className="text-lg font-semibold flex-1">Recent Entries</h3>
-        <Link href="/journal/history" className="text-indigo-600 hover:underline text-sm font-medium">See all</Link>
+        <Link
+          href="/journal/history"
+          className="text-indigo-600 hover:underline text-sm font-medium"
+        >
+          See all
+        </Link>
       </div>
       <div className="space-y-2">
         {entries.map((entry) => (
@@ -67,4 +75,4 @@ export default function RecentJournalEntries() {
       </div>
     </div>
   );
-} 
+}

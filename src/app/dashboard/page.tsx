@@ -35,78 +35,72 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-purple-50 p-8 flex flex-col items-center">
       <div
-        className="grid"
+        className="dashboard-main"
         style={{
-          gridTemplateColumns: "320px 400px 320px",
+          display: "flex",
+          flexDirection: "row",
           gap: "32px",
           width: "1200px",
           margin: "0 auto",
+          alignItems: "flex-start",
         }}
       >
-        {/* Left column: Weather at top, Health below */}
-        <div style={{ gridColumn: 1, gridRow: 1 }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              gap: "32px",
-            }}
-          >
-            <DashboardCard>
-              <WeatherWidget />
-            </DashboardCard>
-            <DashboardCard>
-              <NoteToSelf />
-            </DashboardCard>
-            <DashboardCard>
-              <PhysicalSymptomsTracker />
-            </DashboardCard>
-          </div>
-        </div>
-        {/* Center column: flex stack for organic placement */}
-        <div style={{ gridColumn: 2, gridRow: 1 }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "32px",
-            }}
-          >
-            <Image
-              src="/logo.png"
-              alt="Ursul.ai Logo"
-              width={160}
-              height={160}
-              className="bouncy-glow"
-            />
-            <div style={{ width: 400 }}>
-              <DashboardCard>
-                <JournalEntriesWidget />
-              </DashboardCard>
-            </div>
-            <DashboardCard>
-              <CalendarWidget />
-            </DashboardCard>
-          </div>
-        </div>
-        {/* Right column: Mood at top, Note to Self at bottom */}
+        {/* Left column */}
         <div
           style={{
-            gridColumn: 3,
-            gridRow: 1,
-            height: "100vh",
+            width: 320,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            gap: "12px",
           }}
         >
-          <div style={{ flexGrow: 1 }}>
-            <DashboardCard className="mb-8">
-              <MoodTracker />
-            </DashboardCard>
-          </div>
+          <DashboardCard>
+            <WeatherWidget />
+          </DashboardCard>
+          <DashboardCard>
+            <NoteToSelf />
+          </DashboardCard>
+          <DashboardCard>
+            <PhysicalSymptomsTracker />
+          </DashboardCard>
+        </div>
+        {/* Center column */}
+        <div
+          style={{
+            width: 400,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <Image
+            src="/logo.png"
+            alt="Ursul.ai Logo"
+            width={360}
+            height={360}
+            className="bouncy-glow"
+          />
+          <DashboardCard>
+            <JournalEntriesWidget />
+          </DashboardCard>
+        </div>
+        {/* Right column */}
+        <div
+          style={{
+            width: 320,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "right",
+            gap: "32px",
+          }}
+        >
+          <DashboardCard>
+            <CalendarWidget />
+          </DashboardCard>
+          <DashboardCard>
+            <MoodTracker />
+          </DashboardCard>
         </div>
       </div>
     </div>

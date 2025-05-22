@@ -102,7 +102,9 @@ export default function JournalHistoryPage() {
                     minute: "2-digit",
                   })}
                 </div>
-                <p className="text-gray-800 whitespace-pre-wrap">{entry.content}</p>
+                <p className="text-gray-800 whitespace-pre-wrap">
+                  {entry.content}
+                </p>
               </div>
             ))}
           </div>
@@ -110,4 +112,4 @@ export default function JournalHistoryPage() {
       </div>
     </div>
   );
-} 
+}
