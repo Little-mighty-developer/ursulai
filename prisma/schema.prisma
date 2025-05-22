@@ -73,3 +73,12 @@ model DailyNote {
 
   @@unique([userId, date]) // Each user can have only one note per day
 }
+
+model JournalEntry {
+  id        String   @id @default(uuid())
+  userId    String
+  content   String
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
