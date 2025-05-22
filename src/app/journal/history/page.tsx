@@ -15,16 +15,17 @@ export default function JournalHistoryPage() {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
+    if (status === "loading") return; // Wait for session to load
     if (!session?.user?.email) {
       router.push("/login");
-      return;
+    } else {
+      fetchEntries();
     }
-    fetchEntries();
-  }, [session, router]);
+  }, [session, status, router]);
 
   const fetchEntries = async () => {
     try {
@@ -93,11 +94,12 @@ export default function JournalHistoryPage() {
                 className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition"
               >
                 <div className="text-sm text-gray-500 mb-2">
-                  {new Date(entry.date).toLocaleDateString("en-US", {
-                    weekday: "long",
+                  {new Date(entry.date).toLocaleString(undefined, {
                     year: "numeric",
-                    month: "long",
-                    day: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </div>
                 <p className="text-gray-800 whitespace-pre-wrap">{entry.content}</p>

@@ -49,19 +49,20 @@ export async function POST(req: Request) {
       );
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const now = new Date(); // Use the actual current date and time
 
     // Create the journal entry
     const entry = await prisma.journalEntry.create({
       data: {
         userId: session.user.email,
         content: content.trim(),
-        date: today,
+        date: now,
       },
     });
 
-    // Update engagement tracking
+    // Update engagement tracking (still use just the date part for engagement)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     await prisma.engagement.upsert({
       where: {
         userId_date: {

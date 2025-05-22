@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import RecentJournalEntries from "@/components/RecentJournalEntries";
 
 export default function JournalPage() {
   const [entry, setEntry] = useState("");
@@ -80,6 +81,7 @@ export default function JournalPage() {
             {isSaving ? "Saving..." : "Save"}
           </button>
         </div>
+        <RecentJournalEntries />
         {/* Placeholder for future AI prompt and Ursul.ai guidance */}
         <div className="mt-8 text-center text-gray-400 italic">
           (AI-powered prompts and Ursul.ai guidance coming soon)
