@@ -226,8 +226,8 @@ const PhysicalSymptomsTracker: React.FC = () => {
     <div
       className="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center"
       style={{
-        minWidth: 400,
-        maxWidth: 800,
+        minWidth: 300,
+        maxWidth: 750,
         margin: "0 auto",
         overflow: "hidden",
         boxSizing: "border-box",
