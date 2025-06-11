@@ -162,6 +162,23 @@ const PhysicalSymptomsTracker: React.FC = () => {
   const { data: session } = useSession();
   const userId = session?.user?.email;
 
+  // Fetch active symptoms from backend on mount or when userId changes
+  useEffect(() => {
+    if (!userId) return;
+    fetch(`/api/symptoms?userId=${encodeURIComponent(userId)}&activeOnly=true`)
+      .then((res) => res.json())
+      .then((activeKeys: string[]) => {
+        if (Array.isArray(activeKeys)) {
+          setActiveSymptoms(
+            Object.fromEntries(
+              SYMPTOMS.map((s) => [s.key, activeKeys.includes(s.key)])
+            )
+          );
+        }
+      })
+      .catch(() => {});
+  }, [userId]);
+
   // Close tooltip when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -227,7 +244,7 @@ const PhysicalSymptomsTracker: React.FC = () => {
       className="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center"
       style={{
         minWidth: 300,
-        maxWidth: 750,
+        maxWidth: 800,
         margin: "0 auto",
         overflow: "hidden",
         boxSizing: "border-box",
