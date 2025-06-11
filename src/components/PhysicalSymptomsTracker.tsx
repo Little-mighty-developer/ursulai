@@ -171,8 +171,8 @@ const PhysicalSymptomsTracker: React.FC = () => {
         if (Array.isArray(activeKeys)) {
           setActiveSymptoms(
             Object.fromEntries(
-              SYMPTOMS.map((s) => [s.key, activeKeys.includes(s.key)])
-            )
+              SYMPTOMS.map((s) => [s.key, activeKeys.includes(s.key)]),
+            ),
           );
         }
       })

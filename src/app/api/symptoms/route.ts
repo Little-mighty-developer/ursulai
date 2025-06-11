@@ -39,10 +39,7 @@ export async function GET(req: Request) {
       // Get all events for the user, ordered by symptomKey and timestamp desc
       const events = await prisma.symptomEvent.findMany({
         where: { userId },
-        orderBy: [
-          { symptomKey: "asc" },
-          { timestamp: "desc" },
-        ],
+        orderBy: [{ symptomKey: "asc" }, { timestamp: "desc" }],
       });
       // Find the latest event for each symptomKey
       const latestBySymptom: { [key: string]: any } = {};
