@@ -374,6 +374,41 @@ When deploying, you'll need to add your production URL:
 https://yourdomain.com/api/auth/callback/google
 ```
 
+## 🚀 Deployment
+
+### Deploying to Netlify
+
+1. **Install the Netlify Next.js plugin:**
+
+   ```bash
+   npm install --save-dev @netlify/plugin-nextjs
+   ```
+
+2. **Set up environment variables in Netlify:**
+   - Go to your Netlify site dashboard
+   - Navigate to **Site configuration** > **Environment variables**
+   - Add all the variables from your `.env.local`:
+     - `NEXTAUTH_URL` (should be your Netlify domain, e.g., `https://your-site.netlify.app`)
+     - `NEXTAUTH_SECRET`
+     - `GOOGLE_CLIENT_ID`
+     - `GOOGLE_CLIENT_SECRET`
+     - `DATABASE_URL` (your production database URL)
+
+3. **Update Google OAuth redirect URI:**
+   - In Google Cloud Console, add your Netlify URL to authorized redirect URIs:
+     - `https://your-site.netlify.app/api/auth/callback/google`
+
+4. **Deploy:**
+   - Connect your GitHub repository to Netlify
+   - Netlify will automatically detect the `netlify.toml` configuration
+   - The build will run automatically on push
+
+**Note:** The `netlify.toml` file is already configured in this repository. Make sure to:
+
+- Set `NEXTAUTH_URL` to your actual Netlify domain
+- Update Google OAuth settings with your production callback URL
+- Use a production database (not localhost)
+
 ## 📞 Contact
 
 For any questions or suggestions, please open an issue in the GitHub repository.
