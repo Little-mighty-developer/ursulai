@@ -72,7 +72,7 @@ git clone https://github.com/yourusername/ursulai.git
 cd ursulai
 ```
 
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
@@ -80,7 +80,7 @@ npm install
 yarn install
 ```
 
-3. Set up the database:
+1. Set up the database:
 
 The application requires PostgreSQL. You have a few options:
 
@@ -101,7 +101,7 @@ createdb ursulai
 - [Neon](https://neon.tech/) (free tier available)
 - [Railway](https://railway.app/) (free tier available)
 
-4. Set up environment variables:
+1. Set up environment variables:
 
 Create a `.env.local` file in the root directory with the following variables:
 
@@ -172,7 +172,7 @@ npx prisma generate
 npx prisma migrate dev
 ```
 
-6. Start the development server:
+1. Start the development server:
 
 ```bash
 npm run dev
