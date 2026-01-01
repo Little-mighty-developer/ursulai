@@ -87,7 +87,10 @@ export default function CalendarWidget() {
     setValue(today);
   };
 
-  const handleChange = (newValue: CalendarValue) => {
+  const handleChange = (
+    newValue: CalendarValue,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     setValue(newValue);
   };
 
@@ -95,7 +98,7 @@ export default function CalendarWidget() {
     <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow p-6 flex flex-col items-center">
       <Calendar
         value={value}
-        onChange={handleChange}
+        onChange={handleChange as any}
         activeStartDate={activeStartDate}
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveStartDate(activeStartDate!)
