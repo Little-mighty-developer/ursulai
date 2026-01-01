@@ -85,6 +85,7 @@ yarn install
 The application requires PostgreSQL. You have a few options:
 
 **Option A: Local PostgreSQL**
+
 ```bash
 # Install PostgreSQL (if not already installed)
 # macOS: brew install postgresql@14
@@ -95,6 +96,7 @@ createdb ursulai
 ```
 
 **Option B: Use a hosted database service**
+
 - [Supabase](https://supabase.com/) (free tier available)
 - [Neon](https://neon.tech/) (free tier available)
 - [Railway](https://railway.app/) (free tier available)
@@ -134,18 +136,19 @@ openssl rand -base64 32
 6. **Authorized redirect URIs** (⚠️ **CRITICAL - must match exactly**):
    - Click **+ ADD URI**
    - Enter exactly: `http://localhost:3000/api/auth/callback/google`
-   - ⚠️ **Important:** 
+   - ⚠️ **Important:**
      - Use `http://` (not `https://`) for local development
      - Use `localhost` (not `127.0.0.1`)
      - No trailing slash
      - Exact path: `/api/auth/callback/google`
 7. Click **CREATE** and copy the Client ID and Client Secret to your `.env.local` file
 
-5. Run database migrations:
+8. Run database migrations:
 
 **Important:** Prisma CLI reads from `.env` file, while Next.js reads from `.env.local`. You have two options:
 
 **Option A: Create a `.env` file (Recommended)**
+
 ```bash
 # Copy DATABASE_URL from .env.local to .env
 # Or create .env with just:
@@ -153,12 +156,14 @@ echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/ursulai" > .env
 ```
 
 **Option B: Use dotenv-cli (Alternative)**
+
 ```bash
 npm install --save-dev dotenv-cli
 # Then use: dotenv -e .env.local -- npx prisma migrate dev
 ```
 
 Then run:
+
 ```bash
 # Generate Prisma Client
 npx prisma generate
@@ -239,10 +244,11 @@ If you encounter an `OAuthSignin` error when trying to sign in with Google:
 If you encounter `Environment variable not found: DATABASE_URL`:
 
 1. **Add DATABASE_URL to your `.env.local` file:**
+
    ```bash
    # For local PostgreSQL
    DATABASE_URL=postgresql://postgres:password@localhost:5432/ursulai
-   
+
    # Replace with your actual:
    # - Username (default is usually 'postgres')
    # - Password (your PostgreSQL password)
@@ -256,24 +262,26 @@ If you encounter `Environment variable not found: DATABASE_URL`:
    - **Windows:** Download from [postgresql.org](https://www.postgresql.org/download/windows/)
 
 3. **Create the database:**
+
    ```bash
    # Connect to PostgreSQL
    psql postgres
-   
+
    # Create database
    CREATE DATABASE ursulai;
-   
+
    # Exit
    \q
    ```
 
 4. **Run migrations:**
+
    ```bash
    npx prisma generate
    npx prisma migrate dev
    ```
 
-6. **Alternative: Use a hosted database:**
+5. **Alternative: Use a hosted database:**
    - [Supabase](https://supabase.com/) - Free tier available
    - [Neon](https://neon.tech/) - Free tier available
    - [Railway](https://railway.app/) - Free tier available
@@ -291,16 +299,17 @@ If you encounter `TypeError: Invalid character in header content ["Location"]`:
    - Make sure there are no hidden characters or line breaks
 
 2. **Verify the format:**
+
    ```bash
    # ✅ Correct
    NEXTAUTH_URL=http://localhost:3000
-   
+
    # ❌ Wrong (has quotes)
    NEXTAUTH_URL="http://localhost:3000"
-   
+
    # ❌ Wrong (has trailing space)
-   NEXTAUTH_URL=http://localhost:3000 
-   
+   NEXTAUTH_URL=http://localhost:3000
+
    # ❌ Wrong (has newline)
    NEXTAUTH_URL=http://localhost:3000\n
    ```
@@ -330,10 +339,12 @@ This error means the redirect URI in your Google Cloud Console doesn't match wha
 3. **Add the correct Authorized redirect URI:**
    - In the **Authorized redirect URIs** section, click **+ ADD URI**
    - Add exactly this URI (copy it exactly, no trailing slashes):
+
      ```
      http://localhost:3000/api/auth/callback/google
      ```
-   - **Important:** 
+
+   - **Important:**
      - Use `http://` (not `https://`) for local development
      - Use `localhost` (not `127.0.0.1`)
      - No trailing slash
@@ -350,6 +361,7 @@ This error means the redirect URI in your Google Cloud Console doesn't match wha
 6. **Try signing in again**
 
 **Common mistakes:**
+
 - ❌ `http://localhost:3000/api/auth/callback/google/` (trailing slash)
 - ❌ `https://localhost:3000/api/auth/callback/google` (using https)
 - ❌ `http://127.0.0.1:3000/api/auth/callback/google` (using IP instead of localhost)
@@ -357,6 +369,7 @@ This error means the redirect URI in your Google Cloud Console doesn't match wha
 
 **For production:**
 When deploying, you'll need to add your production URL:
+
 ```
 https://yourdomain.com/api/auth/callback/google
 ```

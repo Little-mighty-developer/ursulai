@@ -68,7 +68,10 @@ const handler = NextAuth({
             console.log("[NextAuth SignIn] User record updated successfully");
           }
         } catch (dbError) {
-          console.error("[NextAuth SignIn] Database error updating user:", dbError);
+          console.error(
+            "[NextAuth SignIn] Database error updating user:",
+            dbError,
+          );
           // Continue with sign-in even if database update fails
           // The user is authenticated, database issues shouldn't block them
         }
@@ -100,10 +103,15 @@ const handler = NextAuth({
             },
           });
           if (process.env.NODE_ENV === "development") {
-            console.log("[NextAuth SignIn] Engagement record updated successfully");
+            console.log(
+              "[NextAuth SignIn] Engagement record updated successfully",
+            );
           }
         } catch (dbError) {
-          console.error("[NextAuth SignIn] Database error updating engagement:", dbError);
+          console.error(
+            "[NextAuth SignIn] Database error updating engagement:",
+            dbError,
+          );
           // Continue with sign-in even if database update fails
           // The user is authenticated, database issues shouldn't block them
         }
@@ -113,7 +121,10 @@ const handler = NextAuth({
         }
         return true;
       } catch (error) {
-        console.error("[NextAuth SignIn] Unexpected error during sign in:", error);
+        console.error(
+          "[NextAuth SignIn] Unexpected error during sign in:",
+          error,
+        );
         // Return false to prevent sign in on unexpected errors
         return false;
       }
@@ -124,11 +135,11 @@ const handler = NextAuth({
         console.log("[NextAuth Redirect] url:", url);
         console.log("[NextAuth Redirect] baseUrl:", baseUrl);
       }
-      
+
       // Get base URL - ensure it's clean
       const defaultBaseUrl = getNextAuthUrl();
       const cleanBaseUrl = baseUrl ? sanitizeUrl(baseUrl) : defaultBaseUrl;
-      
+
       // If url is relative, make it absolute
       if (url && url.startsWith("/")) {
         const redirectUrl = `${cleanBaseUrl}${url}`;
@@ -147,7 +158,7 @@ const handler = NextAuth({
           return cleanBaseUrl;
         }
       }
-      
+
       // If url is absolute and on same origin
       if (url && url.startsWith("http")) {
         try {
@@ -164,7 +175,7 @@ const handler = NextAuth({
           console.error("[NextAuth Redirect] Error with absolute URL:", e);
         }
       }
-      
+
       // Default: return baseUrl
       const cleaned = cleanBaseUrl.replace(/[\r\n\t\0]/g, "");
       if (process.env.NODE_ENV === "development") {
@@ -183,7 +194,7 @@ const handler = NextAuth({
 // Wrap the handler to sanitize Location headers
 export default async function authHandler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   // Patch res.setHeader to sanitize Location headers
   const originalSetHeader = res.setHeader.bind(res);
@@ -191,7 +202,10 @@ export default async function authHandler(
     if (name.toLowerCase() === "location" && typeof value === "string") {
       const sanitized = sanitizeUrl(value);
       if (process.env.NODE_ENV === "development") {
-        console.log("[Header Sanitize] Original Location:", JSON.stringify(value));
+        console.log(
+          "[Header Sanitize] Original Location:",
+          JSON.stringify(value),
+        );
         console.log("[Header Sanitize] Sanitized Location:", sanitized);
       }
       return originalSetHeader(name, sanitized);
