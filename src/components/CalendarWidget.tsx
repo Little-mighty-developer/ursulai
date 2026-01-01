@@ -6,7 +6,7 @@ import "@/styles/calendar-custom.css";
 import { useState, useEffect } from "react";
 
 // Engagement levels
-const engagementLabels = {
+const engagementLabels: Record<number, { color: string; label: string }> = {
   1: { color: "bg-blue-200", label: "Low" },
   2: { color: "bg-pink-200", label: "Medium" },
   3: { color: "bg-purple-300", label: "High" },
@@ -14,7 +14,7 @@ const engagementLabels = {
 
 function getEngagementClass(level: number | undefined, isToday: boolean) {
   if (!level) return isToday ? "border-2 border-blue-400" : "";
-  const base = engagementLabels[level].color + " rounded-full font-bold";
+  const base = engagementLabels[level]?.color + " rounded-full font-bold";
   return isToday ? `${base} border-2 border-blue-400` : base;
 }
 

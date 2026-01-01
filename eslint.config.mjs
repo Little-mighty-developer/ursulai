@@ -7,12 +7,13 @@ import nextPlugin from "@next/eslint-plugin-next";
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  ...pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat.recommended,
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: { globals: globals.browser },
     plugins: {
       "@next/next": nextPlugin,
+      react: pluginReact,
     },
     rules: {
       ...nextPlugin.configs.recommended.rules,
