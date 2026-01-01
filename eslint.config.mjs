@@ -15,6 +15,11 @@ export default [
       "@next/next": nextPlugin,
       react: pluginReact,
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs["core-web-vitals"].rules,

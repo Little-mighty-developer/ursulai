@@ -1,9 +1,12 @@
 "use client";
 
-import Calendar, { type Value } from "react-calendar";
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "@/styles/calendar-custom.css";
 import { useState, useEffect } from "react";
+
+// Value type for react-calendar
+type CalendarValue = Date | [Date, Date] | null;
 
 // Engagement levels
 const engagementLabels: Record<number, { color: string; label: string }> = {
@@ -63,7 +66,7 @@ export default function CalendarWidget() {
   const [engagementByDate, setEngagementByDate] = useState<
     Record<string, number>
   >({});
-  const [value, setValue] = useState<Value>(new Date());
+  const [value, setValue] = useState<CalendarValue>(new Date());
   const [activeStartDate, setActiveStartDate] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -84,7 +87,7 @@ export default function CalendarWidget() {
     setValue(today);
   };
 
-  const handleChange = (newValue: Value) => {
+  const handleChange = (newValue: CalendarValue) => {
     setValue(newValue);
   };
 
