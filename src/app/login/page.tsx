@@ -10,7 +10,7 @@ export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const error = searchParams.get("error");
+  const error = searchParams ? searchParams.get("error") : null;
 
   useEffect(() => {
     if (status === "authenticated") {
