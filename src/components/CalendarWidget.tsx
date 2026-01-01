@@ -1,6 +1,6 @@
 "use client";
 
-import Calendar from "react-calendar";
+import Calendar, { type Value } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "@/styles/calendar-custom.css";
 import { useState, useEffect } from "react";
@@ -63,7 +63,7 @@ export default function CalendarWidget() {
   const [engagementByDate, setEngagementByDate] = useState<
     Record<string, number>
   >({});
-  const [value, setValue] = useState<Date>(new Date());
+  const [value, setValue] = useState<Value>(new Date());
   const [activeStartDate, setActiveStartDate] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -84,11 +84,15 @@ export default function CalendarWidget() {
     setValue(today);
   };
 
+  const handleChange = (newValue: Value) => {
+    setValue(newValue);
+  };
+
   return (
     <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow p-6 flex flex-col items-center">
       <Calendar
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         activeStartDate={activeStartDate}
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveStartDate(activeStartDate!)
