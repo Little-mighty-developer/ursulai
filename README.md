@@ -80,7 +80,35 @@ npm install
 yarn install
 ```
 
-3. Start the development server:
+3. Set up environment variables:
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```bash
+# NextAuth Configuration (REQUIRED)
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here
+
+# Google OAuth Credentials (REQUIRED)
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
+
+**To generate NEXTAUTH_SECRET:**
+```bash
+openssl rand -base64 32
+```
+
+**To get Google OAuth credentials:**
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the Google+ API (or Google Identity API)
+4. Go to "Credentials" > "Create Credentials" > "OAuth client ID"
+5. Application type: **Web application**
+6. **Authorized redirect URIs**: `http://localhost:3000/api/auth/callback/google`
+7. Copy the Client ID and Client Secret to your `.env.local` file
+
+4. Start the development server:
 
 ```bash
 npm run dev
@@ -123,6 +151,29 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Thanks to all contributors who have helped shape this project
 - Special thanks to the open-source community for their invaluable tools and libraries
+
+## 🔧 Troubleshooting
+
+### OAuthSignin Error
+
+If you encounter an `OAuthSignin` error when trying to sign in with Google:
+
+1. **Check your environment variables:**
+   - Ensure `.env.local` exists in the root directory
+   - Verify all required variables are set:
+     - `NEXTAUTH_URL` (should be `http://localhost:3000` for local development)
+     - `NEXTAUTH_SECRET` (generate with `openssl rand -base64 32`)
+     - `GOOGLE_CLIENT_ID`
+     - `GOOGLE_CLIENT_SECRET`
+
+2. **Verify Google OAuth configuration:**
+   - In Google Cloud Console, check that the redirect URI is exactly: `http://localhost:3000/api/auth/callback/google`
+   - Ensure the OAuth consent screen is configured
+   - Make sure the Google+ API (or Google Identity API) is enabled
+
+3. **Restart your development server** after making changes to `.env.local`
+
+4. **Check the browser console** for more detailed error messages
 
 ## 📞 Contact
 

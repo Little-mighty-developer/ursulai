@@ -5,11 +5,15 @@ import { prisma } from "@/lib/prisma";
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
   callbacks: {
     async signIn({ user }) {
       const email = user.email;
@@ -58,4 +62,5 @@ export default NextAuth({
       return true;
     },
   },
+  debug: process.env.NODE_ENV === "development",
 });
