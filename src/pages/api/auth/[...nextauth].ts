@@ -36,8 +36,6 @@ const handler = NextAuth({
     }),
   ],
   secret: (process.env.NEXTAUTH_SECRET || "").trim(),
-  // Explicitly set the base URL to prevent invalid characters
-  basePath: "/api/auth",
   callbacks: {
     async signIn({ user }) {
       try {
