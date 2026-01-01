@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 // Sanitize URL to remove invalid characters for HTTP headers
@@ -32,13 +32,7 @@ const getNextAuthUrl = (): string => {
 };
 
 const handler = NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: (process.env.GOOGLE_CLIENT_ID || "").trim(),
-      clientSecret: (process.env.GOOGLE_CLIENT_SECRET || "").trim(),
-    }),
-  ],
-  secret: (process.env.NEXTAUTH_SECRET || "").trim(),
+  ...authOptions,
   callbacks: {
     async signIn({ user }) {
       try {
