@@ -58,7 +58,10 @@ export default function LoginPage() {
       </div>
       {error && (
         <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
-          Login failed. Please try again.
+          <p className="font-semibold">Login failed. Please try again.</p>
+          {error && (
+            <p className="text-sm mt-1">Error: {error}</p>
+          )}
         </div>
       )}
       {/* Buttons */}

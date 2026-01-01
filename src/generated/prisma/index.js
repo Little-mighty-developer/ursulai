@@ -192,7 +192,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/mandyarthur/Documents/Projects/ursulai/src/generated/prisma",
+      "value": "/Users/mandyarthur/Projects/ursulai/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -206,12 +206,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/mandyarthur/Documents/Projects/ursulai/prisma/schema.prisma",
+    "sourceFilePath": "/Users/mandyarthur/Projects/ursulai/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.7.0",
