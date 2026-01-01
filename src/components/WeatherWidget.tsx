@@ -92,8 +92,10 @@ export default function WeatherWidget() {
   const location = weather.name;
 
   // 3.0 data
-  const weatherOverview =
-    overview?.weather_overview ?? weather.weather[0].description;
+  const weatherOverview: string =
+    (typeof overview?.weather_overview === "string"
+      ? overview.weather_overview
+      : null) ?? weather.weather[0].description;
 
   const { emoji, message } = getWeatherSuggestion(
     weather.weather[0].main,
