@@ -2,14 +2,42 @@
 
 import { useEffect, useState } from "react";
 
-interface WeatherData {
-  // Add specific weather data structure if needed
+interface WeatherCondition {
+  icon: string;
+  main: string;
+  description: string;
+}
+
+interface WeatherMain {
+  temp: number;
+  feels_like: number;
+  humidity: number;
+}
+
+interface WeatherSys {
+  sunrise: number;
+  sunset: number;
+}
+
+interface WeatherWind {
+  speed: number;
+}
+
+export interface WeatherData {
+  weather: WeatherCondition[];
+  main: WeatherMain;
+  wind: WeatherWind;
+  sys: WeatherSys;
+  name: string;
+}
+
+export interface OverviewData {
   [key: string]: unknown;
 }
 
 export function useWeatherData() {
   const [weather, setWeather] = useState<WeatherData | null>(null); // 2.5
-  const [overview, setOverview] = useState<WeatherData | null>(null); // 3.0
+  const [overview, setOverview] = useState<OverviewData | null>(null); // 3.0
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
