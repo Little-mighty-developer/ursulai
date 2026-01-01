@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       },
     });
     return NextResponse.json(event);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { error: "Failed to log symptom event" },
       { status: 500 },
@@ -42,7 +42,7 @@ export async function GET(req: Request) {
         orderBy: [{ symptomKey: "asc" }, { timestamp: "desc" }],
       });
       // Find the latest event for each symptomKey
-      const latestBySymptom: { [key: string]: any } = {};
+      const latestBySymptom: Record<string, { eventType: string }> = {};
       for (const event of events) {
         if (!latestBySymptom[event.symptomKey]) {
           latestBySymptom[event.symptomKey] = event;
@@ -50,7 +50,7 @@ export async function GET(req: Request) {
       }
       // Only return symptomKeys where the latest event is 'on'
       const activeSymptoms = Object.entries(latestBySymptom)
-        .filter(([_, event]) => event.eventType === "on")
+        .filter(([, event]) => event.eventType === "on")
         .map(([symptomKey]) => symptomKey);
       return NextResponse.json(activeSymptoms);
     } else {
@@ -60,7 +60,7 @@ export async function GET(req: Request) {
       });
       return NextResponse.json(events);
     }
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { error: "Failed to fetch symptom events" },
       { status: 500 },

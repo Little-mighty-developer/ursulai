@@ -9,10 +9,13 @@ const sanitizeUrl = (url: string): string => {
   if (!url) return "";
   // Remove control characters that are invalid in HTTP headers
   // But preserve the URL structure
-  return url
-    .trim()
-    .replace(/[\r\n\t\0]/g, "") // Remove line breaks, tabs, null bytes
-    .replace(/[\x00-\x1F\x7F]/g, ""); // Remove other control characters
+  return (
+    url
+      .trim()
+      .replace(/[\r\n\t\0]/g, "") // Remove line breaks, tabs, null bytes
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\x00-\x1F\x7F]/g, "")
+  ); // Remove other control characters
 };
 
 // Sanitize and validate NEXTAUTH_URL

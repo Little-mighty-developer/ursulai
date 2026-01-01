@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+interface WeatherData {
+  // Add specific weather data structure if needed
+  [key: string]: unknown;
+}
+
 export function useWeatherData() {
-  const [weather, setWeather] = useState<any>(null); // 2.5
-  const [overview, setOverview] = useState<any>(null); // 3.0
+  const [weather, setWeather] = useState<WeatherData | null>(null); // 2.5
+  const [overview, setOverview] = useState<WeatherData | null>(null); // 3.0
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,7 +47,7 @@ export function useWeatherData() {
           const weatherData = await weatherRes.json();
           setWeather(weatherData);
           setOverview(overviewData);
-        } catch (err) {
+        } catch (_err) {
           setError("Could not fetch weather");
         }
         setLoading(false);

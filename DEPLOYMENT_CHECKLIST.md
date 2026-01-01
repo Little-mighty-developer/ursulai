@@ -30,11 +30,13 @@ In [Google Cloud Console](https://console.cloud.google.com/):
 
 - [ ] Set up a production PostgreSQL database (Supabase, Neon, Railway, etc.)
 - [ ] Run migrations on production database:
+
   ```bash
   # Set DATABASE_URL to production URL
   export DATABASE_URL="your-production-database-url"
   npx prisma migrate deploy
   ```
+
 - [ ] Verify database connection works
 
 ### 5. Build Configuration
@@ -101,6 +103,7 @@ In [Google Cloud Console](https://console.cloud.google.com/):
 
 - Prisma Client is auto-generated during build
 - If issues persist, add `prisma generate` to build command in `netlify.toml`:
+
   ```toml
   [build]
     command = "npx prisma generate && npm run build"

@@ -69,7 +69,6 @@ export default function MoodTracker() {
 
   const { data: session } = useSession();
   const userId = session?.user?.email; // or session?.user?.id if available
-  const firstName = session?.user?.name?.split(" ")[0];
 
   useEffect(() => {
     moodCategories.forEach((cat) => {
