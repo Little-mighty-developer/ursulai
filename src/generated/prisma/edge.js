@@ -202,6 +202,14 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -227,8 +235,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id         String     @id @default(uuid())\n  email      String     @unique\n  firstName  String?\n  lastLogin  DateTime?\n  lastActive DateTime?\n  activities Activity[]\n}\n\nmodel Activity {\n  id       String   @id @default(uuid())\n  user     User     @relation(fields: [userId], references: [id])\n  userId   String\n  date     DateTime\n  checkin  Boolean  @default(false)\n  mood     Boolean  @default(false)\n  reminder Boolean  @default(false)\n  journal  Boolean  @default(false)\n}\n\nmodel Engagement {\n  id       String   @id @default(uuid())\n  userId   String\n  date     DateTime\n  login    Boolean  @default(false)\n  checkin  Boolean  @default(false)\n  mood     Boolean  @default(false)\n  reminder Boolean  @default(false)\n  journal  Boolean  @default(false)\n\n  @@unique([userId, date]) // Each user can have only one engagement per day\n}\n\nmodel MoodEntry {\n  id        Int      @id @default(autoincrement())\n  userId    String\n  moodType  String\n  value     Int\n  createdAt DateTime @default(now())\n}\n\nmodel SymptomEvent {\n  id         Int      @id @default(autoincrement())\n  userId     String\n  symptomKey String\n  eventType  String // \"on\" or \"off\"\n  timestamp  DateTime @default(now())\n}\n\nmodel DailyNote {\n  id        String   @id @default(uuid())\n  userId    String\n  content   String\n  date      DateTime\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([userId, date]) // Each user can have only one note per day\n}\n\nmodel JournalEntry {\n  id        String   @id @default(uuid())\n  userId    String\n  content   String\n  date      DateTime\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "e0c97554814c73e2308d0babcf8c53210bf4378a9e063dd96c33087548d8a5c0",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id         String     @id @default(uuid())\n  email      String     @unique\n  firstName  String?\n  lastLogin  DateTime?\n  lastActive DateTime?\n  activities Activity[]\n}\n\nmodel Activity {\n  id       String   @id @default(uuid())\n  user     User     @relation(fields: [userId], references: [id])\n  userId   String\n  date     DateTime\n  checkin  Boolean  @default(false)\n  mood     Boolean  @default(false)\n  reminder Boolean  @default(false)\n  journal  Boolean  @default(false)\n}\n\nmodel Engagement {\n  id       String   @id @default(uuid())\n  userId   String\n  date     DateTime\n  login    Boolean  @default(false)\n  checkin  Boolean  @default(false)\n  mood     Boolean  @default(false)\n  reminder Boolean  @default(false)\n  journal  Boolean  @default(false)\n\n  @@unique([userId, date]) // Each user can have only one engagement per day\n}\n\nmodel MoodEntry {\n  id        Int      @id @default(autoincrement())\n  userId    String\n  moodType  String\n  value     Int\n  createdAt DateTime @default(now())\n}\n\nmodel SymptomEvent {\n  id         Int      @id @default(autoincrement())\n  userId     String\n  symptomKey String\n  eventType  String // \"on\" or \"off\"\n  timestamp  DateTime @default(now())\n}\n\nmodel DailyNote {\n  id        String   @id @default(uuid())\n  userId    String\n  content   String\n  date      DateTime\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([userId, date]) // Each user can have only one note per day\n}\n\nmodel JournalEntry {\n  id        String   @id @default(uuid())\n  userId    String\n  content   String\n  date      DateTime\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "801119bff3bb977b1329464bb645e8271b99a6901c40e14dfd27a06c75f9761d",
   "copyEngine": true
 }
 config.dirname = '/'

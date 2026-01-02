@@ -218,6 +218,48 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔧 Troubleshooting
 
+### Function Timeout / Function Crashed Error on Netlify
+
+If you see "This function has crashed" or function timeout errors on Netlify:
+
+1. **Connection Pooling (Critical for Serverless):**
+   - Netlify functions have a 10-second timeout on the free tier
+   - Database connections can timeout if not using a connection pooler
+   - **Solution:** Use a connection pooler URL in your `DATABASE_URL`
+
+   For PostgreSQL providers:
+   - **Supabase:** Use the connection pooler URL (port 6543) instead of direct connection
+   - **Neon:** Use the pooled connection string (includes `?pgbouncer=true`)
+   - **Railway/Render:** Use PgBouncer or connection pooler if available
+
+   Example pooled URL format:
+
+   ```
+   postgresql://user:password@host:6543/database?pgbouncer=true&connection_limit=1
+   ```
+
+2. **Check Netlify Function Logs:**
+   - Go to Netlify Dashboard → Your Site → Functions → View logs
+   - Look for specific error messages (database connection, missing env vars, etc.)
+
+3. **Environment Variables:**
+   - Ensure all required variables are set in Netlify:
+     - `DATABASE_URL` (use pooled connection!)
+     - `NEXTAUTH_URL` (your Netlify site URL)
+     - `NEXTAUTH_SECRET`
+     - `GOOGLE_CLIENT_ID`
+     - `GOOGLE_CLIENT_SECRET`
+
+4. **Upgrade Netlify Plan (if needed):**
+   - Free tier: 10-second function timeout
+   - Pro tier: 26-second function timeout
+   - If functions consistently timeout, consider upgrading
+
+5. **Optimize Database Queries:**
+   - Ensure queries are indexed
+   - Use `take`/`limit` to restrict result sets
+   - Avoid N+1 queries
+
 ### OAuthSignin Error
 
 If you encounter an `OAuthSignin` error when trying to sign in with Google:
@@ -373,6 +415,41 @@ When deploying, you'll need to add your production URL:
 ```
 https://yourdomain.com/api/auth/callback/google
 ```
+
+## 🚀 Deployment
+
+### Deploying to Netlify
+
+1. **Install the Netlify Next.js plugin:**
+
+   ```bash
+   npm install --save-dev @netlify/plugin-nextjs
+   ```
+
+2. **Set up environment variables in Netlify:**
+   - Go to your Netlify site dashboard
+   - Navigate to **Site configuration** > **Environment variables**
+   - Add all the variables from your `.env.local`:
+     - `NEXTAUTH_URL` (should be your Netlify domain, e.g., `https://your-site.netlify.app`)
+     - `NEXTAUTH_SECRET`
+     - `GOOGLE_CLIENT_ID`
+     - `GOOGLE_CLIENT_SECRET`
+     - `DATABASE_URL` (your production database URL)
+
+3. **Update Google OAuth redirect URI:**
+   - In Google Cloud Console, add your Netlify URL to authorized redirect URIs:
+     - `https://your-site.netlify.app/api/auth/callback/google`
+
+4. **Deploy:**
+   - Connect your GitHub repository to Netlify
+   - Netlify will automatically detect the `netlify.toml` configuration
+   - The build will run automatically on push
+
+**Note:** The `netlify.toml` file is already configured in this repository. Make sure to:
+
+- Set `NEXTAUTH_URL` to your actual Netlify domain
+- Update Google OAuth settings with your production callback URL
+- Use a production database (not localhost)
 
 ## 📞 Contact
 

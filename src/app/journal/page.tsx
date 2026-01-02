@@ -51,7 +51,7 @@ export default function JournalPage() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-100 p-4">
       <div className="w-full max-w-xl bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-2 text-center text-gray-900">
-          What's fueling your transformation story?
+          What&apos;s fueling your transformation story?
         </h2>
         <textarea
           className="w-full mt-4 mb-6 p-4 rounded-2xl border-none outline-none resize-none text-lg bg-gradient-to-br from-indigo-50 to-purple-50 shadow"

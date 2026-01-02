@@ -67,13 +67,6 @@ function getWeatherSuggestion(
   );
 }
 
-function formatTime(unixUtc: number, timezoneOffset: number) {
-  // Show time in the weather location's local time
-  const localUnix = unixUtc + timezoneOffset;
-  const date = new Date(localUnix * 1000);
-  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
 function formatTimeUserTZ(unixUtc: number) {
   const date = new Date(unixUtc * 1000);
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -99,8 +92,10 @@ export default function WeatherWidget() {
   const location = weather.name;
 
   // 3.0 data
-  const weatherOverview =
-    overview?.weather_overview ?? weather.weather[0].description;
+  const weatherOverview: string =
+    (typeof overview?.weather_overview === "string"
+      ? overview.weather_overview
+      : null) ?? weather.weather[0].description;
 
   const { emoji, message } = getWeatherSuggestion(
     weather.weather[0].main,

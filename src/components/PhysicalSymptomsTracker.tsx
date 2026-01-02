@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect, RefObject } from "react";
 import { useSession } from "next-auth/react";
 
-const SYMPTOMS = [
+interface Symptom {
+  key: string;
+  label: string;
+  emoji?: string;
+  image?: string;
+}
+
+const SYMPTOMS: Symptom[] = [
   { key: "cramps", label: "Cramps", emoji: "⚡️" },
   {
     key: "muscle_spasms",
@@ -66,8 +73,9 @@ function InfoTooltip({
     >
       <strong>How to use:</strong>
       <div style={{ marginTop: 6 }}>
-        Tap a symptom to start tracking it. Tap again to stop. We'll record how
-        long you experience each symptom. Each symptom is tracked independently.
+        Tap a symptom to start tracking it. Tap again to stop. We&apos;ll record
+        how long you experience each symptom. Each symptom is tracked
+        independently.
       </div>
     </div>
   );
@@ -80,7 +88,7 @@ function SymptomButton({
   onClick,
   disabled,
 }: {
-  symptom: any;
+  symptom: Symptom;
   isActive: boolean;
   feedback: "on" | "off" | null;
   onClick: () => void;
@@ -153,7 +161,7 @@ const PhysicalSymptomsTracker: React.FC = () => {
   const [activeSymptoms, setActiveSymptoms] = useState<{
     [key: string]: boolean;
   }>({});
-  const [timestamps, setTimestamps] = useState<SymptomTimestamps>({});
+  const [_timestamps, setTimestamps] = useState<SymptomTimestamps>({});
   const [showInfo, setShowInfo] = useState(false);
   const [feedback, setFeedback] = useState<{
     [key: string]: "on" | "off" | null;
@@ -226,7 +234,7 @@ const PhysicalSymptomsTracker: React.FC = () => {
         setFeedback((f) => ({ ...f, [key]: eventType }));
         setTimeout(() => setFeedback((f) => ({ ...f, [key]: null })), 1200);
       }
-    } catch (e) {
+    } catch (_e) {
       // Optionally handle error
     }
   };

@@ -5,8 +5,11 @@ import "react-calendar/dist/Calendar.css";
 import "@/styles/calendar-custom.css";
 import { useState, useEffect } from "react";
 
+// Value type for react-calendar
+type CalendarValue = Date | [Date, Date] | null;
+
 // Engagement levels
-const engagementLabels = {
+const engagementLabels: Record<number, { color: string; label: string }> = {
   1: { color: "bg-blue-200", label: "Low" },
   2: { color: "bg-pink-200", label: "Medium" },
   3: { color: "bg-purple-300", label: "High" },
@@ -14,7 +17,7 @@ const engagementLabels = {
 
 function getEngagementClass(level: number | undefined, isToday: boolean) {
   if (!level) return isToday ? "border-2 border-blue-400" : "";
-  const base = engagementLabels[level].color + " rounded-full font-bold";
+  const base = engagementLabels[level]?.color + " rounded-full font-bold";
   return isToday ? `${base} border-2 border-blue-400` : base;
 }
 
@@ -63,7 +66,7 @@ export default function CalendarWidget() {
   const [engagementByDate, setEngagementByDate] = useState<
     Record<string, number>
   >({});
-  const [value, setValue] = useState<Date>(new Date());
+  const [value, setValue] = useState<CalendarValue>(new Date());
   const [activeStartDate, setActiveStartDate] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -84,11 +87,16 @@ export default function CalendarWidget() {
     setValue(today);
   };
 
+  const handleChange = (newValue: CalendarValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow p-6 flex flex-col items-center">
       <Calendar
         value={value}
-        onChange={setValue}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onChange={handleChange as any}
         activeStartDate={activeStartDate}
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveStartDate(activeStartDate!)

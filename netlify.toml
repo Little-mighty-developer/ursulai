@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["src/generated/**"]
+
+# Increase function timeout (requires Pro plan, but helps with cold starts)
+# Free tier has 10s limit, but this helps optimize
+[functions."__netlify-handler"]
+  timeout = 10

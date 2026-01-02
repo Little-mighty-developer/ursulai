@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 // Sanitize URL to remove invalid characters for HTTP headers
@@ -9,10 +9,13 @@ const sanitizeUrl = (url: string): string => {
   if (!url) return "";
   // Remove control characters that are invalid in HTTP headers
   // But preserve the URL structure
-  return url
-    .trim()
-    .replace(/[\r\n\t\0]/g, "") // Remove line breaks, tabs, null bytes
-    .replace(/[\x00-\x1F\x7F]/g, ""); // Remove other control characters
+  return (
+    url
+      .trim()
+      .replace(/[\r\n\t\0]/g, "") // Remove line breaks, tabs, null bytes
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\x00-\x1F\x7F]/g, "")
+  ); // Remove other control characters
 };
 
 // Sanitize and validate NEXTAUTH_URL
@@ -29,15 +32,7 @@ const getNextAuthUrl = (): string => {
 };
 
 const handler = NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: (process.env.GOOGLE_CLIENT_ID || "").trim(),
-      clientSecret: (process.env.GOOGLE_CLIENT_SECRET || "").trim(),
-    }),
-  ],
-  secret: (process.env.NEXTAUTH_SECRET || "").trim(),
-  // Explicitly set the base URL to prevent invalid characters
-  basePath: "/api/auth",
+  ...authOptions,
   callbacks: {
     async signIn({ user }) {
       try {

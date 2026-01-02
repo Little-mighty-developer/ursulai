@@ -3,14 +3,14 @@
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function LoginPage() {
-  const { data: session, status } = useSession();
+function LoginContent() {
+  const { status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const error = searchParams.get("error");
+  const error = searchParams ? searchParams.get("error") : null;
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -78,5 +78,13 @@ export default function LoginPage() {
         </button>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

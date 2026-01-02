@@ -10,11 +10,7 @@ interface JournalEntry {
   content: string;
 }
 
-export default function JournalEntriesWidget({
-  count = 0,
-}: {
-  count?: number;
-}) {
+export default function JournalEntriesWidget() {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
@@ -52,7 +48,7 @@ export default function JournalEntriesWidget({
         href="/journal"
         className="block w-full mb-4 px-4 py-3 rounded-2xl bg-gradient-to-br from-indigo-100 to-purple-100 text-center text-lg font-medium text-indigo-700 hover:bg-indigo-200 transition cursor-pointer shadow"
       >
-        What's fueling your transformation story?
+        What&apos;s fueling your transformation story?
       </Link>
     </div>
   );
