@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useWeatherData } from "@/hooks/useWeatherData";
 
-const weatherSuggestions: Record<string, { emoji: string; message: string }> = {
+const weatherSuggestions: Record<
+  string,
+  { emoji: string; message: string | React.ReactNode }
+> = {
   Clear: {
     emoji: "☀️",
     message:
@@ -11,8 +14,12 @@ const weatherSuggestions: Record<string, { emoji: string; message: string }> = {
   },
   Clouds: {
     emoji: "☁️",
-    message:
-      "A cloudy day is no match for a sunny disposition. What's one bright thing you're holding on to today?",
+    message: (
+      <>
+        A cloudy day is no match for a sunny disposition.{" "}
+        <strong>What's one bright thing you're holding on to today?</strong>
+      </>
+    ),
   },
   Rain: {
     emoji: "🌧️",
@@ -36,7 +43,7 @@ function getWeatherSuggestion(
   isSunrise: boolean,
   isSunset: boolean,
   humidity: number,
-) {
+): { emoji: string; message: string | React.ReactNode } {
   if (isSunrise) {
     return {
       emoji: "🌅",
