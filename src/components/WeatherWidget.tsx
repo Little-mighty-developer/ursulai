@@ -76,9 +76,32 @@ export default function WeatherWidget() {
   const { weather, overview, loading, error } = useWeatherData();
   const [showTooltip, setShowTooltip] = useState(false);
 
-  if (loading) return <div>Loading weather...</div>;
-  if (error) return <div>{error}</div>;
-  if (!weather) return <div>Weather unavailable</div>;
+  if (loading) {
+    return (
+      <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
+        <span className="text-lg font-semibold mb-2">Weather</span>
+        <div className="text-gray-600">Loading weather...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
+        <span className="text-lg font-semibold mb-2">Weather</span>
+        <div className="text-red-600 text-sm text-center">{error}</div>
+      </div>
+    );
+  }
+
+  if (!weather) {
+    return (
+      <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
+        <span className="text-lg font-semibold mb-2">Weather</span>
+        <div className="text-gray-600 text-sm">Weather unavailable</div>
+      </div>
+    );
+  }
 
   // 2.5 data
   const iconCode = weather.weather[0].icon;
