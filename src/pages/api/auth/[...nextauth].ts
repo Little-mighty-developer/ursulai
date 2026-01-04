@@ -18,18 +18,26 @@ const sanitizeUrl = (url: string): string => {
   ); // Remove other control characters
 };
 
-// Sanitize and validate NEXTAUTH_URL
+// Sanitize and validate NEXTAUTH_URL with fallback to Netlify environment variables
 const getNextAuthUrl = (): string => {
-  const url = process.env.NEXTAUTH_URL;
+  const url =
+    process.env.NEXTAUTH_URL ||
+    process.env.DEPLOY_PRIME_URL ||
+    process.env.URL ||
+    (process.env.NODE_ENV === "development" ? "http://localhost:3000" : "");
+
   if (!url) {
-    // Fallback for development
-    if (process.env.NODE_ENV === "development") {
-      return "http://localhost:3000";
-    }
-    throw new Error("NEXTAUTH_URL is not set");
+    throw new Error("NEXTAUTH_URL, DEPLOY_PRIME_URL, or URL must be set");
   }
   return sanitizeUrl(url);
 };
+
+// Set NEXTAUTH_URL dynamically if not set (for preview deployments)
+// NextAuth reads from process.env.NEXTAUTH_URL, so we need to set it
+if (!process.env.NEXTAUTH_URL) {
+  const computedUrl = getNextAuthUrl();
+  process.env.NEXTAUTH_URL = computedUrl;
+}
 
 const handler = NextAuth({
   ...authOptions,
