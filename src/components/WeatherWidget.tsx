@@ -8,70 +8,92 @@ const weatherSuggestions: Record<
   { emoji: string; message: string | React.ReactNode }
 > = {
   Clear: {
-    emoji: "☀️",
+    emoji: "🚶‍♀️",
     message:
-      "Clear skies — a perfect backdrop for a 10-minute walking meditation. Imagine the world as your personal orchestra today: what sounds rise and fall as you move through it?",
+      "Clear skies right now. If you feel like moving, a gentle walk or stretch could help you settle into the day. Notice the rhythm of your breath as you move.",
   },
   Clouds: {
-    emoji: "☁️",
+    emoji: "🧘‍♀️",
     message: (
       <>
-        A cloudy day is no match for a sunny disposition.{" "}
-        <strong>What's one bright thing you're holding on to today?</strong>
+        It's cloudy at the moment.{" "}
+        <strong>
+          If conditions shifted earlier today, notice what your body is still
+          carrying.
+        </strong>
       </>
     ),
   },
   Rain: {
-    emoji: "🌧️",
+    emoji: "📓",
     message:
-      "If you want the rainbow, you gotta put up with the rain. What do the sounds of rain feel like to your senses?",
+      "Rainy conditions can invite a slower pace. This could be a soft moment for journalling or letting your thoughts land without rushing them.",
   },
   Snow: {
-    emoji: "❄️",
+    emoji: "☕",
     message:
-      "It's chilly outside — perfect for staying cozy. What little comforts can you offer yourself today?",
+      "Cold exposure can linger in the body even after it passes. Warmth, rest, or something comforting might feel especially supportive right now.",
   },
   Thunderstorm: {
-    emoji: "⛈️",
+    emoji: "🤸‍♀️",
     message:
-      "Not all storms come to disrupt your life, some come to clear your path. What are you ready to release? Or are you set to bring the thunder?",
+      "Charged conditions can stir up energy in the body. Gentle movement, shaking it out, or stretching might help release some pressure.",
   },
 };
+
+function getTemperatureNuance(feelsLike: number) {
+  if (feelsLike <= 0) {
+    return " Cold exposure earlier today may still be affecting your body — gentle warmth or movement can help.";
+  } else if (feelsLike <= 10) {
+    return " Cool air can sharpen the senses, but the body may tire more easily over time.";
+  } else if (feelsLike <= 20) {
+    return " This temperature is often comfortable — a nice window for light movement or fresh air.";
+  } else if (feelsLike <= 27) {
+    return " Warmth can feel soothing, but pacing yourself and staying hydrated may support your energy.";
+  } else {
+    return " Heat can be draining — rest, shade, and hydration can make a big difference today.";
+  }
+}
 
 function getWeatherSuggestion(
   main: string,
   isSunrise: boolean,
   isSunset: boolean,
-  humidity: number,
+  feelsLike: number,
 ): { emoji: string; message: string | React.ReactNode } {
   if (isSunrise) {
     return {
-      emoji: "🌅",
+      emoji: "🌅🧘‍♀️",
       message:
-        "Sunrise! A new day, a new beginning. Take a deep breath and set an intention for today.",
+        "A transition moment. If it feels right, pause for one slow breath and set a gentle intention for the day.",
     };
   }
   if (isSunset) {
     return {
-      emoji: "🌇",
+      emoji: "🌇📷",
       message:
-        "Sunset—time to wind down. Reflect on one thing you're grateful for today.",
+        "The day is winding down. You might like to notice one small detail that stayed with you — a colour, a moment, a feeling.",
     };
   }
-  if (humidity > 80) {
-    return {
-      emoji: "💧",
-      message:
-        "It's quite humid. Remember to hydrate and take breaks if you feel sluggish.",
-    };
-  }
-  return (
-    weatherSuggestions[main] || {
-      emoji: "🌈",
-      message:
-        "Whatever the weather, it's a great day to journal and care for yourself!",
-    }
+
+  const base = weatherSuggestions[main] || {
+    emoji: "🌈",
+    message:
+      "Whatever the weather, it's a great day to journal and care for yourself!",
+  };
+
+  const nuance = getTemperatureNuance(feelsLike);
+
+  const message = (
+    <>
+      {base.message} {nuance}
+    </>
   );
+
+  return {
+    emoji: base.emoji,
+    message,
+  };
 }
 
 function formatTimeUserTZ(unixUtc: number) {
@@ -86,7 +108,7 @@ export default function WeatherWidget() {
   if (loading) {
     return (
       <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
-        <span className="text-lg font-semibold mb-2">Weather</span>
+        <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
         <div className="text-gray-600">Loading weather...</div>
       </div>
     );
@@ -95,7 +117,7 @@ export default function WeatherWidget() {
   if (error) {
     return (
       <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
-        <span className="text-lg font-semibold mb-2">Weather</span>
+        <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
         <div className="text-red-600 text-sm text-center">{error}</div>
       </div>
     );
@@ -104,7 +126,7 @@ export default function WeatherWidget() {
   if (!weather) {
     return (
       <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
-        <span className="text-lg font-semibold mb-2">Weather</span>
+        <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
         <div className="text-gray-600 text-sm">Weather unavailable</div>
       </div>
     );
@@ -133,12 +155,12 @@ export default function WeatherWidget() {
       Math.floor(Date.now() / 1000) < sunrise + 1800,
     Math.floor(Date.now() / 1000) >= sunset &&
       Math.floor(Date.now() / 1000) < sunset + 1800,
-    humidity,
+    feelsLike,
   );
 
   return (
     <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
-      <span className="text-lg font-semibold mb-2">Weather</span>
+      <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
       <img
         src={iconUrl}
         alt={weather.weather[0].description}
