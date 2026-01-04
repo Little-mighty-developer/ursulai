@@ -7,6 +7,7 @@ import CalendarWidget from "@/components/CalendarWidget";
 import MoodTracker from "@/components/MoodTracker";
 import PhysicalSymptomsTracker from "@/components/PhysicalSymptomsTracker";
 import NoteToSelf from "@/components/NoteToSelf";
+import QuickCallButton from "@/components/QuickCallButton";
 import Image from "next/image";
 
 function DashboardCard({
@@ -103,6 +104,7 @@ export default function DashboardPage() {
           </DashboardCard>
         </div>
       </div>
+      <QuickCallButton />
     </div>
   );
 }
