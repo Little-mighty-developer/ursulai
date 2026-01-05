@@ -60,7 +60,7 @@ const handler = NextAuth({
         try {
           const now = new Date();
           const today = new Date(now);
-          today.setHours(0, 0, 0, 0, 0); // Set to start of day for date comparison
+          today.setHours(0, 0, 0, 0); // Set to start of day for date comparison
 
           // Upsert user and update lastLogin
           const userRecord = await prisma.user.upsert({
@@ -105,7 +105,6 @@ const handler = NextAuth({
           // Continue with sign-in even if database update fails
           // The user is authenticated, database issues shouldn't block them
         }
-
 
         if (process.env.NODE_ENV === "development") {
           console.log("[NextAuth SignIn] Sign in successful for:", email);
