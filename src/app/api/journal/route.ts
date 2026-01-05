@@ -61,30 +61,6 @@ export async function POST(req: Request) {
       },
     });
 
-    // Update engagement tracking (still use just the date part for engagement)
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    await prisma.engagement.upsert({
-      where: {
-        userId_date: {
-          userId: session.user.email,
-          date: today,
-        },
-      },
-      update: {
-        journal: true,
-      },
-      create: {
-        userId: session.user.email,
-        date: today,
-        login: true,
-        checkin: true,
-        mood: false,
-        reminder: false,
-        journal: true,
-      },
-    });
-
     return NextResponse.json(entry);
   } catch (error) {
     console.error("Error creating entry:", error);
