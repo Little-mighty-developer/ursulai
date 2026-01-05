@@ -38,7 +38,7 @@ export default function CalendarWidget() {
         <div className="text-xl font-semibold text-gray-800 mb-2">
           {dateString}
         </div>
-        <div className="text-lg text-gray-600">{timeOfDay}</div>
+        <div className="text-lg text-gray-600 font-medium">{timeOfDay}</div>
       </div>
     </div>
   );
