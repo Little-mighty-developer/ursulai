@@ -10,6 +10,71 @@ interface GratitudeEntry {
   createdAt: string;
 }
 
+function LoadingSkeleton() {
+  return (
+    <div
+      className="bg-gradient-to-br from-orange-50 to-peach-50 rounded-xl shadow p-6 flex flex-col items-center animate-pulse"
+      style={{
+        background: "linear-gradient(to bottom right, #fff5f0, #ffe5d9)",
+      }}
+    >
+      <div
+        className="h-6 rounded w-3/4 mb-4"
+        style={{ background: "#ffd7c7" }}
+      ></div>
+      <div
+        className="h-4 rounded w-full mb-6"
+        style={{ background: "#ffd7c7" }}
+      ></div>
+      <div className="flex gap-2 mb-4">
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="w-6 h-6 relative">
+            <Image
+              src="/images/teddy-bear-empty.png"
+              alt=""
+              width={24}
+              height={24}
+              className="opacity-50"
+            />
+          </div>
+        ))}
+      </div>
+      <div
+        className="h-10 rounded-lg w-full"
+        style={{ background: "#ffd7c7" }}
+      ></div>
+    </div>
+  );
+}
+
+function ProgressBears({ filledCount }: { filledCount: number }) {
+  return (
+    <div className="flex gap-2 justify-center mb-4 flex-wrap">
+      {[...Array(10)].map((_, i) => (
+        <div
+          key={i}
+          className="transition-all duration-300"
+          style={{
+            opacity: i < filledCount ? 1 : 0.4,
+          }}
+        >
+          <Image
+            src={
+              i < filledCount
+                ? "/images/teddy-bear.png"
+                : "/images/teddy-bear-empty.png"
+            }
+            alt={i < filledCount ? "Filled gratitude" : "Empty gratitude"}
+            width={24}
+            height={24}
+            className="transition-all duration-300"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const GRATITUDE_PLACEHOLDERS = [
   "Something small that didn't make today harder.",
   "A moment that passed more easily than expected.",
@@ -105,41 +170,12 @@ export default function GratitudeWidget() {
   if (!session) return null;
 
   if (isLoading) {
-    return (
-      <div
-        className="bg-gradient-to-br from-orange-50 to-peach-50 rounded-xl shadow p-6 flex flex-col items-center animate-pulse"
-        style={{
-          background: "linear-gradient(to bottom right, #fff5f0, #ffe5d9)",
-        }}
-      >
-        <div
-          className="h-6 rounded w-3/4 mb-4"
-          style={{ background: "#ffd7c7" }}
-        ></div>
-        <div
-          className="h-4 rounded w-full mb-6"
-          style={{ background: "#ffd7c7" }}
-        ></div>
-        <div className="flex gap-2 mb-4">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="w-6 h-6 relative">
-              <Image
-                src="/images/teddy-bear-empty.png"
-                alt=""
-                width={24}
-                height={24}
-                className="opacity-50"
-              />
-            </div>
-          ))}
-        </div>
-        <div
-          className="h-10 rounded-lg w-full"
-          style={{ background: "#ffd7c7" }}
-        ></div>
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
+
+  const placeholder =
+    GRATITUDE_PLACEHOLDERS[entries.length] ??
+    GRATITUDE_PLACEHOLDERS[GRATITUDE_PLACEHOLDERS.length - 1];
 
   return (
     <div
@@ -167,29 +203,7 @@ export default function GratitudeWidget() {
       </p>
 
       {/* Progress teddy bears */}
-      <div className="flex gap-2 justify-center mb-4 flex-wrap">
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={i}
-            className="transition-all duration-300"
-            style={{
-              opacity: i < entries.length ? 1 : 0.4,
-            }}
-          >
-            <Image
-              src={
-                i < entries.length
-                  ? "/images/teddy-bear.png"
-                  : "/images/teddy-bear-empty.png"
-              }
-              alt={i < entries.length ? "Filled gratitude" : "Empty gratitude"}
-              width={24}
-              height={24}
-              className="transition-all duration-300"
-            />
-          </div>
-        ))}
-      </div>
+      <ProgressBears filledCount={entries.length} />
 
       {/* Input field */}
       {entries.length < 10 && (
@@ -199,10 +213,7 @@ export default function GratitudeWidget() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={
-            GRATITUDE_PLACEHOLDERS[entries.length] ||
-            GRATITUDE_PLACEHOLDERS[GRATITUDE_PLACEHOLDERS.length - 1]
-          }
+          placeholder={placeholder}
           className="w-full px-2.5 py-2 rounded-lg border text-sm text-gray-700 placeholder:text-[11px] placeholder:leading-tight placeholder:text-gray-400 transition-all focus:outline-none focus:ring-1"
           style={{
             borderColor: "rgba(255, 200, 180, 0.6)",
