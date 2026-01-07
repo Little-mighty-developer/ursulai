@@ -1,16 +1,17 @@
 import { PrismaClient } from "../generated/prisma";
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
+const globalForPrisma = global as unknown as { prisma?: PrismaClient };
 
 // Optimize Prisma Client for serverless environments
 // Force new instance if gratitudeEntry is missing (for hot reload during development)
 const existingPrisma = globalForPrisma.prisma;
-if (existingPrisma && !("gratitudeEntry" in existingPrisma)) {
+const hasGratitudeEntryModel = (client: PrismaClient) =>
+  "gratitudeEntry" in (client as unknown as Record<string, unknown>);
+
+if (existingPrisma && !hasGratitudeEntryModel(existingPrisma)) {
   // Clear the cached instance if it's missing the new model
-  delete (globalForPrisma as any).prisma;
-  if (existingPrisma.$disconnect) {
-    existingPrisma.$disconnect().catch(() => {});
-  }
+  delete globalForPrisma.prisma;
+  existingPrisma.$disconnect().catch(() => {});
 }
 
 export const prisma =
