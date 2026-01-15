@@ -120,7 +120,7 @@ export default function GratitudeWidget() {
   const saveEntry = async (valueToSave?: string) => {
     const value = valueToSave ?? inputValue;
     if (!value.trim() || isSaving) return;
-    
+
     // Early check using current state (prevent unnecessary requests)
     // Note: This may have stale closure, but server enforces limit as well
     if (entries.length >= 10) return;
