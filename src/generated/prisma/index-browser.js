@@ -138,17 +138,6 @@ exports.Prisma.ActivityScalarFieldEnum = {
   journal: 'journal'
 };
 
-exports.Prisma.EngagementScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  date: 'date',
-  login: 'login',
-  checkin: 'checkin',
-  mood: 'mood',
-  reminder: 'reminder',
-  journal: 'journal'
-};
-
 exports.Prisma.MoodEntryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -183,6 +172,12 @@ exports.Prisma.JournalEntryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LoginHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  loginDate: 'loginDate'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -202,11 +197,11 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   User: 'User',
   Activity: 'Activity',
-  Engagement: 'Engagement',
   MoodEntry: 'MoodEntry',
   SymptomEvent: 'SymptomEvent',
   DailyNote: 'DailyNote',
-  JournalEntry: 'JournalEntry'
+  JournalEntry: 'JournalEntry',
+  LoginHistory: 'LoginHistory'
 };
 
 /**

@@ -55,64 +55,51 @@ const handler = NextAuth({
           console.log("[NextAuth SignIn] Processing sign in for:", email);
         }
 
-        // Update lastLogin in User model
+        // Update lastLogin in User model and log login date
         // Wrap in try-catch so database errors don't prevent authentication
         try {
-          await prisma.user.upsert({
+          const now = new Date();
+          const today = new Date(now);
+          today.setHours(0, 0, 0, 0); // Set to start of day for date comparison
+
+          // Upsert user and update lastLogin
+          const userRecord = await prisma.user.upsert({
             where: { email },
-            update: { lastLogin: new Date() },
+            update: { lastLogin: now },
             create: {
               email,
               firstName: user.name || null,
-              lastLogin: new Date(),
+              lastLogin: now,
             },
           });
+
+          // Log this login date (only once per day)
+          // Use findFirst to check if login already logged today, if not create
+          const existingLogin = await prisma.loginHistory.findFirst({
+            where: {
+              userId: userRecord.id,
+              loginDate: {
+                gte: today,
+                lt: new Date(today.getTime() + 24 * 60 * 60 * 1000), // Next day
+              },
+            },
+          });
+
+          if (!existingLogin) {
+            await prisma.loginHistory.create({
+              data: {
+                userId: userRecord.id,
+                loginDate: today,
+              },
+            });
+          }
+
           if (process.env.NODE_ENV === "development") {
             console.log("[NextAuth SignIn] User record updated successfully");
           }
         } catch (dbError) {
           console.error(
             "[NextAuth SignIn] Database error updating user:",
-            dbError,
-          );
-          // Continue with sign-in even if database update fails
-          // The user is authenticated, database issues shouldn't block them
-        }
-
-        // Upsert today's Engagement record
-        // Wrap in try-catch so database errors don't prevent authentication
-        try {
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-
-          await prisma.engagement.upsert({
-            where: {
-              userId_date: {
-                userId: email,
-                date: today,
-              },
-            },
-            update: {
-              login: true,
-            },
-            create: {
-              userId: email,
-              date: today,
-              login: true,
-              checkin: true,
-              mood: false,
-              reminder: false,
-              journal: false,
-            },
-          });
-          if (process.env.NODE_ENV === "development") {
-            console.log(
-              "[NextAuth SignIn] Engagement record updated successfully",
-            );
-          }
-        } catch (dbError) {
-          console.error(
-            "[NextAuth SignIn] Database error updating engagement:",
             dbError,
           );
           // Continue with sign-in even if database update fails
