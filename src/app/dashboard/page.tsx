@@ -5,7 +5,7 @@ import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
 import MoodTracker from "@/components/MoodTracker";
-import PhysicalSymptomsTracker from "@/components/PhysicalSymptomsTracker";
+import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget";
 import NoteToSelf from "@/components/NoteToSelf";
 import GratitudeWidget from "@/components/GratitudeWidget";
 import QuickCallButton from "@/components/QuickCallButton";
@@ -62,9 +62,6 @@ export default function DashboardPage() {
           <DashboardCard>
             <NoteToSelf />
           </DashboardCard>
-          <DashboardCard>
-            <PhysicalSymptomsTracker />
-          </DashboardCard>
         </div>
         {/* Center column */}
         <div
@@ -85,6 +82,9 @@ export default function DashboardPage() {
           />
           <DashboardCard>
             <JournalEntriesWidget />
+          </DashboardCard>
+          <DashboardCard>
+            <PhysicalSymptomsWidget />
           </DashboardCard>
         </div>
         {/* Right column */}

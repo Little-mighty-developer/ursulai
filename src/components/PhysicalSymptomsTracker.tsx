@@ -24,6 +24,14 @@ const SYMPTOMS: Symptom[] = [
   { key: "nausea", label: "Nausea", emoji: "🤢" },
   { key: "appetite_changes", label: "Appetite changes", emoji: "🥑" },
   { key: "skin_changes", label: "Skin changes", image: "/images/acne.png" },
+  { key: "grounded", label: "Grounded", emoji: "🦶" },
+  {
+    key: "loose_relaxed_muscles",
+    label: "Loose / relaxed muscles",
+    emoji: "💆",
+  },
+  { key: "energy_steady", label: "Energy steady", emoji: "🔋" },
+  { key: "refreshed", label: "Refreshed", image: "/images/refreshed.png" },
 ];
 
 interface SymptomTimestamps {
@@ -239,12 +247,12 @@ const PhysicalSymptomsTracker: React.FC = () => {
     }
   };
 
-  // Arrange symptoms in an inverted pyramid: 4, 3, 2, 2
+  // Arrange symptoms in an inverted pyramid: 4, 4, 4, 3
   const pyramidRows = [
     SYMPTOMS.slice(0, 4),
-    SYMPTOMS.slice(4, 7),
-    SYMPTOMS.slice(7, 9),
-    SYMPTOMS.slice(9, 11),
+    SYMPTOMS.slice(4, 8),
+    SYMPTOMS.slice(8, 12),
+    SYMPTOMS.slice(12, 15),
   ];
 
   return (
@@ -271,7 +279,7 @@ const PhysicalSymptomsTracker: React.FC = () => {
           className="text-2xl font-bold text-center text-gray-900"
           style={{ margin: 0 }}
         >
-          Health Tracker
+          Physical check-in
         </h2>
         <div style={{ position: "relative", marginLeft: 10 }} ref={infoRef}>
           <button
