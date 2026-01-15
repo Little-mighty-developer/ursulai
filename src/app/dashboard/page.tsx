@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
-import MoodTracker from "@/components/MoodTracker";
+import MoodWidget from "@/components/MoodWidget";
 import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget";
 import NoteToSelf from "@/components/NoteToSelf";
 import GratitudeWidget from "@/components/GratitudeWidget";
@@ -104,7 +104,7 @@ export default function DashboardPage() {
             <GratitudeWidget />
           </DashboardCard>
           <DashboardCard>
-            <MoodTracker />
+            <MoodWidget />
           </DashboardCard>
         </div>
       </div>
