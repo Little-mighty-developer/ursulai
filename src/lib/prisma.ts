@@ -27,9 +27,8 @@ export const prisma =
   });
 
 // Reuse Prisma Client instance in serverless to avoid connection exhaustion
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
-}
+// Cache in all environments, especially important in production/serverless
+globalForPrisma.prisma = prisma;
 
 // Handle graceful shutdown in serverless environments
 if (typeof process !== "undefined" && process.on) {

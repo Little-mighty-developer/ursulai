@@ -99,3 +99,4 @@ model GratitudeEntry {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+

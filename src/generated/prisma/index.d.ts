@@ -44,6 +44,11 @@ export type DailyNote = $Result.DefaultSelection<Prisma.$DailyNotePayload>
  */
 export type JournalEntry = $Result.DefaultSelection<Prisma.$JournalEntryPayload>
 /**
+ * Model GratitudeEntry
+ * 
+ */
+export type GratitudeEntry = $Result.DefaultSelection<Prisma.$GratitudeEntryPayload>
+/**
  * Model LoginHistory
  * 
  */
@@ -233,6 +238,16 @@ export class PrismaClient<
     * ```
     */
   get journalEntry(): Prisma.JournalEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.gratitudeEntry`: Exposes CRUD operations for the **GratitudeEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GratitudeEntries
+    * const gratitudeEntries = await prisma.gratitudeEntry.findMany()
+    * ```
+    */
+  get gratitudeEntry(): Prisma.GratitudeEntryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.loginHistory`: Exposes CRUD operations for the **LoginHistory** model.
@@ -689,6 +704,7 @@ export namespace Prisma {
     SymptomEvent: 'SymptomEvent',
     DailyNote: 'DailyNote',
     JournalEntry: 'JournalEntry',
+    GratitudeEntry: 'GratitudeEntry',
     LoginHistory: 'LoginHistory'
   };
 
@@ -708,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "activity" | "moodEntry" | "symptomEvent" | "dailyNote" | "journalEntry" | "loginHistory"
+      modelProps: "user" | "activity" | "moodEntry" | "symptomEvent" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "loginHistory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1156,6 +1172,80 @@ export namespace Prisma {
           }
         }
       }
+      GratitudeEntry: {
+        payload: Prisma.$GratitudeEntryPayload<ExtArgs>
+        fields: Prisma.GratitudeEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GratitudeEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GratitudeEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.GratitudeEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GratitudeEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>
+          }
+          findMany: {
+            args: Prisma.GratitudeEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>[]
+          }
+          create: {
+            args: Prisma.GratitudeEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>
+          }
+          createMany: {
+            args: Prisma.GratitudeEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GratitudeEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.GratitudeEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>
+          }
+          update: {
+            args: Prisma.GratitudeEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.GratitudeEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GratitudeEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GratitudeEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.GratitudeEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GratitudeEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.GratitudeEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGratitudeEntry>
+          }
+          groupBy: {
+            args: Prisma.GratitudeEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GratitudeEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GratitudeEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<GratitudeEntryCountAggregateOutputType> | number
+          }
+        }
+      }
       LoginHistory: {
         payload: Prisma.$LoginHistoryPayload<ExtArgs>
         fields: Prisma.LoginHistoryFieldRefs
@@ -1320,6 +1410,7 @@ export namespace Prisma {
     symptomEvent?: SymptomEventOmit
     dailyNote?: DailyNoteOmit
     journalEntry?: JournalEntryOmit
+    gratitudeEntry?: GratitudeEntryOmit
     loginHistory?: LoginHistoryOmit
   }
 
@@ -7715,6 +7806,1014 @@ export namespace Prisma {
 
 
   /**
+   * Model GratitudeEntry
+   */
+
+  export type AggregateGratitudeEntry = {
+    _count: GratitudeEntryCountAggregateOutputType | null
+    _min: GratitudeEntryMinAggregateOutputType | null
+    _max: GratitudeEntryMaxAggregateOutputType | null
+  }
+
+  export type GratitudeEntryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GratitudeEntryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GratitudeEntryCountAggregateOutputType = {
+    id: number
+    userId: number
+    content: number
+    date: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GratitudeEntryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GratitudeEntryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GratitudeEntryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GratitudeEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GratitudeEntry to aggregate.
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GratitudeEntries to fetch.
+     */
+    orderBy?: GratitudeEntryOrderByWithRelationInput | GratitudeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GratitudeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GratitudeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GratitudeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GratitudeEntries
+    **/
+    _count?: true | GratitudeEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GratitudeEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GratitudeEntryMaxAggregateInputType
+  }
+
+  export type GetGratitudeEntryAggregateType<T extends GratitudeEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateGratitudeEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGratitudeEntry[P]>
+      : GetScalarType<T[P], AggregateGratitudeEntry[P]>
+  }
+
+
+
+
+  export type GratitudeEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GratitudeEntryWhereInput
+    orderBy?: GratitudeEntryOrderByWithAggregationInput | GratitudeEntryOrderByWithAggregationInput[]
+    by: GratitudeEntryScalarFieldEnum[] | GratitudeEntryScalarFieldEnum
+    having?: GratitudeEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GratitudeEntryCountAggregateInputType | true
+    _min?: GratitudeEntryMinAggregateInputType
+    _max?: GratitudeEntryMaxAggregateInputType
+  }
+
+  export type GratitudeEntryGroupByOutputType = {
+    id: string
+    userId: string
+    content: string
+    date: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: GratitudeEntryCountAggregateOutputType | null
+    _min: GratitudeEntryMinAggregateOutputType | null
+    _max: GratitudeEntryMaxAggregateOutputType | null
+  }
+
+  type GetGratitudeEntryGroupByPayload<T extends GratitudeEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GratitudeEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GratitudeEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GratitudeEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], GratitudeEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GratitudeEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["gratitudeEntry"]>
+
+  export type GratitudeEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["gratitudeEntry"]>
+
+  export type GratitudeEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["gratitudeEntry"]>
+
+  export type GratitudeEntrySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GratitudeEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "content" | "date" | "createdAt" | "updatedAt", ExtArgs["result"]["gratitudeEntry"]>
+
+  export type $GratitudeEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GratitudeEntry"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      content: string
+      date: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["gratitudeEntry"]>
+    composites: {}
+  }
+
+  type GratitudeEntryGetPayload<S extends boolean | null | undefined | GratitudeEntryDefaultArgs> = $Result.GetResult<Prisma.$GratitudeEntryPayload, S>
+
+  type GratitudeEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GratitudeEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GratitudeEntryCountAggregateInputType | true
+    }
+
+  export interface GratitudeEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GratitudeEntry'], meta: { name: 'GratitudeEntry' } }
+    /**
+     * Find zero or one GratitudeEntry that matches the filter.
+     * @param {GratitudeEntryFindUniqueArgs} args - Arguments to find a GratitudeEntry
+     * @example
+     * // Get one GratitudeEntry
+     * const gratitudeEntry = await prisma.gratitudeEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GratitudeEntryFindUniqueArgs>(args: SelectSubset<T, GratitudeEntryFindUniqueArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GratitudeEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GratitudeEntryFindUniqueOrThrowArgs} args - Arguments to find a GratitudeEntry
+     * @example
+     * // Get one GratitudeEntry
+     * const gratitudeEntry = await prisma.gratitudeEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GratitudeEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, GratitudeEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GratitudeEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryFindFirstArgs} args - Arguments to find a GratitudeEntry
+     * @example
+     * // Get one GratitudeEntry
+     * const gratitudeEntry = await prisma.gratitudeEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GratitudeEntryFindFirstArgs>(args?: SelectSubset<T, GratitudeEntryFindFirstArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GratitudeEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryFindFirstOrThrowArgs} args - Arguments to find a GratitudeEntry
+     * @example
+     * // Get one GratitudeEntry
+     * const gratitudeEntry = await prisma.gratitudeEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GratitudeEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, GratitudeEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GratitudeEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GratitudeEntries
+     * const gratitudeEntries = await prisma.gratitudeEntry.findMany()
+     * 
+     * // Get first 10 GratitudeEntries
+     * const gratitudeEntries = await prisma.gratitudeEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gratitudeEntryWithIdOnly = await prisma.gratitudeEntry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GratitudeEntryFindManyArgs>(args?: SelectSubset<T, GratitudeEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GratitudeEntry.
+     * @param {GratitudeEntryCreateArgs} args - Arguments to create a GratitudeEntry.
+     * @example
+     * // Create one GratitudeEntry
+     * const GratitudeEntry = await prisma.gratitudeEntry.create({
+     *   data: {
+     *     // ... data to create a GratitudeEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends GratitudeEntryCreateArgs>(args: SelectSubset<T, GratitudeEntryCreateArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GratitudeEntries.
+     * @param {GratitudeEntryCreateManyArgs} args - Arguments to create many GratitudeEntries.
+     * @example
+     * // Create many GratitudeEntries
+     * const gratitudeEntry = await prisma.gratitudeEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GratitudeEntryCreateManyArgs>(args?: SelectSubset<T, GratitudeEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GratitudeEntries and returns the data saved in the database.
+     * @param {GratitudeEntryCreateManyAndReturnArgs} args - Arguments to create many GratitudeEntries.
+     * @example
+     * // Create many GratitudeEntries
+     * const gratitudeEntry = await prisma.gratitudeEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GratitudeEntries and only return the `id`
+     * const gratitudeEntryWithIdOnly = await prisma.gratitudeEntry.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GratitudeEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, GratitudeEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GratitudeEntry.
+     * @param {GratitudeEntryDeleteArgs} args - Arguments to delete one GratitudeEntry.
+     * @example
+     * // Delete one GratitudeEntry
+     * const GratitudeEntry = await prisma.gratitudeEntry.delete({
+     *   where: {
+     *     // ... filter to delete one GratitudeEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GratitudeEntryDeleteArgs>(args: SelectSubset<T, GratitudeEntryDeleteArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GratitudeEntry.
+     * @param {GratitudeEntryUpdateArgs} args - Arguments to update one GratitudeEntry.
+     * @example
+     * // Update one GratitudeEntry
+     * const gratitudeEntry = await prisma.gratitudeEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GratitudeEntryUpdateArgs>(args: SelectSubset<T, GratitudeEntryUpdateArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GratitudeEntries.
+     * @param {GratitudeEntryDeleteManyArgs} args - Arguments to filter GratitudeEntries to delete.
+     * @example
+     * // Delete a few GratitudeEntries
+     * const { count } = await prisma.gratitudeEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GratitudeEntryDeleteManyArgs>(args?: SelectSubset<T, GratitudeEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GratitudeEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GratitudeEntries
+     * const gratitudeEntry = await prisma.gratitudeEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GratitudeEntryUpdateManyArgs>(args: SelectSubset<T, GratitudeEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GratitudeEntries and returns the data updated in the database.
+     * @param {GratitudeEntryUpdateManyAndReturnArgs} args - Arguments to update many GratitudeEntries.
+     * @example
+     * // Update many GratitudeEntries
+     * const gratitudeEntry = await prisma.gratitudeEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GratitudeEntries and only return the `id`
+     * const gratitudeEntryWithIdOnly = await prisma.gratitudeEntry.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GratitudeEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, GratitudeEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GratitudeEntry.
+     * @param {GratitudeEntryUpsertArgs} args - Arguments to update or create a GratitudeEntry.
+     * @example
+     * // Update or create a GratitudeEntry
+     * const gratitudeEntry = await prisma.gratitudeEntry.upsert({
+     *   create: {
+     *     // ... data to create a GratitudeEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GratitudeEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GratitudeEntryUpsertArgs>(args: SelectSubset<T, GratitudeEntryUpsertArgs<ExtArgs>>): Prisma__GratitudeEntryClient<$Result.GetResult<Prisma.$GratitudeEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GratitudeEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryCountArgs} args - Arguments to filter GratitudeEntries to count.
+     * @example
+     * // Count the number of GratitudeEntries
+     * const count = await prisma.gratitudeEntry.count({
+     *   where: {
+     *     // ... the filter for the GratitudeEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends GratitudeEntryCountArgs>(
+      args?: Subset<T, GratitudeEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GratitudeEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GratitudeEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GratitudeEntryAggregateArgs>(args: Subset<T, GratitudeEntryAggregateArgs>): Prisma.PrismaPromise<GetGratitudeEntryAggregateType<T>>
+
+    /**
+     * Group by GratitudeEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GratitudeEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GratitudeEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GratitudeEntryGroupByArgs['orderBy'] }
+        : { orderBy?: GratitudeEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GratitudeEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGratitudeEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GratitudeEntry model
+   */
+  readonly fields: GratitudeEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GratitudeEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GratitudeEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GratitudeEntry model
+   */
+  interface GratitudeEntryFieldRefs {
+    readonly id: FieldRef<"GratitudeEntry", 'String'>
+    readonly userId: FieldRef<"GratitudeEntry", 'String'>
+    readonly content: FieldRef<"GratitudeEntry", 'String'>
+    readonly date: FieldRef<"GratitudeEntry", 'DateTime'>
+    readonly createdAt: FieldRef<"GratitudeEntry", 'DateTime'>
+    readonly updatedAt: FieldRef<"GratitudeEntry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GratitudeEntry findUnique
+   */
+  export type GratitudeEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which GratitudeEntry to fetch.
+     */
+    where: GratitudeEntryWhereUniqueInput
+  }
+
+  /**
+   * GratitudeEntry findUniqueOrThrow
+   */
+  export type GratitudeEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which GratitudeEntry to fetch.
+     */
+    where: GratitudeEntryWhereUniqueInput
+  }
+
+  /**
+   * GratitudeEntry findFirst
+   */
+  export type GratitudeEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which GratitudeEntry to fetch.
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GratitudeEntries to fetch.
+     */
+    orderBy?: GratitudeEntryOrderByWithRelationInput | GratitudeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GratitudeEntries.
+     */
+    cursor?: GratitudeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GratitudeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GratitudeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GratitudeEntries.
+     */
+    distinct?: GratitudeEntryScalarFieldEnum | GratitudeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * GratitudeEntry findFirstOrThrow
+   */
+  export type GratitudeEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which GratitudeEntry to fetch.
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GratitudeEntries to fetch.
+     */
+    orderBy?: GratitudeEntryOrderByWithRelationInput | GratitudeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GratitudeEntries.
+     */
+    cursor?: GratitudeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GratitudeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GratitudeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GratitudeEntries.
+     */
+    distinct?: GratitudeEntryScalarFieldEnum | GratitudeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * GratitudeEntry findMany
+   */
+  export type GratitudeEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which GratitudeEntries to fetch.
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GratitudeEntries to fetch.
+     */
+    orderBy?: GratitudeEntryOrderByWithRelationInput | GratitudeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GratitudeEntries.
+     */
+    cursor?: GratitudeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GratitudeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GratitudeEntries.
+     */
+    skip?: number
+    distinct?: GratitudeEntryScalarFieldEnum | GratitudeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * GratitudeEntry create
+   */
+  export type GratitudeEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a GratitudeEntry.
+     */
+    data: XOR<GratitudeEntryCreateInput, GratitudeEntryUncheckedCreateInput>
+  }
+
+  /**
+   * GratitudeEntry createMany
+   */
+  export type GratitudeEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GratitudeEntries.
+     */
+    data: GratitudeEntryCreateManyInput | GratitudeEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GratitudeEntry createManyAndReturn
+   */
+  export type GratitudeEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many GratitudeEntries.
+     */
+    data: GratitudeEntryCreateManyInput | GratitudeEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GratitudeEntry update
+   */
+  export type GratitudeEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a GratitudeEntry.
+     */
+    data: XOR<GratitudeEntryUpdateInput, GratitudeEntryUncheckedUpdateInput>
+    /**
+     * Choose, which GratitudeEntry to update.
+     */
+    where: GratitudeEntryWhereUniqueInput
+  }
+
+  /**
+   * GratitudeEntry updateMany
+   */
+  export type GratitudeEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GratitudeEntries.
+     */
+    data: XOR<GratitudeEntryUpdateManyMutationInput, GratitudeEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which GratitudeEntries to update
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * Limit how many GratitudeEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GratitudeEntry updateManyAndReturn
+   */
+  export type GratitudeEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update GratitudeEntries.
+     */
+    data: XOR<GratitudeEntryUpdateManyMutationInput, GratitudeEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which GratitudeEntries to update
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * Limit how many GratitudeEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GratitudeEntry upsert
+   */
+  export type GratitudeEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the GratitudeEntry to update in case it exists.
+     */
+    where: GratitudeEntryWhereUniqueInput
+    /**
+     * In case the GratitudeEntry found by the `where` argument doesn't exist, create a new GratitudeEntry with this data.
+     */
+    create: XOR<GratitudeEntryCreateInput, GratitudeEntryUncheckedCreateInput>
+    /**
+     * In case the GratitudeEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GratitudeEntryUpdateInput, GratitudeEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * GratitudeEntry delete
+   */
+  export type GratitudeEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+    /**
+     * Filter which GratitudeEntry to delete.
+     */
+    where: GratitudeEntryWhereUniqueInput
+  }
+
+  /**
+   * GratitudeEntry deleteMany
+   */
+  export type GratitudeEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GratitudeEntries to delete
+     */
+    where?: GratitudeEntryWhereInput
+    /**
+     * Limit how many GratitudeEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GratitudeEntry without action
+   */
+  export type GratitudeEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GratitudeEntry
+     */
+    select?: GratitudeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GratitudeEntry
+     */
+    omit?: GratitudeEntryOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model LoginHistory
    */
 
@@ -8830,6 +9929,18 @@ export namespace Prisma {
   export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum]
 
 
+  export const GratitudeEntryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    content: 'content',
+    date: 'date',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GratitudeEntryScalarFieldEnum = (typeof GratitudeEntryScalarFieldEnum)[keyof typeof GratitudeEntryScalarFieldEnum]
+
+
   export const LoginHistoryScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -9280,6 +10391,63 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
   }
 
+  export type GratitudeEntryWhereInput = {
+    AND?: GratitudeEntryWhereInput | GratitudeEntryWhereInput[]
+    OR?: GratitudeEntryWhereInput[]
+    NOT?: GratitudeEntryWhereInput | GratitudeEntryWhereInput[]
+    id?: StringFilter<"GratitudeEntry"> | string
+    userId?: StringFilter<"GratitudeEntry"> | string
+    content?: StringFilter<"GratitudeEntry"> | string
+    date?: DateTimeFilter<"GratitudeEntry"> | Date | string
+    createdAt?: DateTimeFilter<"GratitudeEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"GratitudeEntry"> | Date | string
+  }
+
+  export type GratitudeEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GratitudeEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: GratitudeEntryWhereInput | GratitudeEntryWhereInput[]
+    OR?: GratitudeEntryWhereInput[]
+    NOT?: GratitudeEntryWhereInput | GratitudeEntryWhereInput[]
+    userId?: StringFilter<"GratitudeEntry"> | string
+    content?: StringFilter<"GratitudeEntry"> | string
+    date?: DateTimeFilter<"GratitudeEntry"> | Date | string
+    createdAt?: DateTimeFilter<"GratitudeEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"GratitudeEntry"> | Date | string
+  }, "id">
+
+  export type GratitudeEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GratitudeEntryCountOrderByAggregateInput
+    _max?: GratitudeEntryMaxOrderByAggregateInput
+    _min?: GratitudeEntryMinOrderByAggregateInput
+  }
+
+  export type GratitudeEntryScalarWhereWithAggregatesInput = {
+    AND?: GratitudeEntryScalarWhereWithAggregatesInput | GratitudeEntryScalarWhereWithAggregatesInput[]
+    OR?: GratitudeEntryScalarWhereWithAggregatesInput[]
+    NOT?: GratitudeEntryScalarWhereWithAggregatesInput | GratitudeEntryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GratitudeEntry"> | string
+    userId?: StringWithAggregatesFilter<"GratitudeEntry"> | string
+    content?: StringWithAggregatesFilter<"GratitudeEntry"> | string
+    date?: DateTimeWithAggregatesFilter<"GratitudeEntry"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"GratitudeEntry"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GratitudeEntry"> | Date | string
+  }
+
   export type LoginHistoryWhereInput = {
     AND?: LoginHistoryWhereInput | LoginHistoryWhereInput[]
     OR?: LoginHistoryWhereInput[]
@@ -9691,6 +10859,69 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GratitudeEntryCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GratitudeEntryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GratitudeEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GratitudeEntryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GratitudeEntryCreateManyInput = {
+    id?: string
+    userId: string
+    content: string
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GratitudeEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GratitudeEntryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LoginHistoryCreateInput = {
     id?: string
     loginDate?: Date | string
@@ -10089,6 +11320,33 @@ export namespace Prisma {
   }
 
   export type JournalEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GratitudeEntryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GratitudeEntryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GratitudeEntryMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     content?: SortOrder

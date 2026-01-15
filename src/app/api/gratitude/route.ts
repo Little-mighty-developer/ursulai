@@ -65,6 +65,13 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+    // Validate that content is a string
+    if (typeof content !== "string") {
+      return NextResponse.json(
+        { error: "Content must be a string" },
+        { status: 400 },
+      );
+    }
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);

@@ -172,6 +172,15 @@ exports.Prisma.JournalEntryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.GratitudeEntryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.LoginHistoryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -201,6 +210,7 @@ exports.Prisma.ModelName = {
   SymptomEvent: 'SymptomEvent',
   DailyNote: 'DailyNote',
   JournalEntry: 'JournalEntry',
+  GratitudeEntry: 'GratitudeEntry',
   LoginHistory: 'LoginHistory'
 };
 

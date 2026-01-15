@@ -120,6 +120,9 @@ export default function GratitudeWidget() {
   const saveEntry = async (valueToSave?: string) => {
     const value = valueToSave ?? inputValue;
     if (!value.trim() || isSaving) return;
+    
+    // Early check using current state (prevent unnecessary requests)
+    // Note: This may have stale closure, but server enforces limit as well
     if (entries.length >= 10) return;
 
     setIsSaving(true);
@@ -138,7 +141,13 @@ export default function GratitudeWidget() {
       }
 
       const newEntry = await response.json();
-      setEntries([...entries, newEntry]);
+      // Use functional setState to avoid stale closure issue
+      // This ensures we always use the latest entries state, preventing data loss
+      setEntries((prevEntries) => {
+        // Double-check limit using latest state (safeguard)
+        if (prevEntries.length >= 10) return prevEntries;
+        return [...prevEntries, newEntry];
+      });
       setInputValue("");
     } catch (error) {
       console.error("Error saving gratitude entry:", error);
