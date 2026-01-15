@@ -215,6 +215,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Thanks to all contributors who have helped shape this project
 - Special thanks to the open-source community for their invaluable tools and libraries
+- Teddy bear images in the gratitude widget:
+  [Stuffed-animal icons created by Blackonion02 - Flaticon](https://www.flaticon.com/free-icons/stuffed-animal)
 
 ## 🔧 Troubleshooting
 

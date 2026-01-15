@@ -7,6 +7,7 @@ import CalendarWidget from "@/components/CalendarWidget";
 import MoodTracker from "@/components/MoodTracker";
 import PhysicalSymptomsTracker from "@/components/PhysicalSymptomsTracker";
 import NoteToSelf from "@/components/NoteToSelf";
+import GratitudeWidget from "@/components/GratitudeWidget";
 import QuickCallButton from "@/components/QuickCallButton";
 import Image from "next/image";
 
@@ -89,15 +90,18 @@ export default function DashboardPage() {
         {/* Right column */}
         <div
           style={{
-            width: 320,
+            width: 400,
             display: "flex",
             flexDirection: "column",
             alignItems: "right",
-            gap: "32px",
+            gap: "12px",
           }}
         >
           <DashboardCard>
             <CalendarWidget />
+          </DashboardCard>
+          <DashboardCard>
+            <GratitudeWidget />
           </DashboardCard>
           <DashboardCard>
             <MoodTracker />
