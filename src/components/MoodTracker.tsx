@@ -145,7 +145,6 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
   const wheelRef = useRef<SVGSVGElement>(null);
 
   const { data: session } = useSession();
-  const userId = session?.user?.email;
 
   // Calculate petal path - flower-like rounded petal
   const getPetalPath = (region: PetalRegion, isHovered: boolean) => {
