@@ -272,40 +272,30 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
   };
 
   const handleSubmit = async () => {
-    if (!selectedRegion || !userId) {
+    if (!selectedRegion) {
       return;
     }
 
     const date = new Date().toISOString();
 
-    // Save as a single mood entry with region data
+    // Save as a single mood entry with new structure
     const res = await fetch("/api/mood", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        userId,
         date,
-        moods: [
-          {
-            moodType: "valence",
-            value: selectedRegion.valence,
-          },
-          {
-            moodType: "arousal",
-            value: selectedRegion.arousal,
-          },
-          {
-            moodType: "region",
-            value: selectedRegion.id,
-          },
-        ],
+        valence: selectedRegion.valence,
+        arousal: selectedRegion.arousal,
+        region: selectedRegion.id,
+        clickX: clickPosition?.x,
+        clickY: clickPosition?.y,
       }),
     });
 
     if (!res.ok) {
       const error = await res.json();
       console.error("API error:", error);
-      alert("Failed to save mood: " + error.details);
+      alert("Failed to save mood: " + (error.details || error.error));
       return;
     }
 

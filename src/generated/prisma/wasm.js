@@ -141,8 +141,11 @@ exports.Prisma.ActivityScalarFieldEnum = {
 exports.Prisma.MoodEntryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  moodType: 'moodType',
-  value: 'value',
+  valence: 'valence',
+  arousal: 'arousal',
+  region: 'region',
+  clickX: 'clickX',
+  clickY: 'clickY',
   createdAt: 'createdAt'
 };
 

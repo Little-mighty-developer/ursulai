@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
@@ -34,19 +34,56 @@ export default function DashboardPage() {
   if (status === "loading") return <div>Loading...</div>;
   if (!session) return <div>Access Denied</div>;
 
+  const userDisplayName = session.user?.name || session.user?.email || "User";
+  const userEmail = session.user?.email || "";
+  const userImage = session.user?.image || null;
+
   return (
-    <div className="min-h-screen bg-purple-50 p-8 flex flex-col items-center">
-      <div
-        className="dashboard-main"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "32px",
-          width: "1200px",
-          margin: "0 auto",
-          alignItems: "flex-start",
-        }}
-      >
+    <div className="min-h-screen bg-purple-50 flex flex-col">
+      {/* User Header */}
+      <div className="bg-white shadow-sm border-b border-gray-200 px-8 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {userImage && (
+              <Image
+                src={userImage}
+                alt="User avatar"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+            )}
+            <div>
+              <div className="font-semibold text-gray-900 text-lg">
+                {userDisplayName}
+              </div>
+              {session.user?.name && userEmail && (
+                <div className="text-sm text-gray-600">{userEmail}</div>
+              )}
+            </div>
+          </div>
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+      {/* Dashboard Content */}
+      <div className="p-8 flex flex-col items-center flex-1">
+        <div
+          className="dashboard-main"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "32px",
+            width: "1200px",
+            margin: "0 auto",
+            alignItems: "flex-start",
+          }}
+        >
         {/* Left column */}
         <div
           style={{
@@ -109,6 +146,7 @@ export default function DashboardPage() {
         </div>
       </div>
       <QuickCallButton />
+      </div>
     </div>
   );
 }

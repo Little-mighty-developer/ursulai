@@ -1,26 +1,48 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
   try {
-    const { userId, date, moods } = await req.json();
-    // moods: [{ moodType: string, value: number }, ...]
-    const entries = await prisma.$transaction(
-      moods.map((mood: { moodType: string; value: number }) =>
-        prisma.moodEntry.create({
-          data: {
-            userId,
-            moodType: mood.moodType,
-            value: mood.value,
-            createdAt: new Date(date),
-          },
-        }),
-      ),
-    );
-    return NextResponse.json(entries);
-  } catch (_error) {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { date, valence, arousal, region, clickX, clickY } = await req.json();
+
+    if (
+      valence === undefined ||
+      arousal === undefined ||
+      region === undefined
+    ) {
+      return NextResponse.json(
+        { error: "valence, arousal, and region are required" },
+        { status: 400 },
+      );
+    }
+
+    const entry = await prisma.moodEntry.create({
+      data: {
+        userId: session.user.email,
+        valence: parseFloat(valence),
+        arousal: parseFloat(arousal),
+        region: parseInt(region),
+        clickX: clickX ? parseFloat(clickX) : null,
+        clickY: clickY ? parseFloat(clickY) : null,
+        createdAt: date ? new Date(date) : new Date(),
+      },
+    });
+
+    return NextResponse.json(entry);
+  } catch (error) {
+    console.error("Failed to create mood entry:", error);
     return NextResponse.json(
-      { error: "Failed to create mood entries" },
+      {
+        error: "Failed to create mood entry",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 },
     );
   }
@@ -28,22 +50,27 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url);
-    const moodType = searchParams.get("moodType");
-    const userId = "test-user"; // Replace with real user logic
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     const entries = await prisma.moodEntry.findMany({
       where: {
-        userId,
-        ...(moodType ? { moodType } : {}),
+        userId: session.user.email,
       },
       orderBy: { createdAt: "desc" },
+      take: 100, // Limit to most recent 100 entries
     });
 
     return NextResponse.json(entries);
-  } catch (_error) {
+  } catch (error) {
+    console.error("Failed to fetch mood entries:", error);
     return NextResponse.json(
-      { error: "Failed to fetch mood entries" },
+      {
+        error: "Failed to fetch mood entries",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 },
     );
   }
