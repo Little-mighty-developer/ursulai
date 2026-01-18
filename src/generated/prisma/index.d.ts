@@ -3740,72 +3740,108 @@ export namespace Prisma {
   }
 
   export type MoodEntryAvgAggregateOutputType = {
-    id: number | null
-    value: number | null
+    valence: number | null
+    arousal: number | null
+    region: number | null
+    clickX: number | null
+    clickY: number | null
   }
 
   export type MoodEntrySumAggregateOutputType = {
-    id: number | null
-    value: number | null
+    valence: number | null
+    arousal: number | null
+    region: number | null
+    clickX: number | null
+    clickY: number | null
   }
 
   export type MoodEntryMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     userId: string | null
-    moodType: string | null
-    value: number | null
+    valence: number | null
+    arousal: number | null
+    region: number | null
+    clickX: number | null
+    clickY: number | null
+    notes: string | null
     createdAt: Date | null
   }
 
   export type MoodEntryMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     userId: string | null
-    moodType: string | null
-    value: number | null
+    valence: number | null
+    arousal: number | null
+    region: number | null
+    clickX: number | null
+    clickY: number | null
+    notes: string | null
     createdAt: Date | null
   }
 
   export type MoodEntryCountAggregateOutputType = {
     id: number
     userId: number
-    moodType: number
-    value: number
+    valence: number
+    arousal: number
+    region: number
+    clickX: number
+    clickY: number
+    notes: number
     createdAt: number
     _all: number
   }
 
 
   export type MoodEntryAvgAggregateInputType = {
-    id?: true
-    value?: true
+    valence?: true
+    arousal?: true
+    region?: true
+    clickX?: true
+    clickY?: true
   }
 
   export type MoodEntrySumAggregateInputType = {
-    id?: true
-    value?: true
+    valence?: true
+    arousal?: true
+    region?: true
+    clickX?: true
+    clickY?: true
   }
 
   export type MoodEntryMinAggregateInputType = {
     id?: true
     userId?: true
-    moodType?: true
-    value?: true
+    valence?: true
+    arousal?: true
+    region?: true
+    clickX?: true
+    clickY?: true
+    notes?: true
     createdAt?: true
   }
 
   export type MoodEntryMaxAggregateInputType = {
     id?: true
     userId?: true
-    moodType?: true
-    value?: true
+    valence?: true
+    arousal?: true
+    region?: true
+    clickX?: true
+    clickY?: true
+    notes?: true
     createdAt?: true
   }
 
   export type MoodEntryCountAggregateInputType = {
     id?: true
     userId?: true
-    moodType?: true
-    value?: true
+    valence?: true
+    arousal?: true
+    region?: true
+    clickX?: true
+    clickY?: true
+    notes?: true
     createdAt?: true
     _all?: true
   }
@@ -3897,10 +3933,14 @@ export namespace Prisma {
   }
 
   export type MoodEntryGroupByOutputType = {
-    id: number
+    id: string
     userId: string
-    moodType: string
-    value: number
+    valence: number
+    arousal: number
+    region: number
+    clickX: number | null
+    clickY: number | null
+    notes: string | null
     createdAt: Date
     _count: MoodEntryCountAggregateOutputType | null
     _avg: MoodEntryAvgAggregateOutputType | null
@@ -3926,45 +3966,65 @@ export namespace Prisma {
   export type MoodEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    moodType?: boolean
-    value?: boolean
+    valence?: boolean
+    arousal?: boolean
+    region?: boolean
+    clickX?: boolean
+    clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
   export type MoodEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    moodType?: boolean
-    value?: boolean
+    valence?: boolean
+    arousal?: boolean
+    region?: boolean
+    clickX?: boolean
+    clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
   export type MoodEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    moodType?: boolean
-    value?: boolean
+    valence?: boolean
+    arousal?: boolean
+    region?: boolean
+    clickX?: boolean
+    clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
   export type MoodEntrySelectScalar = {
     id?: boolean
     userId?: boolean
-    moodType?: boolean
-    value?: boolean
+    valence?: boolean
+    arousal?: boolean
+    region?: boolean
+    clickX?: boolean
+    clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }
 
-  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "moodType" | "value" | "createdAt", ExtArgs["result"]["moodEntry"]>
+  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "valence" | "arousal" | "region" | "clickX" | "clickY" | "notes" | "createdAt", ExtArgs["result"]["moodEntry"]>
 
   export type $MoodEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MoodEntry"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       userId: string
-      moodType: string
-      value: number
+      valence: number
+      arousal: number
+      region: number
+      clickX: number | null
+      clickY: number | null
+      notes: string | null
       createdAt: Date
     }, ExtArgs["result"]["moodEntry"]>
     composites: {}
@@ -4389,10 +4449,14 @@ export namespace Prisma {
    * Fields of the MoodEntry model
    */
   interface MoodEntryFieldRefs {
-    readonly id: FieldRef<"MoodEntry", 'Int'>
+    readonly id: FieldRef<"MoodEntry", 'String'>
     readonly userId: FieldRef<"MoodEntry", 'String'>
-    readonly moodType: FieldRef<"MoodEntry", 'String'>
-    readonly value: FieldRef<"MoodEntry", 'Int'>
+    readonly valence: FieldRef<"MoodEntry", 'Float'>
+    readonly arousal: FieldRef<"MoodEntry", 'Float'>
+    readonly region: FieldRef<"MoodEntry", 'Int'>
+    readonly clickX: FieldRef<"MoodEntry", 'Float'>
+    readonly clickY: FieldRef<"MoodEntry", 'Float'>
+    readonly notes: FieldRef<"MoodEntry", 'String'>
     readonly createdAt: FieldRef<"MoodEntry", 'DateTime'>
   }
     
@@ -9886,8 +9950,12 @@ export namespace Prisma {
   export const MoodEntryScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    moodType: 'moodType',
-    value: 'value',
+    valence: 'valence',
+    arousal: 'arousal',
+    region: 'region',
+    clickX: 'clickX',
+    clickY: 'clickY',
+    notes: 'notes',
     createdAt: 'createdAt'
   };
 
@@ -10015,20 +10083,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -10039,6 +10093,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -10172,37 +10240,53 @@ export namespace Prisma {
     AND?: MoodEntryWhereInput | MoodEntryWhereInput[]
     OR?: MoodEntryWhereInput[]
     NOT?: MoodEntryWhereInput | MoodEntryWhereInput[]
-    id?: IntFilter<"MoodEntry"> | number
+    id?: StringFilter<"MoodEntry"> | string
     userId?: StringFilter<"MoodEntry"> | string
-    moodType?: StringFilter<"MoodEntry"> | string
-    value?: IntFilter<"MoodEntry"> | number
+    valence?: FloatFilter<"MoodEntry"> | number
+    arousal?: FloatFilter<"MoodEntry"> | number
+    region?: IntFilter<"MoodEntry"> | number
+    clickX?: FloatNullableFilter<"MoodEntry"> | number | null
+    clickY?: FloatNullableFilter<"MoodEntry"> | number | null
+    notes?: StringNullableFilter<"MoodEntry"> | string | null
     createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
   }
 
   export type MoodEntryOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    moodType?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrderInput | SortOrder
+    clickY?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
   }
 
   export type MoodEntryWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: MoodEntryWhereInput | MoodEntryWhereInput[]
     OR?: MoodEntryWhereInput[]
     NOT?: MoodEntryWhereInput | MoodEntryWhereInput[]
     userId?: StringFilter<"MoodEntry"> | string
-    moodType?: StringFilter<"MoodEntry"> | string
-    value?: IntFilter<"MoodEntry"> | number
+    valence?: FloatFilter<"MoodEntry"> | number
+    arousal?: FloatFilter<"MoodEntry"> | number
+    region?: IntFilter<"MoodEntry"> | number
+    clickX?: FloatNullableFilter<"MoodEntry"> | number | null
+    clickY?: FloatNullableFilter<"MoodEntry"> | number | null
+    notes?: StringNullableFilter<"MoodEntry"> | string | null
     createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
   }, "id">
 
   export type MoodEntryOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    moodType?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrderInput | SortOrder
+    clickY?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: MoodEntryCountOrderByAggregateInput
     _avg?: MoodEntryAvgOrderByAggregateInput
@@ -10215,10 +10299,14 @@ export namespace Prisma {
     AND?: MoodEntryScalarWhereWithAggregatesInput | MoodEntryScalarWhereWithAggregatesInput[]
     OR?: MoodEntryScalarWhereWithAggregatesInput[]
     NOT?: MoodEntryScalarWhereWithAggregatesInput | MoodEntryScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"MoodEntry"> | number
+    id?: StringWithAggregatesFilter<"MoodEntry"> | string
     userId?: StringWithAggregatesFilter<"MoodEntry"> | string
-    moodType?: StringWithAggregatesFilter<"MoodEntry"> | string
-    value?: IntWithAggregatesFilter<"MoodEntry"> | number
+    valence?: FloatWithAggregatesFilter<"MoodEntry"> | number
+    arousal?: FloatWithAggregatesFilter<"MoodEntry"> | number
+    region?: IntWithAggregatesFilter<"MoodEntry"> | number
+    clickX?: FloatNullableWithAggregatesFilter<"MoodEntry"> | number | null
+    clickY?: FloatNullableWithAggregatesFilter<"MoodEntry"> | number | null
+    notes?: StringNullableWithAggregatesFilter<"MoodEntry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"MoodEntry"> | Date | string
   }
 
@@ -10628,55 +10716,86 @@ export namespace Prisma {
   }
 
   export type MoodEntryCreateInput = {
+    id?: string
     userId: string
-    moodType: string
-    value: number
+    valence: number
+    arousal: number
+    region: number
+    clickX?: number | null
+    clickY?: number | null
+    notes?: string | null
     createdAt?: Date | string
   }
 
   export type MoodEntryUncheckedCreateInput = {
-    id?: number
+    id?: string
     userId: string
-    moodType: string
-    value: number
+    valence: number
+    arousal: number
+    region: number
+    clickX?: number | null
+    clickY?: number | null
+    notes?: string | null
     createdAt?: Date | string
   }
 
   export type MoodEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    moodType?: StringFieldUpdateOperationsInput | string
-    value?: IntFieldUpdateOperationsInput | number
+    valence?: FloatFieldUpdateOperationsInput | number
+    arousal?: FloatFieldUpdateOperationsInput | number
+    region?: IntFieldUpdateOperationsInput | number
+    clickX?: NullableFloatFieldUpdateOperationsInput | number | null
+    clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MoodEntryUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    moodType?: StringFieldUpdateOperationsInput | string
-    value?: IntFieldUpdateOperationsInput | number
+    valence?: FloatFieldUpdateOperationsInput | number
+    arousal?: FloatFieldUpdateOperationsInput | number
+    region?: IntFieldUpdateOperationsInput | number
+    clickX?: NullableFloatFieldUpdateOperationsInput | number | null
+    clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MoodEntryCreateManyInput = {
-    id?: number
+    id?: string
     userId: string
-    moodType: string
-    value: number
+    valence: number
+    arousal: number
+    region: number
+    clickX?: number | null
+    clickY?: number | null
+    notes?: string | null
     createdAt?: Date | string
   }
 
   export type MoodEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    moodType?: StringFieldUpdateOperationsInput | string
-    value?: IntFieldUpdateOperationsInput | number
+    valence?: FloatFieldUpdateOperationsInput | number
+    arousal?: FloatFieldUpdateOperationsInput | number
+    region?: IntFieldUpdateOperationsInput | number
+    clickX?: NullableFloatFieldUpdateOperationsInput | number | null
+    clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MoodEntryUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    moodType?: StringFieldUpdateOperationsInput | string
-    value?: IntFieldUpdateOperationsInput | number
+    valence?: FloatFieldUpdateOperationsInput | number
+    arousal?: FloatFieldUpdateOperationsInput | number
+    region?: IntFieldUpdateOperationsInput | number
+    clickX?: NullableFloatFieldUpdateOperationsInput | number | null
+    clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11176,6 +11295,17 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -11187,38 +11317,83 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type MoodEntryCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    moodType?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrder
+    clickY?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
   }
 
   export type MoodEntryAvgOrderByAggregateInput = {
-    id?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrder
+    clickY?: SortOrder
   }
 
   export type MoodEntryMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    moodType?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrder
+    clickY?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
   }
 
   export type MoodEntryMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    moodType?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrder
+    clickY?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
   }
 
   export type MoodEntrySumOrderByAggregateInput = {
-    id?: SortOrder
-    value?: SortOrder
+    valence?: SortOrder
+    arousal?: SortOrder
+    region?: SortOrder
+    clickX?: SortOrder
+    clickY?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -11235,6 +11410,22 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type SymptomEventCountOrderByAggregateInput = {
@@ -11496,8 +11687,24 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivitiesInput, UserUpdateWithoutActivitiesInput>, UserUncheckedUpdateWithoutActivitiesInput>
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -11665,6 +11872,44 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -11681,15 +11926,20 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type ActivityCreateWithoutUserInput = {

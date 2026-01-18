@@ -18,12 +18,6 @@ export const prisma =
   globalForPrisma.prisma ||
   new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["query"] : [],
-    // Connection pool settings for serverless
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL,
-      },
-    },
   });
 
 // Reuse Prisma Client instance in serverless to avoid connection exhaustion

@@ -37,11 +37,17 @@ model Activity {
 }
 
 model MoodEntry {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   userId    String
-  moodType  String
-  value     Int
+  valence   Float // -1.0 (unpleasant) to 1.0 (pleasant)
+  arousal   Float // -1.0 (low energy) to 1.0 (high energy)
+  region    Int // 0-7, the petal region ID
+  clickX    Float? // Optional: X coordinate of click position
+  clickY    Float? // Optional: Y coordinate of click position
+  notes     String? // Optional: User's notes about their mood
   createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
 }
 
 model SymptomEvent {
