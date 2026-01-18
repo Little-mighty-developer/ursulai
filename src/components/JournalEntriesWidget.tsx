@@ -23,14 +23,58 @@ export default function JournalEntriesWidget() {
 
   const fetchEntries = async () => {
     try {
+      console.log(
+        "[JournalEntriesWidget] Fetching entries for user:",
+        session?.user?.email,
+      );
       const response = await fetch("/api/journal");
+      console.log(
+        "[JournalEntriesWidget] Response status:",
+        response.status,
+        response.statusText,
+      );
+
       if (!response.ok) {
-        throw new Error("Failed to fetch entries");
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (e) {
+          const text = await response.text();
+          console.error(
+            "[JournalEntriesWidget] Failed to parse error response. Raw text:",
+            text,
+          );
+          errorData = {
+            error: `HTTP ${response.status}: ${response.statusText}`,
+            raw: text,
+          };
+        }
+        const errorMessage =
+          errorData.error ||
+          errorData.details ||
+          `Failed to fetch entries (${response.status})`;
+        console.error("[JournalEntriesWidget] Error fetching entries:", {
+          status: response.status,
+          statusText: response.statusText,
+          errorMessage,
+          errorData,
+        });
+        // Don't throw - just log the error so the widget still renders
+        return;
       }
       const data = await response.json();
+      console.log(
+        "[JournalEntriesWidget] Received entries:",
+        data.length,
+        data,
+      );
       setEntries(data);
     } catch (error) {
-      console.error("Error fetching entries:", error);
+      console.error(
+        "[JournalEntriesWidget] Network or other error fetching entries:",
+        error,
+      );
+      // Network errors or other issues - don't break the UI
     } finally {
       setIsLoading(false);
     }
