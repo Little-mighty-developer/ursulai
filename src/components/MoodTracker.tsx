@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { useSession } from "next-auth/react";
 
 // Each petal maps to valence (pleasant/unpleasant) and arousal (low/high energy)
 const WHEEL_SIZE = 400; // pixels
@@ -143,8 +142,6 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
     y: number;
   } | null>(null);
   const wheelRef = useRef<SVGSVGElement>(null);
-
-  const { data: session } = useSession();
 
   // Calculate petal path - flower-like rounded petal
   const getPetalPath = (region: PetalRegion, isHovered: boolean) => {
