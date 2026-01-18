@@ -38,7 +38,7 @@ export default function JournalEntriesWidget() {
         let errorData;
         try {
           errorData = await response.json();
-        } catch (e) {
+        } catch (_e) {
           const text = await response.text();
           console.error(
             "[JournalEntriesWidget] Failed to parse error response. Raw text:",
