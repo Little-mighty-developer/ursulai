@@ -10,7 +10,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { date, valence, arousal, region, clickX, clickY } = await req.json();
+    const { date, valence, arousal, region, clickX, clickY, notes } =
+      await req.json();
 
     if (
       valence === undefined ||
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
         region: parseInt(region),
         clickX: clickX ? parseFloat(clickX) : null,
         clickY: clickY ? parseFloat(clickY) : null,
+        notes: notes && notes.trim() ? notes.trim() : null,
         createdAt: date ? new Date(date) : new Date(),
       },
     });

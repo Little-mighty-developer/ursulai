@@ -44,6 +44,7 @@ model MoodEntry {
   region    Int // 0-7, the petal region ID
   clickX    Float? // Optional: X coordinate of click position
   clickY    Float? // Optional: Y coordinate of click position
+  notes     String? // Optional: User's notes about their mood
   createdAt DateTime @default(now())
 
   @@index([userId, createdAt])

@@ -137,6 +137,7 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
   const [reflection, setReflection] = useState<string>("");
   const [saved, setSaved] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [moodNotes, setMoodNotes] = useState<string>("");
   const [clickPosition, setClickPosition] = useState<{
     x: number;
     y: number;
@@ -289,6 +290,7 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
         region: selectedRegion.id,
         clickX: clickPosition?.x,
         clickY: clickPosition?.y,
+        notes: moodNotes.trim() || null,
       }),
     });
 
@@ -300,6 +302,7 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
     }
 
     setSaved(true);
+    setMoodNotes(""); // Clear notes after successful save
     setTimeout(() => setSaved(false), 2000);
   };
 
@@ -425,19 +428,30 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
         )}
 
         {selectedRegion && (
-          <button
-            onClick={handleSubmit}
-            className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-semibold flex items-center gap-2 hover:from-indigo-600 hover:to-purple-600 transition shadow-lg"
-          >
-            {saved ? (
-              <>
-                <span>Saved</span>
-                <span className="text-green-300">✓</span>
-              </>
-            ) : (
-              "Save"
-            )}
-          </button>
+          <>
+            <div className="w-full max-w-md mb-4">
+              <textarea
+                value={moodNotes}
+                onChange={(e) => setMoodNotes(e.target.value)}
+                placeholder="Optional notes about how you're feeling..."
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none text-sm"
+                rows={3}
+              />
+            </div>
+            <button
+              onClick={handleSubmit}
+              className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-semibold flex items-center gap-2 hover:from-indigo-600 hover:to-purple-600 transition shadow-lg"
+            >
+              {saved ? (
+                <>
+                  <span>Saved</span>
+                  <span className="text-green-300">✓</span>
+                </>
+              ) : (
+                "Save"
+              )}
+            </button>
+          </>
         )}
       </div>
     </div>

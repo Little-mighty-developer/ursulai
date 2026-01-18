@@ -3763,6 +3763,7 @@ export namespace Prisma {
     region: number | null
     clickX: number | null
     clickY: number | null
+    notes: string | null
     createdAt: Date | null
   }
 
@@ -3774,6 +3775,7 @@ export namespace Prisma {
     region: number | null
     clickX: number | null
     clickY: number | null
+    notes: string | null
     createdAt: Date | null
   }
 
@@ -3785,6 +3787,7 @@ export namespace Prisma {
     region: number
     clickX: number
     clickY: number
+    notes: number
     createdAt: number
     _all: number
   }
@@ -3814,6 +3817,7 @@ export namespace Prisma {
     region?: true
     clickX?: true
     clickY?: true
+    notes?: true
     createdAt?: true
   }
 
@@ -3825,6 +3829,7 @@ export namespace Prisma {
     region?: true
     clickX?: true
     clickY?: true
+    notes?: true
     createdAt?: true
   }
 
@@ -3836,6 +3841,7 @@ export namespace Prisma {
     region?: true
     clickX?: true
     clickY?: true
+    notes?: true
     createdAt?: true
     _all?: true
   }
@@ -3934,6 +3940,7 @@ export namespace Prisma {
     region: number
     clickX: number | null
     clickY: number | null
+    notes: string | null
     createdAt: Date
     _count: MoodEntryCountAggregateOutputType | null
     _avg: MoodEntryAvgAggregateOutputType | null
@@ -3964,6 +3971,7 @@ export namespace Prisma {
     region?: boolean
     clickX?: boolean
     clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
@@ -3975,6 +3983,7 @@ export namespace Prisma {
     region?: boolean
     clickX?: boolean
     clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
@@ -3986,6 +3995,7 @@ export namespace Prisma {
     region?: boolean
     clickX?: boolean
     clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["moodEntry"]>
 
@@ -3997,10 +4007,11 @@ export namespace Prisma {
     region?: boolean
     clickX?: boolean
     clickY?: boolean
+    notes?: boolean
     createdAt?: boolean
   }
 
-  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "valence" | "arousal" | "region" | "clickX" | "clickY" | "createdAt", ExtArgs["result"]["moodEntry"]>
+  export type MoodEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "valence" | "arousal" | "region" | "clickX" | "clickY" | "notes" | "createdAt", ExtArgs["result"]["moodEntry"]>
 
   export type $MoodEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MoodEntry"
@@ -4013,6 +4024,7 @@ export namespace Prisma {
       region: number
       clickX: number | null
       clickY: number | null
+      notes: string | null
       createdAt: Date
     }, ExtArgs["result"]["moodEntry"]>
     composites: {}
@@ -4444,6 +4456,7 @@ export namespace Prisma {
     readonly region: FieldRef<"MoodEntry", 'Int'>
     readonly clickX: FieldRef<"MoodEntry", 'Float'>
     readonly clickY: FieldRef<"MoodEntry", 'Float'>
+    readonly notes: FieldRef<"MoodEntry", 'String'>
     readonly createdAt: FieldRef<"MoodEntry", 'DateTime'>
   }
     
@@ -9942,6 +9955,7 @@ export namespace Prisma {
     region: 'region',
     clickX: 'clickX',
     clickY: 'clickY',
+    notes: 'notes',
     createdAt: 'createdAt'
   };
 
@@ -10233,6 +10247,7 @@ export namespace Prisma {
     region?: IntFilter<"MoodEntry"> | number
     clickX?: FloatNullableFilter<"MoodEntry"> | number | null
     clickY?: FloatNullableFilter<"MoodEntry"> | number | null
+    notes?: StringNullableFilter<"MoodEntry"> | string | null
     createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
   }
 
@@ -10244,6 +10259,7 @@ export namespace Prisma {
     region?: SortOrder
     clickX?: SortOrderInput | SortOrder
     clickY?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
   }
 
@@ -10258,6 +10274,7 @@ export namespace Prisma {
     region?: IntFilter<"MoodEntry"> | number
     clickX?: FloatNullableFilter<"MoodEntry"> | number | null
     clickY?: FloatNullableFilter<"MoodEntry"> | number | null
+    notes?: StringNullableFilter<"MoodEntry"> | string | null
     createdAt?: DateTimeFilter<"MoodEntry"> | Date | string
   }, "id">
 
@@ -10269,6 +10286,7 @@ export namespace Prisma {
     region?: SortOrder
     clickX?: SortOrderInput | SortOrder
     clickY?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: MoodEntryCountOrderByAggregateInput
     _avg?: MoodEntryAvgOrderByAggregateInput
@@ -10288,6 +10306,7 @@ export namespace Prisma {
     region?: IntWithAggregatesFilter<"MoodEntry"> | number
     clickX?: FloatNullableWithAggregatesFilter<"MoodEntry"> | number | null
     clickY?: FloatNullableWithAggregatesFilter<"MoodEntry"> | number | null
+    notes?: StringNullableWithAggregatesFilter<"MoodEntry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"MoodEntry"> | Date | string
   }
 
@@ -10704,6 +10723,7 @@ export namespace Prisma {
     region: number
     clickX?: number | null
     clickY?: number | null
+    notes?: string | null
     createdAt?: Date | string
   }
 
@@ -10715,6 +10735,7 @@ export namespace Prisma {
     region: number
     clickX?: number | null
     clickY?: number | null
+    notes?: string | null
     createdAt?: Date | string
   }
 
@@ -10726,6 +10747,7 @@ export namespace Prisma {
     region?: IntFieldUpdateOperationsInput | number
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10737,6 +10759,7 @@ export namespace Prisma {
     region?: IntFieldUpdateOperationsInput | number
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10748,6 +10771,7 @@ export namespace Prisma {
     region: number
     clickX?: number | null
     clickY?: number | null
+    notes?: string | null
     createdAt?: Date | string
   }
 
@@ -10759,6 +10783,7 @@ export namespace Prisma {
     region?: IntFieldUpdateOperationsInput | number
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10770,6 +10795,7 @@ export namespace Prisma {
     region?: IntFieldUpdateOperationsInput | number
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11310,6 +11336,7 @@ export namespace Prisma {
     region?: SortOrder
     clickX?: SortOrder
     clickY?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11329,6 +11356,7 @@ export namespace Prisma {
     region?: SortOrder
     clickX?: SortOrder
     clickY?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11340,6 +11368,7 @@ export namespace Prisma {
     region?: SortOrder
     clickX?: SortOrder
     clickY?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
   }
 

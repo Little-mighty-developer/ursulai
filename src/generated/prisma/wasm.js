@@ -146,6 +146,7 @@ exports.Prisma.MoodEntryScalarFieldEnum = {
   region: 'region',
   clickX: 'clickX',
   clickY: 'clickY',
+  notes: 'notes',
   createdAt: 'createdAt'
 };
 
