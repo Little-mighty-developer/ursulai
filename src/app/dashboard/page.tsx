@@ -84,68 +84,68 @@ export default function DashboardPage() {
             alignItems: "flex-start",
           }}
         >
-        {/* Left column */}
-        <div
-          style={{
-            width: 320,
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-          }}
-        >
-          <DashboardCard>
-            <WeatherWidget />
-          </DashboardCard>
-          <DashboardCard>
-            <NoteToSelf />
-          </DashboardCard>
+          {/* Left column */}
+          <div
+            style={{
+              width: 320,
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+            }}
+          >
+            <DashboardCard>
+              <WeatherWidget />
+            </DashboardCard>
+            <DashboardCard>
+              <NoteToSelf />
+            </DashboardCard>
+          </div>
+          {/* Center column */}
+          <div
+            style={{
+              width: 400,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <Image
+              src="/logo.png"
+              alt="Ursul.ai Logo"
+              width={360}
+              height={360}
+              className="bouncy-glow"
+            />
+            <DashboardCard>
+              <JournalEntriesWidget />
+            </DashboardCard>
+            <DashboardCard>
+              <PhysicalSymptomsWidget />
+            </DashboardCard>
+          </div>
+          {/* Right column */}
+          <div
+            style={{
+              width: 400,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "right",
+              gap: "12px",
+            }}
+          >
+            <DashboardCard>
+              <CalendarWidget />
+            </DashboardCard>
+            <DashboardCard>
+              <GratitudeWidget />
+            </DashboardCard>
+            <DashboardCard>
+              <MoodWidget />
+            </DashboardCard>
+          </div>
         </div>
-        {/* Center column */}
-        <div
-          style={{
-            width: 400,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "12px",
-          }}
-        >
-          <Image
-            src="/logo.png"
-            alt="Ursul.ai Logo"
-            width={360}
-            height={360}
-            className="bouncy-glow"
-          />
-          <DashboardCard>
-            <JournalEntriesWidget />
-          </DashboardCard>
-          <DashboardCard>
-            <PhysicalSymptomsWidget />
-          </DashboardCard>
-        </div>
-        {/* Right column */}
-        <div
-          style={{
-            width: 400,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "right",
-            gap: "12px",
-          }}
-        >
-          <DashboardCard>
-            <CalendarWidget />
-          </DashboardCard>
-          <DashboardCard>
-            <GratitudeWidget />
-          </DashboardCard>
-          <DashboardCard>
-            <MoodWidget />
-          </DashboardCard>
-        </div>
-      </div>
-      <QuickCallButton />
+        <QuickCallButton />
       </div>
     </div>
   );

@@ -322,15 +322,19 @@ export default function MoodTracker({ onMoodSelect }: MoodTrackerProps) {
             <span className="text-sm text-gray-500 font-semibold">?</span>
           </button>
           {showTooltip && (
-            <div className="absolute top-full right-0 mt-2 w-72 p-4 bg-gray-900 text-white text-sm rounded-lg shadow-xl z-50 pointer-events-auto animate-fade-in">
-              <div className="space-y-2">
+            <div className="absolute top-full right-0 mt-2 w-80 p-5 bg-gray-900 text-white text-sm rounded-lg shadow-xl z-50 pointer-events-auto animate-fade-in">
+              <div className="space-y-3">
+                <p>Emotions don&apos;t always fit into neat categories.</p>
                 <p>
-                  <strong className="text-purple-300">Click anywhere</strong> on
-                  a colored petal to discover where you may be right now.
+                  This space lets you check in without naming or explaining —
+                  just noticing where you land today.
                 </p>
                 <p>
-                  No words needed—just choose by color and position. A dot will
-                  show where you clicked.
+                  Over time, this can help you see gentle trends in energy and
+                  tone, without forcing meaning onto any single day.
+                </p>
+                <p className="text-purple-300 font-medium">
+                  Nothing here is scored, ranked, or judged.
                 </p>
               </div>
               <div className="absolute -top-1 right-4 w-2 h-2 bg-gray-900 rotate-45"></div>
