@@ -90,8 +90,6 @@ export default function NoteToSelf() {
     }
   };
 
-  const showEditMode = !isSaved || isEditing;
-
   if (!session) return null;
 
   if (isLoading) {
