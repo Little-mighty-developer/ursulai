@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import RecentJournalEntries from "@/components/RecentJournalEntries";
@@ -401,9 +402,22 @@ export default function JournalPage() {
           </button>
         </div>
         <RecentJournalEntries />
-        {/* Placeholder for future AI prompt and Ursul.ai guidance */}
-        <div className="mt-8 text-center text-gray-400 italic">
-          (AI-powered prompts and Ursul.ai guidance coming soon)
+        <div className="mt-8 text-center text-gray-600 text-sm">
+          Journal 3 days in a week to unlock{" "}
+          <Link
+            href="/dashboard"
+            className="font-medium text-purple-600 hover:text-purple-800 hover:underline"
+          >
+            Threads Emerging
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/dashboard"
+            className="font-medium text-purple-600 hover:text-purple-800 hover:underline"
+          >
+            Look Back
+          </Link>{" "}
+          — AI reflections on your dashboard.
         </div>
       </div>
     </div>

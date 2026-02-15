@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import ReflectionModal from "./ReflectionModal";
 
 interface JournalEntry {
   id: string;
@@ -13,13 +14,30 @@ interface JournalEntry {
 export default function JournalEntriesWidget() {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [eligible, setEligible] = useState(false);
+  const [reflectionModal, setReflectionModal] = useState<
+    "threads" | "lookback" | null
+  >(null);
   const { data: session } = useSession();
 
   useEffect(() => {
     if (session?.user?.email) {
       fetchEntries();
+      fetchEligibility();
     }
   }, [session]);
+
+  const fetchEligibility = async () => {
+    try {
+      const res = await fetch("/api/reflection/eligibility");
+      if (res.ok) {
+        const { eligible } = await res.json();
+        setEligible(eligible);
+      }
+    } catch {
+      setEligible(false);
+    }
+  };
 
   const fetchEntries = async () => {
     try {
@@ -94,6 +112,27 @@ export default function JournalEntriesWidget() {
       >
         What&apos;s fueling your transformation story?
       </Link>
+      {eligible && (
+        <div className="flex flex-col gap-2 w-full">
+          <button
+            onClick={() => setReflectionModal("threads")}
+            className="text-sm text-purple-600 hover:text-purple-800 font-medium text-center py-1"
+          >
+            🧵 Threads Emerging
+          </button>
+          <button
+            onClick={() => setReflectionModal("lookback")}
+            className="text-sm text-purple-600 hover:text-purple-800 font-medium text-center py-1"
+          >
+            🔎 Look Back
+          </button>
+        </div>
+      )}
+      <ReflectionModal
+        type={reflectionModal === "threads" ? "threads" : "lookback"}
+        isOpen={reflectionModal !== null}
+        onClose={() => setReflectionModal(null)}
+      />
     </div>
   );
 }
