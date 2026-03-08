@@ -125,7 +125,19 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   firstName: 'firstName',
   lastLogin: 'lastLogin',
-  lastActive: 'lastActive'
+  lastActive: 'lastActive',
+  onboardingCompletedAt: 'onboardingCompletedAt'
+};
+
+exports.Prisma.UserPreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  intentions: 'intentions',
+  energyPreference: 'energyPreference',
+  checkInStyle: 'checkInStyle',
+  trackingPreference: 'trackingPreference',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ActivityScalarFieldEnum = {
@@ -209,6 +221,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  UserPreference: 'UserPreference',
   Activity: 'Activity',
   MoodEntry: 'MoodEntry',
   SymptomEvent: 'SymptomEvent',
