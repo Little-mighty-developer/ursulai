@@ -14,7 +14,7 @@ function LoginContent() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/dashboard");
+      router.push("/register");
     }
   }, [status, router]);
 
@@ -65,13 +65,13 @@ function LoginContent() {
       {/* Buttons */}
       <div className="flex gap-4 w-full max-w-xs">
         <button
-          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          onClick={() => signIn("google", { callbackUrl: "/register" })}
           className="flex-1 bg-white text-gray-800 font-semibold py-3 rounded-lg shadow text-center hover:bg-purple-50 transition text-lg"
         >
           Sign up with Google
         </button>
         <button
-          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          onClick={() => signIn("google", { callbackUrl: "/register" })}
           className="flex-1 bg-purple-800 text-white font-semibold py-3 rounded-lg shadow text-center hover:bg-purple-700 transition text-lg"
         >
           Log in with Google
