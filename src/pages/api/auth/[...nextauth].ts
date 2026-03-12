@@ -32,8 +32,18 @@ const getNextAuthUrl = (): string => {
   return sanitizeUrl(url);
 };
 
-// Set NEXTAUTH_URL dynamically if not set (for preview deployments)
-// NextAuth reads from process.env.NEXTAUTH_URL, so we need to set it
+// Derive base URL from request headers (for deploy previews / proxies)
+// Netlify sets x-forwarded-host and x-forwarded-proto per request
+const getBaseUrlFromRequest = (req: NextApiRequest): string | null => {
+  const rawHost = req.headers["x-forwarded-host"] || req.headers.host || "";
+  const host = Array.isArray(rawHost) ? rawHost[0] : rawHost;
+  const rawProto = req.headers["x-forwarded-proto"] || "https";
+  const proto = Array.isArray(rawProto) ? rawProto[0] : rawProto;
+  if (!host) return null;
+  return sanitizeUrl(`${proto}://${host}`);
+};
+
+// Set NEXTAUTH_URL at module load for initial fallback
 if (!process.env.NEXTAUTH_URL) {
   const computedUrl = getNextAuthUrl();
   process.env.NEXTAUTH_URL = computedUrl;
@@ -186,6 +196,13 @@ export default async function authHandler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  // Override NEXTAUTH_URL from request headers so deploy previews use the actual URL
+  // (avoids stale/wrong URLs when env vars point to old previews)
+  const requestBaseUrl = getBaseUrlFromRequest(req);
+  if (requestBaseUrl) {
+    process.env.NEXTAUTH_URL = requestBaseUrl;
+  }
+
   // Patch res.setHeader to sanitize Location headers
   const originalSetHeader = res.setHeader.bind(res);
   res.setHeader = function (name: string, value: string | string[]) {
