@@ -24,6 +24,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type UserPreference = $Result.DefaultSelection<Prisma.$UserPreferencePayload>
 /**
+ * Model CyclePeriodStart
+ * 
+ */
+export type CyclePeriodStart = $Result.DefaultSelection<Prisma.$CyclePeriodStartPayload>
+/**
  * Model Activity
  * 
  */
@@ -203,6 +208,16 @@ export class PrismaClient<
     * ```
     */
   get userPreference(): Prisma.UserPreferenceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cyclePeriodStart`: Exposes CRUD operations for the **CyclePeriodStart** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CyclePeriodStarts
+    * const cyclePeriodStarts = await prisma.cyclePeriodStart.findMany()
+    * ```
+    */
+  get cyclePeriodStart(): Prisma.CyclePeriodStartDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.activity`: Exposes CRUD operations for the **Activity** model.
@@ -715,6 +730,7 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     UserPreference: 'UserPreference',
+    CyclePeriodStart: 'CyclePeriodStart',
     Activity: 'Activity',
     MoodEntry: 'MoodEntry',
     SymptomEvent: 'SymptomEvent',
@@ -740,7 +756,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userPreference" | "activity" | "moodEntry" | "symptomEvent" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "loginHistory"
+      modelProps: "user" | "userPreference" | "cyclePeriodStart" | "activity" | "moodEntry" | "symptomEvent" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "loginHistory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -889,6 +905,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserPreferenceCountArgs<ExtArgs>
             result: $Utils.Optional<UserPreferenceCountAggregateOutputType> | number
+          }
+        }
+      }
+      CyclePeriodStart: {
+        payload: Prisma.$CyclePeriodStartPayload<ExtArgs>
+        fields: Prisma.CyclePeriodStartFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CyclePeriodStartFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CyclePeriodStartFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>
+          }
+          findFirst: {
+            args: Prisma.CyclePeriodStartFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CyclePeriodStartFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>
+          }
+          findMany: {
+            args: Prisma.CyclePeriodStartFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>[]
+          }
+          create: {
+            args: Prisma.CyclePeriodStartCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>
+          }
+          createMany: {
+            args: Prisma.CyclePeriodStartCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CyclePeriodStartCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>[]
+          }
+          delete: {
+            args: Prisma.CyclePeriodStartDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>
+          }
+          update: {
+            args: Prisma.CyclePeriodStartUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>
+          }
+          deleteMany: {
+            args: Prisma.CyclePeriodStartDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CyclePeriodStartUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CyclePeriodStartUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>[]
+          }
+          upsert: {
+            args: Prisma.CyclePeriodStartUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CyclePeriodStartPayload>
+          }
+          aggregate: {
+            args: Prisma.CyclePeriodStartAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCyclePeriodStart>
+          }
+          groupBy: {
+            args: Prisma.CyclePeriodStartGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CyclePeriodStartGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CyclePeriodStartCountArgs<ExtArgs>
+            result: $Utils.Optional<CyclePeriodStartCountAggregateOutputType> | number
           }
         }
       }
@@ -1496,6 +1586,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     userPreference?: UserPreferenceOmit
+    cyclePeriodStart?: CyclePeriodStartOmit
     activity?: ActivityOmit
     moodEntry?: MoodEntryOmit
     symptomEvent?: SymptomEventOmit
@@ -2776,8 +2867,18 @@ export namespace Prisma {
 
   export type AggregateUserPreference = {
     _count: UserPreferenceCountAggregateOutputType | null
+    _avg: UserPreferenceAvgAggregateOutputType | null
+    _sum: UserPreferenceSumAggregateOutputType | null
     _min: UserPreferenceMinAggregateOutputType | null
     _max: UserPreferenceMaxAggregateOutputType | null
+  }
+
+  export type UserPreferenceAvgAggregateOutputType = {
+    typicalCycleLength: number | null
+  }
+
+  export type UserPreferenceSumAggregateOutputType = {
+    typicalCycleLength: number | null
   }
 
   export type UserPreferenceMinAggregateOutputType = {
@@ -2786,6 +2887,9 @@ export namespace Prisma {
     energyPreference: string | null
     checkInStyle: string | null
     trackingPreference: string | null
+    cycleTrackingEnabled: boolean | null
+    typicalCycleLength: number | null
+    cycleBackfillOfferConsumed: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2796,6 +2900,9 @@ export namespace Prisma {
     energyPreference: string | null
     checkInStyle: string | null
     trackingPreference: string | null
+    cycleTrackingEnabled: boolean | null
+    typicalCycleLength: number | null
+    cycleBackfillOfferConsumed: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2807,11 +2914,22 @@ export namespace Prisma {
     energyPreference: number
     checkInStyle: number
     trackingPreference: number
+    cycleTrackingEnabled: number
+    typicalCycleLength: number
+    cycleBackfillOfferConsumed: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
+
+  export type UserPreferenceAvgAggregateInputType = {
+    typicalCycleLength?: true
+  }
+
+  export type UserPreferenceSumAggregateInputType = {
+    typicalCycleLength?: true
+  }
 
   export type UserPreferenceMinAggregateInputType = {
     id?: true
@@ -2819,6 +2937,9 @@ export namespace Prisma {
     energyPreference?: true
     checkInStyle?: true
     trackingPreference?: true
+    cycleTrackingEnabled?: true
+    typicalCycleLength?: true
+    cycleBackfillOfferConsumed?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2829,6 +2950,9 @@ export namespace Prisma {
     energyPreference?: true
     checkInStyle?: true
     trackingPreference?: true
+    cycleTrackingEnabled?: true
+    typicalCycleLength?: true
+    cycleBackfillOfferConsumed?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2840,6 +2964,9 @@ export namespace Prisma {
     energyPreference?: true
     checkInStyle?: true
     trackingPreference?: true
+    cycleTrackingEnabled?: true
+    typicalCycleLength?: true
+    cycleBackfillOfferConsumed?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2883,6 +3010,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserPreferenceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserPreferenceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserPreferenceMinAggregateInputType
@@ -2913,6 +3052,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserPreferenceCountAggregateInputType | true
+    _avg?: UserPreferenceAvgAggregateInputType
+    _sum?: UserPreferenceSumAggregateInputType
     _min?: UserPreferenceMinAggregateInputType
     _max?: UserPreferenceMaxAggregateInputType
   }
@@ -2924,9 +3065,14 @@ export namespace Prisma {
     energyPreference: string | null
     checkInStyle: string | null
     trackingPreference: string | null
+    cycleTrackingEnabled: boolean
+    typicalCycleLength: number
+    cycleBackfillOfferConsumed: boolean
     createdAt: Date
     updatedAt: Date
     _count: UserPreferenceCountAggregateOutputType | null
+    _avg: UserPreferenceAvgAggregateOutputType | null
+    _sum: UserPreferenceSumAggregateOutputType | null
     _min: UserPreferenceMinAggregateOutputType | null
     _max: UserPreferenceMaxAggregateOutputType | null
   }
@@ -2952,6 +3098,9 @@ export namespace Prisma {
     energyPreference?: boolean
     checkInStyle?: boolean
     trackingPreference?: boolean
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: boolean
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2964,6 +3113,9 @@ export namespace Prisma {
     energyPreference?: boolean
     checkInStyle?: boolean
     trackingPreference?: boolean
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: boolean
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2976,6 +3128,9 @@ export namespace Prisma {
     energyPreference?: boolean
     checkInStyle?: boolean
     trackingPreference?: boolean
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: boolean
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2988,11 +3143,14 @@ export namespace Prisma {
     energyPreference?: boolean
     checkInStyle?: boolean
     trackingPreference?: boolean
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: boolean
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "intentions" | "energyPreference" | "checkInStyle" | "trackingPreference" | "createdAt" | "updatedAt", ExtArgs["result"]["userPreference"]>
+  export type UserPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "intentions" | "energyPreference" | "checkInStyle" | "trackingPreference" | "cycleTrackingEnabled" | "typicalCycleLength" | "cycleBackfillOfferConsumed" | "createdAt" | "updatedAt", ExtArgs["result"]["userPreference"]>
   export type UserPreferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3015,6 +3173,9 @@ export namespace Prisma {
       energyPreference: string | null
       checkInStyle: string | null
       trackingPreference: string | null
+      cycleTrackingEnabled: boolean
+      typicalCycleLength: number
+      cycleBackfillOfferConsumed: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["userPreference"]>
@@ -3447,6 +3608,9 @@ export namespace Prisma {
     readonly energyPreference: FieldRef<"UserPreference", 'String'>
     readonly checkInStyle: FieldRef<"UserPreference", 'String'>
     readonly trackingPreference: FieldRef<"UserPreference", 'String'>
+    readonly cycleTrackingEnabled: FieldRef<"UserPreference", 'Boolean'>
+    readonly typicalCycleLength: FieldRef<"UserPreference", 'Int'>
+    readonly cycleBackfillOfferConsumed: FieldRef<"UserPreference", 'Boolean'>
     readonly createdAt: FieldRef<"UserPreference", 'DateTime'>
     readonly updatedAt: FieldRef<"UserPreference", 'DateTime'>
   }
@@ -3860,6 +4024,1001 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserPreferenceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CyclePeriodStart
+   */
+
+  export type AggregateCyclePeriodStart = {
+    _count: CyclePeriodStartCountAggregateOutputType | null
+    _min: CyclePeriodStartMinAggregateOutputType | null
+    _max: CyclePeriodStartMaxAggregateOutputType | null
+  }
+
+  export type CyclePeriodStartMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    startDate: Date | null
+    notes: string | null
+    createdAt: Date | null
+  }
+
+  export type CyclePeriodStartMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    startDate: Date | null
+    notes: string | null
+    createdAt: Date | null
+  }
+
+  export type CyclePeriodStartCountAggregateOutputType = {
+    id: number
+    userId: number
+    startDate: number
+    notes: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CyclePeriodStartMinAggregateInputType = {
+    id?: true
+    userId?: true
+    startDate?: true
+    notes?: true
+    createdAt?: true
+  }
+
+  export type CyclePeriodStartMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    startDate?: true
+    notes?: true
+    createdAt?: true
+  }
+
+  export type CyclePeriodStartCountAggregateInputType = {
+    id?: true
+    userId?: true
+    startDate?: true
+    notes?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CyclePeriodStartAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CyclePeriodStart to aggregate.
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CyclePeriodStarts to fetch.
+     */
+    orderBy?: CyclePeriodStartOrderByWithRelationInput | CyclePeriodStartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CyclePeriodStartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CyclePeriodStarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CyclePeriodStarts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CyclePeriodStarts
+    **/
+    _count?: true | CyclePeriodStartCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CyclePeriodStartMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CyclePeriodStartMaxAggregateInputType
+  }
+
+  export type GetCyclePeriodStartAggregateType<T extends CyclePeriodStartAggregateArgs> = {
+        [P in keyof T & keyof AggregateCyclePeriodStart]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCyclePeriodStart[P]>
+      : GetScalarType<T[P], AggregateCyclePeriodStart[P]>
+  }
+
+
+
+
+  export type CyclePeriodStartGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CyclePeriodStartWhereInput
+    orderBy?: CyclePeriodStartOrderByWithAggregationInput | CyclePeriodStartOrderByWithAggregationInput[]
+    by: CyclePeriodStartScalarFieldEnum[] | CyclePeriodStartScalarFieldEnum
+    having?: CyclePeriodStartScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CyclePeriodStartCountAggregateInputType | true
+    _min?: CyclePeriodStartMinAggregateInputType
+    _max?: CyclePeriodStartMaxAggregateInputType
+  }
+
+  export type CyclePeriodStartGroupByOutputType = {
+    id: string
+    userId: string
+    startDate: Date
+    notes: string | null
+    createdAt: Date
+    _count: CyclePeriodStartCountAggregateOutputType | null
+    _min: CyclePeriodStartMinAggregateOutputType | null
+    _max: CyclePeriodStartMaxAggregateOutputType | null
+  }
+
+  type GetCyclePeriodStartGroupByPayload<T extends CyclePeriodStartGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CyclePeriodStartGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CyclePeriodStartGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CyclePeriodStartGroupByOutputType[P]>
+            : GetScalarType<T[P], CyclePeriodStartGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CyclePeriodStartSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    startDate?: boolean
+    notes?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["cyclePeriodStart"]>
+
+  export type CyclePeriodStartSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    startDate?: boolean
+    notes?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["cyclePeriodStart"]>
+
+  export type CyclePeriodStartSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    startDate?: boolean
+    notes?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["cyclePeriodStart"]>
+
+  export type CyclePeriodStartSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    startDate?: boolean
+    notes?: boolean
+    createdAt?: boolean
+  }
+
+  export type CyclePeriodStartOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "startDate" | "notes" | "createdAt", ExtArgs["result"]["cyclePeriodStart"]>
+
+  export type $CyclePeriodStartPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CyclePeriodStart"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      startDate: Date
+      notes: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["cyclePeriodStart"]>
+    composites: {}
+  }
+
+  type CyclePeriodStartGetPayload<S extends boolean | null | undefined | CyclePeriodStartDefaultArgs> = $Result.GetResult<Prisma.$CyclePeriodStartPayload, S>
+
+  type CyclePeriodStartCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CyclePeriodStartFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CyclePeriodStartCountAggregateInputType | true
+    }
+
+  export interface CyclePeriodStartDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CyclePeriodStart'], meta: { name: 'CyclePeriodStart' } }
+    /**
+     * Find zero or one CyclePeriodStart that matches the filter.
+     * @param {CyclePeriodStartFindUniqueArgs} args - Arguments to find a CyclePeriodStart
+     * @example
+     * // Get one CyclePeriodStart
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CyclePeriodStartFindUniqueArgs>(args: SelectSubset<T, CyclePeriodStartFindUniqueArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CyclePeriodStart that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CyclePeriodStartFindUniqueOrThrowArgs} args - Arguments to find a CyclePeriodStart
+     * @example
+     * // Get one CyclePeriodStart
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CyclePeriodStartFindUniqueOrThrowArgs>(args: SelectSubset<T, CyclePeriodStartFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CyclePeriodStart that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartFindFirstArgs} args - Arguments to find a CyclePeriodStart
+     * @example
+     * // Get one CyclePeriodStart
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CyclePeriodStartFindFirstArgs>(args?: SelectSubset<T, CyclePeriodStartFindFirstArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CyclePeriodStart that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartFindFirstOrThrowArgs} args - Arguments to find a CyclePeriodStart
+     * @example
+     * // Get one CyclePeriodStart
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CyclePeriodStartFindFirstOrThrowArgs>(args?: SelectSubset<T, CyclePeriodStartFindFirstOrThrowArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CyclePeriodStarts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CyclePeriodStarts
+     * const cyclePeriodStarts = await prisma.cyclePeriodStart.findMany()
+     * 
+     * // Get first 10 CyclePeriodStarts
+     * const cyclePeriodStarts = await prisma.cyclePeriodStart.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cyclePeriodStartWithIdOnly = await prisma.cyclePeriodStart.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CyclePeriodStartFindManyArgs>(args?: SelectSubset<T, CyclePeriodStartFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CyclePeriodStart.
+     * @param {CyclePeriodStartCreateArgs} args - Arguments to create a CyclePeriodStart.
+     * @example
+     * // Create one CyclePeriodStart
+     * const CyclePeriodStart = await prisma.cyclePeriodStart.create({
+     *   data: {
+     *     // ... data to create a CyclePeriodStart
+     *   }
+     * })
+     * 
+     */
+    create<T extends CyclePeriodStartCreateArgs>(args: SelectSubset<T, CyclePeriodStartCreateArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CyclePeriodStarts.
+     * @param {CyclePeriodStartCreateManyArgs} args - Arguments to create many CyclePeriodStarts.
+     * @example
+     * // Create many CyclePeriodStarts
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CyclePeriodStartCreateManyArgs>(args?: SelectSubset<T, CyclePeriodStartCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CyclePeriodStarts and returns the data saved in the database.
+     * @param {CyclePeriodStartCreateManyAndReturnArgs} args - Arguments to create many CyclePeriodStarts.
+     * @example
+     * // Create many CyclePeriodStarts
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CyclePeriodStarts and only return the `id`
+     * const cyclePeriodStartWithIdOnly = await prisma.cyclePeriodStart.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CyclePeriodStartCreateManyAndReturnArgs>(args?: SelectSubset<T, CyclePeriodStartCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CyclePeriodStart.
+     * @param {CyclePeriodStartDeleteArgs} args - Arguments to delete one CyclePeriodStart.
+     * @example
+     * // Delete one CyclePeriodStart
+     * const CyclePeriodStart = await prisma.cyclePeriodStart.delete({
+     *   where: {
+     *     // ... filter to delete one CyclePeriodStart
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CyclePeriodStartDeleteArgs>(args: SelectSubset<T, CyclePeriodStartDeleteArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CyclePeriodStart.
+     * @param {CyclePeriodStartUpdateArgs} args - Arguments to update one CyclePeriodStart.
+     * @example
+     * // Update one CyclePeriodStart
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CyclePeriodStartUpdateArgs>(args: SelectSubset<T, CyclePeriodStartUpdateArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CyclePeriodStarts.
+     * @param {CyclePeriodStartDeleteManyArgs} args - Arguments to filter CyclePeriodStarts to delete.
+     * @example
+     * // Delete a few CyclePeriodStarts
+     * const { count } = await prisma.cyclePeriodStart.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CyclePeriodStartDeleteManyArgs>(args?: SelectSubset<T, CyclePeriodStartDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CyclePeriodStarts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CyclePeriodStarts
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CyclePeriodStartUpdateManyArgs>(args: SelectSubset<T, CyclePeriodStartUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CyclePeriodStarts and returns the data updated in the database.
+     * @param {CyclePeriodStartUpdateManyAndReturnArgs} args - Arguments to update many CyclePeriodStarts.
+     * @example
+     * // Update many CyclePeriodStarts
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CyclePeriodStarts and only return the `id`
+     * const cyclePeriodStartWithIdOnly = await prisma.cyclePeriodStart.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CyclePeriodStartUpdateManyAndReturnArgs>(args: SelectSubset<T, CyclePeriodStartUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CyclePeriodStart.
+     * @param {CyclePeriodStartUpsertArgs} args - Arguments to update or create a CyclePeriodStart.
+     * @example
+     * // Update or create a CyclePeriodStart
+     * const cyclePeriodStart = await prisma.cyclePeriodStart.upsert({
+     *   create: {
+     *     // ... data to create a CyclePeriodStart
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CyclePeriodStart we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CyclePeriodStartUpsertArgs>(args: SelectSubset<T, CyclePeriodStartUpsertArgs<ExtArgs>>): Prisma__CyclePeriodStartClient<$Result.GetResult<Prisma.$CyclePeriodStartPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CyclePeriodStarts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartCountArgs} args - Arguments to filter CyclePeriodStarts to count.
+     * @example
+     * // Count the number of CyclePeriodStarts
+     * const count = await prisma.cyclePeriodStart.count({
+     *   where: {
+     *     // ... the filter for the CyclePeriodStarts we want to count
+     *   }
+     * })
+    **/
+    count<T extends CyclePeriodStartCountArgs>(
+      args?: Subset<T, CyclePeriodStartCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CyclePeriodStartCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CyclePeriodStart.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CyclePeriodStartAggregateArgs>(args: Subset<T, CyclePeriodStartAggregateArgs>): Prisma.PrismaPromise<GetCyclePeriodStartAggregateType<T>>
+
+    /**
+     * Group by CyclePeriodStart.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CyclePeriodStartGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CyclePeriodStartGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CyclePeriodStartGroupByArgs['orderBy'] }
+        : { orderBy?: CyclePeriodStartGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CyclePeriodStartGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCyclePeriodStartGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CyclePeriodStart model
+   */
+  readonly fields: CyclePeriodStartFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CyclePeriodStart.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CyclePeriodStartClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CyclePeriodStart model
+   */
+  interface CyclePeriodStartFieldRefs {
+    readonly id: FieldRef<"CyclePeriodStart", 'String'>
+    readonly userId: FieldRef<"CyclePeriodStart", 'String'>
+    readonly startDate: FieldRef<"CyclePeriodStart", 'DateTime'>
+    readonly notes: FieldRef<"CyclePeriodStart", 'String'>
+    readonly createdAt: FieldRef<"CyclePeriodStart", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CyclePeriodStart findUnique
+   */
+  export type CyclePeriodStartFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * Filter, which CyclePeriodStart to fetch.
+     */
+    where: CyclePeriodStartWhereUniqueInput
+  }
+
+  /**
+   * CyclePeriodStart findUniqueOrThrow
+   */
+  export type CyclePeriodStartFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * Filter, which CyclePeriodStart to fetch.
+     */
+    where: CyclePeriodStartWhereUniqueInput
+  }
+
+  /**
+   * CyclePeriodStart findFirst
+   */
+  export type CyclePeriodStartFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * Filter, which CyclePeriodStart to fetch.
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CyclePeriodStarts to fetch.
+     */
+    orderBy?: CyclePeriodStartOrderByWithRelationInput | CyclePeriodStartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CyclePeriodStarts.
+     */
+    cursor?: CyclePeriodStartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CyclePeriodStarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CyclePeriodStarts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CyclePeriodStarts.
+     */
+    distinct?: CyclePeriodStartScalarFieldEnum | CyclePeriodStartScalarFieldEnum[]
+  }
+
+  /**
+   * CyclePeriodStart findFirstOrThrow
+   */
+  export type CyclePeriodStartFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * Filter, which CyclePeriodStart to fetch.
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CyclePeriodStarts to fetch.
+     */
+    orderBy?: CyclePeriodStartOrderByWithRelationInput | CyclePeriodStartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CyclePeriodStarts.
+     */
+    cursor?: CyclePeriodStartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CyclePeriodStarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CyclePeriodStarts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CyclePeriodStarts.
+     */
+    distinct?: CyclePeriodStartScalarFieldEnum | CyclePeriodStartScalarFieldEnum[]
+  }
+
+  /**
+   * CyclePeriodStart findMany
+   */
+  export type CyclePeriodStartFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * Filter, which CyclePeriodStarts to fetch.
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CyclePeriodStarts to fetch.
+     */
+    orderBy?: CyclePeriodStartOrderByWithRelationInput | CyclePeriodStartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CyclePeriodStarts.
+     */
+    cursor?: CyclePeriodStartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CyclePeriodStarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CyclePeriodStarts.
+     */
+    skip?: number
+    distinct?: CyclePeriodStartScalarFieldEnum | CyclePeriodStartScalarFieldEnum[]
+  }
+
+  /**
+   * CyclePeriodStart create
+   */
+  export type CyclePeriodStartCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CyclePeriodStart.
+     */
+    data: XOR<CyclePeriodStartCreateInput, CyclePeriodStartUncheckedCreateInput>
+  }
+
+  /**
+   * CyclePeriodStart createMany
+   */
+  export type CyclePeriodStartCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CyclePeriodStarts.
+     */
+    data: CyclePeriodStartCreateManyInput | CyclePeriodStartCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CyclePeriodStart createManyAndReturn
+   */
+  export type CyclePeriodStartCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * The data used to create many CyclePeriodStarts.
+     */
+    data: CyclePeriodStartCreateManyInput | CyclePeriodStartCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CyclePeriodStart update
+   */
+  export type CyclePeriodStartUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CyclePeriodStart.
+     */
+    data: XOR<CyclePeriodStartUpdateInput, CyclePeriodStartUncheckedUpdateInput>
+    /**
+     * Choose, which CyclePeriodStart to update.
+     */
+    where: CyclePeriodStartWhereUniqueInput
+  }
+
+  /**
+   * CyclePeriodStart updateMany
+   */
+  export type CyclePeriodStartUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CyclePeriodStarts.
+     */
+    data: XOR<CyclePeriodStartUpdateManyMutationInput, CyclePeriodStartUncheckedUpdateManyInput>
+    /**
+     * Filter which CyclePeriodStarts to update
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * Limit how many CyclePeriodStarts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CyclePeriodStart updateManyAndReturn
+   */
+  export type CyclePeriodStartUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * The data used to update CyclePeriodStarts.
+     */
+    data: XOR<CyclePeriodStartUpdateManyMutationInput, CyclePeriodStartUncheckedUpdateManyInput>
+    /**
+     * Filter which CyclePeriodStarts to update
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * Limit how many CyclePeriodStarts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CyclePeriodStart upsert
+   */
+  export type CyclePeriodStartUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CyclePeriodStart to update in case it exists.
+     */
+    where: CyclePeriodStartWhereUniqueInput
+    /**
+     * In case the CyclePeriodStart found by the `where` argument doesn't exist, create a new CyclePeriodStart with this data.
+     */
+    create: XOR<CyclePeriodStartCreateInput, CyclePeriodStartUncheckedCreateInput>
+    /**
+     * In case the CyclePeriodStart was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CyclePeriodStartUpdateInput, CyclePeriodStartUncheckedUpdateInput>
+  }
+
+  /**
+   * CyclePeriodStart delete
+   */
+  export type CyclePeriodStartDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
+    /**
+     * Filter which CyclePeriodStart to delete.
+     */
+    where: CyclePeriodStartWhereUniqueInput
+  }
+
+  /**
+   * CyclePeriodStart deleteMany
+   */
+  export type CyclePeriodStartDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CyclePeriodStarts to delete
+     */
+    where?: CyclePeriodStartWhereInput
+    /**
+     * Limit how many CyclePeriodStarts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CyclePeriodStart without action
+   */
+  export type CyclePeriodStartDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CyclePeriodStart
+     */
+    select?: CyclePeriodStartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CyclePeriodStart
+     */
+    omit?: CyclePeriodStartOmit<ExtArgs> | null
   }
 
 
@@ -11162,11 +12321,25 @@ export namespace Prisma {
     energyPreference: 'energyPreference',
     checkInStyle: 'checkInStyle',
     trackingPreference: 'trackingPreference',
+    cycleTrackingEnabled: 'cycleTrackingEnabled',
+    typicalCycleLength: 'typicalCycleLength',
+    cycleBackfillOfferConsumed: 'cycleBackfillOfferConsumed',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type UserPreferenceScalarFieldEnum = (typeof UserPreferenceScalarFieldEnum)[keyof typeof UserPreferenceScalarFieldEnum]
+
+
+  export const CyclePeriodStartScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    startDate: 'startDate',
+    notes: 'notes',
+    createdAt: 'createdAt'
+  };
+
+  export type CyclePeriodStartScalarFieldEnum = (typeof CyclePeriodStartScalarFieldEnum)[keyof typeof CyclePeriodStartScalarFieldEnum]
 
 
   export const ActivityScalarFieldEnum: {
@@ -11318,20 +12491,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -11342,6 +12501,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -11424,6 +12597,9 @@ export namespace Prisma {
     energyPreference?: StringNullableFilter<"UserPreference"> | string | null
     checkInStyle?: StringNullableFilter<"UserPreference"> | string | null
     trackingPreference?: StringNullableFilter<"UserPreference"> | string | null
+    cycleTrackingEnabled?: BoolFilter<"UserPreference"> | boolean
+    typicalCycleLength?: IntFilter<"UserPreference"> | number
+    cycleBackfillOfferConsumed?: BoolFilter<"UserPreference"> | boolean
     createdAt?: DateTimeFilter<"UserPreference"> | Date | string
     updatedAt?: DateTimeFilter<"UserPreference"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -11436,6 +12612,9 @@ export namespace Prisma {
     energyPreference?: SortOrderInput | SortOrder
     checkInStyle?: SortOrderInput | SortOrder
     trackingPreference?: SortOrderInput | SortOrder
+    cycleTrackingEnabled?: SortOrder
+    typicalCycleLength?: SortOrder
+    cycleBackfillOfferConsumed?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -11451,6 +12630,9 @@ export namespace Prisma {
     energyPreference?: StringNullableFilter<"UserPreference"> | string | null
     checkInStyle?: StringNullableFilter<"UserPreference"> | string | null
     trackingPreference?: StringNullableFilter<"UserPreference"> | string | null
+    cycleTrackingEnabled?: BoolFilter<"UserPreference"> | boolean
+    typicalCycleLength?: IntFilter<"UserPreference"> | number
+    cycleBackfillOfferConsumed?: BoolFilter<"UserPreference"> | boolean
     createdAt?: DateTimeFilter<"UserPreference"> | Date | string
     updatedAt?: DateTimeFilter<"UserPreference"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -11463,11 +12645,16 @@ export namespace Prisma {
     energyPreference?: SortOrderInput | SortOrder
     checkInStyle?: SortOrderInput | SortOrder
     trackingPreference?: SortOrderInput | SortOrder
+    cycleTrackingEnabled?: SortOrder
+    typicalCycleLength?: SortOrder
+    cycleBackfillOfferConsumed?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserPreferenceCountOrderByAggregateInput
+    _avg?: UserPreferenceAvgOrderByAggregateInput
     _max?: UserPreferenceMaxOrderByAggregateInput
     _min?: UserPreferenceMinOrderByAggregateInput
+    _sum?: UserPreferenceSumOrderByAggregateInput
   }
 
   export type UserPreferenceScalarWhereWithAggregatesInput = {
@@ -11480,8 +12667,63 @@ export namespace Prisma {
     energyPreference?: StringNullableWithAggregatesFilter<"UserPreference"> | string | null
     checkInStyle?: StringNullableWithAggregatesFilter<"UserPreference"> | string | null
     trackingPreference?: StringNullableWithAggregatesFilter<"UserPreference"> | string | null
+    cycleTrackingEnabled?: BoolWithAggregatesFilter<"UserPreference"> | boolean
+    typicalCycleLength?: IntWithAggregatesFilter<"UserPreference"> | number
+    cycleBackfillOfferConsumed?: BoolWithAggregatesFilter<"UserPreference"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"UserPreference"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"UserPreference"> | Date | string
+  }
+
+  export type CyclePeriodStartWhereInput = {
+    AND?: CyclePeriodStartWhereInput | CyclePeriodStartWhereInput[]
+    OR?: CyclePeriodStartWhereInput[]
+    NOT?: CyclePeriodStartWhereInput | CyclePeriodStartWhereInput[]
+    id?: StringFilter<"CyclePeriodStart"> | string
+    userId?: StringFilter<"CyclePeriodStart"> | string
+    startDate?: DateTimeFilter<"CyclePeriodStart"> | Date | string
+    notes?: StringNullableFilter<"CyclePeriodStart"> | string | null
+    createdAt?: DateTimeFilter<"CyclePeriodStart"> | Date | string
+  }
+
+  export type CyclePeriodStartOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startDate?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CyclePeriodStartWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CyclePeriodStartWhereInput | CyclePeriodStartWhereInput[]
+    OR?: CyclePeriodStartWhereInput[]
+    NOT?: CyclePeriodStartWhereInput | CyclePeriodStartWhereInput[]
+    userId?: StringFilter<"CyclePeriodStart"> | string
+    startDate?: DateTimeFilter<"CyclePeriodStart"> | Date | string
+    notes?: StringNullableFilter<"CyclePeriodStart"> | string | null
+    createdAt?: DateTimeFilter<"CyclePeriodStart"> | Date | string
+  }, "id">
+
+  export type CyclePeriodStartOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startDate?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: CyclePeriodStartCountOrderByAggregateInput
+    _max?: CyclePeriodStartMaxOrderByAggregateInput
+    _min?: CyclePeriodStartMinOrderByAggregateInput
+  }
+
+  export type CyclePeriodStartScalarWhereWithAggregatesInput = {
+    AND?: CyclePeriodStartScalarWhereWithAggregatesInput | CyclePeriodStartScalarWhereWithAggregatesInput[]
+    OR?: CyclePeriodStartScalarWhereWithAggregatesInput[]
+    NOT?: CyclePeriodStartScalarWhereWithAggregatesInput | CyclePeriodStartScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CyclePeriodStart"> | string
+    userId?: StringWithAggregatesFilter<"CyclePeriodStart"> | string
+    startDate?: DateTimeWithAggregatesFilter<"CyclePeriodStart"> | Date | string
+    notes?: StringNullableWithAggregatesFilter<"CyclePeriodStart"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CyclePeriodStart"> | Date | string
   }
 
   export type ActivityWhereInput = {
@@ -11976,6 +13218,9 @@ export namespace Prisma {
     energyPreference?: string | null
     checkInStyle?: string | null
     trackingPreference?: string | null
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: number
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPreferencesInput
@@ -11988,6 +13233,9 @@ export namespace Prisma {
     energyPreference?: string | null
     checkInStyle?: string | null
     trackingPreference?: string | null
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: number
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11998,6 +13246,9 @@ export namespace Prisma {
     energyPreference?: NullableStringFieldUpdateOperationsInput | string | null
     checkInStyle?: NullableStringFieldUpdateOperationsInput | string | null
     trackingPreference?: NullableStringFieldUpdateOperationsInput | string | null
+    cycleTrackingEnabled?: BoolFieldUpdateOperationsInput | boolean
+    typicalCycleLength?: IntFieldUpdateOperationsInput | number
+    cycleBackfillOfferConsumed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPreferencesNestedInput
@@ -12010,6 +13261,9 @@ export namespace Prisma {
     energyPreference?: NullableStringFieldUpdateOperationsInput | string | null
     checkInStyle?: NullableStringFieldUpdateOperationsInput | string | null
     trackingPreference?: NullableStringFieldUpdateOperationsInput | string | null
+    cycleTrackingEnabled?: BoolFieldUpdateOperationsInput | boolean
+    typicalCycleLength?: IntFieldUpdateOperationsInput | number
+    cycleBackfillOfferConsumed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12021,6 +13275,9 @@ export namespace Prisma {
     energyPreference?: string | null
     checkInStyle?: string | null
     trackingPreference?: string | null
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: number
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12031,6 +13288,9 @@ export namespace Prisma {
     energyPreference?: NullableStringFieldUpdateOperationsInput | string | null
     checkInStyle?: NullableStringFieldUpdateOperationsInput | string | null
     trackingPreference?: NullableStringFieldUpdateOperationsInput | string | null
+    cycleTrackingEnabled?: BoolFieldUpdateOperationsInput | boolean
+    typicalCycleLength?: IntFieldUpdateOperationsInput | number
+    cycleBackfillOfferConsumed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12042,8 +13302,67 @@ export namespace Prisma {
     energyPreference?: NullableStringFieldUpdateOperationsInput | string | null
     checkInStyle?: NullableStringFieldUpdateOperationsInput | string | null
     trackingPreference?: NullableStringFieldUpdateOperationsInput | string | null
+    cycleTrackingEnabled?: BoolFieldUpdateOperationsInput | boolean
+    typicalCycleLength?: IntFieldUpdateOperationsInput | number
+    cycleBackfillOfferConsumed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CyclePeriodStartCreateInput = {
+    id?: string
+    userId: string
+    startDate: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type CyclePeriodStartUncheckedCreateInput = {
+    id?: string
+    userId: string
+    startDate: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type CyclePeriodStartUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CyclePeriodStartUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CyclePeriodStartCreateManyInput = {
+    id?: string
+    userId: string
+    startDate: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type CyclePeriodStartUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CyclePeriodStartUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActivityCreateInput = {
@@ -12638,6 +13957,22 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -12661,8 +13996,15 @@ export namespace Prisma {
     energyPreference?: SortOrder
     checkInStyle?: SortOrder
     trackingPreference?: SortOrder
+    cycleTrackingEnabled?: SortOrder
+    typicalCycleLength?: SortOrder
+    cycleBackfillOfferConsumed?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserPreferenceAvgOrderByAggregateInput = {
+    typicalCycleLength?: SortOrder
   }
 
   export type UserPreferenceMaxOrderByAggregateInput = {
@@ -12671,6 +14013,9 @@ export namespace Prisma {
     energyPreference?: SortOrder
     checkInStyle?: SortOrder
     trackingPreference?: SortOrder
+    cycleTrackingEnabled?: SortOrder
+    typicalCycleLength?: SortOrder
+    cycleBackfillOfferConsumed?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12681,8 +14026,39 @@ export namespace Prisma {
     energyPreference?: SortOrder
     checkInStyle?: SortOrder
     trackingPreference?: SortOrder
+    cycleTrackingEnabled?: SortOrder
+    typicalCycleLength?: SortOrder
+    cycleBackfillOfferConsumed?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserPreferenceSumOrderByAggregateInput = {
+    typicalCycleLength?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -12699,9 +14075,28 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type CyclePeriodStartCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startDate?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CyclePeriodStartMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startDate?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CyclePeriodStartMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startDate?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ActivityCountOrderByAggregateInput = {
@@ -12734,14 +14129,6 @@ export namespace Prisma {
     journal?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -12751,17 +14138,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type FloatNullableFilter<$PrismaModel = never> = {
@@ -12841,22 +14217,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13159,6 +14519,18 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -13177,10 +14549,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type UserUpdateOneRequiredWithoutActivitiesNestedInput = {
     create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
     connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput
@@ -13190,14 +14558,6 @@ export namespace Prisma {
   }
 
   export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
@@ -13336,6 +14696,11 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -13345,6 +14710,41 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -13359,30 +14759,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
@@ -13410,22 +14786,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13498,6 +14858,9 @@ export namespace Prisma {
     energyPreference?: string | null
     checkInStyle?: string | null
     trackingPreference?: string | null
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: number
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13508,6 +14871,9 @@ export namespace Prisma {
     energyPreference?: string | null
     checkInStyle?: string | null
     trackingPreference?: string | null
+    cycleTrackingEnabled?: boolean
+    typicalCycleLength?: number
+    cycleBackfillOfferConsumed?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13588,6 +14954,9 @@ export namespace Prisma {
     energyPreference?: NullableStringFieldUpdateOperationsInput | string | null
     checkInStyle?: NullableStringFieldUpdateOperationsInput | string | null
     trackingPreference?: NullableStringFieldUpdateOperationsInput | string | null
+    cycleTrackingEnabled?: BoolFieldUpdateOperationsInput | boolean
+    typicalCycleLength?: IntFieldUpdateOperationsInput | number
+    cycleBackfillOfferConsumed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13598,6 +14967,9 @@ export namespace Prisma {
     energyPreference?: NullableStringFieldUpdateOperationsInput | string | null
     checkInStyle?: NullableStringFieldUpdateOperationsInput | string | null
     trackingPreference?: NullableStringFieldUpdateOperationsInput | string | null
+    cycleTrackingEnabled?: BoolFieldUpdateOperationsInput | boolean
+    typicalCycleLength?: IntFieldUpdateOperationsInput | number
+    cycleBackfillOfferConsumed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
