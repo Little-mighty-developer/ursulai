@@ -8,9 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:studio": "prisma studio"
+    "db:generate": "dotenv -e .env -e .env.local -o -- prisma generate",
+    "db:migrate": "dotenv -e .env -e .env.local -o -- prisma migrate dev",
+    "db:migrate:deploy": "dotenv -e .env -e .env.local -o -- prisma migrate deploy",
+    "db:studio": "dotenv -e .env -e .env.local -o -- prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^6.7.0",
@@ -31,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.27.0",
     "eslint-config-next": "^15.3.6",
     "eslint-plugin-next": "^0.0.0",

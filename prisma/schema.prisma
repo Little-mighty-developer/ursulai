@@ -28,15 +28,28 @@ model User {
 }
 
 model UserPreference {
-  id                 String   @id @default(uuid())
-  user               User     @relation(fields: [userId], references: [id])
-  userId             String   @unique
-  intentions         String[] // multi-select: gentle reflection, patterns, etc.
-  energyPreference   String?  // simple, guidance, structure
-  checkInStyle       String?  // visual, writing, thinking, changes
-  trackingPreference String?  // patterns, gentle, no pressure, see how
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id                   String   @id @default(uuid())
+  user                 User     @relation(fields: [userId], references: [id])
+  userId               String   @unique
+  intentions           String[] // multi-select: gentle reflection, patterns, etc.
+  energyPreference     String?  // simple, guidance, structure
+  checkInStyle         String?  // visual, writing, thinking, changes
+  trackingPreference   String?  // patterns, gentle, no pressure, see how
+  cycleTrackingEnabled         Boolean  @default(false)
+  typicalCycleLength           Int      @default(28) // fallback until enough period logs
+  cycleBackfillOfferConsumed   Boolean  @default(false) // one-time bulk paste on cycle log
+  createdAt                    DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model CyclePeriodStart {
+  id        String   @id @default(uuid())
+  userId    String
+  startDate DateTime @db.Date
+  notes     String?
+  createdAt DateTime @default(now())
+
+  @@index([userId, startDate(sort: Desc)])
 }
 
 model Activity {

@@ -90,11 +90,9 @@ name = "shellcheck"
 [[plugin]]
 name = "shfmt"
 
-[[plugin]]
-name = "trivy"
-drivers = [
-  "fs-vuln",
-]
+# Trivy (fs-vuln) needs to pull aquasec/trivy-db via OCI; Docker credential
+# helpers often fail in sandboxes or when $USER is unset (see docker-credential-desktop).
+# Re-enable with: qlty plugins enable trivy — dependency vulns are still covered by osv-scanner above.
 
 [[plugin]]
 name = "trufflehog"

@@ -136,8 +136,19 @@ exports.Prisma.UserPreferenceScalarFieldEnum = {
   energyPreference: 'energyPreference',
   checkInStyle: 'checkInStyle',
   trackingPreference: 'trackingPreference',
+  cycleTrackingEnabled: 'cycleTrackingEnabled',
+  typicalCycleLength: 'typicalCycleLength',
+  cycleBackfillOfferConsumed: 'cycleBackfillOfferConsumed',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CyclePeriodStartScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  startDate: 'startDate',
+  notes: 'notes',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ActivityScalarFieldEnum = {
@@ -222,6 +233,7 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   User: 'User',
   UserPreference: 'UserPreference',
+  CyclePeriodStart: 'CyclePeriodStart',
   Activity: 'Activity',
   MoodEntry: 'MoodEntry',
   SymptomEvent: 'SymptomEvent',
