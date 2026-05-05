@@ -102,7 +102,9 @@ export default function JournalEntriesWidget() {
 
   return (
     <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center w-full">
-      <span className="text-lg font-semibold mb-2">Journal Entries</span>
+      <span className="mb-2 text-base font-semibold leading-tight text-gray-900">
+        Journal Entries
+      </span>
       <span className="text-4xl font-bold text-purple-700 mb-4">
         {isLoading ? "..." : entries.length}
       </span>

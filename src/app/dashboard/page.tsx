@@ -87,11 +87,14 @@ export default function DashboardPage() {
         <div className="dashboard-main mx-auto flex w-full max-w-[1200px] flex-col gap-3 lg:flex-row lg:items-start lg:gap-8">
           {/* Left column — second on phones so logo/cycle stay up top */}
           <div className="order-2 flex w-full min-w-0 flex-col gap-3 lg:order-1 lg:w-[320px] lg:shrink-0">
-            <DashboardCard>
+            <DashboardCard className="p-4">
               <WeatherWidget />
             </DashboardCard>
             <DashboardCard>
-              <NoteToSelf />
+              <MoodWidget />
+            </DashboardCard>
+            <DashboardCard>
+              <PhysicalSymptomsWidget />
             </DashboardCard>
           </div>
           {/* Center: logo + cycle */}
@@ -103,6 +106,9 @@ export default function DashboardPage() {
               height={360}
               className="bouncy-glow h-auto w-full max-w-[360px]"
             />
+            <DashboardCard>
+              <JournalEntriesWidget />
+            </DashboardCard>
             <CycleWidget />
           </div>
           {/* Right: calendar, gratitude, mood, then journal + symptoms */}
@@ -111,16 +117,10 @@ export default function DashboardPage() {
               <CalendarWidget />
             </DashboardCard>
             <DashboardCard>
+              <NoteToSelf />
+            </DashboardCard>
+            <DashboardCard>
               <GratitudeWidget />
-            </DashboardCard>
-            <DashboardCard>
-              <MoodWidget />
-            </DashboardCard>
-            <DashboardCard>
-              <JournalEntriesWidget />
-            </DashboardCard>
-            <DashboardCard>
-              <PhysicalSymptomsWidget />
             </DashboardCard>
           </div>
         </div>
