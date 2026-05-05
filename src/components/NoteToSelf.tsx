@@ -110,7 +110,7 @@ export default function NoteToSelf() {
       className="bg-white rounded-3xl shadow-lg p-5 flex flex-col items-center"
       style={{ minWidth: 260 }}
     >
-      <h2 className="text-2xl font-bold text-center mb-4 text-gray-900">
+      <h2 className="mb-4 text-base font-semibold leading-tight text-center text-gray-900">
         Note to Self{" "}
         <span role="img" aria-label="sparkles">
           ✨

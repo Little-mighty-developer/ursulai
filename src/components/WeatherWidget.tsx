@@ -104,10 +104,11 @@ function formatTimeUserTZ(unixUtc: number) {
 export default function WeatherWidget() {
   const { weather, overview, loading, error } = useWeatherData();
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showFullSuggestion, setShowFullSuggestion] = useState(false);
 
   if (loading) {
     return (
-      <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
+      <div className="flex w-full flex-col items-center">
         <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
         <div className="text-gray-600">Loading weather...</div>
       </div>
@@ -116,7 +117,7 @@ export default function WeatherWidget() {
 
   if (error) {
     return (
-      <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
+      <div className="flex w-full flex-col items-center">
         <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
         <div className="text-red-600 text-sm text-center">{error}</div>
       </div>
@@ -125,7 +126,7 @@ export default function WeatherWidget() {
 
   if (!weather) {
     return (
-      <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
+      <div className="flex w-full flex-col items-center">
         <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
         <div className="text-gray-600 text-sm">Weather unavailable</div>
       </div>
@@ -159,15 +160,15 @@ export default function WeatherWidget() {
   );
 
   return (
-    <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-xl shadow p-6 flex flex-col items-center">
-      <span className="text-lg font-semibold mb-2">Today's Atmosphere</span>
+    <div className="flex w-full flex-col items-center">
+      <span className="text-base font-semibold mb-2">Today's Atmosphere</span>
       <img
         src={iconUrl}
         alt={weather.weather[0].description}
-        className="w-20 h-20 mb-2 drop-shadow-lg animate-float"
+        className="h-14 w-14 sm:h-16 sm:w-16 mb-2 drop-shadow-lg animate-float"
       />
       <div className="relative flex items-center">
-        <span className="text-5xl font-extrabold">{temp}°C</span>
+        <span className="text-3xl sm:text-4xl font-extrabold">{temp}°C</span>
         <span
           className="ml-2 cursor-pointer text-gray-400"
           onMouseEnter={() => setShowTooltip(true)}
@@ -184,17 +185,31 @@ export default function WeatherWidget() {
       <span className="text-sm text-gray-500 italic mt-1">
         {location} feels like {feelsLike}°C
       </span>
-      <div className="flex gap-4 mt-2 text-sm text-gray-600">
+      <div className="mt-2 grid w-full grid-cols-2 gap-x-3 gap-y-1 text-xs text-gray-600">
         <span>Humidity: {humidity}%</span>
-        <span>Wind: {wind} m/s</span>
+        <span className="text-right">Wind: {wind} m/s</span>
+        <span>🌅 {formatTimeUserTZ(sunrise)}</span>
+        <span className="text-right">🌆 {formatTimeUserTZ(sunset)}</span>
       </div>
-      <div className="flex gap-4 mt-2 text-sm text-gray-600">
-        <span>🌅 Sunrise: {formatTimeUserTZ(sunrise)}</span>
-        <span>🌆 Sunset: {formatTimeUserTZ(sunset)}</span>
-      </div>
-      <div className="mt-4 text-center">
-        <span className="text-2xl">{emoji}</span>
-        <p className="text-sm text-gray-800 mt-1">{message}</p>
+      <div className="mt-3 w-full text-center">
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-xl">{emoji}</span>
+          <button
+            type="button"
+            onClick={() => setShowFullSuggestion((v) => !v)}
+            className="text-xs font-medium text-gray-700 underline underline-offset-2 hover:text-gray-900"
+          >
+            {showFullSuggestion ? "Less" : "More"}
+          </button>
+        </div>
+        <p
+          className={[
+            "mt-1 text-sm text-gray-800",
+            showFullSuggestion ? "" : "max-h-10 overflow-hidden",
+          ].join(" ")}
+        >
+          {message}
+        </p>
       </div>
     </div>
   );
