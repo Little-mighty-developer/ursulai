@@ -5,7 +5,7 @@ import Link from "next/link";
 import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 import WeatherWidget from "@/components/WeatherWidget";
 import CalendarWidget from "@/components/CalendarWidget";
-import MoodWidget from "@/components/MoodWidget";
+import MoodTracker from "@/components/MoodTracker";
 import CycleWidget from "@/components/CycleWidget";
 import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget";
 import NoteToSelf from "@/components/NoteToSelf";
@@ -90,9 +90,8 @@ export default function DashboardPage() {
             <DashboardCard className="p-4">
               <WeatherWidget />
             </DashboardCard>
-            <DashboardCard>
-              <MoodWidget />
-            </DashboardCard>
+            {/* MoodTracker renders its own card styling */}
+            <MoodTracker />
             <DashboardCard>
               <PhysicalSymptomsWidget />
             </DashboardCard>

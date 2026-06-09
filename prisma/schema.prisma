@@ -66,11 +66,11 @@ model Activity {
 model MoodEntry {
   id        String   @id @default(uuid())
   userId    String
-  valence   Float    // -1.0 (unpleasant) to 1.0 (pleasant)
-  arousal   Float    // -1.0 (low energy) to 1.0 (high energy)
-  region    Int      // 0-7, the petal region ID
-  clickX    Float?   // Optional: X coordinate of click position
-  clickY    Float?   // Optional: Y coordinate of click position
+  valence   Float    // -1.0 (difficult) to 1.0 (good)
+  arousal   Float    // -1.0 (drained) to 1.0 (energised)
+  region    Int?     // Legacy: petal region ID from old flower selector
+  clickX    Float?   // Legacy: X coordinate from old flower selector
+  clickY    Float?   // Legacy: Y coordinate from old flower selector
   notes     String?  // Optional: User's notes about their mood
   createdAt DateTime @default(now())
   
