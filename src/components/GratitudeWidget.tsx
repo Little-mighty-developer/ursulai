@@ -195,12 +195,9 @@ export default function GratitudeWidget() {
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-center gap-2 mb-2 w-full">
-        <span className="text-base">🌱</span>
-        <h2 className="text-base font-semibold text-center text-gray-800">
-          Gentle gratitude practice
-        </h2>
-      </div>
+      <h2 className="mb-2 text-base font-semibold leading-tight text-center text-gray-900">
+        Gentle gratitude practice 🌱
+      </h2>
 
       {/* Subtext */}
       <p className="text-xs text-gray-600 mb-4 text-center leading-relaxed">

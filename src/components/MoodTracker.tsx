@@ -69,17 +69,17 @@ export default function MoodTracker() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white via-purple-50 to-pink-50 rounded-3xl shadow-lg p-6 sm:p-8 max-w-xl w-full mx-auto">
-      <h2 className="text-2xl font-bold text-center text-gray-800">
-        How are you right now? 🧡
+    <div className="bg-gradient-to-br from-white via-purple-50 to-pink-50 rounded-3xl shadow-lg p-5 max-w-xl w-full mx-auto">
+      <h2 className="mb-2 text-base font-semibold leading-tight text-center text-gray-900">
+        Vibe Check Minis 🧡
       </h2>
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         {/* Energy */}
         <div>
           <label
             htmlFor="energy-slider"
-            className="block text-base font-semibold text-gray-700 mb-4"
+            className="block text-sm font-semibold text-gray-700 mb-2"
           >
             Energy
           </label>
@@ -94,7 +94,7 @@ export default function MoodTracker() {
             aria-valuetext={energyWords(energy)}
             className={SLIDER_CLASSES}
           />
-          <div className="flex justify-between mt-3 text-sm text-gray-500">
+          <div className="flex justify-between mt-1.5 text-xs text-gray-500">
             <span>😴 Drained</span>
             <span>⚡ Energised</span>
           </div>
@@ -104,7 +104,7 @@ export default function MoodTracker() {
         <div>
           <label
             htmlFor="mood-slider"
-            className="block text-base font-semibold text-gray-700 mb-4"
+            className="block text-sm font-semibold text-gray-700 mb-2"
           >
             Mood
           </label>
@@ -119,7 +119,7 @@ export default function MoodTracker() {
             aria-valuetext={moodWords(mood)}
             className={SLIDER_CLASSES}
           />
-          <div className="flex justify-between mt-3 text-sm text-gray-500">
+          <div className="flex justify-between mt-1.5 text-xs text-gray-500">
             <span>😔 Difficult</span>
             <span>🌥️ Mixed</span>
             <span>😊 Good</span>
@@ -136,23 +136,23 @@ export default function MoodTracker() {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Optional notes about how you're feeling…"
-            rows={3}
-            className="w-full px-4 py-3 bg-white/70 rounded-2xl text-sm text-gray-700 placeholder-gray-400 resize-none focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
+            rows={2}
+            className="w-full px-3 py-2 bg-white/70 rounded-2xl text-sm text-gray-700 placeholder-gray-400 resize-none focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
           />
         </div>
 
-        <div className="flex flex-col items-center gap-3">
+        <div className="relative flex items-center justify-center">
           <button
             onClick={handleSubmit}
             disabled={saving}
-            className="px-10 py-3 bg-gradient-to-r from-indigo-400 to-purple-400 text-white rounded-full font-semibold hover:from-indigo-500 hover:to-purple-500 transition shadow-md disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2"
+            className="px-8 py-2 bg-gradient-to-r from-indigo-400 to-purple-400 text-white rounded-full font-semibold hover:from-indigo-500 hover:to-purple-500 transition shadow-md disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2"
           >
             {saving ? "Saving…" : "Save"}
           </button>
           <p
             role="status"
             aria-live="polite"
-            className={`text-sm text-purple-500 transition-opacity duration-300 ${
+            className={`absolute right-0 top-1/2 -translate-y-1/2 text-sm text-purple-500 transition-opacity duration-300 ${
               saved ? "opacity-100" : "opacity-0"
             }`}
           >
