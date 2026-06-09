@@ -6498,7 +6498,7 @@ export namespace Prisma {
     userId: string
     valence: number
     arousal: number
-    region: number
+    region: number | null
     clickX: number | null
     clickY: number | null
     notes: string | null
@@ -6582,7 +6582,7 @@ export namespace Prisma {
       userId: string
       valence: number
       arousal: number
-      region: number
+      region: number | null
       clickX: number | null
       clickY: number | null
       notes: string | null
@@ -15055,7 +15055,7 @@ export namespace Prisma {
     userId?: StringFilter<"MoodEntry"> | string
     valence?: FloatFilter<"MoodEntry"> | number
     arousal?: FloatFilter<"MoodEntry"> | number
-    region?: IntFilter<"MoodEntry"> | number
+    region?: IntNullableFilter<"MoodEntry"> | number | null
     clickX?: FloatNullableFilter<"MoodEntry"> | number | null
     clickY?: FloatNullableFilter<"MoodEntry"> | number | null
     notes?: StringNullableFilter<"MoodEntry"> | string | null
@@ -15067,7 +15067,7 @@ export namespace Prisma {
     userId?: SortOrder
     valence?: SortOrder
     arousal?: SortOrder
-    region?: SortOrder
+    region?: SortOrderInput | SortOrder
     clickX?: SortOrderInput | SortOrder
     clickY?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
@@ -15082,7 +15082,7 @@ export namespace Prisma {
     userId?: StringFilter<"MoodEntry"> | string
     valence?: FloatFilter<"MoodEntry"> | number
     arousal?: FloatFilter<"MoodEntry"> | number
-    region?: IntFilter<"MoodEntry"> | number
+    region?: IntNullableFilter<"MoodEntry"> | number | null
     clickX?: FloatNullableFilter<"MoodEntry"> | number | null
     clickY?: FloatNullableFilter<"MoodEntry"> | number | null
     notes?: StringNullableFilter<"MoodEntry"> | string | null
@@ -15094,7 +15094,7 @@ export namespace Prisma {
     userId?: SortOrder
     valence?: SortOrder
     arousal?: SortOrder
-    region?: SortOrder
+    region?: SortOrderInput | SortOrder
     clickX?: SortOrderInput | SortOrder
     clickY?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
@@ -15114,7 +15114,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"MoodEntry"> | string
     valence?: FloatWithAggregatesFilter<"MoodEntry"> | number
     arousal?: FloatWithAggregatesFilter<"MoodEntry"> | number
-    region?: IntWithAggregatesFilter<"MoodEntry"> | number
+    region?: IntNullableWithAggregatesFilter<"MoodEntry"> | number | null
     clickX?: FloatNullableWithAggregatesFilter<"MoodEntry"> | number | null
     clickY?: FloatNullableWithAggregatesFilter<"MoodEntry"> | number | null
     notes?: StringNullableWithAggregatesFilter<"MoodEntry"> | string | null
@@ -15824,7 +15824,7 @@ export namespace Prisma {
     userId: string
     valence: number
     arousal: number
-    region: number
+    region?: number | null
     clickX?: number | null
     clickY?: number | null
     notes?: string | null
@@ -15836,7 +15836,7 @@ export namespace Prisma {
     userId: string
     valence: number
     arousal: number
-    region: number
+    region?: number | null
     clickX?: number | null
     clickY?: number | null
     notes?: string | null
@@ -15848,7 +15848,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     valence?: FloatFieldUpdateOperationsInput | number
     arousal?: FloatFieldUpdateOperationsInput | number
-    region?: IntFieldUpdateOperationsInput | number
+    region?: NullableIntFieldUpdateOperationsInput | number | null
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15860,7 +15860,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     valence?: FloatFieldUpdateOperationsInput | number
     arousal?: FloatFieldUpdateOperationsInput | number
-    region?: IntFieldUpdateOperationsInput | number
+    region?: NullableIntFieldUpdateOperationsInput | number | null
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15872,7 +15872,7 @@ export namespace Prisma {
     userId: string
     valence: number
     arousal: number
-    region: number
+    region?: number | null
     clickX?: number | null
     clickY?: number | null
     notes?: string | null
@@ -15884,7 +15884,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     valence?: FloatFieldUpdateOperationsInput | number
     arousal?: FloatFieldUpdateOperationsInput | number
-    region?: IntFieldUpdateOperationsInput | number
+    region?: NullableIntFieldUpdateOperationsInput | number | null
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15896,7 +15896,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     valence?: FloatFieldUpdateOperationsInput | number
     arousal?: FloatFieldUpdateOperationsInput | number
-    region?: IntFieldUpdateOperationsInput | number
+    region?: NullableIntFieldUpdateOperationsInput | number | null
     clickX?: NullableFloatFieldUpdateOperationsInput | number | null
     clickY?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16672,6 +16672,17 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -16749,6 +16760,22 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -17156,6 +17183,14 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NullableFloatFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -17395,6 +17430,22 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {

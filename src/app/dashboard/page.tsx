@@ -1,17 +1,54 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import JournalEntriesWidget from "@/components/JournalEntriesWidget";
-import WeatherWidget from "@/components/WeatherWidget";
-import CalendarWidget from "@/components/CalendarWidget";
-import MoodWidget from "@/components/MoodWidget";
+// import TodayCard from "@/components/TodayCard"; // Weather card hidden for now
+import MoodTracker from "@/components/MoodTracker";
 import CycleWidget from "@/components/CycleWidget";
 import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget";
 import NoteToSelf from "@/components/NoteToSelf";
 import GratitudeWidget from "@/components/GratitudeWidget";
 import QuickCallButton from "@/components/QuickCallButton";
 import Image from "next/image";
+
+function getTimeOfDay(): string {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return "Morning";
+  if (hour >= 12 && hour < 17) return "Afternoon";
+  if (hour >= 17 && hour < 21) return "Evening";
+  return "Night";
+}
+
+function formatDate(): string {
+  const date = new Date();
+  const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
+  const monthName = date.toLocaleDateString("en-US", { month: "long" });
+  const day = date.getDate();
+  return `${dayName} · ${monthName} ${day}`;
+}
+
+function HeaderDate() {
+  const [dateString, setDateString] = useState<string>(formatDate());
+  const [timeOfDay, setTimeOfDay] = useState<string>(getTimeOfDay());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDateString(formatDate());
+      setTimeOfDay(getTimeOfDay());
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="text-center">
+      <div className="font-semibold text-gray-800">{dateString}</div>
+      <div className="text-sm text-gray-500">{timeOfDay}</div>
+    </div>
+  );
+}
 
 function DashboardCard({
   children,
@@ -64,6 +101,7 @@ export default function DashboardPage() {
               )}
             </div>
           </div>
+          <HeaderDate />
           <div className="flex items-center gap-2">
             <Link
               href="/profile"
@@ -87,17 +125,18 @@ export default function DashboardPage() {
         <div className="dashboard-main mx-auto flex w-full max-w-[1200px] flex-col gap-3 lg:flex-row lg:items-start lg:gap-8">
           {/* Left column — second on phones so logo/cycle stay up top */}
           <div className="order-2 flex w-full min-w-0 flex-col gap-3 lg:order-1 lg:w-[320px] lg:shrink-0">
-            <DashboardCard className="p-4">
-              <WeatherWidget />
-            </DashboardCard>
+            {/* Weather card hidden for now */}
+            {/* <TodayCard /> */}
             <DashboardCard>
-              <MoodWidget />
+              <JournalEntriesWidget />
             </DashboardCard>
+            {/* MoodTracker renders its own card styling */}
+            <MoodTracker />
             <DashboardCard>
               <PhysicalSymptomsWidget />
             </DashboardCard>
           </div>
-          {/* Center: logo + cycle */}
+          {/* Center: logo + note to self */}
           <div className="order-1 flex w-full min-w-0 flex-col items-center gap-3 lg:order-2 lg:w-[400px] lg:shrink-0">
             <Image
               src="/logo.png"
@@ -107,21 +146,15 @@ export default function DashboardPage() {
               className="bouncy-glow h-auto w-full max-w-[360px]"
             />
             <DashboardCard>
-              <JournalEntriesWidget />
-            </DashboardCard>
-            <CycleWidget />
-          </div>
-          {/* Right: calendar, gratitude, mood, then journal + symptoms */}
-          <div className="order-3 flex w-full min-w-0 flex-col gap-3 lg:w-[400px] lg:shrink-0">
-            <DashboardCard>
-              <CalendarWidget />
-            </DashboardCard>
-            <DashboardCard>
               <NoteToSelf />
             </DashboardCard>
+          </div>
+          {/* Right: gratitude + cycle */}
+          <div className="order-3 flex w-full min-w-0 flex-col gap-3 lg:w-[400px] lg:shrink-0">
             <DashboardCard>
               <GratitudeWidget />
             </DashboardCard>
+            <CycleWidget />
           </div>
         </div>
         <div className="mx-auto mt-6 flex w-full max-w-[1200px] justify-center px-4">

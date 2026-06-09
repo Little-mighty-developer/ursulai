@@ -346,7 +346,7 @@ export default function JournalPage() {
         </div>
         <div className="w-full mt-4 mb-6 relative">
           <textarea
-            className="w-full p-4 pr-12 rounded-2xl border-none outline-none resize-none text-lg bg-gradient-to-br from-indigo-50 to-purple-50 shadow"
+            className="w-full p-4 pr-12 rounded-2xl border-none outline-none resize-none text-lg text-gray-900 placeholder-gray-400 bg-gradient-to-br from-indigo-50 to-purple-50 shadow"
             rows={8}
             placeholder="Let your thoughts flow..."
             value={entry}
@@ -396,6 +396,12 @@ export default function JournalPage() {
             </div>
           )}
         </div>
+        {isListening && (
+          <p className="w-full -mt-3 mb-4 text-center text-xs text-gray-500">
+            Recording is on — tap the red button when you&apos;re done so it
+            stops listening. 🎙️
+          </p>
+        )}
         {noSpeechWarning && isListening && (
           <div className="w-full mb-4 p-3 bg-yellow-100 text-yellow-800 rounded-xl border border-yellow-300">
             <div className="font-semibold mb-1">No speech detected</div>

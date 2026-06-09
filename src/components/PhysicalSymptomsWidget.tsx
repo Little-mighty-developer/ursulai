@@ -138,9 +138,9 @@ export default function PhysicalSymptomsWidget() {
 
   return (
     <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center w-full relative">
-      <span className="mb-2 text-base font-semibold leading-tight text-gray-900">
+      <h2 className="mb-2 text-base font-semibold leading-tight text-center text-gray-900">
         🌿 Body Check-in
-      </span>
+      </h2>
       <span className="text-4xl font-bold text-purple-700 mb-4">🏥</span>
       <Link
         href="/symptoms"

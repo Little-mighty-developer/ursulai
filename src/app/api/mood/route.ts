@@ -10,16 +10,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { date, valence, arousal, region, clickX, clickY, notes } =
-      await req.json();
+    const { date, valence, arousal, region, notes } = await req.json();
 
-    if (
-      valence === undefined ||
-      arousal === undefined ||
-      region === undefined
-    ) {
+    if (valence === undefined || arousal === undefined) {
       return NextResponse.json(
-        { error: "valence, arousal, and region are required" },
+        { error: "valence and arousal are required" },
         { status: 400 },
       );
     }
@@ -29,9 +24,9 @@ export async function POST(req: Request) {
         userId: session.user.email,
         valence: parseFloat(valence),
         arousal: parseFloat(arousal),
-        region: parseInt(region),
-        clickX: clickX ? parseFloat(clickX) : null,
-        clickY: clickY ? parseFloat(clickY) : null,
+        // Legacy field from the old flower selector; new UI doesn't send it
+        region:
+          region !== undefined && region !== null ? parseInt(region) : null,
         notes: notes && notes.trim() ? notes.trim() : null,
         createdAt: date ? new Date(date) : new Date(),
       },
