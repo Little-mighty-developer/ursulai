@@ -37,7 +37,12 @@ const DEFAULT_BODY_ACTIVITIES: {
   emoji?: string;
   tags: string[];
 }[] = [
-  { key: "meditate", label: "Meditate", emoji: "🧘‍♀️", tags: ["gentle", "grounding"] },
+  {
+    key: "meditate",
+    label: "Meditate",
+    emoji: "🧘‍♀️",
+    tags: ["gentle", "grounding"],
+  },
   { key: "swim", label: "Swim", emoji: "🏊‍♀️", tags: ["gentle", "outdoors"] },
   { key: "cardio", label: "Cardio", emoji: "🏃‍♀️", tags: ["intense"] },
   {
@@ -46,7 +51,12 @@ const DEFAULT_BODY_ACTIVITIES: {
     emoji: "🍩",
     tags: ["social", "comfort"],
   },
-  { key: "nature_walk", label: "Nature walk / Hike", emoji: "🌳", tags: ["outdoors"] },
+  {
+    key: "nature_walk",
+    label: "Nature walk / Hike",
+    emoji: "🌳",
+    tags: ["outdoors"],
+  },
   {
     key: "sun_soak",
     label: "Sun soak at the nearest outdoor spot",
@@ -54,10 +64,25 @@ const DEFAULT_BODY_ACTIVITIES: {
     tags: ["gentle", "outdoors", "rest"],
   },
   { key: "weights", label: "Weight lifting", emoji: "🏋️‍♀️", tags: ["intense"] },
-  { key: "free_dance", label: "Free dancing alone", emoji: "💃", tags: ["playful"] },
-  { key: "skilled_dance", label: "Skilled dance", emoji: "🩰", tags: ["intense", "skill"] },
+  {
+    key: "free_dance",
+    label: "Free dancing alone",
+    emoji: "💃",
+    tags: ["playful"],
+  },
+  {
+    key: "skilled_dance",
+    label: "Skilled dance",
+    emoji: "🩰",
+    tags: ["intense", "skill"],
+  },
   { key: "spa", label: "Spa session", emoji: "🧖‍♀️", tags: ["rest", "comfort"] },
-  { key: "hiit", label: "High intensity fitness training", emoji: "🤸‍♀️", tags: ["intense"] },
+  {
+    key: "hiit",
+    label: "High intensity fitness training",
+    emoji: "🤸‍♀️",
+    tags: ["intense"],
+  },
   {
     key: "footy",
     label: "Play a friendly game of footy or pass the ball",
@@ -70,12 +95,24 @@ const DEFAULT_BODY_ACTIVITIES: {
     emoji: "🏸",
     tags: ["social", "playful"],
   },
-  { key: "spirituality", label: "Spirituality", emoji: "🔮", tags: ["grounding"] },
-  { key: "gentle_stretches", label: "gentle stretches", emoji: "🥎", tags: ["gentle"] },
+  {
+    key: "spirituality",
+    label: "Spirituality",
+    emoji: "🔮",
+    tags: ["grounding"],
+  },
+  {
+    key: "gentle_stretches",
+    label: "gentle stretches",
+    emoji: "🥎",
+    tags: ["gentle"],
+  },
 ];
 
 async function getActivities(): Promise<ActivityRow[]> {
-  const existing = await bodyActivity(prisma).count().catch(() => 0);
+  const existing = await bodyActivity(prisma)
+    .count()
+    .catch(() => 0);
   if (existing === 0) {
     await bodyActivity(prisma).createMany({
       data: DEFAULT_BODY_ACTIVITIES.map((a) => ({
@@ -100,24 +137,32 @@ function scoreActivity(activity: ActivityRow, symptomKeys: string[]) {
   let score = 0;
 
   const lowEnergy = has("fatigue") || has("brain_fog") || has("nausea");
-  const pain = has("cramps") || has("body_pain") || has("headache") || has("muscle_spasms");
+  const pain =
+    has("cramps") ||
+    has("body_pain") ||
+    has("headache") ||
+    has("muscle_spasms");
   const agitation = has("jitteriness");
   const steady = has("energy_steady") || has("refreshed") || has("grounded");
 
   if (lowEnergy) {
-    if (tags.has("rest") || tags.has("gentle") || tags.has("comfort")) score += 4;
+    if (tags.has("rest") || tags.has("gentle") || tags.has("comfort"))
+      score += 4;
     if (tags.has("intense")) score -= 3;
   }
   if (pain) {
-    if (tags.has("gentle") || tags.has("rest") || tags.has("comfort")) score += 3;
+    if (tags.has("gentle") || tags.has("rest") || tags.has("comfort"))
+      score += 3;
     if (tags.has("intense")) score -= 3;
   }
   if (agitation) {
-    if (tags.has("grounding") || tags.has("outdoors") || tags.has("gentle")) score += 3;
+    if (tags.has("grounding") || tags.has("outdoors") || tags.has("gentle"))
+      score += 3;
     if (tags.has("intense")) score -= 1;
   }
   if (steady && !lowEnergy && !pain) {
-    if (tags.has("playful") || tags.has("outdoors") || tags.has("intense")) score += 2;
+    if (tags.has("playful") || tags.has("outdoors") || tags.has("intense"))
+      score += 2;
   }
 
   // Small preference for varied suggestions
@@ -170,7 +215,10 @@ export async function POST(req: Request) {
     }
 
     const activityList = activities
-      .map((a) => `${a.key} — ${a.emoji ?? ""} ${a.label} (tags: ${a.tags.join(", ")})`)
+      .map(
+        (a) =>
+          `${a.key} — ${a.emoji ?? ""} ${a.label} (tags: ${a.tags.join(", ")})`,
+      )
       .join("\n");
 
     const systemPrompt = `You are a warm, non-clinical companion in a body check-in app.
@@ -249,4 +297,3 @@ Rules:
     );
   }
 }
-

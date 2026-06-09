@@ -48,7 +48,9 @@ export async function GET(req: Request) {
       if (!Number.isNaN(d.getTime())) where.timestamp = { gte: d };
     }
 
-    const limit = limitParam ? Math.max(1, Math.min(500, +limitParam)) : undefined;
+    const limit = limitParam
+      ? Math.max(1, Math.min(500, +limitParam))
+      : undefined;
     if (activeOnly) {
       // Get all events for the user, ordered by symptomKey and timestamp desc
       const events = await prisma.symptomEvent.findMany({

@@ -16,8 +16,9 @@ type BodyActivityLogDelegate = {
 };
 
 function bodyActivityLog(prismaClient: unknown): BodyActivityLogDelegate {
-  return (prismaClient as unknown as { bodyActivityLog: BodyActivityLogDelegate })
-    .bodyActivityLog;
+  return (
+    prismaClient as unknown as { bodyActivityLog: BodyActivityLogDelegate }
+  ).bodyActivityLog;
 }
 
 export async function POST(req: Request) {
@@ -58,4 +59,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

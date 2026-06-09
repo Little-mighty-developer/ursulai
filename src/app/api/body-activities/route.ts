@@ -31,7 +31,12 @@ const DEFAULT_BODY_ACTIVITIES: {
   emoji?: string;
   tags: string[];
 }[] = [
-  { key: "meditate", label: "Meditate", emoji: "🧘‍♀️", tags: ["gentle", "grounding"] },
+  {
+    key: "meditate",
+    label: "Meditate",
+    emoji: "🧘‍♀️",
+    tags: ["gentle", "grounding"],
+  },
   { key: "swim", label: "Swim", emoji: "🏊‍♀️", tags: ["gentle", "outdoors"] },
   { key: "cardio", label: "Cardio", emoji: "🏃‍♀️", tags: ["intense"] },
   {
@@ -40,7 +45,12 @@ const DEFAULT_BODY_ACTIVITIES: {
     emoji: "🍩",
     tags: ["social", "comfort"],
   },
-  { key: "nature_walk", label: "Nature walk / Hike", emoji: "🌳", tags: ["outdoors"] },
+  {
+    key: "nature_walk",
+    label: "Nature walk / Hike",
+    emoji: "🌳",
+    tags: ["outdoors"],
+  },
   {
     key: "sun_soak",
     label: "Sun soak at the nearest outdoor spot",
@@ -48,10 +58,25 @@ const DEFAULT_BODY_ACTIVITIES: {
     tags: ["gentle", "outdoors", "rest"],
   },
   { key: "weights", label: "Weight lifting", emoji: "🏋️‍♀️", tags: ["intense"] },
-  { key: "free_dance", label: "Free dancing alone", emoji: "💃", tags: ["playful"] },
-  { key: "skilled_dance", label: "Skilled dance", emoji: "🩰", tags: ["intense", "skill"] },
+  {
+    key: "free_dance",
+    label: "Free dancing alone",
+    emoji: "💃",
+    tags: ["playful"],
+  },
+  {
+    key: "skilled_dance",
+    label: "Skilled dance",
+    emoji: "🩰",
+    tags: ["intense", "skill"],
+  },
   { key: "spa", label: "Spa session", emoji: "🧖‍♀️", tags: ["rest", "comfort"] },
-  { key: "hiit", label: "High intensity fitness training", emoji: "🤸‍♀️", tags: ["intense"] },
+  {
+    key: "hiit",
+    label: "High intensity fitness training",
+    emoji: "🤸‍♀️",
+    tags: ["intense"],
+  },
   {
     key: "footy",
     label: "Play a friendly game of footy or pass the ball",
@@ -64,8 +89,18 @@ const DEFAULT_BODY_ACTIVITIES: {
     emoji: "🏸",
     tags: ["social", "playful"],
   },
-  { key: "spirituality", label: "Spirituality", emoji: "🔮", tags: ["grounding"] },
-  { key: "gentle_stretches", label: "gentle stretches", emoji: "🥎", tags: ["gentle"] },
+  {
+    key: "spirituality",
+    label: "Spirituality",
+    emoji: "🔮",
+    tags: ["grounding"],
+  },
+  {
+    key: "gentle_stretches",
+    label: "gentle stretches",
+    emoji: "🥎",
+    tags: ["gentle"],
+  },
 ];
 
 async function ensureSeeded() {
@@ -97,4 +132,3 @@ export async function GET() {
     );
   }
 }
-
