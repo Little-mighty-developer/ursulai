@@ -181,6 +181,27 @@ exports.Prisma.SymptomEventScalarFieldEnum = {
   timestamp: 'timestamp'
 };
 
+exports.Prisma.BodyActivityScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  label: 'label',
+  emoji: 'emoji',
+  tags: 'tags',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BodyActivityLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  activityKey: 'activityKey',
+  activityLabel: 'activityLabel',
+  activityEmoji: 'activityEmoji',
+  symptomKeys: 'symptomKeys',
+  skipped: 'skipped',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.DailyNoteScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -237,6 +258,8 @@ exports.Prisma.ModelName = {
   Activity: 'Activity',
   MoodEntry: 'MoodEntry',
   SymptomEvent: 'SymptomEvent',
+  BodyActivity: 'BodyActivity',
+  BodyActivityLog: 'BodyActivityLog',
   DailyNote: 'DailyNote',
   JournalEntry: 'JournalEntry',
   GratitudeEntry: 'GratitudeEntry',

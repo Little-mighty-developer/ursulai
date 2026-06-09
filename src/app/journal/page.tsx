@@ -71,6 +71,8 @@ export default function JournalPage() {
   const [noSpeechWarning, setNoSpeechWarning] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  // Tracks whether the user wants recording on, without re-triggering effects
+  const shouldListenRef = useRef(false);
   const noSpeechTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastTranscriptTimeRef = useRef<number>(Date.now());
   const tooltipRef = useRef<HTMLDivElement | null>(null);
@@ -161,7 +163,7 @@ export default function JournalPage() {
         noSpeechTimeoutRef.current = setTimeout(() => {
           const timeSinceLastTranscript =
             Date.now() - lastTranscriptTimeRef.current;
-          if (timeSinceLastTranscript >= 3000 && isListening) {
+          if (timeSinceLastTranscript >= 3000 && shouldListenRef.current) {
             setNoSpeechWarning(true);
           }
         }, 3000);
@@ -202,12 +204,19 @@ export default function JournalPage() {
 
       recognition.onerror = (event) => {
         console.error("Speech recognition error:", event.error);
+        shouldListenRef.current = false;
         setIsListening(false);
         setNoSpeechWarning(false);
 
         // Clear timeout on error
         if (noSpeechTimeoutRef.current) {
           clearTimeout(noSpeechTimeoutRef.current);
+        }
+
+        if (event.error === "aborted") {
+          // The session was cancelled (e.g. tab backgrounded or stopped
+          // mid-start); not a real failure, so don't alarm the user.
+          return;
         }
 
         if (event.error === "not-allowed") {
@@ -232,6 +241,18 @@ export default function JournalPage() {
       };
 
       recognition.onend = () => {
+        // Mobile browsers often end the session after each phrase even with
+        // continuous = true, so restart while the user still wants to record.
+        if (shouldListenRef.current) {
+          try {
+            recognition.start();
+            return;
+          } catch (err) {
+            console.error("Error restarting recognition:", err);
+            shouldListenRef.current = false;
+          }
+        }
+
         setIsListening(false);
         setNoSpeechWarning(false);
 
@@ -245,6 +266,7 @@ export default function JournalPage() {
     }
 
     return () => {
+      shouldListenRef.current = false;
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -252,12 +274,13 @@ export default function JournalPage() {
         clearTimeout(noSpeechTimeoutRef.current);
       }
     };
-  }, [isListening]);
+  }, []);
 
   const toggleListening = () => {
     if (!recognitionRef.current) return;
 
     if (isListening) {
+      shouldListenRef.current = false;
       recognitionRef.current.stop();
       setIsListening(false);
       setNoSpeechWarning(false);
@@ -268,9 +291,11 @@ export default function JournalPage() {
       setError(null);
       setNoSpeechWarning(false);
       try {
+        shouldListenRef.current = true;
         recognitionRef.current.start();
       } catch (err) {
         console.error("Error starting recognition:", err);
+        shouldListenRef.current = false;
         setError("Failed to start voice recording. Please try again.");
       }
     }
