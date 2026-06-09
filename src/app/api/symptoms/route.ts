@@ -32,14 +32,31 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get("userId");
     const activeOnly = searchParams.get("activeOnly") === "true";
+    const since = searchParams.get("since"); // "today" | ISO date string
+    const limitParam = searchParams.get("limit");
     if (!userId) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });
     }
+
+    const where: { userId: string; timestamp?: { gte: Date } } = { userId };
+    if (since === "today") {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      where.timestamp = { gte: d };
+    } else if (since) {
+      const d = new Date(since);
+      if (!Number.isNaN(d.getTime())) where.timestamp = { gte: d };
+    }
+
+    const limit = limitParam
+      ? Math.max(1, Math.min(500, +limitParam))
+      : undefined;
     if (activeOnly) {
       // Get all events for the user, ordered by symptomKey and timestamp desc
       const events = await prisma.symptomEvent.findMany({
-        where: { userId },
+        where,
         orderBy: [{ symptomKey: "asc" }, { timestamp: "desc" }],
+        ...(limit ? { take: limit } : {}),
       });
       // Find the latest event for each symptomKey
       const latestBySymptom: Record<string, { eventType: string }> = {};
@@ -55,8 +72,9 @@ export async function GET(req: Request) {
       return NextResponse.json(activeSymptoms);
     } else {
       const events = await prisma.symptomEvent.findMany({
-        where: { userId },
+        where,
         orderBy: { timestamp: "desc" },
+        ...(limit ? { take: limit } : {}),
       });
       return NextResponse.json(events);
     }

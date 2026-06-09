@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, RefObject } from "react";
 import { useSession } from "next-auth/react";
 
+const LAST_BODY_CHECKIN_AT_KEY = "ursulai:lastBodyCheckinAt";
+
 interface Symptom {
   key: string;
   label: string;
@@ -241,6 +243,15 @@ const PhysicalSymptomsTracker: React.FC = () => {
       if (res.ok) {
         setFeedback((f) => ({ ...f, [key]: eventType }));
         setTimeout(() => setFeedback((f) => ({ ...f, [key]: null })), 1200);
+
+        // Gate the dashboard "support your body" link to only appear after a body check-in.
+        try {
+          if (typeof window !== "undefined" && window.localStorage) {
+            window.localStorage.setItem(LAST_BODY_CHECKIN_AT_KEY, timestamp);
+          }
+        } catch {
+          // ignore
+        }
       }
     } catch (_e) {
       // Optionally handle error

@@ -85,6 +85,30 @@ model SymptomEvent {
   timestamp  DateTime @default(now())
 }
 
+model BodyActivity {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  label     String
+  emoji     String?
+  tags      String[] // e.g. gentle, intense, social, outdoors, grounding
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BodyActivityLog {
+  id            String   @id @default(uuid())
+  userId        String
+  activityKey   String
+  activityLabel String
+  activityEmoji String?
+  symptomKeys   String[] // snapshot at selection time
+  skipped       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([userId, activityKey, createdAt(sort: Desc)])
+}
+
 model DailyNote {
   id        String   @id @default(uuid())
   userId    String

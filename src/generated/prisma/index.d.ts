@@ -44,6 +44,16 @@ export type MoodEntry = $Result.DefaultSelection<Prisma.$MoodEntryPayload>
  */
 export type SymptomEvent = $Result.DefaultSelection<Prisma.$SymptomEventPayload>
 /**
+ * Model BodyActivity
+ * 
+ */
+export type BodyActivity = $Result.DefaultSelection<Prisma.$BodyActivityPayload>
+/**
+ * Model BodyActivityLog
+ * 
+ */
+export type BodyActivityLog = $Result.DefaultSelection<Prisma.$BodyActivityLogPayload>
+/**
  * Model DailyNote
  * 
  */
@@ -248,6 +258,26 @@ export class PrismaClient<
     * ```
     */
   get symptomEvent(): Prisma.SymptomEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bodyActivity`: Exposes CRUD operations for the **BodyActivity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BodyActivities
+    * const bodyActivities = await prisma.bodyActivity.findMany()
+    * ```
+    */
+  get bodyActivity(): Prisma.BodyActivityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bodyActivityLog`: Exposes CRUD operations for the **BodyActivityLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BodyActivityLogs
+    * const bodyActivityLogs = await prisma.bodyActivityLog.findMany()
+    * ```
+    */
+  get bodyActivityLog(): Prisma.BodyActivityLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.dailyNote`: Exposes CRUD operations for the **DailyNote** model.
@@ -734,6 +764,8 @@ export namespace Prisma {
     Activity: 'Activity',
     MoodEntry: 'MoodEntry',
     SymptomEvent: 'SymptomEvent',
+    BodyActivity: 'BodyActivity',
+    BodyActivityLog: 'BodyActivityLog',
     DailyNote: 'DailyNote',
     JournalEntry: 'JournalEntry',
     GratitudeEntry: 'GratitudeEntry',
@@ -756,7 +788,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userPreference" | "cyclePeriodStart" | "activity" | "moodEntry" | "symptomEvent" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "loginHistory"
+      modelProps: "user" | "userPreference" | "cyclePeriodStart" | "activity" | "moodEntry" | "symptomEvent" | "bodyActivity" | "bodyActivityLog" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "loginHistory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1204,6 +1236,154 @@ export namespace Prisma {
           }
         }
       }
+      BodyActivity: {
+        payload: Prisma.$BodyActivityPayload<ExtArgs>
+        fields: Prisma.BodyActivityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BodyActivityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BodyActivityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>
+          }
+          findFirst: {
+            args: Prisma.BodyActivityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BodyActivityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>
+          }
+          findMany: {
+            args: Prisma.BodyActivityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>[]
+          }
+          create: {
+            args: Prisma.BodyActivityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>
+          }
+          createMany: {
+            args: Prisma.BodyActivityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BodyActivityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>[]
+          }
+          delete: {
+            args: Prisma.BodyActivityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>
+          }
+          update: {
+            args: Prisma.BodyActivityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>
+          }
+          deleteMany: {
+            args: Prisma.BodyActivityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BodyActivityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BodyActivityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>[]
+          }
+          upsert: {
+            args: Prisma.BodyActivityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityPayload>
+          }
+          aggregate: {
+            args: Prisma.BodyActivityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBodyActivity>
+          }
+          groupBy: {
+            args: Prisma.BodyActivityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BodyActivityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BodyActivityCountArgs<ExtArgs>
+            result: $Utils.Optional<BodyActivityCountAggregateOutputType> | number
+          }
+        }
+      }
+      BodyActivityLog: {
+        payload: Prisma.$BodyActivityLogPayload<ExtArgs>
+        fields: Prisma.BodyActivityLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BodyActivityLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BodyActivityLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>
+          }
+          findFirst: {
+            args: Prisma.BodyActivityLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BodyActivityLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>
+          }
+          findMany: {
+            args: Prisma.BodyActivityLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>[]
+          }
+          create: {
+            args: Prisma.BodyActivityLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>
+          }
+          createMany: {
+            args: Prisma.BodyActivityLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BodyActivityLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>[]
+          }
+          delete: {
+            args: Prisma.BodyActivityLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>
+          }
+          update: {
+            args: Prisma.BodyActivityLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.BodyActivityLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BodyActivityLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BodyActivityLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.BodyActivityLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyActivityLogPayload>
+          }
+          aggregate: {
+            args: Prisma.BodyActivityLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBodyActivityLog>
+          }
+          groupBy: {
+            args: Prisma.BodyActivityLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BodyActivityLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BodyActivityLogCountArgs<ExtArgs>
+            result: $Utils.Optional<BodyActivityLogCountAggregateOutputType> | number
+          }
+        }
+      }
       DailyNote: {
         payload: Prisma.$DailyNotePayload<ExtArgs>
         fields: Prisma.DailyNoteFieldRefs
@@ -1590,6 +1770,8 @@ export namespace Prisma {
     activity?: ActivityOmit
     moodEntry?: MoodEntryOmit
     symptomEvent?: SymptomEventOmit
+    bodyActivity?: BodyActivityOmit
+    bodyActivityLog?: BodyActivityLogOmit
     dailyNote?: DailyNoteOmit
     journalEntry?: JournalEntryOmit
     gratitudeEntry?: GratitudeEntryOmit
@@ -8233,6 +8415,2053 @@ export namespace Prisma {
 
 
   /**
+   * Model BodyActivity
+   */
+
+  export type AggregateBodyActivity = {
+    _count: BodyActivityCountAggregateOutputType | null
+    _min: BodyActivityMinAggregateOutputType | null
+    _max: BodyActivityMaxAggregateOutputType | null
+  }
+
+  export type BodyActivityMinAggregateOutputType = {
+    id: string | null
+    key: string | null
+    label: string | null
+    emoji: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BodyActivityMaxAggregateOutputType = {
+    id: string | null
+    key: string | null
+    label: string | null
+    emoji: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BodyActivityCountAggregateOutputType = {
+    id: number
+    key: number
+    label: number
+    emoji: number
+    tags: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BodyActivityMinAggregateInputType = {
+    id?: true
+    key?: true
+    label?: true
+    emoji?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BodyActivityMaxAggregateInputType = {
+    id?: true
+    key?: true
+    label?: true
+    emoji?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BodyActivityCountAggregateInputType = {
+    id?: true
+    key?: true
+    label?: true
+    emoji?: true
+    tags?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BodyActivityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BodyActivity to aggregate.
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivities to fetch.
+     */
+    orderBy?: BodyActivityOrderByWithRelationInput | BodyActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BodyActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BodyActivities
+    **/
+    _count?: true | BodyActivityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BodyActivityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BodyActivityMaxAggregateInputType
+  }
+
+  export type GetBodyActivityAggregateType<T extends BodyActivityAggregateArgs> = {
+        [P in keyof T & keyof AggregateBodyActivity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBodyActivity[P]>
+      : GetScalarType<T[P], AggregateBodyActivity[P]>
+  }
+
+
+
+
+  export type BodyActivityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BodyActivityWhereInput
+    orderBy?: BodyActivityOrderByWithAggregationInput | BodyActivityOrderByWithAggregationInput[]
+    by: BodyActivityScalarFieldEnum[] | BodyActivityScalarFieldEnum
+    having?: BodyActivityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BodyActivityCountAggregateInputType | true
+    _min?: BodyActivityMinAggregateInputType
+    _max?: BodyActivityMaxAggregateInputType
+  }
+
+  export type BodyActivityGroupByOutputType = {
+    id: string
+    key: string
+    label: string
+    emoji: string | null
+    tags: string[]
+    createdAt: Date
+    updatedAt: Date
+    _count: BodyActivityCountAggregateOutputType | null
+    _min: BodyActivityMinAggregateOutputType | null
+    _max: BodyActivityMaxAggregateOutputType | null
+  }
+
+  type GetBodyActivityGroupByPayload<T extends BodyActivityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BodyActivityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BodyActivityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BodyActivityGroupByOutputType[P]>
+            : GetScalarType<T[P], BodyActivityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BodyActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    label?: boolean
+    emoji?: boolean
+    tags?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bodyActivity"]>
+
+  export type BodyActivitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    label?: boolean
+    emoji?: boolean
+    tags?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bodyActivity"]>
+
+  export type BodyActivitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    label?: boolean
+    emoji?: boolean
+    tags?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bodyActivity"]>
+
+  export type BodyActivitySelectScalar = {
+    id?: boolean
+    key?: boolean
+    label?: boolean
+    emoji?: boolean
+    tags?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BodyActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "label" | "emoji" | "tags" | "createdAt" | "updatedAt", ExtArgs["result"]["bodyActivity"]>
+
+  export type $BodyActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BodyActivity"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      key: string
+      label: string
+      emoji: string | null
+      tags: string[]
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bodyActivity"]>
+    composites: {}
+  }
+
+  type BodyActivityGetPayload<S extends boolean | null | undefined | BodyActivityDefaultArgs> = $Result.GetResult<Prisma.$BodyActivityPayload, S>
+
+  type BodyActivityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BodyActivityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BodyActivityCountAggregateInputType | true
+    }
+
+  export interface BodyActivityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BodyActivity'], meta: { name: 'BodyActivity' } }
+    /**
+     * Find zero or one BodyActivity that matches the filter.
+     * @param {BodyActivityFindUniqueArgs} args - Arguments to find a BodyActivity
+     * @example
+     * // Get one BodyActivity
+     * const bodyActivity = await prisma.bodyActivity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BodyActivityFindUniqueArgs>(args: SelectSubset<T, BodyActivityFindUniqueArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BodyActivity that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BodyActivityFindUniqueOrThrowArgs} args - Arguments to find a BodyActivity
+     * @example
+     * // Get one BodyActivity
+     * const bodyActivity = await prisma.bodyActivity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BodyActivityFindUniqueOrThrowArgs>(args: SelectSubset<T, BodyActivityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BodyActivity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityFindFirstArgs} args - Arguments to find a BodyActivity
+     * @example
+     * // Get one BodyActivity
+     * const bodyActivity = await prisma.bodyActivity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BodyActivityFindFirstArgs>(args?: SelectSubset<T, BodyActivityFindFirstArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BodyActivity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityFindFirstOrThrowArgs} args - Arguments to find a BodyActivity
+     * @example
+     * // Get one BodyActivity
+     * const bodyActivity = await prisma.bodyActivity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BodyActivityFindFirstOrThrowArgs>(args?: SelectSubset<T, BodyActivityFindFirstOrThrowArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BodyActivities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BodyActivities
+     * const bodyActivities = await prisma.bodyActivity.findMany()
+     * 
+     * // Get first 10 BodyActivities
+     * const bodyActivities = await prisma.bodyActivity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bodyActivityWithIdOnly = await prisma.bodyActivity.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BodyActivityFindManyArgs>(args?: SelectSubset<T, BodyActivityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BodyActivity.
+     * @param {BodyActivityCreateArgs} args - Arguments to create a BodyActivity.
+     * @example
+     * // Create one BodyActivity
+     * const BodyActivity = await prisma.bodyActivity.create({
+     *   data: {
+     *     // ... data to create a BodyActivity
+     *   }
+     * })
+     * 
+     */
+    create<T extends BodyActivityCreateArgs>(args: SelectSubset<T, BodyActivityCreateArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BodyActivities.
+     * @param {BodyActivityCreateManyArgs} args - Arguments to create many BodyActivities.
+     * @example
+     * // Create many BodyActivities
+     * const bodyActivity = await prisma.bodyActivity.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BodyActivityCreateManyArgs>(args?: SelectSubset<T, BodyActivityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BodyActivities and returns the data saved in the database.
+     * @param {BodyActivityCreateManyAndReturnArgs} args - Arguments to create many BodyActivities.
+     * @example
+     * // Create many BodyActivities
+     * const bodyActivity = await prisma.bodyActivity.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BodyActivities and only return the `id`
+     * const bodyActivityWithIdOnly = await prisma.bodyActivity.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BodyActivityCreateManyAndReturnArgs>(args?: SelectSubset<T, BodyActivityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BodyActivity.
+     * @param {BodyActivityDeleteArgs} args - Arguments to delete one BodyActivity.
+     * @example
+     * // Delete one BodyActivity
+     * const BodyActivity = await prisma.bodyActivity.delete({
+     *   where: {
+     *     // ... filter to delete one BodyActivity
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BodyActivityDeleteArgs>(args: SelectSubset<T, BodyActivityDeleteArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BodyActivity.
+     * @param {BodyActivityUpdateArgs} args - Arguments to update one BodyActivity.
+     * @example
+     * // Update one BodyActivity
+     * const bodyActivity = await prisma.bodyActivity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BodyActivityUpdateArgs>(args: SelectSubset<T, BodyActivityUpdateArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BodyActivities.
+     * @param {BodyActivityDeleteManyArgs} args - Arguments to filter BodyActivities to delete.
+     * @example
+     * // Delete a few BodyActivities
+     * const { count } = await prisma.bodyActivity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BodyActivityDeleteManyArgs>(args?: SelectSubset<T, BodyActivityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BodyActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BodyActivities
+     * const bodyActivity = await prisma.bodyActivity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BodyActivityUpdateManyArgs>(args: SelectSubset<T, BodyActivityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BodyActivities and returns the data updated in the database.
+     * @param {BodyActivityUpdateManyAndReturnArgs} args - Arguments to update many BodyActivities.
+     * @example
+     * // Update many BodyActivities
+     * const bodyActivity = await prisma.bodyActivity.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BodyActivities and only return the `id`
+     * const bodyActivityWithIdOnly = await prisma.bodyActivity.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BodyActivityUpdateManyAndReturnArgs>(args: SelectSubset<T, BodyActivityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BodyActivity.
+     * @param {BodyActivityUpsertArgs} args - Arguments to update or create a BodyActivity.
+     * @example
+     * // Update or create a BodyActivity
+     * const bodyActivity = await prisma.bodyActivity.upsert({
+     *   create: {
+     *     // ... data to create a BodyActivity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BodyActivity we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BodyActivityUpsertArgs>(args: SelectSubset<T, BodyActivityUpsertArgs<ExtArgs>>): Prisma__BodyActivityClient<$Result.GetResult<Prisma.$BodyActivityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BodyActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityCountArgs} args - Arguments to filter BodyActivities to count.
+     * @example
+     * // Count the number of BodyActivities
+     * const count = await prisma.bodyActivity.count({
+     *   where: {
+     *     // ... the filter for the BodyActivities we want to count
+     *   }
+     * })
+    **/
+    count<T extends BodyActivityCountArgs>(
+      args?: Subset<T, BodyActivityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BodyActivityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BodyActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BodyActivityAggregateArgs>(args: Subset<T, BodyActivityAggregateArgs>): Prisma.PrismaPromise<GetBodyActivityAggregateType<T>>
+
+    /**
+     * Group by BodyActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BodyActivityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BodyActivityGroupByArgs['orderBy'] }
+        : { orderBy?: BodyActivityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BodyActivityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBodyActivityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BodyActivity model
+   */
+  readonly fields: BodyActivityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BodyActivity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BodyActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BodyActivity model
+   */
+  interface BodyActivityFieldRefs {
+    readonly id: FieldRef<"BodyActivity", 'String'>
+    readonly key: FieldRef<"BodyActivity", 'String'>
+    readonly label: FieldRef<"BodyActivity", 'String'>
+    readonly emoji: FieldRef<"BodyActivity", 'String'>
+    readonly tags: FieldRef<"BodyActivity", 'String[]'>
+    readonly createdAt: FieldRef<"BodyActivity", 'DateTime'>
+    readonly updatedAt: FieldRef<"BodyActivity", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BodyActivity findUnique
+   */
+  export type BodyActivityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivity to fetch.
+     */
+    where: BodyActivityWhereUniqueInput
+  }
+
+  /**
+   * BodyActivity findUniqueOrThrow
+   */
+  export type BodyActivityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivity to fetch.
+     */
+    where: BodyActivityWhereUniqueInput
+  }
+
+  /**
+   * BodyActivity findFirst
+   */
+  export type BodyActivityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivity to fetch.
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivities to fetch.
+     */
+    orderBy?: BodyActivityOrderByWithRelationInput | BodyActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BodyActivities.
+     */
+    cursor?: BodyActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyActivities.
+     */
+    distinct?: BodyActivityScalarFieldEnum | BodyActivityScalarFieldEnum[]
+  }
+
+  /**
+   * BodyActivity findFirstOrThrow
+   */
+  export type BodyActivityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivity to fetch.
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivities to fetch.
+     */
+    orderBy?: BodyActivityOrderByWithRelationInput | BodyActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BodyActivities.
+     */
+    cursor?: BodyActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyActivities.
+     */
+    distinct?: BodyActivityScalarFieldEnum | BodyActivityScalarFieldEnum[]
+  }
+
+  /**
+   * BodyActivity findMany
+   */
+  export type BodyActivityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivities to fetch.
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivities to fetch.
+     */
+    orderBy?: BodyActivityOrderByWithRelationInput | BodyActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BodyActivities.
+     */
+    cursor?: BodyActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivities.
+     */
+    skip?: number
+    distinct?: BodyActivityScalarFieldEnum | BodyActivityScalarFieldEnum[]
+  }
+
+  /**
+   * BodyActivity create
+   */
+  export type BodyActivityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BodyActivity.
+     */
+    data: XOR<BodyActivityCreateInput, BodyActivityUncheckedCreateInput>
+  }
+
+  /**
+   * BodyActivity createMany
+   */
+  export type BodyActivityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BodyActivities.
+     */
+    data: BodyActivityCreateManyInput | BodyActivityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BodyActivity createManyAndReturn
+   */
+  export type BodyActivityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * The data used to create many BodyActivities.
+     */
+    data: BodyActivityCreateManyInput | BodyActivityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BodyActivity update
+   */
+  export type BodyActivityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BodyActivity.
+     */
+    data: XOR<BodyActivityUpdateInput, BodyActivityUncheckedUpdateInput>
+    /**
+     * Choose, which BodyActivity to update.
+     */
+    where: BodyActivityWhereUniqueInput
+  }
+
+  /**
+   * BodyActivity updateMany
+   */
+  export type BodyActivityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BodyActivities.
+     */
+    data: XOR<BodyActivityUpdateManyMutationInput, BodyActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which BodyActivities to update
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * Limit how many BodyActivities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyActivity updateManyAndReturn
+   */
+  export type BodyActivityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * The data used to update BodyActivities.
+     */
+    data: XOR<BodyActivityUpdateManyMutationInput, BodyActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which BodyActivities to update
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * Limit how many BodyActivities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyActivity upsert
+   */
+  export type BodyActivityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BodyActivity to update in case it exists.
+     */
+    where: BodyActivityWhereUniqueInput
+    /**
+     * In case the BodyActivity found by the `where` argument doesn't exist, create a new BodyActivity with this data.
+     */
+    create: XOR<BodyActivityCreateInput, BodyActivityUncheckedCreateInput>
+    /**
+     * In case the BodyActivity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BodyActivityUpdateInput, BodyActivityUncheckedUpdateInput>
+  }
+
+  /**
+   * BodyActivity delete
+   */
+  export type BodyActivityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+    /**
+     * Filter which BodyActivity to delete.
+     */
+    where: BodyActivityWhereUniqueInput
+  }
+
+  /**
+   * BodyActivity deleteMany
+   */
+  export type BodyActivityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BodyActivities to delete
+     */
+    where?: BodyActivityWhereInput
+    /**
+     * Limit how many BodyActivities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyActivity without action
+   */
+  export type BodyActivityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivity
+     */
+    select?: BodyActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivity
+     */
+    omit?: BodyActivityOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BodyActivityLog
+   */
+
+  export type AggregateBodyActivityLog = {
+    _count: BodyActivityLogCountAggregateOutputType | null
+    _min: BodyActivityLogMinAggregateOutputType | null
+    _max: BodyActivityLogMaxAggregateOutputType | null
+  }
+
+  export type BodyActivityLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    activityKey: string | null
+    activityLabel: string | null
+    activityEmoji: string | null
+    skipped: boolean | null
+    createdAt: Date | null
+  }
+
+  export type BodyActivityLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    activityKey: string | null
+    activityLabel: string | null
+    activityEmoji: string | null
+    skipped: boolean | null
+    createdAt: Date | null
+  }
+
+  export type BodyActivityLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    activityKey: number
+    activityLabel: number
+    activityEmoji: number
+    symptomKeys: number
+    skipped: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BodyActivityLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    activityKey?: true
+    activityLabel?: true
+    activityEmoji?: true
+    skipped?: true
+    createdAt?: true
+  }
+
+  export type BodyActivityLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    activityKey?: true
+    activityLabel?: true
+    activityEmoji?: true
+    skipped?: true
+    createdAt?: true
+  }
+
+  export type BodyActivityLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    activityKey?: true
+    activityLabel?: true
+    activityEmoji?: true
+    symptomKeys?: true
+    skipped?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BodyActivityLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BodyActivityLog to aggregate.
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivityLogs to fetch.
+     */
+    orderBy?: BodyActivityLogOrderByWithRelationInput | BodyActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BodyActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BodyActivityLogs
+    **/
+    _count?: true | BodyActivityLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BodyActivityLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BodyActivityLogMaxAggregateInputType
+  }
+
+  export type GetBodyActivityLogAggregateType<T extends BodyActivityLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateBodyActivityLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBodyActivityLog[P]>
+      : GetScalarType<T[P], AggregateBodyActivityLog[P]>
+  }
+
+
+
+
+  export type BodyActivityLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BodyActivityLogWhereInput
+    orderBy?: BodyActivityLogOrderByWithAggregationInput | BodyActivityLogOrderByWithAggregationInput[]
+    by: BodyActivityLogScalarFieldEnum[] | BodyActivityLogScalarFieldEnum
+    having?: BodyActivityLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BodyActivityLogCountAggregateInputType | true
+    _min?: BodyActivityLogMinAggregateInputType
+    _max?: BodyActivityLogMaxAggregateInputType
+  }
+
+  export type BodyActivityLogGroupByOutputType = {
+    id: string
+    userId: string
+    activityKey: string
+    activityLabel: string
+    activityEmoji: string | null
+    symptomKeys: string[]
+    skipped: boolean
+    createdAt: Date
+    _count: BodyActivityLogCountAggregateOutputType | null
+    _min: BodyActivityLogMinAggregateOutputType | null
+    _max: BodyActivityLogMaxAggregateOutputType | null
+  }
+
+  type GetBodyActivityLogGroupByPayload<T extends BodyActivityLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BodyActivityLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BodyActivityLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BodyActivityLogGroupByOutputType[P]>
+            : GetScalarType<T[P], BodyActivityLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BodyActivityLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    activityKey?: boolean
+    activityLabel?: boolean
+    activityEmoji?: boolean
+    symptomKeys?: boolean
+    skipped?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["bodyActivityLog"]>
+
+  export type BodyActivityLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    activityKey?: boolean
+    activityLabel?: boolean
+    activityEmoji?: boolean
+    symptomKeys?: boolean
+    skipped?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["bodyActivityLog"]>
+
+  export type BodyActivityLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    activityKey?: boolean
+    activityLabel?: boolean
+    activityEmoji?: boolean
+    symptomKeys?: boolean
+    skipped?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["bodyActivityLog"]>
+
+  export type BodyActivityLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    activityKey?: boolean
+    activityLabel?: boolean
+    activityEmoji?: boolean
+    symptomKeys?: boolean
+    skipped?: boolean
+    createdAt?: boolean
+  }
+
+  export type BodyActivityLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "activityKey" | "activityLabel" | "activityEmoji" | "symptomKeys" | "skipped" | "createdAt", ExtArgs["result"]["bodyActivityLog"]>
+
+  export type $BodyActivityLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BodyActivityLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      activityKey: string
+      activityLabel: string
+      activityEmoji: string | null
+      symptomKeys: string[]
+      skipped: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["bodyActivityLog"]>
+    composites: {}
+  }
+
+  type BodyActivityLogGetPayload<S extends boolean | null | undefined | BodyActivityLogDefaultArgs> = $Result.GetResult<Prisma.$BodyActivityLogPayload, S>
+
+  type BodyActivityLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BodyActivityLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BodyActivityLogCountAggregateInputType | true
+    }
+
+  export interface BodyActivityLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BodyActivityLog'], meta: { name: 'BodyActivityLog' } }
+    /**
+     * Find zero or one BodyActivityLog that matches the filter.
+     * @param {BodyActivityLogFindUniqueArgs} args - Arguments to find a BodyActivityLog
+     * @example
+     * // Get one BodyActivityLog
+     * const bodyActivityLog = await prisma.bodyActivityLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BodyActivityLogFindUniqueArgs>(args: SelectSubset<T, BodyActivityLogFindUniqueArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BodyActivityLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BodyActivityLogFindUniqueOrThrowArgs} args - Arguments to find a BodyActivityLog
+     * @example
+     * // Get one BodyActivityLog
+     * const bodyActivityLog = await prisma.bodyActivityLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BodyActivityLogFindUniqueOrThrowArgs>(args: SelectSubset<T, BodyActivityLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BodyActivityLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogFindFirstArgs} args - Arguments to find a BodyActivityLog
+     * @example
+     * // Get one BodyActivityLog
+     * const bodyActivityLog = await prisma.bodyActivityLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BodyActivityLogFindFirstArgs>(args?: SelectSubset<T, BodyActivityLogFindFirstArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BodyActivityLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogFindFirstOrThrowArgs} args - Arguments to find a BodyActivityLog
+     * @example
+     * // Get one BodyActivityLog
+     * const bodyActivityLog = await prisma.bodyActivityLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BodyActivityLogFindFirstOrThrowArgs>(args?: SelectSubset<T, BodyActivityLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BodyActivityLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BodyActivityLogs
+     * const bodyActivityLogs = await prisma.bodyActivityLog.findMany()
+     * 
+     * // Get first 10 BodyActivityLogs
+     * const bodyActivityLogs = await prisma.bodyActivityLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bodyActivityLogWithIdOnly = await prisma.bodyActivityLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BodyActivityLogFindManyArgs>(args?: SelectSubset<T, BodyActivityLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BodyActivityLog.
+     * @param {BodyActivityLogCreateArgs} args - Arguments to create a BodyActivityLog.
+     * @example
+     * // Create one BodyActivityLog
+     * const BodyActivityLog = await prisma.bodyActivityLog.create({
+     *   data: {
+     *     // ... data to create a BodyActivityLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends BodyActivityLogCreateArgs>(args: SelectSubset<T, BodyActivityLogCreateArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BodyActivityLogs.
+     * @param {BodyActivityLogCreateManyArgs} args - Arguments to create many BodyActivityLogs.
+     * @example
+     * // Create many BodyActivityLogs
+     * const bodyActivityLog = await prisma.bodyActivityLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BodyActivityLogCreateManyArgs>(args?: SelectSubset<T, BodyActivityLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BodyActivityLogs and returns the data saved in the database.
+     * @param {BodyActivityLogCreateManyAndReturnArgs} args - Arguments to create many BodyActivityLogs.
+     * @example
+     * // Create many BodyActivityLogs
+     * const bodyActivityLog = await prisma.bodyActivityLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BodyActivityLogs and only return the `id`
+     * const bodyActivityLogWithIdOnly = await prisma.bodyActivityLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BodyActivityLogCreateManyAndReturnArgs>(args?: SelectSubset<T, BodyActivityLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BodyActivityLog.
+     * @param {BodyActivityLogDeleteArgs} args - Arguments to delete one BodyActivityLog.
+     * @example
+     * // Delete one BodyActivityLog
+     * const BodyActivityLog = await prisma.bodyActivityLog.delete({
+     *   where: {
+     *     // ... filter to delete one BodyActivityLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BodyActivityLogDeleteArgs>(args: SelectSubset<T, BodyActivityLogDeleteArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BodyActivityLog.
+     * @param {BodyActivityLogUpdateArgs} args - Arguments to update one BodyActivityLog.
+     * @example
+     * // Update one BodyActivityLog
+     * const bodyActivityLog = await prisma.bodyActivityLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BodyActivityLogUpdateArgs>(args: SelectSubset<T, BodyActivityLogUpdateArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BodyActivityLogs.
+     * @param {BodyActivityLogDeleteManyArgs} args - Arguments to filter BodyActivityLogs to delete.
+     * @example
+     * // Delete a few BodyActivityLogs
+     * const { count } = await prisma.bodyActivityLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BodyActivityLogDeleteManyArgs>(args?: SelectSubset<T, BodyActivityLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BodyActivityLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BodyActivityLogs
+     * const bodyActivityLog = await prisma.bodyActivityLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BodyActivityLogUpdateManyArgs>(args: SelectSubset<T, BodyActivityLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BodyActivityLogs and returns the data updated in the database.
+     * @param {BodyActivityLogUpdateManyAndReturnArgs} args - Arguments to update many BodyActivityLogs.
+     * @example
+     * // Update many BodyActivityLogs
+     * const bodyActivityLog = await prisma.bodyActivityLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BodyActivityLogs and only return the `id`
+     * const bodyActivityLogWithIdOnly = await prisma.bodyActivityLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BodyActivityLogUpdateManyAndReturnArgs>(args: SelectSubset<T, BodyActivityLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BodyActivityLog.
+     * @param {BodyActivityLogUpsertArgs} args - Arguments to update or create a BodyActivityLog.
+     * @example
+     * // Update or create a BodyActivityLog
+     * const bodyActivityLog = await prisma.bodyActivityLog.upsert({
+     *   create: {
+     *     // ... data to create a BodyActivityLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BodyActivityLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BodyActivityLogUpsertArgs>(args: SelectSubset<T, BodyActivityLogUpsertArgs<ExtArgs>>): Prisma__BodyActivityLogClient<$Result.GetResult<Prisma.$BodyActivityLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BodyActivityLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogCountArgs} args - Arguments to filter BodyActivityLogs to count.
+     * @example
+     * // Count the number of BodyActivityLogs
+     * const count = await prisma.bodyActivityLog.count({
+     *   where: {
+     *     // ... the filter for the BodyActivityLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends BodyActivityLogCountArgs>(
+      args?: Subset<T, BodyActivityLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BodyActivityLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BodyActivityLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BodyActivityLogAggregateArgs>(args: Subset<T, BodyActivityLogAggregateArgs>): Prisma.PrismaPromise<GetBodyActivityLogAggregateType<T>>
+
+    /**
+     * Group by BodyActivityLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyActivityLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BodyActivityLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BodyActivityLogGroupByArgs['orderBy'] }
+        : { orderBy?: BodyActivityLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BodyActivityLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBodyActivityLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BodyActivityLog model
+   */
+  readonly fields: BodyActivityLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BodyActivityLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BodyActivityLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BodyActivityLog model
+   */
+  interface BodyActivityLogFieldRefs {
+    readonly id: FieldRef<"BodyActivityLog", 'String'>
+    readonly userId: FieldRef<"BodyActivityLog", 'String'>
+    readonly activityKey: FieldRef<"BodyActivityLog", 'String'>
+    readonly activityLabel: FieldRef<"BodyActivityLog", 'String'>
+    readonly activityEmoji: FieldRef<"BodyActivityLog", 'String'>
+    readonly symptomKeys: FieldRef<"BodyActivityLog", 'String[]'>
+    readonly skipped: FieldRef<"BodyActivityLog", 'Boolean'>
+    readonly createdAt: FieldRef<"BodyActivityLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BodyActivityLog findUnique
+   */
+  export type BodyActivityLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivityLog to fetch.
+     */
+    where: BodyActivityLogWhereUniqueInput
+  }
+
+  /**
+   * BodyActivityLog findUniqueOrThrow
+   */
+  export type BodyActivityLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivityLog to fetch.
+     */
+    where: BodyActivityLogWhereUniqueInput
+  }
+
+  /**
+   * BodyActivityLog findFirst
+   */
+  export type BodyActivityLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivityLog to fetch.
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivityLogs to fetch.
+     */
+    orderBy?: BodyActivityLogOrderByWithRelationInput | BodyActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BodyActivityLogs.
+     */
+    cursor?: BodyActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyActivityLogs.
+     */
+    distinct?: BodyActivityLogScalarFieldEnum | BodyActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * BodyActivityLog findFirstOrThrow
+   */
+  export type BodyActivityLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivityLog to fetch.
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivityLogs to fetch.
+     */
+    orderBy?: BodyActivityLogOrderByWithRelationInput | BodyActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BodyActivityLogs.
+     */
+    cursor?: BodyActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyActivityLogs.
+     */
+    distinct?: BodyActivityLogScalarFieldEnum | BodyActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * BodyActivityLog findMany
+   */
+  export type BodyActivityLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which BodyActivityLogs to fetch.
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyActivityLogs to fetch.
+     */
+    orderBy?: BodyActivityLogOrderByWithRelationInput | BodyActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BodyActivityLogs.
+     */
+    cursor?: BodyActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyActivityLogs.
+     */
+    skip?: number
+    distinct?: BodyActivityLogScalarFieldEnum | BodyActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * BodyActivityLog create
+   */
+  export type BodyActivityLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BodyActivityLog.
+     */
+    data: XOR<BodyActivityLogCreateInput, BodyActivityLogUncheckedCreateInput>
+  }
+
+  /**
+   * BodyActivityLog createMany
+   */
+  export type BodyActivityLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BodyActivityLogs.
+     */
+    data: BodyActivityLogCreateManyInput | BodyActivityLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BodyActivityLog createManyAndReturn
+   */
+  export type BodyActivityLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many BodyActivityLogs.
+     */
+    data: BodyActivityLogCreateManyInput | BodyActivityLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BodyActivityLog update
+   */
+  export type BodyActivityLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BodyActivityLog.
+     */
+    data: XOR<BodyActivityLogUpdateInput, BodyActivityLogUncheckedUpdateInput>
+    /**
+     * Choose, which BodyActivityLog to update.
+     */
+    where: BodyActivityLogWhereUniqueInput
+  }
+
+  /**
+   * BodyActivityLog updateMany
+   */
+  export type BodyActivityLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BodyActivityLogs.
+     */
+    data: XOR<BodyActivityLogUpdateManyMutationInput, BodyActivityLogUncheckedUpdateManyInput>
+    /**
+     * Filter which BodyActivityLogs to update
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * Limit how many BodyActivityLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyActivityLog updateManyAndReturn
+   */
+  export type BodyActivityLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * The data used to update BodyActivityLogs.
+     */
+    data: XOR<BodyActivityLogUpdateManyMutationInput, BodyActivityLogUncheckedUpdateManyInput>
+    /**
+     * Filter which BodyActivityLogs to update
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * Limit how many BodyActivityLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyActivityLog upsert
+   */
+  export type BodyActivityLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BodyActivityLog to update in case it exists.
+     */
+    where: BodyActivityLogWhereUniqueInput
+    /**
+     * In case the BodyActivityLog found by the `where` argument doesn't exist, create a new BodyActivityLog with this data.
+     */
+    create: XOR<BodyActivityLogCreateInput, BodyActivityLogUncheckedCreateInput>
+    /**
+     * In case the BodyActivityLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BodyActivityLogUpdateInput, BodyActivityLogUncheckedUpdateInput>
+  }
+
+  /**
+   * BodyActivityLog delete
+   */
+  export type BodyActivityLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter which BodyActivityLog to delete.
+     */
+    where: BodyActivityLogWhereUniqueInput
+  }
+
+  /**
+   * BodyActivityLog deleteMany
+   */
+  export type BodyActivityLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BodyActivityLogs to delete
+     */
+    where?: BodyActivityLogWhereInput
+    /**
+     * Limit how many BodyActivityLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyActivityLog without action
+   */
+  export type BodyActivityLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyActivityLog
+     */
+    select?: BodyActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyActivityLog
+     */
+    omit?: BodyActivityLogOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model DailyNote
    */
 
@@ -12381,6 +14610,33 @@ export namespace Prisma {
   export type SymptomEventScalarFieldEnum = (typeof SymptomEventScalarFieldEnum)[keyof typeof SymptomEventScalarFieldEnum]
 
 
+  export const BodyActivityScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    label: 'label',
+    emoji: 'emoji',
+    tags: 'tags',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BodyActivityScalarFieldEnum = (typeof BodyActivityScalarFieldEnum)[keyof typeof BodyActivityScalarFieldEnum]
+
+
+  export const BodyActivityLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    activityKey: 'activityKey',
+    activityLabel: 'activityLabel',
+    activityEmoji: 'activityEmoji',
+    symptomKeys: 'symptomKeys',
+    skipped: 'skipped',
+    createdAt: 'createdAt'
+  };
+
+  export type BodyActivityLogScalarFieldEnum = (typeof BodyActivityLogScalarFieldEnum)[keyof typeof BodyActivityLogScalarFieldEnum]
+
+
   export const DailyNoteScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -12917,6 +15173,135 @@ export namespace Prisma {
     symptomKey?: StringWithAggregatesFilter<"SymptomEvent"> | string
     eventType?: StringWithAggregatesFilter<"SymptomEvent"> | string
     timestamp?: DateTimeWithAggregatesFilter<"SymptomEvent"> | Date | string
+  }
+
+  export type BodyActivityWhereInput = {
+    AND?: BodyActivityWhereInput | BodyActivityWhereInput[]
+    OR?: BodyActivityWhereInput[]
+    NOT?: BodyActivityWhereInput | BodyActivityWhereInput[]
+    id?: StringFilter<"BodyActivity"> | string
+    key?: StringFilter<"BodyActivity"> | string
+    label?: StringFilter<"BodyActivity"> | string
+    emoji?: StringNullableFilter<"BodyActivity"> | string | null
+    tags?: StringNullableListFilter<"BodyActivity">
+    createdAt?: DateTimeFilter<"BodyActivity"> | Date | string
+    updatedAt?: DateTimeFilter<"BodyActivity"> | Date | string
+  }
+
+  export type BodyActivityOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    emoji?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BodyActivityWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    key?: string
+    AND?: BodyActivityWhereInput | BodyActivityWhereInput[]
+    OR?: BodyActivityWhereInput[]
+    NOT?: BodyActivityWhereInput | BodyActivityWhereInput[]
+    label?: StringFilter<"BodyActivity"> | string
+    emoji?: StringNullableFilter<"BodyActivity"> | string | null
+    tags?: StringNullableListFilter<"BodyActivity">
+    createdAt?: DateTimeFilter<"BodyActivity"> | Date | string
+    updatedAt?: DateTimeFilter<"BodyActivity"> | Date | string
+  }, "id" | "key">
+
+  export type BodyActivityOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    emoji?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BodyActivityCountOrderByAggregateInput
+    _max?: BodyActivityMaxOrderByAggregateInput
+    _min?: BodyActivityMinOrderByAggregateInput
+  }
+
+  export type BodyActivityScalarWhereWithAggregatesInput = {
+    AND?: BodyActivityScalarWhereWithAggregatesInput | BodyActivityScalarWhereWithAggregatesInput[]
+    OR?: BodyActivityScalarWhereWithAggregatesInput[]
+    NOT?: BodyActivityScalarWhereWithAggregatesInput | BodyActivityScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BodyActivity"> | string
+    key?: StringWithAggregatesFilter<"BodyActivity"> | string
+    label?: StringWithAggregatesFilter<"BodyActivity"> | string
+    emoji?: StringNullableWithAggregatesFilter<"BodyActivity"> | string | null
+    tags?: StringNullableListFilter<"BodyActivity">
+    createdAt?: DateTimeWithAggregatesFilter<"BodyActivity"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BodyActivity"> | Date | string
+  }
+
+  export type BodyActivityLogWhereInput = {
+    AND?: BodyActivityLogWhereInput | BodyActivityLogWhereInput[]
+    OR?: BodyActivityLogWhereInput[]
+    NOT?: BodyActivityLogWhereInput | BodyActivityLogWhereInput[]
+    id?: StringFilter<"BodyActivityLog"> | string
+    userId?: StringFilter<"BodyActivityLog"> | string
+    activityKey?: StringFilter<"BodyActivityLog"> | string
+    activityLabel?: StringFilter<"BodyActivityLog"> | string
+    activityEmoji?: StringNullableFilter<"BodyActivityLog"> | string | null
+    symptomKeys?: StringNullableListFilter<"BodyActivityLog">
+    skipped?: BoolFilter<"BodyActivityLog"> | boolean
+    createdAt?: DateTimeFilter<"BodyActivityLog"> | Date | string
+  }
+
+  export type BodyActivityLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityKey?: SortOrder
+    activityLabel?: SortOrder
+    activityEmoji?: SortOrderInput | SortOrder
+    symptomKeys?: SortOrder
+    skipped?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BodyActivityLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BodyActivityLogWhereInput | BodyActivityLogWhereInput[]
+    OR?: BodyActivityLogWhereInput[]
+    NOT?: BodyActivityLogWhereInput | BodyActivityLogWhereInput[]
+    userId?: StringFilter<"BodyActivityLog"> | string
+    activityKey?: StringFilter<"BodyActivityLog"> | string
+    activityLabel?: StringFilter<"BodyActivityLog"> | string
+    activityEmoji?: StringNullableFilter<"BodyActivityLog"> | string | null
+    symptomKeys?: StringNullableListFilter<"BodyActivityLog">
+    skipped?: BoolFilter<"BodyActivityLog"> | boolean
+    createdAt?: DateTimeFilter<"BodyActivityLog"> | Date | string
+  }, "id">
+
+  export type BodyActivityLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityKey?: SortOrder
+    activityLabel?: SortOrder
+    activityEmoji?: SortOrderInput | SortOrder
+    symptomKeys?: SortOrder
+    skipped?: SortOrder
+    createdAt?: SortOrder
+    _count?: BodyActivityLogCountOrderByAggregateInput
+    _max?: BodyActivityLogMaxOrderByAggregateInput
+    _min?: BodyActivityLogMinOrderByAggregateInput
+  }
+
+  export type BodyActivityLogScalarWhereWithAggregatesInput = {
+    AND?: BodyActivityLogScalarWhereWithAggregatesInput | BodyActivityLogScalarWhereWithAggregatesInput[]
+    OR?: BodyActivityLogScalarWhereWithAggregatesInput[]
+    NOT?: BodyActivityLogScalarWhereWithAggregatesInput | BodyActivityLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BodyActivityLog"> | string
+    userId?: StringWithAggregatesFilter<"BodyActivityLog"> | string
+    activityKey?: StringWithAggregatesFilter<"BodyActivityLog"> | string
+    activityLabel?: StringWithAggregatesFilter<"BodyActivityLog"> | string
+    activityEmoji?: StringNullableWithAggregatesFilter<"BodyActivityLog"> | string | null
+    symptomKeys?: StringNullableListFilter<"BodyActivityLog">
+    skipped?: BoolWithAggregatesFilter<"BodyActivityLog"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BodyActivityLog"> | Date | string
   }
 
   export type DailyNoteWhereInput = {
@@ -13569,6 +15954,153 @@ export namespace Prisma {
     symptomKey?: StringFieldUpdateOperationsInput | string
     eventType?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityCreateInput = {
+    id?: string
+    key: string
+    label: string
+    emoji?: string | null
+    tags?: BodyActivityCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BodyActivityUncheckedCreateInput = {
+    id?: string
+    key: string
+    label: string
+    emoji?: string | null
+    tags?: BodyActivityCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BodyActivityUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: BodyActivityUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: BodyActivityUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityCreateManyInput = {
+    id?: string
+    key: string
+    label: string
+    emoji?: string | null
+    tags?: BodyActivityCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BodyActivityUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: BodyActivityUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: BodyActivityUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityLogCreateInput = {
+    id?: string
+    userId: string
+    activityKey: string
+    activityLabel: string
+    activityEmoji?: string | null
+    symptomKeys?: BodyActivityLogCreatesymptomKeysInput | string[]
+    skipped?: boolean
+    createdAt?: Date | string
+  }
+
+  export type BodyActivityLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    activityKey: string
+    activityLabel: string
+    activityEmoji?: string | null
+    symptomKeys?: BodyActivityLogCreatesymptomKeysInput | string[]
+    skipped?: boolean
+    createdAt?: Date | string
+  }
+
+  export type BodyActivityLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    activityKey?: StringFieldUpdateOperationsInput | string
+    activityLabel?: StringFieldUpdateOperationsInput | string
+    activityEmoji?: NullableStringFieldUpdateOperationsInput | string | null
+    symptomKeys?: BodyActivityLogUpdatesymptomKeysInput | string[]
+    skipped?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    activityKey?: StringFieldUpdateOperationsInput | string
+    activityLabel?: StringFieldUpdateOperationsInput | string
+    activityEmoji?: NullableStringFieldUpdateOperationsInput | string | null
+    symptomKeys?: BodyActivityLogUpdatesymptomKeysInput | string[]
+    skipped?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityLogCreateManyInput = {
+    id?: string
+    userId: string
+    activityKey: string
+    activityLabel: string
+    activityEmoji?: string | null
+    symptomKeys?: BodyActivityLogCreatesymptomKeysInput | string[]
+    skipped?: boolean
+    createdAt?: Date | string
+  }
+
+  export type BodyActivityLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    activityKey?: StringFieldUpdateOperationsInput | string
+    activityLabel?: StringFieldUpdateOperationsInput | string
+    activityEmoji?: NullableStringFieldUpdateOperationsInput | string | null
+    symptomKeys?: BodyActivityLogUpdatesymptomKeysInput | string[]
+    skipped?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BodyActivityLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    activityKey?: StringFieldUpdateOperationsInput | string
+    activityLabel?: StringFieldUpdateOperationsInput | string
+    activityEmoji?: NullableStringFieldUpdateOperationsInput | string | null
+    symptomKeys?: BodyActivityLogUpdatesymptomKeysInput | string[]
+    skipped?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DailyNoteCreateInput = {
@@ -14267,6 +16799,65 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type BodyActivityCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    emoji?: SortOrder
+    tags?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BodyActivityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    emoji?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BodyActivityMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    emoji?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BodyActivityLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityKey?: SortOrder
+    activityLabel?: SortOrder
+    activityEmoji?: SortOrder
+    symptomKeys?: SortOrder
+    skipped?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BodyActivityLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityKey?: SortOrder
+    activityLabel?: SortOrder
+    activityEmoji?: SortOrder
+    skipped?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BodyActivityLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    activityKey?: SortOrder
+    activityLabel?: SortOrder
+    activityEmoji?: SortOrder
+    skipped?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type DailyNoteUserIdDateCompoundUniqueInput = {
     userId: string
     date: Date | string
@@ -14571,6 +17162,24 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BodyActivityCreatetagsInput = {
+    set: string[]
+  }
+
+  export type BodyActivityUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type BodyActivityLogCreatesymptomKeysInput = {
+    set: string[]
+  }
+
+  export type BodyActivityLogUpdatesymptomKeysInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserCreateNestedOneWithoutLoginHistoryInput = {
