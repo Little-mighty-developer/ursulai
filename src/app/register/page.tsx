@@ -5,6 +5,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
+// TODO: Fix the onboarding quiz before re-enabling. It currently flashes in and
+// out with no stable condition: the quiz renders immediately on load while the
+// GET /api/onboarding check is still in flight, then the dashboard redirect
+// yanks it away. Gate rendering on the fetch result (loading state) instead of
+// showing the quiz optimistically. Re-enable by setting this to true.
+const ONBOARDING_QUIZ_ENABLED = false;
+
 type Step = "welcome" | "q1" | "q2" | "q3" | "q4" | "close";
 
 const INTENTIONS = [
@@ -55,16 +62,23 @@ export default function RegisterPage() {
   }, [status, router]);
 
   useEffect(() => {
-    if (status === "authenticated") {
-      fetch("/api/onboarding")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.onboardingCompleted) {
-            router.push("/dashboard");
-          }
-        })
-        .catch(() => {});
+    if (status !== "authenticated") return;
+
+    if (!ONBOARDING_QUIZ_ENABLED) {
+      // Quiz disabled: skip straight to the dashboard. We deliberately don't
+      // mark onboarding complete, so users will see the quiz once it's fixed.
+      router.push("/dashboard");
+      return;
     }
+
+    fetch("/api/onboarding")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.onboardingCompleted) {
+          router.push("/dashboard");
+        }
+      })
+      .catch(() => {});
   }, [status, router]);
 
   const toggleIntention = (id: string) => {
@@ -106,7 +120,11 @@ export default function RegisterPage() {
     }
   };
 
-  if (status === "loading" || status === "unauthenticated") {
+  if (
+    status === "loading" ||
+    status === "unauthenticated" ||
+    !ONBOARDING_QUIZ_ENABLED
+  ) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-purple-50/50 to-amber-50">
         <div className="text-gray-600">Loading...</div>
