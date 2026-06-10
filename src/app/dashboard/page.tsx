@@ -7,7 +7,7 @@ import JournalEntriesWidget from "@/components/JournalEntriesWidget";
 // import TodayCard from "@/components/TodayCard"; // Weather card hidden for now
 import MoodTracker from "@/components/MoodTracker";
 import CycleWidget from "@/components/CycleWidget";
-import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget";
+// import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget"; // Body Check-in hidden for now
 import NoteToSelf from "@/components/NoteToSelf";
 import GratitudeWidget from "@/components/GratitudeWidget";
 import QuickCallButton from "@/components/QuickCallButton";
@@ -132,9 +132,10 @@ export default function DashboardPage() {
             </DashboardCard>
             {/* MoodTracker renders its own card styling */}
             <MoodTracker />
-            <DashboardCard>
+            {/* TODO: Body Check-in widget hidden for now; re-enable when ready */}
+            {/* <DashboardCard>
               <PhysicalSymptomsWidget />
-            </DashboardCard>
+            </DashboardCard> */}
           </div>
           {/* Center: logo + note to self */}
           <div className="order-1 flex w-full min-w-0 flex-col items-center gap-3 lg:order-2 lg:w-[400px] lg:shrink-0">
