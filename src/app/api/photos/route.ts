@@ -45,7 +45,10 @@ export async function POST(req: Request) {
       );
     }
     if (dataUrl.length > MAX_DATA_URL_LENGTH) {
-      return NextResponse.json({ error: "Image is too large" }, { status: 413 });
+      return NextResponse.json(
+        { error: "Image is too large" },
+        { status: 413 },
+      );
     }
 
     const photo = await prisma.progressPhoto.create({

@@ -320,9 +320,9 @@ export default function JourneyPage() {
             Your journey is just beginning
           </h1>
           <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-            This space opens up once you&apos;ve written{" "}
-            {summary.threshold} journal entries — {remaining} more to go. No
-            rush, it&apos;ll be here when you&apos;re ready. 💜
+            This space opens up once you&apos;ve written {summary.threshold}{" "}
+            journal entries — {remaining} more to go. No rush, it&apos;ll be
+            here when you&apos;re ready. 💜
           </p>
           <div className="flex flex-col gap-2">
             <Link
