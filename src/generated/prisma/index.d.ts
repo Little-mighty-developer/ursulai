@@ -69,6 +69,21 @@ export type JournalEntry = $Result.DefaultSelection<Prisma.$JournalEntryPayload>
  */
 export type GratitudeEntry = $Result.DefaultSelection<Prisma.$GratitudeEntryPayload>
 /**
+ * Model Win
+ * 
+ */
+export type Win = $Result.DefaultSelection<Prisma.$WinPayload>
+/**
+ * Model ProgressPhoto
+ * 
+ */
+export type ProgressPhoto = $Result.DefaultSelection<Prisma.$ProgressPhotoPayload>
+/**
+ * Model Measurement
+ * 
+ */
+export type Measurement = $Result.DefaultSelection<Prisma.$MeasurementPayload>
+/**
  * Model LoginHistory
  * 
  */
@@ -308,6 +323,36 @@ export class PrismaClient<
     * ```
     */
   get gratitudeEntry(): Prisma.GratitudeEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.win`: Exposes CRUD operations for the **Win** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wins
+    * const wins = await prisma.win.findMany()
+    * ```
+    */
+  get win(): Prisma.WinDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.progressPhoto`: Exposes CRUD operations for the **ProgressPhoto** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProgressPhotos
+    * const progressPhotos = await prisma.progressPhoto.findMany()
+    * ```
+    */
+  get progressPhoto(): Prisma.ProgressPhotoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.measurement`: Exposes CRUD operations for the **Measurement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Measurements
+    * const measurements = await prisma.measurement.findMany()
+    * ```
+    */
+  get measurement(): Prisma.MeasurementDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.loginHistory`: Exposes CRUD operations for the **LoginHistory** model.
@@ -769,6 +814,9 @@ export namespace Prisma {
     DailyNote: 'DailyNote',
     JournalEntry: 'JournalEntry',
     GratitudeEntry: 'GratitudeEntry',
+    Win: 'Win',
+    ProgressPhoto: 'ProgressPhoto',
+    Measurement: 'Measurement',
     LoginHistory: 'LoginHistory'
   };
 
@@ -788,7 +836,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userPreference" | "cyclePeriodStart" | "activity" | "moodEntry" | "symptomEvent" | "bodyActivity" | "bodyActivityLog" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "loginHistory"
+      modelProps: "user" | "userPreference" | "cyclePeriodStart" | "activity" | "moodEntry" | "symptomEvent" | "bodyActivity" | "bodyActivityLog" | "dailyNote" | "journalEntry" | "gratitudeEntry" | "win" | "progressPhoto" | "measurement" | "loginHistory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1606,6 +1654,228 @@ export namespace Prisma {
           }
         }
       }
+      Win: {
+        payload: Prisma.$WinPayload<ExtArgs>
+        fields: Prisma.WinFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WinFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WinFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>
+          }
+          findFirst: {
+            args: Prisma.WinFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WinFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>
+          }
+          findMany: {
+            args: Prisma.WinFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>[]
+          }
+          create: {
+            args: Prisma.WinCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>
+          }
+          createMany: {
+            args: Prisma.WinCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WinCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>[]
+          }
+          delete: {
+            args: Prisma.WinDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>
+          }
+          update: {
+            args: Prisma.WinUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>
+          }
+          deleteMany: {
+            args: Prisma.WinDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WinUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WinUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>[]
+          }
+          upsert: {
+            args: Prisma.WinUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WinPayload>
+          }
+          aggregate: {
+            args: Prisma.WinAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWin>
+          }
+          groupBy: {
+            args: Prisma.WinGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WinGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WinCountArgs<ExtArgs>
+            result: $Utils.Optional<WinCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProgressPhoto: {
+        payload: Prisma.$ProgressPhotoPayload<ExtArgs>
+        fields: Prisma.ProgressPhotoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgressPhotoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgressPhotoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+          }
+          findFirst: {
+            args: Prisma.ProgressPhotoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgressPhotoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+          }
+          findMany: {
+            args: Prisma.ProgressPhotoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>[]
+          }
+          create: {
+            args: Prisma.ProgressPhotoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+          }
+          createMany: {
+            args: Prisma.ProgressPhotoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProgressPhotoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>[]
+          }
+          delete: {
+            args: Prisma.ProgressPhotoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+          }
+          update: {
+            args: Prisma.ProgressPhotoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgressPhotoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgressPhotoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProgressPhotoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProgressPhotoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+          }
+          aggregate: {
+            args: Prisma.ProgressPhotoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgressPhoto>
+          }
+          groupBy: {
+            args: Prisma.ProgressPhotoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgressPhotoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgressPhotoCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgressPhotoCountAggregateOutputType> | number
+          }
+        }
+      }
+      Measurement: {
+        payload: Prisma.$MeasurementPayload<ExtArgs>
+        fields: Prisma.MeasurementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MeasurementFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MeasurementFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>
+          }
+          findFirst: {
+            args: Prisma.MeasurementFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MeasurementFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>
+          }
+          findMany: {
+            args: Prisma.MeasurementFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>[]
+          }
+          create: {
+            args: Prisma.MeasurementCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>
+          }
+          createMany: {
+            args: Prisma.MeasurementCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MeasurementCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>[]
+          }
+          delete: {
+            args: Prisma.MeasurementDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>
+          }
+          update: {
+            args: Prisma.MeasurementUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>
+          }
+          deleteMany: {
+            args: Prisma.MeasurementDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MeasurementUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MeasurementUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>[]
+          }
+          upsert: {
+            args: Prisma.MeasurementUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeasurementPayload>
+          }
+          aggregate: {
+            args: Prisma.MeasurementAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMeasurement>
+          }
+          groupBy: {
+            args: Prisma.MeasurementGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MeasurementGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MeasurementCountArgs<ExtArgs>
+            result: $Utils.Optional<MeasurementCountAggregateOutputType> | number
+          }
+        }
+      }
       LoginHistory: {
         payload: Prisma.$LoginHistoryPayload<ExtArgs>
         fields: Prisma.LoginHistoryFieldRefs
@@ -1775,6 +2045,9 @@ export namespace Prisma {
     dailyNote?: DailyNoteOmit
     journalEntry?: JournalEntryOmit
     gratitudeEntry?: GratitudeEntryOmit
+    win?: WinOmit
+    progressPhoto?: ProgressPhotoOmit
+    measurement?: MeasurementOmit
     loginHistory?: LoginHistoryOmit
   }
 
@@ -13486,6 +13759,3077 @@ export namespace Prisma {
 
 
   /**
+   * Model Win
+   */
+
+  export type AggregateWin = {
+    _count: WinCountAggregateOutputType | null
+    _min: WinMinAggregateOutputType | null
+    _max: WinMaxAggregateOutputType | null
+  }
+
+  export type WinMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WinMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WinCountAggregateOutputType = {
+    id: number
+    userId: number
+    content: number
+    date: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type WinMinAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WinMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WinCountAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type WinAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Win to aggregate.
+     */
+    where?: WinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wins to fetch.
+     */
+    orderBy?: WinOrderByWithRelationInput | WinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Wins
+    **/
+    _count?: true | WinCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WinMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WinMaxAggregateInputType
+  }
+
+  export type GetWinAggregateType<T extends WinAggregateArgs> = {
+        [P in keyof T & keyof AggregateWin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWin[P]>
+      : GetScalarType<T[P], AggregateWin[P]>
+  }
+
+
+
+
+  export type WinGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WinWhereInput
+    orderBy?: WinOrderByWithAggregationInput | WinOrderByWithAggregationInput[]
+    by: WinScalarFieldEnum[] | WinScalarFieldEnum
+    having?: WinScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WinCountAggregateInputType | true
+    _min?: WinMinAggregateInputType
+    _max?: WinMaxAggregateInputType
+  }
+
+  export type WinGroupByOutputType = {
+    id: string
+    userId: string
+    content: string
+    date: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: WinCountAggregateOutputType | null
+    _min: WinMinAggregateOutputType | null
+    _max: WinMaxAggregateOutputType | null
+  }
+
+  type GetWinGroupByPayload<T extends WinGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WinGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WinGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WinGroupByOutputType[P]>
+            : GetScalarType<T[P], WinGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WinSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["win"]>
+
+  export type WinSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["win"]>
+
+  export type WinSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["win"]>
+
+  export type WinSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type WinOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "content" | "date" | "createdAt" | "updatedAt", ExtArgs["result"]["win"]>
+
+  export type $WinPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Win"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      content: string
+      date: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["win"]>
+    composites: {}
+  }
+
+  type WinGetPayload<S extends boolean | null | undefined | WinDefaultArgs> = $Result.GetResult<Prisma.$WinPayload, S>
+
+  type WinCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WinFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WinCountAggregateInputType | true
+    }
+
+  export interface WinDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Win'], meta: { name: 'Win' } }
+    /**
+     * Find zero or one Win that matches the filter.
+     * @param {WinFindUniqueArgs} args - Arguments to find a Win
+     * @example
+     * // Get one Win
+     * const win = await prisma.win.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WinFindUniqueArgs>(args: SelectSubset<T, WinFindUniqueArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Win that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WinFindUniqueOrThrowArgs} args - Arguments to find a Win
+     * @example
+     * // Get one Win
+     * const win = await prisma.win.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WinFindUniqueOrThrowArgs>(args: SelectSubset<T, WinFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Win that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinFindFirstArgs} args - Arguments to find a Win
+     * @example
+     * // Get one Win
+     * const win = await prisma.win.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WinFindFirstArgs>(args?: SelectSubset<T, WinFindFirstArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Win that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinFindFirstOrThrowArgs} args - Arguments to find a Win
+     * @example
+     * // Get one Win
+     * const win = await prisma.win.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WinFindFirstOrThrowArgs>(args?: SelectSubset<T, WinFindFirstOrThrowArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Wins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Wins
+     * const wins = await prisma.win.findMany()
+     * 
+     * // Get first 10 Wins
+     * const wins = await prisma.win.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const winWithIdOnly = await prisma.win.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WinFindManyArgs>(args?: SelectSubset<T, WinFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Win.
+     * @param {WinCreateArgs} args - Arguments to create a Win.
+     * @example
+     * // Create one Win
+     * const Win = await prisma.win.create({
+     *   data: {
+     *     // ... data to create a Win
+     *   }
+     * })
+     * 
+     */
+    create<T extends WinCreateArgs>(args: SelectSubset<T, WinCreateArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Wins.
+     * @param {WinCreateManyArgs} args - Arguments to create many Wins.
+     * @example
+     * // Create many Wins
+     * const win = await prisma.win.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WinCreateManyArgs>(args?: SelectSubset<T, WinCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Wins and returns the data saved in the database.
+     * @param {WinCreateManyAndReturnArgs} args - Arguments to create many Wins.
+     * @example
+     * // Create many Wins
+     * const win = await prisma.win.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Wins and only return the `id`
+     * const winWithIdOnly = await prisma.win.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WinCreateManyAndReturnArgs>(args?: SelectSubset<T, WinCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Win.
+     * @param {WinDeleteArgs} args - Arguments to delete one Win.
+     * @example
+     * // Delete one Win
+     * const Win = await prisma.win.delete({
+     *   where: {
+     *     // ... filter to delete one Win
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WinDeleteArgs>(args: SelectSubset<T, WinDeleteArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Win.
+     * @param {WinUpdateArgs} args - Arguments to update one Win.
+     * @example
+     * // Update one Win
+     * const win = await prisma.win.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WinUpdateArgs>(args: SelectSubset<T, WinUpdateArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Wins.
+     * @param {WinDeleteManyArgs} args - Arguments to filter Wins to delete.
+     * @example
+     * // Delete a few Wins
+     * const { count } = await prisma.win.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WinDeleteManyArgs>(args?: SelectSubset<T, WinDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Wins
+     * const win = await prisma.win.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WinUpdateManyArgs>(args: SelectSubset<T, WinUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wins and returns the data updated in the database.
+     * @param {WinUpdateManyAndReturnArgs} args - Arguments to update many Wins.
+     * @example
+     * // Update many Wins
+     * const win = await prisma.win.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Wins and only return the `id`
+     * const winWithIdOnly = await prisma.win.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WinUpdateManyAndReturnArgs>(args: SelectSubset<T, WinUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Win.
+     * @param {WinUpsertArgs} args - Arguments to update or create a Win.
+     * @example
+     * // Update or create a Win
+     * const win = await prisma.win.upsert({
+     *   create: {
+     *     // ... data to create a Win
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Win we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WinUpsertArgs>(args: SelectSubset<T, WinUpsertArgs<ExtArgs>>): Prisma__WinClient<$Result.GetResult<Prisma.$WinPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Wins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinCountArgs} args - Arguments to filter Wins to count.
+     * @example
+     * // Count the number of Wins
+     * const count = await prisma.win.count({
+     *   where: {
+     *     // ... the filter for the Wins we want to count
+     *   }
+     * })
+    **/
+    count<T extends WinCountArgs>(
+      args?: Subset<T, WinCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WinCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Win.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WinAggregateArgs>(args: Subset<T, WinAggregateArgs>): Prisma.PrismaPromise<GetWinAggregateType<T>>
+
+    /**
+     * Group by Win.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WinGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WinGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WinGroupByArgs['orderBy'] }
+        : { orderBy?: WinGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WinGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWinGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Win model
+   */
+  readonly fields: WinFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Win.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WinClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Win model
+   */
+  interface WinFieldRefs {
+    readonly id: FieldRef<"Win", 'String'>
+    readonly userId: FieldRef<"Win", 'String'>
+    readonly content: FieldRef<"Win", 'String'>
+    readonly date: FieldRef<"Win", 'DateTime'>
+    readonly createdAt: FieldRef<"Win", 'DateTime'>
+    readonly updatedAt: FieldRef<"Win", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Win findUnique
+   */
+  export type WinFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * Filter, which Win to fetch.
+     */
+    where: WinWhereUniqueInput
+  }
+
+  /**
+   * Win findUniqueOrThrow
+   */
+  export type WinFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * Filter, which Win to fetch.
+     */
+    where: WinWhereUniqueInput
+  }
+
+  /**
+   * Win findFirst
+   */
+  export type WinFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * Filter, which Win to fetch.
+     */
+    where?: WinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wins to fetch.
+     */
+    orderBy?: WinOrderByWithRelationInput | WinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wins.
+     */
+    cursor?: WinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wins.
+     */
+    distinct?: WinScalarFieldEnum | WinScalarFieldEnum[]
+  }
+
+  /**
+   * Win findFirstOrThrow
+   */
+  export type WinFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * Filter, which Win to fetch.
+     */
+    where?: WinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wins to fetch.
+     */
+    orderBy?: WinOrderByWithRelationInput | WinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wins.
+     */
+    cursor?: WinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wins.
+     */
+    distinct?: WinScalarFieldEnum | WinScalarFieldEnum[]
+  }
+
+  /**
+   * Win findMany
+   */
+  export type WinFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * Filter, which Wins to fetch.
+     */
+    where?: WinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wins to fetch.
+     */
+    orderBy?: WinOrderByWithRelationInput | WinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Wins.
+     */
+    cursor?: WinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wins.
+     */
+    skip?: number
+    distinct?: WinScalarFieldEnum | WinScalarFieldEnum[]
+  }
+
+  /**
+   * Win create
+   */
+  export type WinCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Win.
+     */
+    data: XOR<WinCreateInput, WinUncheckedCreateInput>
+  }
+
+  /**
+   * Win createMany
+   */
+  export type WinCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Wins.
+     */
+    data: WinCreateManyInput | WinCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Win createManyAndReturn
+   */
+  export type WinCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * The data used to create many Wins.
+     */
+    data: WinCreateManyInput | WinCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Win update
+   */
+  export type WinUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Win.
+     */
+    data: XOR<WinUpdateInput, WinUncheckedUpdateInput>
+    /**
+     * Choose, which Win to update.
+     */
+    where: WinWhereUniqueInput
+  }
+
+  /**
+   * Win updateMany
+   */
+  export type WinUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Wins.
+     */
+    data: XOR<WinUpdateManyMutationInput, WinUncheckedUpdateManyInput>
+    /**
+     * Filter which Wins to update
+     */
+    where?: WinWhereInput
+    /**
+     * Limit how many Wins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Win updateManyAndReturn
+   */
+  export type WinUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * The data used to update Wins.
+     */
+    data: XOR<WinUpdateManyMutationInput, WinUncheckedUpdateManyInput>
+    /**
+     * Filter which Wins to update
+     */
+    where?: WinWhereInput
+    /**
+     * Limit how many Wins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Win upsert
+   */
+  export type WinUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Win to update in case it exists.
+     */
+    where: WinWhereUniqueInput
+    /**
+     * In case the Win found by the `where` argument doesn't exist, create a new Win with this data.
+     */
+    create: XOR<WinCreateInput, WinUncheckedCreateInput>
+    /**
+     * In case the Win was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WinUpdateInput, WinUncheckedUpdateInput>
+  }
+
+  /**
+   * Win delete
+   */
+  export type WinDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+    /**
+     * Filter which Win to delete.
+     */
+    where: WinWhereUniqueInput
+  }
+
+  /**
+   * Win deleteMany
+   */
+  export type WinDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Wins to delete
+     */
+    where?: WinWhereInput
+    /**
+     * Limit how many Wins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Win without action
+   */
+  export type WinDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Win
+     */
+    select?: WinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Win
+     */
+    omit?: WinOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProgressPhoto
+   */
+
+  export type AggregateProgressPhoto = {
+    _count: ProgressPhotoCountAggregateOutputType | null
+    _min: ProgressPhotoMinAggregateOutputType | null
+    _max: ProgressPhotoMaxAggregateOutputType | null
+  }
+
+  export type ProgressPhotoMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    dataUrl: string | null
+    caption: string | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type ProgressPhotoMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    dataUrl: string | null
+    caption: string | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type ProgressPhotoCountAggregateOutputType = {
+    id: number
+    userId: number
+    dataUrl: number
+    caption: number
+    date: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProgressPhotoMinAggregateInputType = {
+    id?: true
+    userId?: true
+    dataUrl?: true
+    caption?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type ProgressPhotoMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    dataUrl?: true
+    caption?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type ProgressPhotoCountAggregateInputType = {
+    id?: true
+    userId?: true
+    dataUrl?: true
+    caption?: true
+    date?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProgressPhotoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressPhoto to aggregate.
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressPhotos to fetch.
+     */
+    orderBy?: ProgressPhotoOrderByWithRelationInput | ProgressPhotoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgressPhotoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressPhotos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressPhotos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProgressPhotos
+    **/
+    _count?: true | ProgressPhotoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgressPhotoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgressPhotoMaxAggregateInputType
+  }
+
+  export type GetProgressPhotoAggregateType<T extends ProgressPhotoAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgressPhoto]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgressPhoto[P]>
+      : GetScalarType<T[P], AggregateProgressPhoto[P]>
+  }
+
+
+
+
+  export type ProgressPhotoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressPhotoWhereInput
+    orderBy?: ProgressPhotoOrderByWithAggregationInput | ProgressPhotoOrderByWithAggregationInput[]
+    by: ProgressPhotoScalarFieldEnum[] | ProgressPhotoScalarFieldEnum
+    having?: ProgressPhotoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgressPhotoCountAggregateInputType | true
+    _min?: ProgressPhotoMinAggregateInputType
+    _max?: ProgressPhotoMaxAggregateInputType
+  }
+
+  export type ProgressPhotoGroupByOutputType = {
+    id: string
+    userId: string
+    dataUrl: string
+    caption: string | null
+    date: Date
+    createdAt: Date
+    _count: ProgressPhotoCountAggregateOutputType | null
+    _min: ProgressPhotoMinAggregateOutputType | null
+    _max: ProgressPhotoMaxAggregateOutputType | null
+  }
+
+  type GetProgressPhotoGroupByPayload<T extends ProgressPhotoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgressPhotoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgressPhotoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgressPhotoGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgressPhotoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgressPhotoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    dataUrl?: boolean
+    caption?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["progressPhoto"]>
+
+  export type ProgressPhotoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    dataUrl?: boolean
+    caption?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["progressPhoto"]>
+
+  export type ProgressPhotoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    dataUrl?: boolean
+    caption?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["progressPhoto"]>
+
+  export type ProgressPhotoSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    dataUrl?: boolean
+    caption?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProgressPhotoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "dataUrl" | "caption" | "date" | "createdAt", ExtArgs["result"]["progressPhoto"]>
+
+  export type $ProgressPhotoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgressPhoto"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      dataUrl: string
+      caption: string | null
+      date: Date
+      createdAt: Date
+    }, ExtArgs["result"]["progressPhoto"]>
+    composites: {}
+  }
+
+  type ProgressPhotoGetPayload<S extends boolean | null | undefined | ProgressPhotoDefaultArgs> = $Result.GetResult<Prisma.$ProgressPhotoPayload, S>
+
+  type ProgressPhotoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgressPhotoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgressPhotoCountAggregateInputType | true
+    }
+
+  export interface ProgressPhotoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgressPhoto'], meta: { name: 'ProgressPhoto' } }
+    /**
+     * Find zero or one ProgressPhoto that matches the filter.
+     * @param {ProgressPhotoFindUniqueArgs} args - Arguments to find a ProgressPhoto
+     * @example
+     * // Get one ProgressPhoto
+     * const progressPhoto = await prisma.progressPhoto.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgressPhotoFindUniqueArgs>(args: SelectSubset<T, ProgressPhotoFindUniqueArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProgressPhoto that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgressPhotoFindUniqueOrThrowArgs} args - Arguments to find a ProgressPhoto
+     * @example
+     * // Get one ProgressPhoto
+     * const progressPhoto = await prisma.progressPhoto.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgressPhotoFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgressPhotoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressPhoto that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoFindFirstArgs} args - Arguments to find a ProgressPhoto
+     * @example
+     * // Get one ProgressPhoto
+     * const progressPhoto = await prisma.progressPhoto.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgressPhotoFindFirstArgs>(args?: SelectSubset<T, ProgressPhotoFindFirstArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressPhoto that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoFindFirstOrThrowArgs} args - Arguments to find a ProgressPhoto
+     * @example
+     * // Get one ProgressPhoto
+     * const progressPhoto = await prisma.progressPhoto.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgressPhotoFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgressPhotoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProgressPhotos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProgressPhotos
+     * const progressPhotos = await prisma.progressPhoto.findMany()
+     * 
+     * // Get first 10 ProgressPhotos
+     * const progressPhotos = await prisma.progressPhoto.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const progressPhotoWithIdOnly = await prisma.progressPhoto.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgressPhotoFindManyArgs>(args?: SelectSubset<T, ProgressPhotoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProgressPhoto.
+     * @param {ProgressPhotoCreateArgs} args - Arguments to create a ProgressPhoto.
+     * @example
+     * // Create one ProgressPhoto
+     * const ProgressPhoto = await prisma.progressPhoto.create({
+     *   data: {
+     *     // ... data to create a ProgressPhoto
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgressPhotoCreateArgs>(args: SelectSubset<T, ProgressPhotoCreateArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProgressPhotos.
+     * @param {ProgressPhotoCreateManyArgs} args - Arguments to create many ProgressPhotos.
+     * @example
+     * // Create many ProgressPhotos
+     * const progressPhoto = await prisma.progressPhoto.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgressPhotoCreateManyArgs>(args?: SelectSubset<T, ProgressPhotoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProgressPhotos and returns the data saved in the database.
+     * @param {ProgressPhotoCreateManyAndReturnArgs} args - Arguments to create many ProgressPhotos.
+     * @example
+     * // Create many ProgressPhotos
+     * const progressPhoto = await prisma.progressPhoto.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProgressPhotos and only return the `id`
+     * const progressPhotoWithIdOnly = await prisma.progressPhoto.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProgressPhotoCreateManyAndReturnArgs>(args?: SelectSubset<T, ProgressPhotoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProgressPhoto.
+     * @param {ProgressPhotoDeleteArgs} args - Arguments to delete one ProgressPhoto.
+     * @example
+     * // Delete one ProgressPhoto
+     * const ProgressPhoto = await prisma.progressPhoto.delete({
+     *   where: {
+     *     // ... filter to delete one ProgressPhoto
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgressPhotoDeleteArgs>(args: SelectSubset<T, ProgressPhotoDeleteArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProgressPhoto.
+     * @param {ProgressPhotoUpdateArgs} args - Arguments to update one ProgressPhoto.
+     * @example
+     * // Update one ProgressPhoto
+     * const progressPhoto = await prisma.progressPhoto.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgressPhotoUpdateArgs>(args: SelectSubset<T, ProgressPhotoUpdateArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProgressPhotos.
+     * @param {ProgressPhotoDeleteManyArgs} args - Arguments to filter ProgressPhotos to delete.
+     * @example
+     * // Delete a few ProgressPhotos
+     * const { count } = await prisma.progressPhoto.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgressPhotoDeleteManyArgs>(args?: SelectSubset<T, ProgressPhotoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressPhotos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProgressPhotos
+     * const progressPhoto = await prisma.progressPhoto.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgressPhotoUpdateManyArgs>(args: SelectSubset<T, ProgressPhotoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressPhotos and returns the data updated in the database.
+     * @param {ProgressPhotoUpdateManyAndReturnArgs} args - Arguments to update many ProgressPhotos.
+     * @example
+     * // Update many ProgressPhotos
+     * const progressPhoto = await prisma.progressPhoto.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProgressPhotos and only return the `id`
+     * const progressPhotoWithIdOnly = await prisma.progressPhoto.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProgressPhotoUpdateManyAndReturnArgs>(args: SelectSubset<T, ProgressPhotoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProgressPhoto.
+     * @param {ProgressPhotoUpsertArgs} args - Arguments to update or create a ProgressPhoto.
+     * @example
+     * // Update or create a ProgressPhoto
+     * const progressPhoto = await prisma.progressPhoto.upsert({
+     *   create: {
+     *     // ... data to create a ProgressPhoto
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProgressPhoto we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgressPhotoUpsertArgs>(args: SelectSubset<T, ProgressPhotoUpsertArgs<ExtArgs>>): Prisma__ProgressPhotoClient<$Result.GetResult<Prisma.$ProgressPhotoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProgressPhotos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoCountArgs} args - Arguments to filter ProgressPhotos to count.
+     * @example
+     * // Count the number of ProgressPhotos
+     * const count = await prisma.progressPhoto.count({
+     *   where: {
+     *     // ... the filter for the ProgressPhotos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgressPhotoCountArgs>(
+      args?: Subset<T, ProgressPhotoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgressPhotoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProgressPhoto.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgressPhotoAggregateArgs>(args: Subset<T, ProgressPhotoAggregateArgs>): Prisma.PrismaPromise<GetProgressPhotoAggregateType<T>>
+
+    /**
+     * Group by ProgressPhoto.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressPhotoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgressPhotoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgressPhotoGroupByArgs['orderBy'] }
+        : { orderBy?: ProgressPhotoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgressPhotoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgressPhotoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProgressPhoto model
+   */
+  readonly fields: ProgressPhotoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProgressPhoto.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgressPhotoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProgressPhoto model
+   */
+  interface ProgressPhotoFieldRefs {
+    readonly id: FieldRef<"ProgressPhoto", 'String'>
+    readonly userId: FieldRef<"ProgressPhoto", 'String'>
+    readonly dataUrl: FieldRef<"ProgressPhoto", 'String'>
+    readonly caption: FieldRef<"ProgressPhoto", 'String'>
+    readonly date: FieldRef<"ProgressPhoto", 'DateTime'>
+    readonly createdAt: FieldRef<"ProgressPhoto", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProgressPhoto findUnique
+   */
+  export type ProgressPhotoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * Filter, which ProgressPhoto to fetch.
+     */
+    where: ProgressPhotoWhereUniqueInput
+  }
+
+  /**
+   * ProgressPhoto findUniqueOrThrow
+   */
+  export type ProgressPhotoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * Filter, which ProgressPhoto to fetch.
+     */
+    where: ProgressPhotoWhereUniqueInput
+  }
+
+  /**
+   * ProgressPhoto findFirst
+   */
+  export type ProgressPhotoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * Filter, which ProgressPhoto to fetch.
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressPhotos to fetch.
+     */
+    orderBy?: ProgressPhotoOrderByWithRelationInput | ProgressPhotoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressPhotos.
+     */
+    cursor?: ProgressPhotoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressPhotos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressPhotos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressPhotos.
+     */
+    distinct?: ProgressPhotoScalarFieldEnum | ProgressPhotoScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressPhoto findFirstOrThrow
+   */
+  export type ProgressPhotoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * Filter, which ProgressPhoto to fetch.
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressPhotos to fetch.
+     */
+    orderBy?: ProgressPhotoOrderByWithRelationInput | ProgressPhotoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressPhotos.
+     */
+    cursor?: ProgressPhotoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressPhotos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressPhotos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressPhotos.
+     */
+    distinct?: ProgressPhotoScalarFieldEnum | ProgressPhotoScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressPhoto findMany
+   */
+  export type ProgressPhotoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * Filter, which ProgressPhotos to fetch.
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressPhotos to fetch.
+     */
+    orderBy?: ProgressPhotoOrderByWithRelationInput | ProgressPhotoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProgressPhotos.
+     */
+    cursor?: ProgressPhotoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressPhotos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressPhotos.
+     */
+    skip?: number
+    distinct?: ProgressPhotoScalarFieldEnum | ProgressPhotoScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressPhoto create
+   */
+  export type ProgressPhotoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ProgressPhoto.
+     */
+    data: XOR<ProgressPhotoCreateInput, ProgressPhotoUncheckedCreateInput>
+  }
+
+  /**
+   * ProgressPhoto createMany
+   */
+  export type ProgressPhotoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProgressPhotos.
+     */
+    data: ProgressPhotoCreateManyInput | ProgressPhotoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgressPhoto createManyAndReturn
+   */
+  export type ProgressPhotoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProgressPhotos.
+     */
+    data: ProgressPhotoCreateManyInput | ProgressPhotoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgressPhoto update
+   */
+  export type ProgressPhotoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ProgressPhoto.
+     */
+    data: XOR<ProgressPhotoUpdateInput, ProgressPhotoUncheckedUpdateInput>
+    /**
+     * Choose, which ProgressPhoto to update.
+     */
+    where: ProgressPhotoWhereUniqueInput
+  }
+
+  /**
+   * ProgressPhoto updateMany
+   */
+  export type ProgressPhotoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProgressPhotos.
+     */
+    data: XOR<ProgressPhotoUpdateManyMutationInput, ProgressPhotoUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressPhotos to update
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * Limit how many ProgressPhotos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressPhoto updateManyAndReturn
+   */
+  export type ProgressPhotoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * The data used to update ProgressPhotos.
+     */
+    data: XOR<ProgressPhotoUpdateManyMutationInput, ProgressPhotoUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressPhotos to update
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * Limit how many ProgressPhotos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressPhoto upsert
+   */
+  export type ProgressPhotoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ProgressPhoto to update in case it exists.
+     */
+    where: ProgressPhotoWhereUniqueInput
+    /**
+     * In case the ProgressPhoto found by the `where` argument doesn't exist, create a new ProgressPhoto with this data.
+     */
+    create: XOR<ProgressPhotoCreateInput, ProgressPhotoUncheckedCreateInput>
+    /**
+     * In case the ProgressPhoto was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgressPhotoUpdateInput, ProgressPhotoUncheckedUpdateInput>
+  }
+
+  /**
+   * ProgressPhoto delete
+   */
+  export type ProgressPhotoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+    /**
+     * Filter which ProgressPhoto to delete.
+     */
+    where: ProgressPhotoWhereUniqueInput
+  }
+
+  /**
+   * ProgressPhoto deleteMany
+   */
+  export type ProgressPhotoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressPhotos to delete
+     */
+    where?: ProgressPhotoWhereInput
+    /**
+     * Limit how many ProgressPhotos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressPhoto without action
+   */
+  export type ProgressPhotoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressPhoto
+     */
+    select?: ProgressPhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressPhoto
+     */
+    omit?: ProgressPhotoOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Measurement
+   */
+
+  export type AggregateMeasurement = {
+    _count: MeasurementCountAggregateOutputType | null
+    _avg: MeasurementAvgAggregateOutputType | null
+    _sum: MeasurementSumAggregateOutputType | null
+    _min: MeasurementMinAggregateOutputType | null
+    _max: MeasurementMaxAggregateOutputType | null
+  }
+
+  export type MeasurementAvgAggregateOutputType = {
+    value: number | null
+  }
+
+  export type MeasurementSumAggregateOutputType = {
+    value: number | null
+  }
+
+  export type MeasurementMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    label: string | null
+    value: number | null
+    unit: string | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type MeasurementMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    label: string | null
+    value: number | null
+    unit: string | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type MeasurementCountAggregateOutputType = {
+    id: number
+    userId: number
+    label: number
+    value: number
+    unit: number
+    date: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type MeasurementAvgAggregateInputType = {
+    value?: true
+  }
+
+  export type MeasurementSumAggregateInputType = {
+    value?: true
+  }
+
+  export type MeasurementMinAggregateInputType = {
+    id?: true
+    userId?: true
+    label?: true
+    value?: true
+    unit?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type MeasurementMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    label?: true
+    value?: true
+    unit?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type MeasurementCountAggregateInputType = {
+    id?: true
+    userId?: true
+    label?: true
+    value?: true
+    unit?: true
+    date?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type MeasurementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Measurement to aggregate.
+     */
+    where?: MeasurementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Measurements to fetch.
+     */
+    orderBy?: MeasurementOrderByWithRelationInput | MeasurementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MeasurementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Measurements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Measurements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Measurements
+    **/
+    _count?: true | MeasurementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MeasurementAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MeasurementSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MeasurementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MeasurementMaxAggregateInputType
+  }
+
+  export type GetMeasurementAggregateType<T extends MeasurementAggregateArgs> = {
+        [P in keyof T & keyof AggregateMeasurement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMeasurement[P]>
+      : GetScalarType<T[P], AggregateMeasurement[P]>
+  }
+
+
+
+
+  export type MeasurementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeasurementWhereInput
+    orderBy?: MeasurementOrderByWithAggregationInput | MeasurementOrderByWithAggregationInput[]
+    by: MeasurementScalarFieldEnum[] | MeasurementScalarFieldEnum
+    having?: MeasurementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MeasurementCountAggregateInputType | true
+    _avg?: MeasurementAvgAggregateInputType
+    _sum?: MeasurementSumAggregateInputType
+    _min?: MeasurementMinAggregateInputType
+    _max?: MeasurementMaxAggregateInputType
+  }
+
+  export type MeasurementGroupByOutputType = {
+    id: string
+    userId: string
+    label: string
+    value: number
+    unit: string | null
+    date: Date
+    createdAt: Date
+    _count: MeasurementCountAggregateOutputType | null
+    _avg: MeasurementAvgAggregateOutputType | null
+    _sum: MeasurementSumAggregateOutputType | null
+    _min: MeasurementMinAggregateOutputType | null
+    _max: MeasurementMaxAggregateOutputType | null
+  }
+
+  type GetMeasurementGroupByPayload<T extends MeasurementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MeasurementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MeasurementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MeasurementGroupByOutputType[P]>
+            : GetScalarType<T[P], MeasurementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MeasurementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    label?: boolean
+    value?: boolean
+    unit?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["measurement"]>
+
+  export type MeasurementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    label?: boolean
+    value?: boolean
+    unit?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["measurement"]>
+
+  export type MeasurementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    label?: boolean
+    value?: boolean
+    unit?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["measurement"]>
+
+  export type MeasurementSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    label?: boolean
+    value?: boolean
+    unit?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }
+
+  export type MeasurementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "label" | "value" | "unit" | "date" | "createdAt", ExtArgs["result"]["measurement"]>
+
+  export type $MeasurementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Measurement"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      label: string
+      value: number
+      unit: string | null
+      date: Date
+      createdAt: Date
+    }, ExtArgs["result"]["measurement"]>
+    composites: {}
+  }
+
+  type MeasurementGetPayload<S extends boolean | null | undefined | MeasurementDefaultArgs> = $Result.GetResult<Prisma.$MeasurementPayload, S>
+
+  type MeasurementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MeasurementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MeasurementCountAggregateInputType | true
+    }
+
+  export interface MeasurementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Measurement'], meta: { name: 'Measurement' } }
+    /**
+     * Find zero or one Measurement that matches the filter.
+     * @param {MeasurementFindUniqueArgs} args - Arguments to find a Measurement
+     * @example
+     * // Get one Measurement
+     * const measurement = await prisma.measurement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MeasurementFindUniqueArgs>(args: SelectSubset<T, MeasurementFindUniqueArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Measurement that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MeasurementFindUniqueOrThrowArgs} args - Arguments to find a Measurement
+     * @example
+     * // Get one Measurement
+     * const measurement = await prisma.measurement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MeasurementFindUniqueOrThrowArgs>(args: SelectSubset<T, MeasurementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Measurement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementFindFirstArgs} args - Arguments to find a Measurement
+     * @example
+     * // Get one Measurement
+     * const measurement = await prisma.measurement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MeasurementFindFirstArgs>(args?: SelectSubset<T, MeasurementFindFirstArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Measurement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementFindFirstOrThrowArgs} args - Arguments to find a Measurement
+     * @example
+     * // Get one Measurement
+     * const measurement = await prisma.measurement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MeasurementFindFirstOrThrowArgs>(args?: SelectSubset<T, MeasurementFindFirstOrThrowArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Measurements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Measurements
+     * const measurements = await prisma.measurement.findMany()
+     * 
+     * // Get first 10 Measurements
+     * const measurements = await prisma.measurement.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const measurementWithIdOnly = await prisma.measurement.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MeasurementFindManyArgs>(args?: SelectSubset<T, MeasurementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Measurement.
+     * @param {MeasurementCreateArgs} args - Arguments to create a Measurement.
+     * @example
+     * // Create one Measurement
+     * const Measurement = await prisma.measurement.create({
+     *   data: {
+     *     // ... data to create a Measurement
+     *   }
+     * })
+     * 
+     */
+    create<T extends MeasurementCreateArgs>(args: SelectSubset<T, MeasurementCreateArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Measurements.
+     * @param {MeasurementCreateManyArgs} args - Arguments to create many Measurements.
+     * @example
+     * // Create many Measurements
+     * const measurement = await prisma.measurement.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MeasurementCreateManyArgs>(args?: SelectSubset<T, MeasurementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Measurements and returns the data saved in the database.
+     * @param {MeasurementCreateManyAndReturnArgs} args - Arguments to create many Measurements.
+     * @example
+     * // Create many Measurements
+     * const measurement = await prisma.measurement.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Measurements and only return the `id`
+     * const measurementWithIdOnly = await prisma.measurement.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MeasurementCreateManyAndReturnArgs>(args?: SelectSubset<T, MeasurementCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Measurement.
+     * @param {MeasurementDeleteArgs} args - Arguments to delete one Measurement.
+     * @example
+     * // Delete one Measurement
+     * const Measurement = await prisma.measurement.delete({
+     *   where: {
+     *     // ... filter to delete one Measurement
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MeasurementDeleteArgs>(args: SelectSubset<T, MeasurementDeleteArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Measurement.
+     * @param {MeasurementUpdateArgs} args - Arguments to update one Measurement.
+     * @example
+     * // Update one Measurement
+     * const measurement = await prisma.measurement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MeasurementUpdateArgs>(args: SelectSubset<T, MeasurementUpdateArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Measurements.
+     * @param {MeasurementDeleteManyArgs} args - Arguments to filter Measurements to delete.
+     * @example
+     * // Delete a few Measurements
+     * const { count } = await prisma.measurement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MeasurementDeleteManyArgs>(args?: SelectSubset<T, MeasurementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Measurements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Measurements
+     * const measurement = await prisma.measurement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MeasurementUpdateManyArgs>(args: SelectSubset<T, MeasurementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Measurements and returns the data updated in the database.
+     * @param {MeasurementUpdateManyAndReturnArgs} args - Arguments to update many Measurements.
+     * @example
+     * // Update many Measurements
+     * const measurement = await prisma.measurement.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Measurements and only return the `id`
+     * const measurementWithIdOnly = await prisma.measurement.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MeasurementUpdateManyAndReturnArgs>(args: SelectSubset<T, MeasurementUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Measurement.
+     * @param {MeasurementUpsertArgs} args - Arguments to update or create a Measurement.
+     * @example
+     * // Update or create a Measurement
+     * const measurement = await prisma.measurement.upsert({
+     *   create: {
+     *     // ... data to create a Measurement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Measurement we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MeasurementUpsertArgs>(args: SelectSubset<T, MeasurementUpsertArgs<ExtArgs>>): Prisma__MeasurementClient<$Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Measurements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementCountArgs} args - Arguments to filter Measurements to count.
+     * @example
+     * // Count the number of Measurements
+     * const count = await prisma.measurement.count({
+     *   where: {
+     *     // ... the filter for the Measurements we want to count
+     *   }
+     * })
+    **/
+    count<T extends MeasurementCountArgs>(
+      args?: Subset<T, MeasurementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MeasurementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Measurement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MeasurementAggregateArgs>(args: Subset<T, MeasurementAggregateArgs>): Prisma.PrismaPromise<GetMeasurementAggregateType<T>>
+
+    /**
+     * Group by Measurement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeasurementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MeasurementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MeasurementGroupByArgs['orderBy'] }
+        : { orderBy?: MeasurementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MeasurementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMeasurementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Measurement model
+   */
+  readonly fields: MeasurementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Measurement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MeasurementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Measurement model
+   */
+  interface MeasurementFieldRefs {
+    readonly id: FieldRef<"Measurement", 'String'>
+    readonly userId: FieldRef<"Measurement", 'String'>
+    readonly label: FieldRef<"Measurement", 'String'>
+    readonly value: FieldRef<"Measurement", 'Float'>
+    readonly unit: FieldRef<"Measurement", 'String'>
+    readonly date: FieldRef<"Measurement", 'DateTime'>
+    readonly createdAt: FieldRef<"Measurement", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Measurement findUnique
+   */
+  export type MeasurementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * Filter, which Measurement to fetch.
+     */
+    where: MeasurementWhereUniqueInput
+  }
+
+  /**
+   * Measurement findUniqueOrThrow
+   */
+  export type MeasurementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * Filter, which Measurement to fetch.
+     */
+    where: MeasurementWhereUniqueInput
+  }
+
+  /**
+   * Measurement findFirst
+   */
+  export type MeasurementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * Filter, which Measurement to fetch.
+     */
+    where?: MeasurementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Measurements to fetch.
+     */
+    orderBy?: MeasurementOrderByWithRelationInput | MeasurementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Measurements.
+     */
+    cursor?: MeasurementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Measurements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Measurements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Measurements.
+     */
+    distinct?: MeasurementScalarFieldEnum | MeasurementScalarFieldEnum[]
+  }
+
+  /**
+   * Measurement findFirstOrThrow
+   */
+  export type MeasurementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * Filter, which Measurement to fetch.
+     */
+    where?: MeasurementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Measurements to fetch.
+     */
+    orderBy?: MeasurementOrderByWithRelationInput | MeasurementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Measurements.
+     */
+    cursor?: MeasurementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Measurements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Measurements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Measurements.
+     */
+    distinct?: MeasurementScalarFieldEnum | MeasurementScalarFieldEnum[]
+  }
+
+  /**
+   * Measurement findMany
+   */
+  export type MeasurementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * Filter, which Measurements to fetch.
+     */
+    where?: MeasurementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Measurements to fetch.
+     */
+    orderBy?: MeasurementOrderByWithRelationInput | MeasurementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Measurements.
+     */
+    cursor?: MeasurementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Measurements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Measurements.
+     */
+    skip?: number
+    distinct?: MeasurementScalarFieldEnum | MeasurementScalarFieldEnum[]
+  }
+
+  /**
+   * Measurement create
+   */
+  export type MeasurementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Measurement.
+     */
+    data: XOR<MeasurementCreateInput, MeasurementUncheckedCreateInput>
+  }
+
+  /**
+   * Measurement createMany
+   */
+  export type MeasurementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Measurements.
+     */
+    data: MeasurementCreateManyInput | MeasurementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Measurement createManyAndReturn
+   */
+  export type MeasurementCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * The data used to create many Measurements.
+     */
+    data: MeasurementCreateManyInput | MeasurementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Measurement update
+   */
+  export type MeasurementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Measurement.
+     */
+    data: XOR<MeasurementUpdateInput, MeasurementUncheckedUpdateInput>
+    /**
+     * Choose, which Measurement to update.
+     */
+    where: MeasurementWhereUniqueInput
+  }
+
+  /**
+   * Measurement updateMany
+   */
+  export type MeasurementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Measurements.
+     */
+    data: XOR<MeasurementUpdateManyMutationInput, MeasurementUncheckedUpdateManyInput>
+    /**
+     * Filter which Measurements to update
+     */
+    where?: MeasurementWhereInput
+    /**
+     * Limit how many Measurements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Measurement updateManyAndReturn
+   */
+  export type MeasurementUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * The data used to update Measurements.
+     */
+    data: XOR<MeasurementUpdateManyMutationInput, MeasurementUncheckedUpdateManyInput>
+    /**
+     * Filter which Measurements to update
+     */
+    where?: MeasurementWhereInput
+    /**
+     * Limit how many Measurements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Measurement upsert
+   */
+  export type MeasurementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Measurement to update in case it exists.
+     */
+    where: MeasurementWhereUniqueInput
+    /**
+     * In case the Measurement found by the `where` argument doesn't exist, create a new Measurement with this data.
+     */
+    create: XOR<MeasurementCreateInput, MeasurementUncheckedCreateInput>
+    /**
+     * In case the Measurement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MeasurementUpdateInput, MeasurementUncheckedUpdateInput>
+  }
+
+  /**
+   * Measurement delete
+   */
+  export type MeasurementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+    /**
+     * Filter which Measurement to delete.
+     */
+    where: MeasurementWhereUniqueInput
+  }
+
+  /**
+   * Measurement deleteMany
+   */
+  export type MeasurementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Measurements to delete
+     */
+    where?: MeasurementWhereInput
+    /**
+     * Limit how many Measurements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Measurement without action
+   */
+  export type MeasurementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Measurement
+     */
+    select?: MeasurementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Measurement
+     */
+    omit?: MeasurementOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model LoginHistory
    */
 
@@ -14673,6 +18017,43 @@ export namespace Prisma {
   export type GratitudeEntryScalarFieldEnum = (typeof GratitudeEntryScalarFieldEnum)[keyof typeof GratitudeEntryScalarFieldEnum]
 
 
+  export const WinScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    content: 'content',
+    date: 'date',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type WinScalarFieldEnum = (typeof WinScalarFieldEnum)[keyof typeof WinScalarFieldEnum]
+
+
+  export const ProgressPhotoScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    dataUrl: 'dataUrl',
+    caption: 'caption',
+    date: 'date',
+    createdAt: 'createdAt'
+  };
+
+  export type ProgressPhotoScalarFieldEnum = (typeof ProgressPhotoScalarFieldEnum)[keyof typeof ProgressPhotoScalarFieldEnum]
+
+
+  export const MeasurementScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    label: 'label',
+    value: 'value',
+    unit: 'unit',
+    date: 'date',
+    createdAt: 'createdAt'
+  };
+
+  export type MeasurementScalarFieldEnum = (typeof MeasurementScalarFieldEnum)[keyof typeof MeasurementScalarFieldEnum]
+
+
   export const LoginHistoryScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -15474,6 +18855,184 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"GratitudeEntry"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"GratitudeEntry"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"GratitudeEntry"> | Date | string
+  }
+
+  export type WinWhereInput = {
+    AND?: WinWhereInput | WinWhereInput[]
+    OR?: WinWhereInput[]
+    NOT?: WinWhereInput | WinWhereInput[]
+    id?: StringFilter<"Win"> | string
+    userId?: StringFilter<"Win"> | string
+    content?: StringFilter<"Win"> | string
+    date?: DateTimeFilter<"Win"> | Date | string
+    createdAt?: DateTimeFilter<"Win"> | Date | string
+    updatedAt?: DateTimeFilter<"Win"> | Date | string
+  }
+
+  export type WinOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WinWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WinWhereInput | WinWhereInput[]
+    OR?: WinWhereInput[]
+    NOT?: WinWhereInput | WinWhereInput[]
+    userId?: StringFilter<"Win"> | string
+    content?: StringFilter<"Win"> | string
+    date?: DateTimeFilter<"Win"> | Date | string
+    createdAt?: DateTimeFilter<"Win"> | Date | string
+    updatedAt?: DateTimeFilter<"Win"> | Date | string
+  }, "id">
+
+  export type WinOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: WinCountOrderByAggregateInput
+    _max?: WinMaxOrderByAggregateInput
+    _min?: WinMinOrderByAggregateInput
+  }
+
+  export type WinScalarWhereWithAggregatesInput = {
+    AND?: WinScalarWhereWithAggregatesInput | WinScalarWhereWithAggregatesInput[]
+    OR?: WinScalarWhereWithAggregatesInput[]
+    NOT?: WinScalarWhereWithAggregatesInput | WinScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Win"> | string
+    userId?: StringWithAggregatesFilter<"Win"> | string
+    content?: StringWithAggregatesFilter<"Win"> | string
+    date?: DateTimeWithAggregatesFilter<"Win"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Win"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Win"> | Date | string
+  }
+
+  export type ProgressPhotoWhereInput = {
+    AND?: ProgressPhotoWhereInput | ProgressPhotoWhereInput[]
+    OR?: ProgressPhotoWhereInput[]
+    NOT?: ProgressPhotoWhereInput | ProgressPhotoWhereInput[]
+    id?: StringFilter<"ProgressPhoto"> | string
+    userId?: StringFilter<"ProgressPhoto"> | string
+    dataUrl?: StringFilter<"ProgressPhoto"> | string
+    caption?: StringNullableFilter<"ProgressPhoto"> | string | null
+    date?: DateTimeFilter<"ProgressPhoto"> | Date | string
+    createdAt?: DateTimeFilter<"ProgressPhoto"> | Date | string
+  }
+
+  export type ProgressPhotoOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    dataUrl?: SortOrder
+    caption?: SortOrderInput | SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProgressPhotoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProgressPhotoWhereInput | ProgressPhotoWhereInput[]
+    OR?: ProgressPhotoWhereInput[]
+    NOT?: ProgressPhotoWhereInput | ProgressPhotoWhereInput[]
+    userId?: StringFilter<"ProgressPhoto"> | string
+    dataUrl?: StringFilter<"ProgressPhoto"> | string
+    caption?: StringNullableFilter<"ProgressPhoto"> | string | null
+    date?: DateTimeFilter<"ProgressPhoto"> | Date | string
+    createdAt?: DateTimeFilter<"ProgressPhoto"> | Date | string
+  }, "id">
+
+  export type ProgressPhotoOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    dataUrl?: SortOrder
+    caption?: SortOrderInput | SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    _count?: ProgressPhotoCountOrderByAggregateInput
+    _max?: ProgressPhotoMaxOrderByAggregateInput
+    _min?: ProgressPhotoMinOrderByAggregateInput
+  }
+
+  export type ProgressPhotoScalarWhereWithAggregatesInput = {
+    AND?: ProgressPhotoScalarWhereWithAggregatesInput | ProgressPhotoScalarWhereWithAggregatesInput[]
+    OR?: ProgressPhotoScalarWhereWithAggregatesInput[]
+    NOT?: ProgressPhotoScalarWhereWithAggregatesInput | ProgressPhotoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProgressPhoto"> | string
+    userId?: StringWithAggregatesFilter<"ProgressPhoto"> | string
+    dataUrl?: StringWithAggregatesFilter<"ProgressPhoto"> | string
+    caption?: StringNullableWithAggregatesFilter<"ProgressPhoto"> | string | null
+    date?: DateTimeWithAggregatesFilter<"ProgressPhoto"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"ProgressPhoto"> | Date | string
+  }
+
+  export type MeasurementWhereInput = {
+    AND?: MeasurementWhereInput | MeasurementWhereInput[]
+    OR?: MeasurementWhereInput[]
+    NOT?: MeasurementWhereInput | MeasurementWhereInput[]
+    id?: StringFilter<"Measurement"> | string
+    userId?: StringFilter<"Measurement"> | string
+    label?: StringFilter<"Measurement"> | string
+    value?: FloatFilter<"Measurement"> | number
+    unit?: StringNullableFilter<"Measurement"> | string | null
+    date?: DateTimeFilter<"Measurement"> | Date | string
+    createdAt?: DateTimeFilter<"Measurement"> | Date | string
+  }
+
+  export type MeasurementOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    label?: SortOrder
+    value?: SortOrder
+    unit?: SortOrderInput | SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeasurementWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MeasurementWhereInput | MeasurementWhereInput[]
+    OR?: MeasurementWhereInput[]
+    NOT?: MeasurementWhereInput | MeasurementWhereInput[]
+    userId?: StringFilter<"Measurement"> | string
+    label?: StringFilter<"Measurement"> | string
+    value?: FloatFilter<"Measurement"> | number
+    unit?: StringNullableFilter<"Measurement"> | string | null
+    date?: DateTimeFilter<"Measurement"> | Date | string
+    createdAt?: DateTimeFilter<"Measurement"> | Date | string
+  }, "id">
+
+  export type MeasurementOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    label?: SortOrder
+    value?: SortOrder
+    unit?: SortOrderInput | SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    _count?: MeasurementCountOrderByAggregateInput
+    _avg?: MeasurementAvgOrderByAggregateInput
+    _max?: MeasurementMaxOrderByAggregateInput
+    _min?: MeasurementMinOrderByAggregateInput
+    _sum?: MeasurementSumOrderByAggregateInput
+  }
+
+  export type MeasurementScalarWhereWithAggregatesInput = {
+    AND?: MeasurementScalarWhereWithAggregatesInput | MeasurementScalarWhereWithAggregatesInput[]
+    OR?: MeasurementScalarWhereWithAggregatesInput[]
+    NOT?: MeasurementScalarWhereWithAggregatesInput | MeasurementScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Measurement"> | string
+    userId?: StringWithAggregatesFilter<"Measurement"> | string
+    label?: StringWithAggregatesFilter<"Measurement"> | string
+    value?: FloatWithAggregatesFilter<"Measurement"> | number
+    unit?: StringNullableWithAggregatesFilter<"Measurement"> | string | null
+    date?: DateTimeWithAggregatesFilter<"Measurement"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Measurement"> | Date | string
   }
 
   export type LoginHistoryWhereInput = {
@@ -16292,6 +19851,202 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type WinCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WinUncheckedCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WinUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WinUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WinCreateManyInput = {
+    id?: string
+    userId: string
+    content: string
+    date?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WinUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WinUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressPhotoCreateInput = {
+    id?: string
+    userId: string
+    dataUrl: string
+    caption?: string | null
+    date?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type ProgressPhotoUncheckedCreateInput = {
+    id?: string
+    userId: string
+    dataUrl: string
+    caption?: string | null
+    date?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type ProgressPhotoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    dataUrl?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressPhotoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    dataUrl?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressPhotoCreateManyInput = {
+    id?: string
+    userId: string
+    dataUrl: string
+    caption?: string | null
+    date?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type ProgressPhotoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    dataUrl?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressPhotoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    dataUrl?: StringFieldUpdateOperationsInput | string
+    caption?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeasurementCreateInput = {
+    id?: string
+    userId: string
+    label: string
+    value: number
+    unit?: string | null
+    date?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type MeasurementUncheckedCreateInput = {
+    id?: string
+    userId: string
+    label: string
+    value: number
+    unit?: string | null
+    date?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type MeasurementUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeasurementUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeasurementCreateManyInput = {
+    id?: string
+    userId: string
+    label: string
+    value: number
+    unit?: string | null
+    date?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type MeasurementUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeasurementUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LoginHistoryCreateInput = {
     id?: string
     loginDate?: Date | string
@@ -16969,6 +20724,98 @@ export namespace Prisma {
     date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type WinCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WinMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WinMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgressPhotoCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    dataUrl?: SortOrder
+    caption?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProgressPhotoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    dataUrl?: SortOrder
+    caption?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProgressPhotoMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    dataUrl?: SortOrder
+    caption?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeasurementCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    label?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeasurementAvgOrderByAggregateInput = {
+    value?: SortOrder
+  }
+
+  export type MeasurementMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    label?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeasurementMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    label?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MeasurementSumOrderByAggregateInput = {
+    value?: SortOrder
   }
 
   export type LoginHistoryUserIdLoginDateCompoundUniqueInput = {

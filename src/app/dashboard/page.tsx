@@ -10,6 +10,7 @@ import CycleWidget from "@/components/CycleWidget";
 // import PhysicalSymptomsWidget from "@/components/PhysicalSymptomsWidget"; // Body Check-in hidden for now
 import NoteToSelf from "@/components/NoteToSelf";
 import GratitudeWidget from "@/components/GratitudeWidget";
+import JourneySoFarWidget from "@/components/JourneySoFarWidget";
 import QuickCallButton from "@/components/QuickCallButton";
 import Image from "next/image";
 
@@ -156,6 +157,8 @@ export default function DashboardPage() {
               <GratitudeWidget />
             </DashboardCard>
             <CycleWidget />
+            {/* Only renders once the user has 3+ journal entries */}
+            <JourneySoFarWidget />
           </div>
         </div>
         <div className="mx-auto mt-6 flex w-full max-w-[1200px] justify-center px-4">
