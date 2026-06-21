@@ -138,6 +138,40 @@ model GratitudeEntry {
   updatedAt DateTime @updatedAt
 }
 
+model Win {
+  id        String   @id @default(uuid())
+  userId    String
+  content   String
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, date(sort: Desc)])
+}
+
+model ProgressPhoto {
+  id        String   @id @default(uuid())
+  userId    String
+  dataUrl   String // downscaled base64 data URL
+  caption   String?
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([userId, date(sort: Desc)])
+}
+
+model Measurement {
+  id        String   @id @default(uuid())
+  userId    String
+  label     String // e.g. "Waist", "Weight" — user-defined
+  value     Float
+  unit      String? // e.g. "cm", "kg"
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([userId, date(sort: Desc)])
+}
+
 model LoginHistory {
   id        String   @id @default(uuid())
   userId    String

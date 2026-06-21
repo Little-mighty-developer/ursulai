@@ -229,6 +229,34 @@ exports.Prisma.GratitudeEntryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.WinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProgressPhotoScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  dataUrl: 'dataUrl',
+  caption: 'caption',
+  date: 'date',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.MeasurementScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  label: 'label',
+  value: 'value',
+  unit: 'unit',
+  date: 'date',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.LoginHistoryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -263,6 +291,9 @@ exports.Prisma.ModelName = {
   DailyNote: 'DailyNote',
   JournalEntry: 'JournalEntry',
   GratitudeEntry: 'GratitudeEntry',
+  Win: 'Win',
+  ProgressPhoto: 'ProgressPhoto',
+  Measurement: 'Measurement',
   LoginHistory: 'LoginHistory'
 };
 
